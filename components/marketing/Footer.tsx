@@ -60,7 +60,7 @@ export function Footer() {
             <div className="mt-10">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 rounded-md bg-background px-5 py-3 text-sm font-medium text-foreground transition-colors hover:bg-background/90"
+                className="inline-flex items-center gap-2 rounded-md bg-accent px-5 py-3 text-sm font-medium text-accent-foreground transition-colors hover:bg-accent/90"
               >
                 Book a chat
               </Link>

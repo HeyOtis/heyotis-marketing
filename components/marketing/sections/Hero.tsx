@@ -45,7 +45,7 @@ export function Hero() {
             <Button
               asChild
               size="lg"
-              className="rounded-md bg-background text-foreground hover:bg-background/90"
+              className="rounded-md bg-accent text-accent-foreground hover:bg-accent/90"
             >
               <Link href="/contact">Book a chat</Link>
             </Button>
