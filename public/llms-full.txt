@@ -1,0 +1,20 @@
+# Heyotis — full content snapshot
+
+> Placeholder. This file should contain the full plain-text content of every public marketing page so that AI assistants without live-crawl access can reason over the complete site. Regenerate it whenever marketing copy changes.
+>
+> Suggested generator: a build-time script that walks the (marketing) route group + content/blog and concatenates rendered Markdown into this file. Wire into the `build` script before shipping.
+
+## /
+Heyotis home page content goes here.
+
+## /features
+Heyotis features page content goes here.
+
+## /pricing
+Heyotis pricing page content goes here.
+
+## /about
+Heyotis about page content goes here.
+
+## /blog
+Heyotis blog index content goes here. Then each post appended below.

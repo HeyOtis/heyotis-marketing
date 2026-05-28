@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# heyotis-marketing
 
-## Getting Started
+Marketing site for Heyotis. Next.js 16 (App Router) · TypeScript · Tailwind v4 · shadcn/ui · MDX.
 
-First, run the development server:
+## Quick start
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open <http://localhost:3000>.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## What's in the skeleton
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**Routes**
 
-## Learn More
+- `/`, `/about`, `/features`, `/pricing`, `/contact` — placeholder marketing pages.
+- `/blog`, `/blog/[slug]` — MDX-driven blog with frontmatter, reading time, OG, structured data.
+- `/sitemap.xml`, `/robots.txt`, `/manifest.webmanifest` — auto-generated.
+- `/api/og?title=…` — dynamic OG image generator.
 
-To learn more about Next.js, take a look at the following resources:
+**SEO**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Per-page `buildMetadata()` (canonical, OG, Twitter, robots).
+- `Organization` + `WebSite` JSON-LD on every page.
+- Breadcrumb JSON-LD per route.
+- Sitemap auto-includes static routes + MDX blog posts.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**AEO/GEO** (Answer/Generative Engine Optimization)
 
-## Deploy on Vercel
+- `public/llms.txt` and `public/llms-full.txt` for AI crawlers.
+- `FAQPage` schema on FAQ sections.
+- `Article` schema with `speakable` blocks on blog posts.
+- Robots allowlist for ChatGPT, Claude, Perplexity, Google-Extended, etc.
+- `data-speakable` markers on lede paragraphs.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Where to edit
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Want to change… | Edit… |
+|---|---|
+| Site name, URL, socials, nav | `lib/site.ts` |
+| Default metadata behavior | `lib/seo.ts` |
+| Structured data shape | `lib/schema.ts` |
+| Header / Footer | `components/marketing/Nav.tsx` / `Footer.tsx` |
+| Theme colors | `app/globals.css` |
+| AI crawler guidance | `public/llms.txt`, `public/llms-full.txt`, `app/robots.ts` |
+| Add a blog post | New `.mdx` file in `content/blog/` |
+
+## Environment
+
+- `NEXT_PUBLIC_SITE_URL` — production URL. Defaults to `https://heyotis.com`. Set on Vercel.
+
+## Deploy
+
+Vercel. Connect the repo, set `NEXT_PUBLIC_SITE_URL`, deploy.
+
+## Next steps
+
+This is a skeleton — design and real page content are next.

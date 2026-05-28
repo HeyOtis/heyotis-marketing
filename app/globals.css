@@ -1,26 +1,132 @@
 @import "tailwindcss";
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* brand surfaces */
+  --background: oklch(0.965 0.012 80);          /* cream */
+  --foreground: oklch(0.18 0.04 290);           /* near-black ink */
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.04 290);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.04 290);
+
+  /* primary = deep eggplant / midnight purple (dark sections) */
+  --primary: oklch(0.14 0.07 310);
+  --primary-foreground: oklch(0.97 0.02 80);
+
+  /* secondary surfaces (light) */
+  --secondary: oklch(0.95 0.012 80);
+  --secondary-foreground: oklch(0.18 0.04 290);
+
+  --muted: oklch(0.92 0.015 80);
+  --muted-foreground: oklch(0.45 0.02 290);
+
+  --accent: oklch(0.78 0.14 290);                /* lavender for hero headings */
+  --accent-foreground: oklch(0.18 0.04 290);
+
+  --destructive: oklch(0.6 0.22 25);
+  --destructive-foreground: oklch(0.985 0 0);
+
+  --border: oklch(0.18 0.04 290 / 12%);
+  --input: oklch(0.18 0.04 290 / 18%);
+  --ring: oklch(0.6 0.18 295);
+
+  /* product-mock indicators */
+  --lime: oklch(0.9 0.21 130);
+  --lime-foreground: oklch(0.18 0.04 290);
+  --coral: oklch(0.83 0.1 25);
+  --coral-foreground: oklch(0.3 0.1 25);
+  --teal: oklch(0.85 0.12 195);
+  --violet: oklch(0.7 0.18 295);
+
+  --radius: 1rem;
+}
+
+.dark {
+  /* surfaces flip: dark canvas, cream type — used by the hero/footer sections via .surface-dark */
+  --background: oklch(0.14 0.07 310);
+  --foreground: oklch(0.965 0.012 80);
+  --card: oklch(0.22 0.08 305);
+  --card-foreground: oklch(0.965 0.012 80);
+  --muted: oklch(0.25 0.06 305);
+  --muted-foreground: oklch(0.75 0.04 305);
+  --border: oklch(0.97 0.02 80 / 12%);
+  --input: oklch(0.97 0.02 80 / 18%);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-lime: var(--lime);
+  --color-lime-foreground: var(--lime-foreground);
+  --color-coral: var(--coral);
+  --color-coral-foreground: var(--coral-foreground);
+  --color-teal: var(--teal);
+  --color-violet: var(--violet);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-display);
+  --radius-sm: calc(var(--radius) - 12px);
+  --radius-md: calc(var(--radius) - 8px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 8px);
+  --radius-2xl: calc(var(--radius) + 16px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans), system-ui, sans-serif;
+    font-feature-settings: "ss01", "cv11";
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .surface-dark {
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
+  .surface-cream {
+    background: oklch(0.965 0.012 80);
+    color: var(--foreground);
+  }
+  .surface-card {
+    background: var(--card);
+    color: var(--card-foreground);
+  }
+
+  .font-display {
+    font-family: var(--font-display), var(--font-sans), system-ui, sans-serif;
+    font-weight: 800;
+    font-stretch: 75%;
+    letter-spacing: -0.025em;
+    line-height: 0.92;
+  }
+
+  .display-xl  { @apply font-display text-5xl sm:text-6xl md:text-7xl lg:text-[7rem]; }
+  .display-lg  { @apply font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl; }
+  .display-md  { @apply font-display text-3xl sm:text-4xl md:text-5xl; }
+  .display-sm  { @apply font-display text-2xl sm:text-3xl; }
 }

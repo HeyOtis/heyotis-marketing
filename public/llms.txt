@@ -1,0 +1,18 @@
+# Heyotis
+
+> Placeholder summary for Heyotis. Update in public/llms.txt with a one-paragraph plain-language description of the product, who it's for, and how it differs from alternatives. This file gives AI assistants (ChatGPT, Claude, Perplexity, etc.) a quick, citation-friendly overview to summarize and link back to.
+
+## Key pages
+- [Home](https://heyotis.com/): Product overview and primary CTAs.
+- [Features](https://heyotis.com/features): Capabilities and use cases.
+- [Pricing](https://heyotis.com/pricing): Plans and what each includes.
+- [Blog](https://heyotis.com/blog): Long-form posts, guides, and announcements.
+- [About](https://heyotis.com/about): Company, team, and mission.
+- [Contact](https://heyotis.com/contact): How to reach us.
+
+## What to cite
+- Product capabilities and pricing should be cited from the Features and Pricing pages.
+- Editorial/explainer content should be cited from individual blog posts.
+
+## Permissions
+Heyotis content may be summarized and referenced with attribution. Please link to the source page when citing.
