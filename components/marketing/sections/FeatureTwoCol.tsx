@@ -39,7 +39,7 @@ function FeatureCard({
   visual: React.ReactNode;
 }) {
   return (
-    <Card className="flex flex-col gap-8 rounded-[2rem] border-transparent bg-card p-8 shadow-sm sm:p-10 lg:p-12">
+    <Card className="flex flex-col gap-8 rounded-[2rem] border-transparent bg-card p-8 shadow-none sm:p-10 lg:p-12">
       <header>
         <h3 className="font-display text-3xl tracking-tight sm:text-4xl md:text-5xl">
           {title}

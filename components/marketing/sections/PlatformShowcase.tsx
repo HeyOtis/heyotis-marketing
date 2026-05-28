@@ -6,7 +6,7 @@ export function PlatformShowcase() {
   return (
     <section className="surface-cream pb-12">
       <Container>
-        <Card className="overflow-hidden rounded-[2rem] border-transparent bg-card p-8 shadow-sm sm:p-12 lg:p-16">
+        <Card className="overflow-hidden rounded-[2rem] border-transparent bg-card p-8 shadow-none sm:p-12 lg:p-16">
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <div>
               <h2 className="font-display text-4xl tracking-tight sm:text-5xl md:text-6xl">
