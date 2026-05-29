@@ -49,7 +49,7 @@ export function LogoStrip() {
     <section className="surface-cream py-20 sm:py-28">
       <Container>
         <h2 className="text-center font-display text-4xl tracking-tight sm:text-5xl md:text-6xl">
-          Powered by the world&rsquo;s leading AI
+          Benchmarked across every major AI assistant
         </h2>
 
         <div className="relative mt-14">

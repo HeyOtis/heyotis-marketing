@@ -39,7 +39,7 @@ export function Footer() {
         className="pointer-events-none absolute inset-0 opacity-50"
         style={{
           background:
-            "radial-gradient(50rem 24rem at 50% 100%, oklch(0.4 0.2 295 / 0.4), transparent 70%)",
+            "radial-gradient(50rem 24rem at 50% 100%, oklch(0.7 0.12 290 / 0.35), transparent 70%)",
         }}
       />
       <Container className="relative max-w-7xl py-20">

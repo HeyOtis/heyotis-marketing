@@ -1,4 +1,6 @@
-import { CalendarClock, CloudSun } from "lucide-react";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Container } from "@/components/marketing/Container";
 
@@ -10,18 +12,24 @@ export function FeatureTwoCol() {
           <FeatureCard
             title={
               <>
-                Decisions,
+                +300% AI
                 <br />
-                not guesswork.
+                recommendation share.
               </>
             }
-            description="Heyotis agents read live sales, weather, and event signals so your team always knows what to act on next."
-            visual={<RecommendationsVisual />}
+            description="Halenstein started from near-zero presence in Australian AI recommendations. After benchmarking, diagnosing the gaps and improving the signals that mattered, the brand reached 3.7% recommendation share — a 300% increase."
+            visual={<ProofVisual />}
           />
           <FeatureCard
-            title="Plugs into your stack"
-            description="POS, payroll, accounting, ordering — connect what you already use and let Heyotis orchestrate the flow."
-            visual={<IntegrationsVisual />}
+            title={
+              <>
+                See how AI talks
+                <br />
+                about your brand today.
+              </>
+            }
+            description="Get a scorecard showing where your brand appears, how competitors are being recommended, and what to fix first."
+            visual={<CtaVisual />}
           />
         </div>
       </Container>
@@ -55,82 +63,48 @@ function FeatureCard({
   );
 }
 
-function RecommendationsVisual() {
-  return (
-    <ul className="space-y-4">
-      <RecRow
-        Icon={CalendarClock}
-        iconBg="bg-primary"
-        iconColor="text-lime"
-        label="Your schedule is over budget"
-      />
-      <RecRow
-        Icon={CloudSun}
-        iconBg="bg-violet"
-        iconColor="text-primary-foreground"
-        label="You're running low on chicken"
-      />
-    </ul>
-  );
-}
-
-function RecRow({
-  Icon,
-  iconBg,
-  iconColor,
-  label,
-}: {
-  Icon: React.ComponentType<{ className?: string; "aria-hidden"?: boolean }>;
-  iconBg: string;
-  iconColor: string;
-  label: string;
-}) {
-  return (
-    <li className="flex items-center gap-4">
-      <span
-        aria-hidden
-        className={`inline-flex size-12 shrink-0 items-center justify-center rounded-full ${iconBg}`}
-      >
-        <Icon className={`size-5 ${iconColor}`} aria-hidden />
-      </span>
-      <span className="flex-1 rounded-2xl bg-card px-5 py-4 text-sm font-medium shadow-sm">
-        {label}
-      </span>
-    </li>
-  );
-}
-
-function IntegrationsVisual() {
-  const tiles: Array<{ glyph: string; tone: string }> = [
-    { glyph: "▢", tone: "bg-foreground text-background" },
-    { glyph: "e", tone: "bg-card text-primary" },
-    { glyph: "◖", tone: "bg-card text-coral" },
-    { glyph: "✦", tone: "bg-card text-violet" },
-    { glyph: "4", tone: "bg-card text-primary" },
-    { glyph: "x", tone: "bg-card text-teal" },
-    { glyph: "n", tone: "bg-primary text-lime" },
-    { glyph: "◖", tone: "bg-card text-coral" },
-    { glyph: "✦", tone: "bg-card text-violet" },
-    { glyph: "4", tone: "bg-card text-primary" },
-    { glyph: "x", tone: "bg-card text-teal" },
-    { glyph: "≡", tone: "bg-card text-foreground" },
+function ProofVisual() {
+  const stats: Array<{ value: string; label: string; tone: string }> = [
+    { value: "+300%", label: "growth in share", tone: "text-accent" },
+    { value: "3.7%", label: "share in Australia", tone: "text-foreground" },
   ];
 
   return (
-    <div className="grid grid-cols-4 gap-3 sm:gap-4">
-      {tiles.map((tile, i) => {
-        const isCenter = i === 6;
-        return (
-          <div
-            key={i}
-            className={`flex aspect-square items-center justify-center rounded-2xl font-display text-lg shadow-sm sm:text-xl ${tile.tone} ${
-              isCenter ? "scale-125 shadow-lg" : ""
-            }`}
+    <div className="grid grid-cols-2 gap-4">
+      {stats.map((stat) => (
+        <div
+          key={stat.label}
+          className="rounded-2xl bg-card px-5 py-6 shadow-sm"
+        >
+          <p
+            className={`font-display text-4xl tracking-tight sm:text-5xl ${stat.tone}`}
           >
-            {tile.glyph}
-          </div>
-        );
-      })}
+            {stat.value}
+          </p>
+          <p className="mt-2 text-sm text-foreground/60">{stat.label}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function CtaVisual() {
+  return (
+    <div className="flex flex-col items-start gap-4">
+      <Button
+        asChild
+        size="lg"
+        className="rounded-md bg-accent text-accent-foreground hover:bg-accent/90"
+      >
+        <Link href="/contact">
+          Get your AI brand scorecard
+          <ArrowUpRight aria-hidden className="size-4" />
+        </Link>
+      </Button>
+      <p className="text-sm text-foreground/60">
+        Tell us your brand, products and key buying moments — the HeyOtis team
+        builds your scorecard and shows you what to improve first.
+      </p>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Play, Star } from "lucide-react";
+import { ArrowRight, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -16,29 +16,23 @@ export function Hero() {
                 aria-hidden
                 className="inline-block size-1.5 rounded-full bg-coral"
               />
-              Built for modern operators
-            </Badge>
-            <Badge variant="outline" className="border-foreground/15 text-primary-foreground">
-              <Star
-                aria-hidden
-                className="size-3 fill-lime text-lime"
-              />
-              <span className="text-primary-foreground">4.8 average</span>
+              AI brand intelligence + GEO strategy
             </Badge>
           </div>
 
-          <h1 className="mt-6 font-display text-[clamp(2.5rem,6.5vw,5.75rem)] leading-[0.92] tracking-tight text-accent">
-            The operating
+          <h1 className="mt-6 font-display text-[clamp(2.25rem,5vw,4.5rem)] leading-[0.95] tracking-tight text-accent">
+            Your brand might be
             <br />
-            system for
+            misunderstood by AI —
             <br />
-            growth.
+            and you would not know it.
           </h1>
 
           <p className="mt-6 max-w-xl text-base text-primary-foreground/80 sm:text-lg" data-speakable>
-            Heyotis is the agentic AI platform that predicts demand, plans your
-            people, runs the back-office, and keeps your P&L on track —
-            autonomously, across every location.
+            Consumers now use ChatGPT, Gemini, Perplexity, Claude, Meta AI and
+            Mistral to discover, compare and choose products. HeyOtis shows you
+            how AI talks about your brand, where competitors are being
+            recommended instead, and what to do next.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -47,7 +41,7 @@ export function Hero() {
               size="lg"
               className="rounded-md bg-accent text-accent-foreground hover:bg-accent/90"
             >
-              <Link href="/contact">Book a chat</Link>
+              <Link href="/contact">Get your AI brand scorecard</Link>
             </Button>
             <Button
               asChild
@@ -55,9 +49,9 @@ export function Hero() {
               variant="outline"
               className="rounded-md border-2 border-primary-foreground bg-transparent text-primary-foreground hover:bg-primary-foreground hover:text-foreground"
             >
-              <Link href="/product">
+              <Link href="#how-it-works">
                 <Play aria-hidden className="size-4 fill-current" />
-                Watch product tour
+                See how it works
               </Link>
             </Button>
           </div>
@@ -82,7 +76,7 @@ function HeroVisual({ className }: { className?: string }) {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(135deg, oklch(0.32 0.06 295) 0%, oklch(0.22 0.1 290) 50%, oklch(0.18 0.12 280) 100%)",
+            "linear-gradient(135deg, oklch(0.78 0.09 290) 0%, oklch(0.8 0.09 320) 50%, oklch(0.84 0.1 70) 100%)",
         }}
       />
       <div
@@ -96,16 +90,18 @@ function HeroVisual({ className }: { className?: string }) {
       />
       <span className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full bg-card/90 px-3 py-1.5 text-xs font-medium text-foreground shadow-sm backdrop-blur">
         <span className="size-1.5 rounded-full bg-teal" aria-hidden />
-        Workforce Management
+        AI brand scorecard
       </span>
 
       {/* floating metric card */}
       <Card className="absolute bottom-6 left-6 right-6 rounded-2xl border-transparent bg-card/95 p-5 shadow-xl backdrop-blur">
         <div className="flex items-end justify-between gap-3">
           <div>
-            <p className="text-xs text-muted-foreground">Cost of labour</p>
+            <p className="text-xs text-muted-foreground">
+              AI recommendation share
+            </p>
             <p className="mt-1 font-display text-4xl tracking-tight text-foreground">
-              £17,213
+              3.7%
             </p>
           </div>
           <div className="inline-flex items-center gap-1.5 rounded-xl bg-lime px-3 py-2 text-sm font-semibold text-lime-foreground">
@@ -113,17 +109,17 @@ function HeroVisual({ className }: { className?: string }) {
               aria-hidden
               className="size-3.5 -rotate-45 rounded-full bg-foreground/10 p-0.5"
             />
-            <span>0%</span>
+            <span>+300%</span>
             <span className="text-xs font-medium text-foreground/70">
-              vs forecast
+              vs start
             </span>
           </div>
         </div>
         <div className="mt-5 grid grid-cols-3 gap-3 text-xs">
           {[
-            { label: "Management", tone: "bg-primary" },
-            { label: "Front of house", tone: "bg-violet" },
-            { label: "Back of house", tone: "bg-foreground/40" },
+            { label: "ChatGPT", value: "Recommended", tone: "bg-primary" },
+            { label: "Gemini", value: "Mentioned", tone: "bg-violet" },
+            { label: "Perplexity", value: "Missing", tone: "bg-foreground/40" },
           ].map((row) => (
             <div key={row.label}>
               <div className="flex items-center gap-1.5 text-foreground/70">
@@ -133,7 +129,7 @@ function HeroVisual({ className }: { className?: string }) {
                 />
                 {row.label}
               </div>
-              <p className="mt-1 text-foreground/40">0%</p>
+              <p className="mt-1 text-foreground/40">{row.value}</p>
             </div>
           ))}
         </div>
@@ -142,7 +138,7 @@ function HeroVisual({ className }: { className?: string }) {
             className="h-full w-2/3 rounded-full"
             style={{
               background:
-                "linear-gradient(90deg, var(--primary) 0%, var(--violet) 60%, oklch(0.85 0.05 295) 100%)",
+                "linear-gradient(90deg, var(--accent) 0%, var(--coral) 60%, oklch(0.85 0.1 70) 100%)",
             }}
           />
         </div>

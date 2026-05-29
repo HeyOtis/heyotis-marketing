@@ -7,7 +7,6 @@ import { LogoStrip } from "@/components/marketing/sections/LogoStrip";
 import { ValueStatement } from "@/components/marketing/sections/ValueStatement";
 import { PlatformShowcase } from "@/components/marketing/sections/PlatformShowcase";
 import { FeatureTwoCol } from "@/components/marketing/sections/FeatureTwoCol";
-import { ResultsGrid } from "@/components/marketing/sections/ResultsGrid";
 
 export const metadata = buildMetadata({
   description: siteConfig.description,
@@ -18,12 +17,12 @@ const FAQS = [
   {
     question: `What is ${siteConfig.name}?`,
     answer:
-      "An agentic AI operating system for multi-site operators — forecasting, rostering, ordering and payroll in one platform.",
+      "An AI brand intelligence platform paired with hands-on GEO strategy. It shows how AI assistants interpret, present and recommend your brand — then turns that into a campaign-led plan to improve it.",
   },
   {
-    question: "Who is it for?",
+    question: `Is ${siteConfig.name} a tool or a service?`,
     answer:
-      "Restaurant groups, coffee chains and multi-venue hospitality operators who want to grow margin without growing back-office headcount.",
+      "Both, by design. The platform gives you the intelligence; the team gives you the strategy.",
   },
 ];
 
@@ -36,7 +35,6 @@ export default function HomePage() {
       <ValueStatement />
       <PlatformShowcase />
       <FeatureTwoCol />
-      <ResultsGrid />
     </>
   );
 }

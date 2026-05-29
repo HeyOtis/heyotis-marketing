@@ -1,9 +1,23 @@
-import Link from "next/link";
-import { Plus } from "lucide-react";
-import { siteConfig } from "@/lib/site";
-import { Button } from "@/components/ui/button";
+"use client";
 
-const NAV_WITH_DROPDOWNS = ["Product", "Resources", "About"];
+import Link from "next/link";
+import { ArrowUpRight, Plus } from "lucide-react";
+import { siteConfig, type NavMenuSection } from "@/lib/site";
+import { Button } from "@/components/ui/button";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
+
+const triggerClasses =
+  "h-auto rounded-none bg-transparent px-0 py-2 text-base font-normal text-primary-foreground/90 hover:bg-transparent hover:text-primary-foreground focus:bg-transparent focus:text-primary-foreground data-[state=open]:bg-transparent data-[state=open]:text-primary-foreground";
+
+const topLinkClasses =
+  "inline-flex h-auto items-center rounded-none bg-transparent px-0 py-2 text-base font-normal text-primary-foreground/90 transition-colors hover:bg-transparent hover:text-primary-foreground focus:bg-transparent focus:text-primary-foreground";
 
 export function Nav() {
   return (
@@ -19,29 +33,77 @@ export function Nav() {
             {siteConfig.name.toLowerCase()}
           </Link>
 
-          <nav
+          <NavigationMenu
+            viewport={false}
             aria-label="Primary"
-            className="hidden items-center gap-5 md:flex"
+            className="hidden md:flex"
           >
-            {siteConfig.nav.map((item) => {
-              const hasDropdown = NAV_WITH_DROPDOWNS.includes(item.label);
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="group inline-flex items-center gap-1.5 text-base text-primary-foreground/90 transition-colors hover:text-primary-foreground"
-                >
-                  {item.label}
-                  {hasDropdown && (
-                    <Plus
-                      aria-hidden
-                      className="size-4 opacity-70 transition-transform group-hover:rotate-90"
-                    />
-                  )}
-                </Link>
-              );
-            })}
-          </nav>
+            <NavigationMenuList className="gap-5">
+              {siteConfig.nav.map((item) => {
+                const sections =
+                  "menu" in item
+                    ? (item.menu.sections as readonly NavMenuSection[])
+                    : null;
+
+                if (!sections) {
+                  return (
+                    <NavigationMenuItem key={item.href}>
+                      <NavigationMenuLink asChild className={topLinkClasses}>
+                        <Link href={item.href}>{item.label}</Link>
+                      </NavigationMenuLink>
+                    </NavigationMenuItem>
+                  );
+                }
+
+                return (
+                  <NavigationMenuItem key={item.href}>
+                    <NavigationMenuTrigger className={triggerClasses}>
+                      <span className="inline-flex items-center gap-1.5">
+                        {item.label}
+                        <Plus
+                          aria-hidden
+                          className="size-4 opacity-70 transition-transform duration-200 group-data-[state=open]:rotate-45"
+                        />
+                      </span>
+                    </NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                      <div className="flex gap-10 p-6">
+                        {sections.map((section) => (
+                          <div key={section.heading} className="w-64">
+                            <p className="mb-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                              {section.heading}
+                            </p>
+                            <ul className="flex flex-col gap-1">
+                              {section.links.map((link) => (
+                                <li key={link.href}>
+                                  <NavigationMenuLink asChild>
+                                    <Link
+                                      href={link.href}
+                                      className="group/link block rounded-lg p-2.5 transition-colors hover:bg-secondary focus:bg-secondary"
+                                    >
+                                      <span className="flex items-center gap-1.5 font-semibold text-foreground">
+                                        {link.label}
+                                        <span className="flex size-4 items-center justify-center rounded-full border border-current text-muted-foreground transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 group-hover/link:text-foreground">
+                                          <ArrowUpRight className="size-2.5" />
+                                        </span>
+                                      </span>
+                                      <span className="mt-1 block text-sm leading-snug text-muted-foreground">
+                                        {link.description}
+                                      </span>
+                                    </Link>
+                                  </NavigationMenuLink>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                    </NavigationMenuContent>
+                  </NavigationMenuItem>
+                );
+              })}
+            </NavigationMenuList>
+          </NavigationMenu>
         </div>
 
         <div className="flex items-center gap-5">
@@ -56,7 +118,7 @@ export function Nav() {
             size="sm"
             className="rounded-md bg-background text-foreground hover:bg-background/90"
           >
-            <Link href="/contact">Book a chat</Link>
+            <Link href="/contact">Get your AI brand scorecard</Link>
           </Button>
         </div>
       </div>

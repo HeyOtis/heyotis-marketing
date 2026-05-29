@@ -77,16 +77,18 @@ export function ValueStatement() {
 
           <div className="lg:text-right">
             <h3 className="font-display text-3xl tracking-tight sm:text-4xl md:text-5xl">
-              Why brands choose Heyotis
+              AI search has created a new marketing channel
             </h3>
             <p
               className="mt-6 max-w-xl text-base text-foreground/70 sm:text-lg lg:ml-auto"
               data-speakable
             >
-              We compress the work of running a multi-site business —
-              forecasting, rostering, ordering, payroll — into a single agentic
-              system that frees your team to focus on the things people
-              actually came for.
+              Consumers now ask AI assistants what to buy and which brand to
+              trust — and get a recommendation, not a list of links. Your brand
+              can be strong in search and retail yet still be missing or
+              misrepresented when AI explains the category. HeyOtis benchmarks
+              how you perform across every major assistant, then gives you a
+              prioritised plan to fix it.
             </p>
             <Button
               asChild
@@ -94,7 +96,7 @@ export function ValueStatement() {
               variant="outline"
               className="mt-8 rounded-md border-foreground/40 bg-transparent text-foreground hover:bg-foreground/5"
             >
-              <Link href="/product">Explore the product</Link>
+              <Link href="/contact">Get your AI brand scorecard</Link>
             </Button>
           </div>
         </motion.div>
