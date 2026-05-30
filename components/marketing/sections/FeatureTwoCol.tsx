@@ -97,7 +97,7 @@ function CtaVisual() {
         className="rounded-md bg-accent text-accent-foreground hover:bg-accent/90"
       >
         <Link href="/contact">
-          Get your AI brand scorecard
+          Book a chat
           <ArrowUpRight aria-hidden className="size-4" />
         </Link>
       </Button>

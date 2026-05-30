@@ -5,7 +5,7 @@ import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
   title: "Features",
-  description: "Heyotis features — placeholder.",
+  description: "HeyOtis features — placeholder.",
   path: "/features",
 });
 

@@ -118,7 +118,7 @@ export function Nav() {
             size="sm"
             className="rounded-md bg-background text-foreground hover:bg-background/90"
           >
-            <Link href="/contact">Get your AI brand scorecard</Link>
+            <Link href="/contact">Book a chat</Link>
           </Button>
         </div>
       </div>

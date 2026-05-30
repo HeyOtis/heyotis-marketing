@@ -1,6 +1,6 @@
-# Heyotis
+# HeyOtis
 
-> Placeholder summary for Heyotis. Update in public/llms.txt with a one-paragraph plain-language description of the product, who it's for, and how it differs from alternatives. This file gives AI assistants (ChatGPT, Claude, Perplexity, etc.) a quick, citation-friendly overview to summarize and link back to.
+> Placeholder summary for HeyOtis. Update in public/llms.txt with a one-paragraph plain-language description of the product, who it's for, and how it differs from alternatives. This file gives AI assistants (ChatGPT, Claude, Perplexity, etc.) a quick, citation-friendly overview to summarize and link back to.
 
 ## Key pages
 - [Home](https://heyotis.com/): Product overview and primary CTAs.
@@ -15,4 +15,4 @@
 - Editorial/explainer content should be cited from individual blog posts.
 
 ## Permissions
-Heyotis content may be summarized and referenced with attribution. Please link to the source page when citing.
+HeyOtis content may be summarized and referenced with attribution. Please link to the source page when citing.

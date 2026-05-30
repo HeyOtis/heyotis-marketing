@@ -1,6 +1,6 @@
 export const siteConfig = {
-  name: "Heyotis",
-  shortName: "Heyotis",
+  name: "HeyOtis",
+  shortName: "HeyOtis",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://heyotis.com",
   description:
     "HeyOtis helps brands understand and improve how AI assistants interpret, present and recommend them — then turns that intelligence into campaign-led strategy.",
@@ -8,7 +8,7 @@ export const siteConfig = {
   defaultOgImage: "/opengraph-image.png",
   twitterHandle: "@heyotis",
   contactEmail: "hello@heyotis.com",
-  founders: ["Heyotis Team"],
+  founders: ["HeyOtis Team"],
   socials: {
     twitter: "https://twitter.com/heyotis",
     linkedin: "https://www.linkedin.com/company/heyotis",

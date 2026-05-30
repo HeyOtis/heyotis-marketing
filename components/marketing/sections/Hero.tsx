@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -21,18 +21,21 @@ export function Hero() {
           </div>
 
           <h1 className="mt-6 font-display text-[clamp(2.25rem,5vw,4.5rem)] leading-[0.95] tracking-tight text-accent">
-            Your brand might be
+            AI search is
             <br />
-            misunderstood by AI —
+            rewriting brand
             <br />
-            and you would not know it.
+            discovery.
           </h1>
 
           <p className="mt-6 max-w-xl text-base text-primary-foreground/80 sm:text-lg" data-speakable>
             Consumers now use ChatGPT, Gemini, Perplexity, Claude, Meta AI and
-            Mistral to discover, compare and choose products. HeyOtis shows you
-            how AI talks about your brand, where competitors are being
-            recommended instead, and what to do next.
+            Mistral to discover, compare and choose products. But AI search does
+            not play by the same rules as Google, paid media or retail. The
+            rules change by category, product, audience and region. HeyOtis
+            combines an AI brand intelligence platform with hands-on GEO
+            strategy, so you can see how AI talks about your brand, where
+            competitors are being recommended instead, and what to do next.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -41,18 +44,7 @@ export function Hero() {
               size="lg"
               className="rounded-md bg-accent text-accent-foreground hover:bg-accent/90"
             >
-              <Link href="/contact">Get your AI brand scorecard</Link>
-            </Button>
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="rounded-md border-2 border-primary-foreground bg-transparent text-primary-foreground hover:bg-primary-foreground hover:text-foreground"
-            >
-              <Link href="#how-it-works">
-                <Play aria-hidden className="size-4 fill-current" />
-                See how it works
-              </Link>
+              <Link href="/contact">Book a chat</Link>
             </Button>
           </div>
         </div>

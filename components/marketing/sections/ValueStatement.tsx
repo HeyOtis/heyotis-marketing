@@ -96,7 +96,7 @@ export function ValueStatement() {
               variant="outline"
               className="mt-8 rounded-md border-foreground/40 bg-transparent text-foreground hover:bg-foreground/5"
             >
-              <Link href="/contact">Get your AI brand scorecard</Link>
+              <Link href="/contact">Book a chat</Link>
             </Button>
           </div>
         </motion.div>

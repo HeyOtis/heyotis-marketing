@@ -7,7 +7,7 @@ import { getAllPosts } from "@/lib/mdx";
 
 export const metadata = buildMetadata({
   title: "Blog",
-  description: "Heyotis blog — guides, announcements, and deep dives.",
+  description: "HeyOtis blog — guides, announcements, and deep dives.",
   path: "/blog",
 });
 

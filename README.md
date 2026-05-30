@@ -1,6 +1,6 @@
 # heyotis-marketing
 
-Marketing site for Heyotis. Next.js 16 (App Router) · TypeScript · Tailwind v4 · shadcn/ui · MDX.
+Marketing site for HeyOtis. Next.js 16 (App Router) · TypeScript · Tailwind v4 · shadcn/ui · MDX.
 
 ## Quick start
 
