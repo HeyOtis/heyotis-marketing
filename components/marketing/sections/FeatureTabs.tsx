@@ -3,6 +3,7 @@
 import * as React from "react";
 import { Check, Pause, Play } from "lucide-react";
 import { useIsomorphicReducedMotion } from "@/lib/use-reduced-motion";
+import { useMediaQuery } from "@/lib/use-media-query";
 import { cn } from "@/lib/utils";
 
 export type FeatureTab = {
@@ -25,6 +26,8 @@ export function FeatureTabs({
   const [hovered, setHovered] = React.useState(false);
   const [userPaused, setUserPaused] = React.useState(false);
   const reduced = useIsomorphicReducedMotion();
+  // The tab list is a horizontal scroller on mobile, a vertical column at lg+.
+  const isLgUp = useMediaQuery("(min-width: 1024px)");
 
   const current = tabs[active];
   // Auto-rotation is purely CSS-animation driven: the active tab's progress bar
@@ -64,7 +67,7 @@ export function FeatureTabs({
         <div
           role="tablist"
           aria-label="Features"
-          aria-orientation="vertical"
+          aria-orientation={isLgUp ? "vertical" : "horizontal"}
           onKeyDown={onKeyDown}
           className="flex gap-2 overflow-x-auto pb-2 lg:flex-col lg:gap-1.5 lg:overflow-visible lg:pb-0"
         >
@@ -120,7 +123,15 @@ export function FeatureTabs({
         {autoRotate ? (
           <button
             type="button"
-            onClick={() => setUserPaused((v) => !v)}
+            onClick={() => {
+              const next = !userPaused;
+              setUserPaused(next);
+              // Explicit "Play" overrides the transient hover/focus pause so the
+              // tour resumes immediately even while the pointer is still inside.
+              // (There's no mousemove handler, so this sticks until the next
+              // enter/focus, which re-engages hover-pause naturally.)
+              if (!next) setHovered(false);
+            }}
             aria-pressed={userPaused}
             className="mt-2.5 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium text-muted-foreground transition-colors hover:bg-card hover:text-foreground"
           >

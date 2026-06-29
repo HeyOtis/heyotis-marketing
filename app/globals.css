@@ -168,6 +168,11 @@
     outline-offset: 2px;
     border-radius: 0.25rem;
   }
+  /* On the dark surface (nav/footer/CTA bands) the purple ring is only ~2.8:1;
+     swap to the light foreground so focus clears WCAG 1.4.11 (3:1). */
+  .surface-dark a:focus-visible {
+    outline-color: var(--surface-dark-foreground);
+  }
 
   @media (prefers-reduced-motion: reduce) {
     html {

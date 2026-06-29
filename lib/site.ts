@@ -3,7 +3,12 @@ export const siteConfig = {
   shortName: "HeyOtis",
   // Canonical marketing URL. NOTE: the platform app lives at heyotis.ai —
   // confirm which domain is canonical for marketing. Overridable via env.
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://heyotis.com",
+  // Trailing slash stripped at the source so every consumer (schema @id
+  // builders, OG URLs, sitemap) concatenates against a clean origin.
+  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://heyotis.com").replace(
+    /\/$/,
+    "",
+  ),
   // Product app (login / signup) destination.
   appUrl: "https://app.heyotis.ai",
   // Primary CTA destination ("Book a chat") — HubSpot Meetings scheduling page.

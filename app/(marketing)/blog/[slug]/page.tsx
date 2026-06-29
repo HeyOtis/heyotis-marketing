@@ -25,9 +25,9 @@ export async function generateMetadata({ params }: PageProps) {
     title: post.frontmatter.title,
     description: post.frontmatter.description,
     path: `/blog/${post.slug}`,
-    image:
-      post.frontmatter.image ??
-      `/api/og?title=${encodeURIComponent(post.frontmatter.title)}`,
+    // Leave image undefined unless the post sets one: buildMetadata then bakes
+    // the post title AND description into the default /api/og card.
+    image: post.frontmatter.image,
     type: "article",
     publishedTime: post.frontmatter.date,
     modifiedTime: post.frontmatter.updated ?? post.frontmatter.date,

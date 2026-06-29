@@ -94,12 +94,15 @@ export function Nav() {
           </div>
         </div>
 
-        {open ? (
-          <div id="mobile-menu" className="border-t border-border/60 md:hidden">
-            <nav
-              aria-label="Mobile"
-              className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4 sm:px-6"
-            >
+        <div
+          id="mobile-menu"
+          hidden={!open}
+          className="border-t border-border/60 md:hidden"
+        >
+          <nav
+            aria-label="Mobile"
+            className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4 sm:px-6"
+          >
               {siteConfig.nav.map((item) => (
                 <Link
                   key={item.href}
@@ -121,9 +124,8 @@ export function Nav() {
               <div className="px-3 pt-3">
                 <BookCta className="w-full" />
               </div>
-            </nav>
-          </div>
-        ) : null}
+          </nav>
+        </div>
       </div>
     </header>
   );
