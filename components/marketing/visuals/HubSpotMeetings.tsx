@@ -12,8 +12,7 @@ const EMBED_SCRIPT =
  * `.meetings-iframe-container` and injects the scheduling iframe. Bookings flow
  * into HubSpot CRM and the rep's connected Google Calendar.
  *
- * `data-lenis-prevent` keeps smooth-scroll from hijacking wheel events over the
- * widget. The script is appended on mount and removed on unmount so client-side
+ * The loader script is appended on mount and removed on unmount so client-side
  * navigation back to this page re-initialises the embed.
  */
 export function HubSpotMeetings({
@@ -37,7 +36,6 @@ export function HubSpotMeetings({
     <div
       className={cn("meetings-iframe-container min-h-[640px]", className)}
       data-src={src}
-      data-lenis-prevent=""
     />
   );
 }

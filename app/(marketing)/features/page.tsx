@@ -596,7 +596,7 @@ const STATS = [
     label: "AI assistants monitored — ChatGPT, Claude, Gemini & Perplexity",
   },
   {
-    value: 7,
+    value: 6,
     label: "Detector types built to surface visibility, citation & ranking risks",
   },
   {
@@ -714,7 +714,7 @@ export default function FeaturesPage() {
         <SectionHeading
           eyebrow="Insights & detectors"
           title="Signals HeyOtis surfaces"
-          sub="Purpose-built detectors are designed to surface visibility, citation and ranking risks by severity and confidence — so the openings that matter never slip past."
+          sub="Purpose-built detectors are designed to surface visibility, citation and ranking risks by severity — so the openings that matter never slip past."
           className="max-w-2xl"
         />
         <div className="mt-12 grid gap-4 md:grid-cols-3">
