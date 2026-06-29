@@ -229,6 +229,12 @@
   .cta-nudge {
     animation: cta-nudge 3.6s ease-in-out infinite;
   }
+
+  /* FeatureTabs auto-rotate progress — compositor-driven scaleX, no JS ticking. */
+  @keyframes tab-progress {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
   @media (prefers-reduced-motion: reduce) {
     .cta-nudge { animation: none; }
   }

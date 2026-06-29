@@ -14,8 +14,6 @@ export type FeatureTab = {
   visual: React.ReactNode;
 };
 
-const STEP_MS = 50;
-
 export function FeatureTabs({
   tabs,
   autoRotateMs = 6000,
@@ -24,31 +22,15 @@ export function FeatureTabs({
   autoRotateMs?: number;
 }) {
   const [active, setActive] = React.useState(0);
-  const [progress, setProgress] = React.useState(0);
   const [paused, setPaused] = React.useState(false);
   const reduced = useReducedMotion();
 
-  React.useEffect(() => {
-    if (reduced || paused || tabs.length <= 1) return;
-    const id = setInterval(() => {
-      setProgress((p) => {
-        const next = p + STEP_MS / autoRotateMs;
-        if (next >= 1) {
-          setActive((a) => (a + 1) % tabs.length);
-          return 0;
-        }
-        return next;
-      });
-    }, STEP_MS);
-    return () => clearInterval(id);
-  }, [reduced, paused, autoRotateMs, tabs.length]);
-
-  const select = (i: number) => {
-    setActive(i);
-    setProgress(0);
-  };
-
   const current = tabs[active];
+  // Auto-rotation is purely CSS-animation driven: the active tab's progress bar
+  // scales 0→1 over `autoRotateMs`, and we advance on `animationend`. A paused
+  // animation never fires `animationend`, so hover/focus pause is exact.
+  const autoRotate = !reduced && tabs.length > 1;
+  const advance = () => setActive((a) => (a + 1) % tabs.length);
 
   return (
     <div
@@ -75,7 +57,7 @@ export function FeatureTabs({
               role="tab"
               aria-selected={isActive}
               aria-controls="feature-tabpanel"
-              onClick={() => select(i)}
+              onClick={() => setActive(i)}
               className={cn(
                 "group relative shrink-0 overflow-hidden rounded-xl px-4 py-3 text-left transition-colors lg:shrink",
                 isActive
@@ -94,11 +76,16 @@ export function FeatureTabs({
               <span className="hidden text-sm text-muted-foreground lg:mt-0.5 lg:block">
                 {isActive ? tab.blurb : ""}
               </span>
-              {isActive && !reduced ? (
-                <span className="absolute inset-x-0 bottom-0 h-0.5 bg-border/60">
+              {isActive && autoRotate ? (
+                <span className="absolute inset-x-0 bottom-0 h-0.5 overflow-hidden bg-border/60">
                   <span
-                    className="block h-full bg-accent"
-                    style={{ width: `${progress * 100}%` }}
+                    key={active}
+                    onAnimationEnd={advance}
+                    className="block h-full w-full origin-left bg-accent will-change-transform"
+                    style={{
+                      animation: `tab-progress ${autoRotateMs}ms linear forwards`,
+                      animationPlayState: paused ? "paused" : "running",
+                    }}
                   />
                 </span>
               ) : null}
