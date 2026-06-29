@@ -38,10 +38,10 @@ export default function BlogIndexPage() {
 
       {/* Hero — sits under the sticky nav, so it gets generous top padding. */}
       <section className="surface-cream pb-12 pt-28 sm:pt-32 md:pb-16 lg:pt-36">
-        <Container className="max-w-3xl">
+        <Container>
           <Eyebrow>Resources</Eyebrow>
           <h1
-            className="mt-5 display-lg text-balance"
+            className="mt-5 display-lg max-w-3xl text-balance"
             style={{ fontStretch: "80%", letterSpacing: "-0.02em" }}
           >
             The answer engine playbook
