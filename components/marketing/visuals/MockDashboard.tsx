@@ -2,8 +2,8 @@ import { cn } from "@/lib/utils";
 
 /**
  * Designed (illustrative) product visuals built in pure SVG/CSS — no real
- * screenshots, no chart libs. Three panels mirror real HeyOtis surfaces:
- *  - overview     → Share of Voice trend + per-engine scorecard
+ * screenshots, no chart libs. Mirrors real HeyOtis surfaces:
+ *  - overview     → KPI tiles + Share-of-Voice trend + competitor rankings + per-engine
  *  - citations    → top cited domains, owned vs third-party
  *  - competitors  → ranked share-of-voice vs named rivals
  */
@@ -24,7 +24,7 @@ export function MockDashboard({
       )}
     >
       <Chrome variant={variant} />
-      <div className="p-4 sm:p-6">
+      <div className="p-4 sm:p-5">
         {variant === "overview" ? <OverviewPanel /> : null}
         {variant === "citations" ? <CitationsPanel /> : null}
         {variant === "competitors" ? <CompetitorsPanel /> : null}
@@ -34,14 +34,14 @@ export function MockDashboard({
 }
 
 const VARIANT_TITLE: Record<MockVariant, string> = {
-  overview: "AI Visibility",
+  overview: "Overview",
   citations: "Citations",
   competitors: "Competitors",
 };
 
 function Chrome({ variant }: { variant: MockVariant }) {
   return (
-    <div className="flex items-center justify-between border-b border-border px-4 py-3 sm:px-6">
+    <div className="flex items-center justify-between border-b border-border px-4 py-3 sm:px-5">
       <div className="flex items-center gap-2.5">
         <span className="flex items-center gap-1">
           <span className="size-1.5 rounded-full bg-coral/70" />
@@ -69,58 +69,175 @@ function Chrome({ variant }: { variant: MockVariant }) {
 
 /* ── Overview ──────────────────────────────────────────────────────────── */
 
+const KPIS = [
+  { label: "Visibility", value: "34.8%", delta: "▲ 12.4 pts" },
+  { label: "Active campaigns", value: "3", sub: "running" },
+  { label: "Prompts tracked", value: "75", sub: "unique queries" },
+  { label: "AI responses", value: "300", sub: "across campaigns" },
+];
+
+const ENGINES = [
+  { name: "ChatGPT", status: "Recommended", tone: "emerald" },
+  { name: "Claude", status: "Recommended", tone: "emerald" },
+  { name: "Gemini", status: "Mentioned", tone: "amber" },
+  { name: "Perplexity", status: "Missing", tone: "zinc" },
+] as const;
+
 function OverviewPanel() {
+  const max = Math.max(...RIVALS.map((r) => r.share));
   return (
-    <div className="grid gap-4 md:grid-cols-5">
-      <div className="rounded-xl border border-border bg-background/60 p-4 md:col-span-3">
-        <div className="flex items-baseline justify-between">
-          <div>
-            <p className="label-mono text-[0.6rem] text-muted-foreground">
-              Share of Voice
+    <div className="space-y-3.5">
+      {/* KPI tiles */}
+      <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-4">
+        {KPIS.map((k) => (
+          <div
+            key={k.label}
+            className="rounded-xl border border-border bg-background/60 p-3"
+          >
+            <p className="label-mono text-[0.55rem] text-muted-foreground">
+              {k.label}
             </p>
-            <p
-              className="mt-1 font-display text-4xl text-foreground"
-              style={{ fontStretch: "80%", letterSpacing: "-0.02em" }}
-            >
-              34.8%
-            </p>
+            <div className="mt-1 flex items-baseline gap-1.5">
+              <span
+                className="font-display text-2xl text-foreground"
+                style={{ fontStretch: "80%", letterSpacing: "-0.02em" }}
+              >
+                {k.value}
+              </span>
+              {k.delta ? (
+                <span className="text-[0.6rem] font-semibold text-emerald-600">
+                  {k.delta}
+                </span>
+              ) : null}
+            </div>
+            {k.sub ? (
+              <p className="mt-0.5 text-[0.6rem] text-muted-foreground">{k.sub}</p>
+            ) : null}
           </div>
-          <span className="rounded-full bg-emerald-500/12 px-2 py-1 text-xs font-semibold text-emerald-600">
-            ▲ 12.4 pts
-          </span>
-        </div>
-        <SovChart />
+        ))}
       </div>
 
-      <div className="space-y-2.5 md:col-span-2">
+      {/* chart + competitor rankings */}
+      <div className="grid gap-3 md:grid-cols-5">
+        <div className="rounded-xl border border-border bg-background/60 p-4 md:col-span-3">
+          <div className="flex items-center justify-between">
+            <p className="label-mono text-[0.6rem] text-muted-foreground">
+              Avg visibility over time
+            </p>
+            <span className="rounded-full bg-brand/10 px-2 py-0.5 text-[0.6rem] font-semibold text-accent">
+              Avg Visibility
+            </span>
+          </div>
+          <div className="mt-3 flex gap-2">
+            <div className="flex flex-col justify-between py-0.5 text-[0.5rem] tabular-nums text-muted-foreground/70">
+              <span>40%</span>
+              <span>20%</span>
+              <span>0%</span>
+            </div>
+            <div className="flex-1">
+              <SovChart />
+              <div className="mt-1 flex justify-between text-[0.5rem] text-muted-foreground/70">
+                <span>Jun 1</span>
+                <span>Jun 15</span>
+                <span>Jun 30</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="rounded-xl border border-border bg-background/60 p-4 md:col-span-2">
+          <p className="label-mono text-[0.6rem] text-muted-foreground">
+            Competitor rankings
+          </p>
+          <ol className="mt-3 space-y-2.5">
+            {RIVALS.map((r, i) => (
+              <li key={r.name} className="flex items-center gap-2">
+                <span className="w-3.5 text-center text-[0.7rem] font-semibold tabular-nums text-muted-foreground">
+                  {i + 1}
+                </span>
+                <span
+                  className={cn(
+                    "w-16 shrink-0 truncate text-xs font-medium",
+                    r.you ? "text-accent" : "text-foreground",
+                  )}
+                >
+                  {r.name}
+                </span>
+                <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-secondary">
+                  <div
+                    className={cn(
+                      "h-full rounded-full",
+                      r.you ? "bg-brand-strong" : "bg-foreground/25",
+                    )}
+                    style={{ width: `${(r.share / max) * 100}%` }}
+                  />
+                </div>
+                <span className="w-9 text-right text-[0.7rem] tabular-nums text-foreground">
+                  {r.share}%
+                </span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+
+      {/* per-engine answer strip */}
+      <div className="rounded-xl border border-border bg-background/60 p-3">
         <p className="label-mono text-[0.6rem] text-muted-foreground">
           How AI answers you
         </p>
-        <ScoreRow engine="ChatGPT" status="Recommended" tone="emerald" />
-        <ScoreRow engine="Claude" status="Recommended" tone="emerald" />
-        <ScoreRow engine="Gemini" status="Mentioned" tone="amber" />
-        <ScoreRow engine="Perplexity" status="Missing" tone="zinc" />
+        <div className="mt-2 flex flex-wrap gap-2">
+          {ENGINES.map((e) => (
+            <div
+              key={e.name}
+              className="flex items-center gap-2 rounded-lg border border-border bg-card px-2.5 py-1.5"
+            >
+              <span className={cn("size-1.5 rounded-full", TONE_DOT[e.tone])} />
+              <span className="text-xs font-medium text-foreground">{e.name}</span>
+              <span
+                className={cn(
+                  "rounded-full px-1.5 py-0.5 text-[0.6rem] font-semibold",
+                  TONE_BADGE[e.tone],
+                )}
+              >
+                {e.status}
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
 }
 
+const TONE_DOT = {
+  emerald: "bg-emerald-500",
+  amber: "bg-amber-500",
+  zinc: "bg-zinc-300",
+} as const;
+
+const TONE_BADGE = {
+  emerald: "bg-emerald-500/12 text-emerald-600",
+  amber: "bg-amber-500/15 text-amber-600",
+  zinc: "bg-secondary text-muted-foreground",
+} as const;
+
 function SovChart() {
   return (
     <svg
-      viewBox="0 0 600 200"
-      className="mt-4 h-28 w-full sm:h-32"
+      viewBox="0 0 600 180"
+      className="h-24 w-full sm:h-28"
       fill="none"
       preserveAspectRatio="none"
       aria-hidden
     >
       <defs>
         <linearGradient id="sov-fill" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="oklch(0.68 0.1 280)" stopOpacity="0.28" />
-          <stop offset="100%" stopColor="oklch(0.68 0.1 280)" stopOpacity="0" />
+          <stop offset="0%" stopColor="oklch(0.6 0.16 280)" stopOpacity="0.22" />
+          <stop offset="100%" stopColor="oklch(0.6 0.16 280)" stopOpacity="0" />
         </linearGradient>
       </defs>
-      {[40, 90, 140].map((y) => (
+      {[30, 80, 130].map((y) => (
         <line
           key={y}
           x1="0"
@@ -132,85 +249,31 @@ function SovChart() {
           strokeWidth="1"
         />
       ))}
-      {/* competitor (flat) */}
+      {/* brand area + line (rises then climbs) */}
       <path
-        d="M0,150 C60,148 120,146 180,144 C240,142 300,140 360,138 C420,136 480,135 540,134 C570,133 588,133 600,132"
-        stroke="oklch(0.78 0.04 30)"
-        strokeWidth="2.5"
-        strokeDasharray="4 5"
-        strokeLinecap="round"
-      />
-      {/* brand area + line */}
-      <path
-        d="M0,160 C40,150 80,150 120,156 C160,162 180,118 220,122 C260,126 280,98 320,92 C360,86 400,62 440,66 C480,70 510,42 540,38 C570,34 588,30 600,28 L600,200 L0,200 Z"
+        d="M0,150 C50,148 90,150 130,150 C175,150 195,118 235,118 C280,118 300,96 340,90 C385,84 420,70 460,66 C500,62 530,46 560,40 C580,36 592,32 600,30 L600,180 L0,180 Z"
         fill="url(#sov-fill)"
       />
       <path
-        d="M0,160 C40,150 80,150 120,156 C160,162 180,118 220,122 C260,126 280,98 320,92 C360,86 400,62 440,66 C480,70 510,42 540,38 C570,34 588,30 600,28"
+        d="M0,150 C50,148 90,150 130,150 C175,150 195,118 235,118 C280,118 300,96 340,90 C385,84 420,70 460,66 C500,62 530,46 560,40 C580,36 592,32 600,30"
         stroke="oklch(0.5 0.16 280)"
         strokeWidth="3"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <circle cx="600" cy="28" r="5" fill="oklch(0.5 0.16 280)" />
-      <circle cx="600" cy="28" r="9" fill="oklch(0.5 0.16 280)" fillOpacity="0.18" />
+      <circle cx="600" cy="30" r="5" fill="oklch(0.5 0.16 280)" />
+      <circle cx="600" cy="30" r="9" fill="oklch(0.5 0.16 280)" fillOpacity="0.18" />
     </svg>
-  );
-}
-
-const TONE_BADGE = {
-  emerald: "bg-emerald-500/12 text-emerald-600",
-  amber: "bg-amber-500/15 text-amber-600",
-  zinc: "bg-secondary text-muted-foreground",
-} as const;
-
-const TONE_BAR = {
-  emerald: "bg-emerald-500",
-  amber: "bg-amber-500",
-  zinc: "bg-border",
-} as const;
-
-const TONE_WIDTH = { emerald: "92%", amber: "54%", zinc: "14%" } as const;
-
-function ScoreRow({
-  engine,
-  status,
-  tone,
-}: {
-  engine: string;
-  status: string;
-  tone: keyof typeof TONE_BADGE;
-}) {
-  return (
-    <div className="rounded-xl border border-border bg-background/60 p-3">
-      <div className="flex items-center justify-between">
-        <span className="text-sm font-medium text-foreground">{engine}</span>
-        <span
-          className={cn(
-            "rounded-full px-2 py-0.5 text-[0.65rem] font-semibold",
-            TONE_BADGE[tone],
-          )}
-        >
-          {status}
-        </span>
-      </div>
-      <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-secondary">
-        <div
-          className={cn("h-full rounded-full", TONE_BAR[tone])}
-          style={{ width: TONE_WIDTH[tone] }}
-        />
-      </div>
-    </div>
   );
 }
 
 /* ── Citations ─────────────────────────────────────────────────────────── */
 
 const CITATIONS = [
-  { domain: "yourbrand.com", type: "Owned", share: 38, owned: true },
-  { domain: "reddit.com", type: "Third-party", share: 24, owned: false },
-  { domain: "wirecutter.com", type: "Third-party", share: 18, owned: false },
-  { domain: "g2.com", type: "Third-party", share: 12, owned: false },
+  { domain: "yourbrand.com", share: 38, owned: true },
+  { domain: "reddit.com", share: 24, owned: false },
+  { domain: "wirecutter.com", share: 18, owned: false },
+  { domain: "g2.com", share: 12, owned: false },
 ];
 
 function CitationsPanel() {

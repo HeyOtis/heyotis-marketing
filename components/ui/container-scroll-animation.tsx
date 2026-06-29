@@ -3,6 +3,7 @@ import React, { useRef } from "react";
 import {
   useScroll,
   useTransform,
+  useSpring,
   motion,
   MotionValue,
   useReducedMotion,
@@ -18,6 +19,13 @@ export const ContainerScroll = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
+  });
+  // Smooth the scroll-linked progress so fast scrolling glides instead of
+  // snapping/jittering through the 3D transform.
+  const progress = useSpring(scrollYProgress, {
+    stiffness: 140,
+    damping: 28,
+    restDelta: 0.001,
   });
   const [isMobile, setIsMobile] = React.useState(false);
 
@@ -41,14 +49,14 @@ export const ContainerScroll = ({
   // Under reduced-motion, feed constant values so the scroll-linked 3D tilt,
   // scale and translate do not move (scroll-coupled rotation is a vestibular
   // trigger). Hooks stay unconditional.
-  const rotate = useTransform(scrollYProgress, [0, 1], reduced ? [0, 0] : [20, 0]);
+  const rotate = useTransform(progress, [0, 1], reduced ? [0, 0] : [20, 0]);
   const scale = useTransform(
-    scrollYProgress,
+    progress,
     [0, 1],
     reduced ? [1, 1] : scaleDimensions(),
   );
   const translate = useTransform(
-    scrollYProgress,
+    progress,
     [0, 1],
     reduced ? [0, 0] : [0, -100],
   );
