@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useInView } from "motion/react";
 import { Check, Pause, Play } from "lucide-react";
 import { useIsomorphicReducedMotion } from "@/lib/use-reduced-motion";
 import { useMediaQuery } from "@/lib/use-media-query";
@@ -24,17 +25,26 @@ export function FeatureTabs({
 }) {
   const [active, setActive] = React.useState(0);
   const [userPaused, setUserPaused] = React.useState(false);
-  // Pause only while the visitor is engaging with the *content* panel (reading
-  // the showcased feature) — NOT when merely mousing over the tab rail, which
-  // previously made the bar appear frozen.
+  // Pause on MOUSE hover only while the visitor is over the *content* panel
+  // (reading the showcased feature) — NOT when merely mousing over the tab rail,
+  // which previously made the bar look frozen.
   const [panelHovered, setPanelHovered] = React.useState(false);
+  // Pause when KEYBOARD focus is anywhere inside the widget (WAI-ARIA carousel
+  // guidance: rotation stops when focus enters). Gated on :focus-visible so a
+  // mouse click on a tab doesn't pause the tour.
+  const [keyboardFocus, setKeyboardFocus] = React.useState(false);
   const reduced = useIsomorphicReducedMotion();
   // The tab list is a horizontal scroller on mobile, a vertical column at lg+.
   const isLgUp = useMediaQuery("(min-width: 1024px)");
 
+  // Only auto-rotate while the section is actually on screen — no point burning
+  // frames (or advancing tabs nobody can see) when it's scrolled out of view.
+  const containerRef = React.useRef<HTMLDivElement | null>(null);
+  const inView = useInView(containerRef, { margin: "0px" });
+
   const current = tabs[active];
   const autoRotate = !reduced && tabs.length > 1;
-  const paused = userPaused || panelHovered;
+  const paused = userPaused || panelHovered || keyboardFocus;
 
   // Keep the latest `paused` in a ref so the rAF loop reads it without
   // restarting (which would lose elapsed progress).
@@ -52,7 +62,7 @@ export function FeatureTabs({
   React.useEffect(() => {
     const bar = barRef.current;
     if (bar) bar.style.transform = "scaleX(0)";
-    if (!autoRotate) return;
+    if (!autoRotate || !inView) return;
 
     let raf = 0;
     let last: number | null = null;
@@ -77,7 +87,7 @@ export function FeatureTabs({
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [active, autoRotate, autoRotateMs, tabs.length]);
+  }, [active, autoRotate, autoRotateMs, tabs.length, inView]);
 
   // Roving-tabindex keyboard nav for the WAI-ARIA tabs pattern.
   const onKeyDown = (e: React.KeyboardEvent) => {
@@ -95,7 +105,27 @@ export function FeatureTabs({
   };
 
   return (
-    <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
+    <div
+      ref={containerRef}
+      className="grid gap-8 lg:grid-cols-12 lg:gap-12"
+      onFocusCapture={(e) => {
+        // Treat as a pause trigger only for keyboard focus (:focus-visible),
+        // so a mouse click on a tab doesn't freeze the tour. Fall back to
+        // pausing if the browser can't evaluate :focus-visible.
+        const t = e.target as HTMLElement;
+        let keyboard = true;
+        try {
+          keyboard = t.matches(":focus-visible");
+        } catch {
+          keyboard = true;
+        }
+        if (keyboard) setKeyboardFocus(true);
+      }}
+      onBlurCapture={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node))
+          setKeyboardFocus(false);
+      }}
+    >
       {/* Tab list + pause control */}
       <div className="lg:col-span-5">
         <div
@@ -175,11 +205,6 @@ export function FeatureTabs({
         tabIndex={0}
         onMouseEnter={() => setPanelHovered(true)}
         onMouseLeave={() => setPanelHovered(false)}
-        onFocusCapture={() => setPanelHovered(true)}
-        onBlurCapture={(e) => {
-          if (!e.currentTarget.contains(e.relatedTarget as Node))
-            setPanelHovered(false);
-        }}
       >
         <div className="mb-5">
           <h3 className="display-sm text-foreground">{current.title}</h3>
