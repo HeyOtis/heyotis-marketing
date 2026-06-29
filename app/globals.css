@@ -230,10 +230,17 @@
     animation: cta-nudge 3.6s ease-in-out infinite;
   }
 
-  /* FeatureTabs auto-rotate progress — compositor-driven scaleX, no JS ticking. */
+  /* FeatureTabs auto-rotate progress — compositor-driven scaleX, no JS ticking.
+     Driven via the .tab-progress-bar class (NOT an inline `animation`) so
+     Lightning CSS doesn't tree-shake the keyframe — it only keeps keyframes
+     referenced from within the stylesheet. Duration comes from --tab-ms. */
   @keyframes tab-progress {
     from { transform: scaleX(0); }
     to { transform: scaleX(1); }
+  }
+  .tab-progress-bar {
+    transform-origin: left;
+    animation: tab-progress var(--tab-ms, 6000ms) linear forwards;
   }
   @media (prefers-reduced-motion: reduce) {
     .cta-nudge { animation: none; }

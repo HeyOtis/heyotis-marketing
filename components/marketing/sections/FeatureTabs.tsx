@@ -81,11 +81,13 @@ export function FeatureTabs({
                   <span
                     key={active}
                     onAnimationEnd={advance}
-                    className="block h-full w-full origin-left bg-accent will-change-transform"
-                    style={{
-                      animation: `tab-progress ${autoRotateMs}ms linear forwards`,
-                      animationPlayState: paused ? "paused" : "running",
-                    }}
+                    className="tab-progress-bar block h-full w-full bg-accent will-change-transform"
+                    style={
+                      {
+                        "--tab-ms": `${autoRotateMs}ms`,
+                        animationPlayState: paused ? "paused" : "running",
+                      } as React.CSSProperties
+                    }
                   />
                 </span>
               ) : null}
