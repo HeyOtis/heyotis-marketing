@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote-client/rsc";
 import { Container } from "@/components/marketing/Container";
@@ -6,6 +8,7 @@ import { articleSchema, breadcrumbSchema } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
 import { getAllPostSlugs, getPostBySlug } from "@/lib/mdx";
 import { mdxComponents } from "@/mdx-components";
+import { CtaBand } from "@/components/marketing/sections/CtaBand";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -22,7 +25,9 @@ export async function generateMetadata({ params }: PageProps) {
     title: post.frontmatter.title,
     description: post.frontmatter.description,
     path: `/blog/${post.slug}`,
-    image: post.frontmatter.image ?? `/api/og?title=${encodeURIComponent(post.frontmatter.title)}`,
+    image:
+      post.frontmatter.image ??
+      `/api/og?title=${encodeURIComponent(post.frontmatter.title)}`,
     type: "article",
     publishedTime: post.frontmatter.date,
     modifiedTime: post.frontmatter.updated ?? post.frontmatter.date,
@@ -31,59 +36,92 @@ export async function generateMetadata({ params }: PageProps) {
   });
 }
 
+function formatDate(date: string) {
+  return new Date(date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+
 export default async function BlogPostPage({ params }: PageProps) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
   if (!post) notFound();
 
+  const { title, description, date, updated, author, tags } = post.frontmatter;
+
   return (
-    <Container className="max-w-3xl py-16">
+    <>
+      <article className="surface-cream pb-16 pt-28 sm:pt-32 lg:pt-36">
       <JsonLd
         data={breadcrumbSchema([
           { name: "Home", href: "/" },
           { name: "Blog", href: "/blog" },
-          { name: post.frontmatter.title, href: `/blog/${post.slug}` },
+          { name: title, href: `/blog/${post.slug}` },
         ])}
       />
       <JsonLd
         data={articleSchema({
-          title: post.frontmatter.title,
-          description: post.frontmatter.description,
+          title,
+          description,
           slug: post.slug,
-          datePublished: post.frontmatter.date,
-          dateModified: post.frontmatter.updated,
-          authors: post.frontmatter.author ? [post.frontmatter.author] : undefined,
+          datePublished: date,
+          dateModified: updated,
+          authors: author ? [author] : undefined,
           image: post.frontmatter.image,
-          tags: post.frontmatter.tags,
+          tags,
         })}
       />
-      <article>
-        <header className="mb-10">
-          <h1 className="text-4xl font-semibold tracking-tight">
-            {post.frontmatter.title}
+
+      <Container className="max-w-3xl">
+        <Link
+          href="/blog"
+          className="group inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+        >
+          <ArrowLeft className="size-4 transition-transform duration-200 group-hover:-translate-x-0.5" />
+          Back to blog
+        </Link>
+
+        <header className="mt-8 border-b border-border pb-10">
+          {tags?.[0] ? (
+            <p className="label-mono text-accent">{tags[0]}</p>
+          ) : null}
+          <h1
+            className="mt-4 font-display text-4xl leading-[1.05] text-foreground sm:text-5xl"
+            style={{ fontStretch: "80%", letterSpacing: "-0.02em" }}
+          >
+            {title}
           </h1>
-          <div className="mt-4 flex items-center gap-3 text-sm text-muted-foreground">
-            <time dateTime={post.frontmatter.date}>
-              {new Date(post.frontmatter.date).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </time>
+          <p
+            className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground"
+            data-speakable
+          >
+            {description}
+          </p>
+          <div className="mt-6 flex flex-wrap items-center gap-2.5 text-sm text-muted-foreground">
+            <time dateTime={date}>{formatDate(date)}</time>
             <span aria-hidden>·</span>
             <span>{post.readingTimeMinutes} min read</span>
-            {post.frontmatter.author && (
+            {author ? (
               <>
                 <span aria-hidden>·</span>
-                <span>{post.frontmatter.author}</span>
+                <span>{author}</span>
               </>
-            )}
+            ) : null}
           </div>
         </header>
-        <div className="prose-like">
+
+        <div className="prose-like mt-10">
           <MDXRemote source={post.content} components={mdxComponents} />
         </div>
+      </Container>
       </article>
-    </Container>
+      <CtaBand
+        eyebrow="Try it on your brand"
+        title="See how AI recommends you"
+        sub="Book a 20-minute walkthrough — we'll run your brand against ChatGPT, Claude, Gemini and Perplexity and show you where you stand."
+      />
+    </>
   );
 }

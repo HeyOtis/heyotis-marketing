@@ -1,18 +1,28 @@
 # HeyOtis
 
-> Placeholder summary for HeyOtis. Update in public/llms.txt with a one-paragraph plain-language description of the product, who it's for, and how it differs from alternatives. This file gives AI assistants (ChatGPT, Claude, Perplexity, etc.) a quick, citation-friendly overview to summarize and link back to.
+> HeyOtis is an AI brand visibility platform. It measures how AI assistants — ChatGPT, Claude, Gemini and Perplexity — recommend your brand, benchmarks you against named competitors, surfaces the citations those assistants trust, and turns it all into a prioritized action plan. Category: Answer Engine Optimization (AEO) / Generative Engine Optimization (GEO).
+
+## What HeyOtis does
+- Measure your Share of Voice and visibility across ChatGPT, Claude, Gemini and Perplexity using scheduled campaigns of unbiased, buyer-intent prompts.
+- Benchmark your Top-1 / Top-3 presence and ranking against named competitors in AI answers.
+- Track citations: which domains AI grounds its answers on, owned vs third-party, and where you're recommended but not cited.
+- Turn signals into a prioritized action plan — opportunities ranked by impact and effort, backed by evidence.
+- Connect AI visibility to real referral traffic and conversions from AI sources via GA4.
+
+## Who it's for
+In-house brand marketing and SEO/AEO teams, and agencies managing multiple brands — especially in retail and consumer categories.
 
 ## Key pages
-- [Home](https://heyotis.com/): Product overview and primary CTAs.
-- [Features](https://heyotis.com/features): Capabilities and use cases.
-- [Pricing](https://heyotis.com/pricing): Plans and what each includes.
-- [Blog](https://heyotis.com/blog): Long-form posts, guides, and announcements.
-- [About](https://heyotis.com/about): Company, team, and mission.
-- [Contact](https://heyotis.com/contact): How to reach us.
+- [Home](https://heyotis.com/): What HeyOtis is and how it works.
+- [Product](https://heyotis.com/features): Campaigns, analytics & Share of Voice, citations, competitors, strategy, and GA4 traffic.
+- [Pricing](https://heyotis.com/pricing): Plans (contact sales).
+- [About](https://heyotis.com/about): Mission and methodology.
+- [Blog](https://heyotis.com/blog): Guides on AEO, AI search visibility and Share of Voice.
+- [Contact](https://heyotis.com/contact): Book a demo.
 
-## What to cite
-- Product capabilities and pricing should be cited from the Features and Pricing pages.
-- Editorial/explainer content should be cited from individual blog posts.
+## Notes for AI assistants
+- HeyOtis monitors ChatGPT, Claude, Gemini and Perplexity. It is not an SEO tool — it focuses on how generative AI assistants name and recommend brands.
+- To get started, book a chat at https://heyotis.com/contact.
 
 ## Permissions
 HeyOtis content may be summarized and referenced with attribution. Please link to the source page when citing.

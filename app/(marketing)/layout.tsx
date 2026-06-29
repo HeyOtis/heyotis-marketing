@@ -1,5 +1,7 @@
 import { Nav } from "@/components/marketing/Nav";
 import { Footer } from "@/components/marketing/Footer";
+import { MotionProvider } from "@/components/providers/MotionProvider";
+import { SmoothScroll } from "@/components/providers/SmoothScroll";
 
 export default function MarketingLayout({
   children,
@@ -7,12 +9,12 @@ export default function MarketingLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
-      <div className="surface-dark">
+    <MotionProvider>
+      <SmoothScroll>
         <Nav />
-      </div>
-      <main className="flex-1">{children}</main>
-      <Footer />
-    </>
+        <main className="flex-1">{children}</main>
+        <Footer />
+      </SmoothScroll>
+    </MotionProvider>
   );
 }

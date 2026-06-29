@@ -1,11 +1,22 @@
 export const siteConfig = {
   name: "HeyOtis",
   shortName: "HeyOtis",
+  // Canonical marketing URL. NOTE: the platform app lives at heyotis.ai —
+  // confirm which domain is canonical for marketing. Overridable via env.
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://heyotis.com",
+  // Product app (login / signup) destination.
+  appUrl: "https://app.heyotis.ai",
+  // Primary CTA destination ("Book a chat") — HubSpot Meetings scheduling page.
+  // Booking creates/updates a HubSpot contact and books the rep's connected
+  // Google Calendar (with a Google Meet link). Env-overridable so the rep or a
+  // round-robin/team link can change without a code change.
+  bookingUrl:
+    process.env.NEXT_PUBLIC_BOOKING_URL ??
+    "https://meetings-eu1.hubspot.com/george-bowes",
   description:
-    "HeyOtis helps brands understand and improve how AI assistants interpret, present and recommend them — then turns that intelligence into campaign-led strategy.",
+    "See how ChatGPT, Claude, Gemini and Perplexity recommend your brand — and what to do about it. HeyOtis measures your AI Share of Voice, citations and competitive rank.",
   locale: "en-US",
-  defaultOgImage: "/opengraph-image.png",
+  defaultOgImage: "/api/og",
   twitterHandle: "@heyotis",
   contactEmail: "hello@heyotis.com",
   founders: ["HeyOtis Team"],
@@ -15,113 +26,32 @@ export const siteConfig = {
     github: "https://github.com/heyotis",
   },
   nav: [
-    {
-      href: "/platform",
-      label: "Product",
-      // Mega-menu. Any nav item with a `menu` renders a dropdown panel; the
-      // panel is generic, so adding one to Resources/About is just more data.
-      menu: {
-        sections: [
-          {
-            heading: "Product",
-            links: [
-              {
-                label: "Platform",
-                href: "/platform",
-                description:
-                  "AI brand intelligence across every major assistant.",
-              },
-              {
-                label: "Campaigns",
-                href: "/campaigns",
-                description:
-                  "Campaign-led AI discovery, from objective to outcome.",
-              },
-              {
-                label: "Scorecard",
-                href: "/contact",
-                description:
-                  "See where your brand stands in AI recommendations.",
-              },
-            ],
-          },
-        ],
-      },
-    },
-    {
-      href: "/brand",
-      label: "Use cases",
-      menu: {
-        sections: [
-          {
-            heading: "Use cases",
-            links: [
-              {
-                label: "Brand",
-                href: "/brand",
-                description:
-                  "Shape how AI understands, describes and presents your brand.",
-              },
-              {
-                label: "Traffic",
-                href: "/traffic",
-                description:
-                  "Connect AI discovery to visits, retail demand and revenue.",
-              },
-              {
-                label: "E-commerce",
-                href: "/e-commerce",
-                description:
-                  "Check whether your products make the AI shortlist.",
-              },
-              {
-                label: "Agencies",
-                href: "/agencies",
-                description:
-                  "Build campaign-led AI discovery programmes for clients.",
-              },
-            ],
-          },
-        ],
-      },
-    },
-    {
-      href: "/case-studies",
-      label: "Resources",
-      menu: {
-        sections: [
-          {
-            heading: "Resources",
-            links: [
-              {
-                label: "Case Studies",
-                href: "/case-studies",
-                description: "Proof that AI presence can be improved.",
-              },
-              {
-                label: "Pricing",
-                href: "/pricing",
-                description:
-                  "Plans that scale with your AI recommendation strategy.",
-              },
-            ],
-          },
-        ],
-      },
-    },
+    { href: "/features", label: "Product" },
+    { href: "/pricing", label: "Pricing" },
+    { href: "/blog", label: "Resources" },
     { href: "/about", label: "About" },
+  ],
+  footerNav: [
+    {
+      heading: "Product",
+      links: [
+        { label: "Overview", href: "/features" },
+        { label: "Pricing", href: "/pricing" },
+        { label: "Book a demo", href: "/contact" },
+      ],
+    },
+    {
+      heading: "Company",
+      links: [
+        { label: "About", href: "/about" },
+        { label: "Blog", href: "/blog" },
+        { label: "Contact", href: "/contact" },
+      ],
+    },
   ],
 } as const;
 
 export type SiteConfig = typeof siteConfig;
-
 export type NavItem = (typeof siteConfig.nav)[number];
-export type NavMenuLink = {
-  label: string;
-  href: string;
-  description: string;
-};
-export type NavMenuSection = {
-  heading: string;
-  links: readonly NavMenuLink[];
-};
+export type FooterGroup = (typeof siteConfig.footerNav)[number];
+export type FooterLink = FooterGroup["links"][number];
