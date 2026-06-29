@@ -4,56 +4,63 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* brand surfaces */
-  --background: oklch(0.97 0.003 80);          /* cream */
-  --foreground: oklch(0.18 0.04 290);           /* near-black ink */
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.18 0.04 290);
+  /* ── surfaces ───────────────────────────────────────────────────────── */
+  --background: oklch(0.97 0.004 85);          /* warm cream canvas */
+  --foreground: oklch(0.24 0.02 285);          /* ink */
+  --card: oklch(1 0 0);                         /* white cards */
+  --card-foreground: oklch(0.24 0.02 285);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.18 0.04 290);
+  --popover-foreground: oklch(0.24 0.02 285);
 
-  /* primary = deep charcoal-ink hero/footer surface, cream type */
-  --primary: oklch(0.21 0.02 280);
-  --primary-foreground: oklch(0.97 0.02 80);
+  /* The ONE dark surface — nav / footer / CTA bands. */
+  --surface-dark: oklch(0.21 0.02 285);        /* charcoal-ink */
+  --surface-dark-foreground: oklch(0.97 0.004 85);
 
-  /* secondary surfaces (light) */
-  --secondary: oklch(0.95 0.012 80);
-  --secondary-foreground: oklch(0.18 0.04 290);
+  /* ── brand purple (hue 280) ─────────────────────────────────────────── */
+  /* `--brand` is the platform's light primary: DECORATIVE only (glows,
+     beams, charts, the mark) — never carries text. Interactive/text purples
+     below are darkened to pass WCAG contrast on cream / with white text. */
+  --brand: oklch(0.68 0.1 280);
+  --brand-soft: oklch(0.93 0.03 280);          /* lavender wash / hover */
+  --brand-strong: oklch(0.5 0.16 280);         /* accessible fill */
 
-  --muted: oklch(0.92 0.015 80);
-  --muted-foreground: oklch(0.45 0.02 290);
+  --primary: oklch(0.5 0.16 280);              /* buttons — white text passes */
+  --primary-foreground: oklch(0.99 0 0);
+  --accent: oklch(0.5 0.16 280);               /* emphasis, links, heading accent */
+  --accent-foreground: oklch(0.99 0 0);
 
-  --accent: oklch(0.72 0.12 283);                /* lavender — hero headings + CTAs */
-  --accent-foreground: oklch(0.2 0.03 285);
+  --secondary: oklch(0.95 0.008 85);
+  --secondary-foreground: oklch(0.24 0.02 285);
+  --muted: oklch(0.94 0.008 85);
+  --muted-foreground: oklch(0.47 0.015 285);
 
-  --destructive: oklch(0.6 0.22 25);
-  --destructive-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.58 0.22 25);
+  --destructive-foreground: oklch(0.99 0 0);
 
-  --border: oklch(0.18 0.04 290 / 12%);
-  --input: oklch(0.18 0.04 290 / 18%);
-  --ring: oklch(0.6 0.18 52);
+  --border: oklch(0.24 0.02 285 / 10%);
+  --input: oklch(0.24 0.02 285 / 16%);
+  --ring: oklch(0.5 0.16 280);
 
-  /* product-mock indicators */
-  --lime: oklch(0.9 0.21 130);
-  --lime-foreground: oklch(0.18 0.04 290);
-  --coral: oklch(0.83 0.1 25);
-  --coral-foreground: oklch(0.3 0.1 25);
-  --teal: oklch(0.85 0.12 195);
-  --violet: oklch(0.7 0.18 295);
+  /* ── pastel data-viz accents (use sparingly) ────────────────────────── */
+  --salmon: oklch(0.84 0.1 60);
+  --peach: oklch(0.88 0.08 55);
+  --coral: oklch(0.82 0.12 30);
+  --soft-orange: oklch(0.85 0.1 70);
+  --sky: oklch(0.85 0.1 230);
 
-  --radius: 1rem;
-}
+  /* chart tokens (mock product visuals — reused from the platform) */
+  --chart-1: oklch(0.68 0.1 280);
+  --chart-2: oklch(0.65 0.18 230);
+  --chart-3: oklch(0.7 0.16 55);
+  --chart-4: oklch(0.6 0.18 300);
+  --chart-5: oklch(0.65 0.16 175);
 
-.dark {
-  /* surfaces flip: dark canvas, cream type — used by the hero/footer sections via .surface-dark */
-  --background: oklch(0.48 0.16 52);
-  --foreground: oklch(0.97 0.003 80);
-  --card: oklch(0.4 0.13 50);
-  --card-foreground: oklch(0.97 0.003 80);
-  --muted: oklch(0.42 0.1 50);
-  --muted-foreground: oklch(0.85 0.05 70);
-  --border: oklch(0.97 0.02 80 / 12%);
-  --input: oklch(0.97 0.02 80 / 18%);
+  /* AI-source colors (for "across these assistants" visuals) */
+  --ai-chatgpt: oklch(0.68 0.1 280);
+  --ai-gemini: oklch(0.68 0.15 30);
+  --ai-perplexity: oklch(0.65 0.14 230);
+
+  --radius: 0.875rem;
 }
 
 @theme inline {
@@ -63,6 +70,14 @@
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
+
+  --color-surface-dark: var(--surface-dark);
+  --color-surface-dark-foreground: var(--surface-dark-foreground);
+
+  --color-brand: var(--brand);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-strong: var(--brand-strong);
+
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
@@ -76,58 +91,107 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-lime: var(--lime);
-  --color-lime-foreground: var(--lime-foreground);
+
+  --color-salmon: var(--salmon);
+  --color-peach: var(--peach);
   --color-coral: var(--coral);
-  --color-coral-foreground: var(--coral-foreground);
-  --color-teal: var(--teal);
-  --color-violet: var(--violet);
+  --color-soft-orange: var(--soft-orange);
+  --color-sky: var(--sky);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --color-ai-chatgpt: var(--ai-chatgpt);
+  --color-ai-gemini: var(--ai-gemini);
+  --color-ai-perplexity: var(--ai-perplexity);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-display: var(--font-display);
-  --radius-sm: calc(var(--radius) - 12px);
-  --radius-md: calc(var(--radius) - 8px);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 8px);
-  --radius-2xl: calc(var(--radius) + 16px);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 12px);
+  --radius-3xl: calc(var(--radius) + 28px);
+
+  /* Magic UI marquee (added by registry) */
   --animate-marquee: marquee var(--duration) infinite linear;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
   @keyframes marquee {
-  from {
-    transform: translateX(0);
-    }
-  to {
-    transform: translateX(calc(-100% - var(--gap)));
-    }
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(-100% - var(--gap))); }
   }
   @keyframes marquee-vertical {
-  from {
-    transform: translateY(0);
-    }
-  to {
-    transform: translateY(calc(-100% - var(--gap)));
-    }
+    from { transform: translateY(0); }
+    to { transform: translateY(calc(-100% - var(--gap))); }
   }
 }
 
 @layer base {
-  * { border-color: var(--color-border); }
-  html { scroll-behavior: smooth; }
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
   body {
     background: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans), system-ui, sans-serif;
     font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background: var(--brand-soft);
+    color: var(--surface-dark);
+  }
+
+  /* Lenis smooth-scroll (mounted in marketing layout). */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+  .lenis.lenis-smooth iframe {
+    pointer-events: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
   }
 }
 
 @layer components {
+  /* ── surface helpers ─────────────────────────────────────────────────── */
   .surface-dark {
-    background: var(--primary);
-    color: var(--primary-foreground);
+    background: var(--surface-dark);
+    color: var(--surface-dark-foreground);
   }
   .surface-cream {
-    background: oklch(0.97 0.003 80);
+    background: var(--background);
     color: var(--foreground);
   }
   .surface-card {
@@ -135,16 +199,83 @@
     color: var(--card-foreground);
   }
 
+  /* ── type ────────────────────────────────────────────────────────────── */
   .font-display {
     font-family: var(--font-display), var(--font-sans), system-ui, sans-serif;
     font-weight: 800;
     font-stretch: 75%;
     letter-spacing: -0.025em;
-    line-height: 0.92;
+    line-height: 0.95;
+  }
+  .display-xl { @apply font-display text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem]; }
+  .display-lg { @apply font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl; }
+  .display-md { @apply font-display text-3xl sm:text-4xl md:text-5xl; }
+  .display-sm { @apply font-display text-2xl sm:text-3xl; }
+
+  /* Geist Mono eyebrow / label */
+  .label-mono {
+    font-family: var(--font-mono), ui-monospace, monospace;
+    @apply text-xs font-medium uppercase tracking-[0.18em];
   }
 
-  .display-xl  { @apply font-display text-5xl sm:text-6xl md:text-7xl lg:text-[7rem]; }
-  .display-lg  { @apply font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl; }
-  .display-md  { @apply font-display text-3xl sm:text-4xl md:text-5xl; }
-  .display-sm  { @apply font-display text-2xl sm:text-3xl; }
+  /* CTA micro-nudge — a single hop, classier than a pulse. */
+  @keyframes cta-nudge {
+    0%, 86%, 100% { transform: translateY(0); }
+    91% { transform: translateY(-3px); }
+    96% { transform: translateY(0); }
+  }
+  .cta-nudge {
+    animation: cta-nudge 3.6s ease-in-out infinite;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cta-nudge { animation: none; }
+  }
+
+  /* ── blog body typography ───────────────────────────────────────────── */
+  .prose-like {
+    @apply text-base leading-7 text-foreground/90;
+    max-width: 68ch;
+  }
+  .prose-like h2 {
+    @apply font-display text-3xl sm:text-4xl mt-12 mb-4 text-foreground;
+    font-stretch: 80%;
+    letter-spacing: -0.02em;
+  }
+  .prose-like h3 {
+    @apply font-display text-2xl mt-9 mb-3 text-foreground;
+    font-stretch: 85%;
+  }
+  .prose-like p {
+    @apply my-5;
+  }
+  .prose-like ul {
+    @apply my-5 list-disc space-y-2 pl-6;
+  }
+  .prose-like ol {
+    @apply my-5 list-decimal space-y-2 pl-6;
+  }
+  .prose-like a {
+    @apply font-medium text-accent underline decoration-accent/40 underline-offset-4 transition-colors hover:decoration-accent;
+  }
+  .prose-like strong {
+    @apply font-semibold text-foreground;
+  }
+  .prose-like blockquote {
+    @apply my-6 border-l-2 border-brand pl-5 italic text-muted-foreground;
+  }
+  .prose-like code {
+    @apply rounded-md bg-secondary px-1.5 py-0.5 font-mono text-sm;
+  }
+  .prose-like pre {
+    @apply my-6 overflow-x-auto rounded-xl bg-surface-dark p-4 text-surface-dark-foreground;
+  }
+  .prose-like pre code {
+    @apply bg-transparent p-0 text-inherit;
+  }
+  .prose-like img {
+    @apply my-6 rounded-xl;
+  }
+  .prose-like hr {
+    @apply my-10 border-border;
+  }
 }

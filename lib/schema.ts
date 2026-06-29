@@ -24,14 +24,8 @@ export function websiteSchema(): WithContext<Record<string, unknown>> {
     "@type": "WebSite",
     name: siteConfig.name,
     url: siteConfig.url,
-    potentialAction: {
-      "@type": "SearchAction",
-      target: {
-        "@type": "EntryPoint",
-        urlTemplate: `${siteConfig.url}/search?q={search_term_string}`,
-      },
-      "query-input": "required name=search_term_string",
-    },
+    description: siteConfig.description,
+    publisher: { "@type": "Organization", name: siteConfig.name },
   };
 }
 
