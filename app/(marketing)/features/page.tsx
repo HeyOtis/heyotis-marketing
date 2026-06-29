@@ -5,6 +5,10 @@ import {
   Trophy,
   ShieldAlert,
   CodeXml,
+  BarChart3,
+  Target,
+  TrendingUp,
+  Sparkles,
   type LucideIcon,
 } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -76,22 +80,44 @@ function PanelShell({
 }
 
 const CAMPAIGN_QUERIES = [
-  { q: "best CRM for boutique retailers", status: "Approved", tone: "emerald" },
-  { q: "affordable POS with loyalty built in", status: "Approved", tone: "emerald" },
-  { q: "which platform do premium brands recommend", status: "Review", tone: "amber" },
+  { q: "best men's hoodie for everyday wear", status: "Approved", tone: "emerald" },
+  { q: "affordable joggers with free shipping", status: "Edited", tone: "neutral" },
+  { q: "premium streetwear brands worth buying", status: "Approved", tone: "emerald" },
+  { q: "which store has the best click & collect", status: "Review", tone: "amber" },
+  { q: "winter layering essentials under $100", status: "Approved", tone: "emerald" },
 ] as const;
 
 const QUERY_TONE = {
   emerald: "bg-emerald-500/12 text-emerald-600",
   amber: "bg-amber-500/15 text-amber-600",
+  neutral: "border border-border text-muted-foreground",
 } as const;
 
 function CampaignPanel() {
   return (
-    <PanelShell label="Campaign" badge="Scheduled · Weekly">
-      <div className="flex flex-wrap gap-2">
+    <PanelShell label="Campaign" badge="Repeating · 5d">
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <div className="flex items-center gap-2">
+            <h4 className="text-sm font-semibold text-foreground">
+              Product Visibility — NZ
+            </h4>
+            <span className="flex items-center gap-1 rounded-full bg-emerald-500/12 px-2 py-0.5 text-[0.6rem] font-semibold text-emerald-600">
+              <span className="size-1.5 rounded-full bg-emerald-500" /> Active
+            </span>
+          </div>
+          <p className="mt-0.5 text-[0.7rem] text-muted-foreground">
+            Repeating · every 5 days · last run 2 days ago
+          </p>
+        </div>
+        <span className="shrink-0 rounded-lg bg-brand/10 px-2.5 py-1.5 text-[0.65rem] font-semibold text-accent">
+          ▶ Run now
+        </span>
+      </div>
+
+      <div className="mt-3 flex flex-wrap gap-2">
         {[
-          { k: "Region", v: "United States" },
+          { k: "Region", v: "New Zealand" },
           { k: "Customer voice", v: "Premium" },
           { k: "Engines", v: "All 4" },
         ].map((chip) => (
@@ -99,26 +125,37 @@ function CampaignPanel() {
             key={chip.k}
             className="rounded-full border border-border bg-background/60 px-2.5 py-1 text-[0.7rem] font-medium text-foreground/70"
           >
-            <span className="label-mono text-[0.6rem] text-muted-foreground">
+            <span className="label-mono text-[0.55rem] text-muted-foreground">
               {chip.k}
             </span>{" "}
             {chip.v}
           </span>
         ))}
       </div>
-      <p className="mt-4 label-mono text-[0.6rem] text-muted-foreground">
-        Auto-generated unbiased queries
-      </p>
-      <div className="mt-2 space-y-2">
-        {CAMPAIGN_QUERIES.map((row) => (
+
+      <div className="mt-4 flex items-center justify-between">
+        <p className="label-mono text-[0.6rem] text-muted-foreground">
+          Queries to be executed
+        </p>
+        <span className="text-[0.65rem] text-muted-foreground">
+          35 active queries
+        </span>
+      </div>
+      <div className="mt-2 space-y-1.5">
+        {CAMPAIGN_QUERIES.map((row, i) => (
           <div
             key={row.q}
-            className="flex items-center justify-between gap-3 rounded-xl border border-border bg-background/60 p-3"
+            className="flex items-center gap-3 rounded-lg border border-border bg-background/60 px-3 py-2"
           >
-            <span className="truncate text-sm text-foreground">“{row.q}”</span>
+            <span className="w-3 shrink-0 text-[0.65rem] tabular-nums text-muted-foreground">
+              {i + 1}
+            </span>
+            <span className="flex-1 truncate text-xs text-foreground">
+              “{row.q}”
+            </span>
             <span
               className={cn(
-                "shrink-0 rounded-full px-2 py-0.5 text-[0.65rem] font-semibold",
+                "shrink-0 rounded-full px-2 py-0.5 text-[0.6rem] font-semibold",
                 QUERY_TONE[row.tone],
               )}
             >
@@ -133,63 +170,146 @@ function CampaignPanel() {
 
 const OPPORTUNITIES = [
   {
-    title: "Earn a Wirecutter citation for “best for retail”",
-    category: "Citations",
+    title: "Own the 'best for everyday' answer",
     impact: "High",
-    effort: "Med",
-    score: 92,
+    effort: "Medium",
+    top: true,
+    metrics: [
+      { icon: BarChart3, value: "40.6%", label: "visibility on your weakest prompts" },
+      { icon: Target, value: "6%", label: "top-3 rate in premium discovery" },
+      { icon: Trophy, value: "+16", label: "first-place gap to close" },
+    ],
   },
   {
-    title: "Add comparison schema to your pricing page",
-    category: "Onsite",
+    title: "Turn recognition into top placement",
     impact: "High",
+    effort: "Medium",
+    top: false,
+    metrics: [
+      { icon: BarChart3, value: "69/97", label: "answers at position 4 or lower" },
+      { icon: TrendingUp, value: "7.1%", label: "ChatGPT top-3 rate to fix" },
+      { icon: Trophy, value: "2.33", label: "avg position when cited" },
+    ],
+  },
+  {
+    title: "Win back the retailer citation layer",
+    impact: "Medium",
     effort: "Low",
-    score: 88,
-  },
-  {
-    title: "Close the Top-1 gap vs Northwind in Gemini",
-    category: "Rankings",
-    impact: "Med",
-    effort: "Med",
-    score: 71,
+    top: false,
+    metrics: [
+      { icon: Quote, value: "0/64", label: "competitor citations to reclaim" },
+      { icon: CodeXml, value: "18", label: "owned pages missing schema" },
+      { icon: Sparkles, value: "1 sprint", label: "to make content citable" },
+    ],
   },
 ] as const;
 
 function StrategyPanel() {
   return (
-    <PanelShell label="Strategy" badge="Impact × Effort">
-      <div className="space-y-2.5">
-        {OPPORTUNITIES.map((o) => (
+    <PanelShell label="Strategy Engine" badge="Impact × Effort">
+      <div className="flex items-center justify-between">
+        <div>
+          <p className="text-sm font-semibold text-foreground">Your action plan</p>
+          <p className="mt-0.5 text-[0.7rem] text-muted-foreground">
+            3 opportunities to focus on this month
+          </p>
+        </div>
+        <div className="flex items-center gap-2">
+          <svg viewBox="0 0 36 36" className="size-9 -rotate-90" aria-hidden>
+            <circle
+              cx="18"
+              cy="18"
+              r="15"
+              fill="none"
+              stroke="currentColor"
+              className="text-secondary"
+              strokeWidth="3.5"
+            />
+            <circle
+              cx="18"
+              cy="18"
+              r="15"
+              fill="none"
+              stroke="oklch(0.5 0.16 280)"
+              strokeWidth="3.5"
+              strokeDasharray="94.25"
+              strokeDashoffset="63"
+              strokeLinecap="round"
+            />
+          </svg>
+          <span className="text-[0.55rem] leading-tight text-muted-foreground">
+            33%
+            <br />
+            actioned
+          </span>
+        </div>
+      </div>
+
+      <div className="mt-3 flex flex-wrap gap-1.5">
+        <span className="rounded-full bg-brand/10 px-2 py-0.5 text-[0.6rem] font-semibold text-accent">
+          All · 3
+        </span>
+        <span className="rounded-full border border-border px-2 py-0.5 text-[0.6rem] text-muted-foreground">
+          High impact · 2
+        </span>
+        <span className="rounded-full border border-border px-2 py-0.5 text-[0.6rem] text-muted-foreground">
+          Medium · 1
+        </span>
+      </div>
+
+      <div className="mt-3 space-y-2.5">
+        {OPPORTUNITIES.map((o, i) => (
           <div
             key={o.title}
-            className="rounded-xl border border-border bg-background/60 p-3.5"
+            className="rounded-xl border border-border bg-background/60 p-3"
           >
-            <div className="flex items-start justify-between gap-3">
-              <p className="text-sm font-medium leading-snug text-foreground">
-                {o.title}
-              </p>
-              <span className="shrink-0 rounded-full bg-brand/10 px-2 py-0.5 text-[0.7rem] font-semibold tabular-nums text-accent">
-                {o.score}
+            <div className="flex flex-wrap items-center gap-2">
+              {o.top ? (
+                <span className="rounded-full bg-accent px-2 py-0.5 text-[0.55rem] font-semibold uppercase tracking-wide text-primary-foreground">
+                  Highest priority
+                </span>
+              ) : (
+                <span className="rounded-full bg-secondary px-2 py-0.5 text-[0.6rem] font-semibold text-muted-foreground">
+                  #{i + 1}
+                </span>
+              )}
+              <span className="flex items-center gap-1.5 text-[0.6rem] text-muted-foreground">
+                <span className="size-1.5 rounded-full bg-brand" />
+                {o.impact} impact · {o.effort} effort
               </span>
             </div>
-            <div className="mt-2.5 flex flex-wrap gap-1.5">
-              <span className="rounded-full border border-border bg-card px-2 py-0.5 text-[0.65rem] font-medium text-muted-foreground">
-                {o.category}
-              </span>
-              <span className="rounded-full bg-brand/10 px-2 py-0.5 text-[0.65rem] font-semibold text-accent">
-                Impact: {o.impact}
-              </span>
-              <span className="rounded-full bg-secondary px-2 py-0.5 text-[0.65rem] font-semibold text-muted-foreground">
-                Effort: {o.effort}
-              </span>
+            <p className="mt-2 text-sm font-medium text-foreground">{o.title}</p>
+            <div className="mt-2.5 grid grid-cols-3 gap-2">
+              {o.metrics.map((m) => {
+                const Icon = m.icon;
+                return (
+                  <div
+                    key={m.label}
+                    className="rounded-lg border border-border bg-card p-2"
+                  >
+                    <div className="flex items-center gap-1.5">
+                      <Icon className="size-3 shrink-0 text-accent" />
+                      <span className="text-sm font-semibold tabular-nums text-foreground">
+                        {m.value}
+                      </span>
+                    </div>
+                    <p className="mt-1 text-[0.55rem] leading-tight text-muted-foreground">
+                      {m.label}
+                    </p>
+                  </div>
+                );
+              })}
             </div>
           </div>
         ))}
       </div>
-      <p className="mt-3 rounded-lg bg-secondary/70 px-3 py-2 text-xs text-muted-foreground">
-        <span className="font-semibold text-foreground">How Otis ranks it:</span>{" "}
-        the wording is generated, the evidence is not — every opportunity links
-        back to the responses that triggered it.
+
+      <p className="mt-3 rounded-lg bg-secondary/70 px-3 py-2 text-[0.7rem] text-muted-foreground">
+        <span className="font-semibold text-foreground">
+          196 deterministic signals
+        </span>{" "}
+        across visibility, rankings, citations &amp; content — the wording is
+        generated, the evidence is not.
       </p>
     </PanelShell>
   );
