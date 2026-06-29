@@ -1,7 +1,6 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
-import { cn } from "@/lib/utils";
 
 type RevealProps = {
   children: React.ReactNode;

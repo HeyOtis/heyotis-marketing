@@ -1,5 +1,4 @@
 import { ImageResponse } from "next/og";
-import { siteConfig } from "@/lib/site";
 
 export const runtime = "edge";
 export const contentType = "image/png";

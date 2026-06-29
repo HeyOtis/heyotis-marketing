@@ -12,7 +12,7 @@ export const siteConfig = {
   description:
     "See how ChatGPT, Gemini and Perplexity recommend your brand — and what to do about it. HeyOtis measures your AI Share of Voice, citations and competitive rank.",
   locale: "en-US",
-  defaultOgImage: "/opengraph-image.png",
+  defaultOgImage: "/api/og",
   twitterHandle: "@heyotis",
   contactEmail: "hello@heyotis.com",
   founders: ["HeyOtis Team"],
