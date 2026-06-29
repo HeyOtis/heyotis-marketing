@@ -5,7 +5,7 @@ export const siteConfig = {
   // confirm which domain is canonical for marketing. Overridable via env.
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://heyotis.com",
   // Product app (login / signup) destination.
-  appUrl: "https://heyotis.ai",
+  appUrl: "https://app.heyotis.ai",
   // Primary CTA destination ("Book a chat") — HubSpot Meetings scheduling page.
   // Booking creates/updates a HubSpot contact and books the rep's connected
   // Google Calendar (with a Google Meet link). Env-overridable so the rep or a

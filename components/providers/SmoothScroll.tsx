@@ -1,27 +1,14 @@
 "use client";
 
-import { ReactLenis } from "lenis/react";
-import { useReducedMotion } from "motion/react";
-
 /**
- * Lenis smooth scroll, mounted once around the marketing route group (NOT the
- * RSC root). When the user prefers reduced motion we drop the interpolation
- * (lerp 1 + native wheel) so scrolling is effectively instant/native while the
- * Lenis instance still drives anchor navigation.
+ * Smooth-scroll seam.
+ *
+ * Lenis was removed: in `root` mode it intermittently capped the document scroll
+ * height (you couldn't scroll past mid-page). Native scrolling is bulletproof and
+ * every scroll-reveal animation on the site (whileInView reveals, the
+ * container-scroll product reveal, number tickers) works without it. If we want a
+ * smooth-scroll library again later, wire it up here — this is the single seam.
  */
 export function SmoothScroll({ children }: { children: React.ReactNode }) {
-  const reduced = useReducedMotion();
-
-  return (
-    <ReactLenis
-      root
-      options={{
-        lerp: reduced ? 1 : 0.1,
-        smoothWheel: !reduced,
-        syncTouch: false,
-      }}
-    >
-      {children}
-    </ReactLenis>
-  );
+  return <>{children}</>;
 }
