@@ -417,7 +417,7 @@ export default function PricingPage() {
           <Table className="min-w-[720px]">
             <TableHeader>
               <TableRow className="hover:bg-transparent">
-                <TableHead className="w-[34%] py-4 pl-6 text-sm font-medium text-muted-foreground">
+                <TableHead className="sticky left-0 z-20 w-[34%] border-r border-border/60 bg-card py-4 pl-6 text-sm font-medium text-muted-foreground">
                   Capability
                 </TableHead>
                 {TIER_COLUMNS.map((col) => {
@@ -449,14 +449,14 @@ export default function PricingPage() {
                   <TableRow className="hover:bg-transparent">
                     <TableCell
                       colSpan={5}
-                      className="label-mono bg-secondary/40 py-2.5 pl-6 text-[0.65rem] text-muted-foreground"
+                      className="label-mono sticky left-0 bg-secondary/40 py-2.5 pl-6 text-[0.65rem] text-muted-foreground"
                     >
                       {group.heading}
                     </TableCell>
                   </TableRow>
                   {group.rows.map((row) => (
                     <TableRow key={row.label}>
-                      <TableCell className="py-3.5 pl-6 text-sm font-medium text-foreground">
+                      <TableCell className="sticky left-0 z-10 border-r border-border/60 bg-card py-3.5 pl-6 text-sm font-medium text-foreground">
                         {row.label}
                       </TableCell>
                       <TableCell className="text-center">

@@ -44,6 +44,19 @@ function formatDate(date: string) {
   });
 }
 
+/**
+ * Fallback when an MDX body fails to compile — keeps one bad post from
+ * crashing the whole static build, and surfaces the cause in build logs.
+ */
+function MdxError({ error }: { error: Error }) {
+  console.error("[blog] MDX failed to render:", error);
+  return (
+    <p className="rounded-2xl border border-dashed border-border/60 p-6 text-sm text-muted-foreground">
+      This article is temporarily unavailable. Please check back shortly.
+    </p>
+  );
+}
+
 export default async function BlogPostPage({ params }: PageProps) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
@@ -113,7 +126,11 @@ export default async function BlogPostPage({ params }: PageProps) {
         </header>
 
         <div className="prose-like mt-10">
-          <MDXRemote source={post.content} components={mdxComponents} />
+          <MDXRemote
+            source={post.content}
+            components={mdxComponents}
+            onError={MdxError}
+          />
         </div>
       </Container>
       </article>
