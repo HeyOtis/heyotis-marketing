@@ -12,7 +12,7 @@ export const siteConfig = {
   // round-robin/team link can change without a code change.
   bookingUrl:
     process.env.NEXT_PUBLIC_BOOKING_URL ??
-    "https://meetings-eu1.hubspot.com/georege-bowes",
+    "https://meetings-eu1.hubspot.com/george-bowes",
   description:
     "See how ChatGPT, Gemini and Perplexity recommend your brand — and what to do about it. HeyOtis measures your AI Share of Voice, citations and competitive rank.",
   locale: "en-US",
