@@ -92,7 +92,7 @@ function KpiTile({
           {value}
         </span>
         {delta ? (
-          <span className="text-[0.6rem] font-semibold text-emerald-600">
+          <span className="text-[0.6rem] font-semibold text-emerald-700">
             {delta}
           </span>
         ) : null}
@@ -228,8 +228,8 @@ const TONE_DOT = {
 } as const;
 
 const TONE_BADGE = {
-  emerald: "bg-emerald-500/12 text-emerald-600",
-  amber: "bg-amber-500/15 text-amber-600",
+  emerald: "bg-emerald-500/12 text-emerald-700",
+  amber: "bg-amber-500/15 text-amber-800",
   zinc: "bg-secondary text-muted-foreground",
 } as const;
 
@@ -493,7 +493,7 @@ function CompetitorsPanel() {
               />
             </div>
             {r.you ? (
-              <span className="hidden shrink-0 rounded-full bg-emerald-500/12 px-2 py-0.5 text-[0.6rem] font-semibold text-emerald-600 sm:inline">
+              <span className="hidden shrink-0 rounded-full bg-emerald-500/12 px-2 py-0.5 text-[0.6rem] font-semibold text-emerald-700 sm:inline">
                 Top-1
               </span>
             ) : null}

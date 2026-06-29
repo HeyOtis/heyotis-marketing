@@ -30,7 +30,7 @@ export function StatBand({
   return (
     <dl
       className={cn(
-        "grid grid-cols-1 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 lg:divide-x",
+        "grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 lg:divide-x",
         divider,
         className,
       )}

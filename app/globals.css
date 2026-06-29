@@ -162,6 +162,13 @@
     color: var(--surface-dark);
   }
 
+  /* Consistent keyboard focus on links (Button/Accordion carry their own ring). */
+  a:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: 0.25rem;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;

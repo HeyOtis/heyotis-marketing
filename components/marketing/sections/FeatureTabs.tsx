@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Check } from "lucide-react";
+import { Check, Pause, Play } from "lucide-react";
 import { useIsomorphicReducedMotion } from "@/lib/use-reduced-motion";
 import { cn } from "@/lib/utils";
 
@@ -22,78 +22,116 @@ export function FeatureTabs({
   autoRotateMs?: number;
 }) {
   const [active, setActive] = React.useState(0);
-  const [paused, setPaused] = React.useState(false);
+  const [hovered, setHovered] = React.useState(false);
+  const [userPaused, setUserPaused] = React.useState(false);
   const reduced = useIsomorphicReducedMotion();
 
   const current = tabs[active];
   // Auto-rotation is purely CSS-animation driven: the active tab's progress bar
   // scales 0→1 over `autoRotateMs`, and we advance on `animationend`. A paused
-  // animation never fires `animationend`, so hover/focus pause is exact.
+  // animation never fires `animationend`, so the pause is exact.
   const autoRotate = !reduced && tabs.length > 1;
+  const paused = hovered || userPaused;
   const advance = () => setActive((a) => (a + 1) % tabs.length);
+
+  // Roving-tabindex keyboard nav for the WAI-ARIA tabs pattern.
+  const onKeyDown = (e: React.KeyboardEvent) => {
+    let next = active;
+    if (e.key === "ArrowRight" || e.key === "ArrowDown")
+      next = (active + 1) % tabs.length;
+    else if (e.key === "ArrowLeft" || e.key === "ArrowUp")
+      next = (active - 1 + tabs.length) % tabs.length;
+    else if (e.key === "Home") next = 0;
+    else if (e.key === "End") next = tabs.length - 1;
+    else return;
+    e.preventDefault();
+    setActive(next);
+    document.getElementById(`feattab-${tabs[next].id}`)?.focus();
+  };
 
   return (
     <div
       className="grid gap-8 lg:grid-cols-12 lg:gap-12"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocusCapture={() => setPaused(true)}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onFocusCapture={() => setHovered(true)}
       onBlurCapture={(e) => {
-        if (!e.currentTarget.contains(e.relatedTarget as Node)) setPaused(false);
+        if (!e.currentTarget.contains(e.relatedTarget as Node)) setHovered(false);
       }}
     >
-      {/* Tab list */}
-      <div
-        role="tablist"
-        aria-label="Features"
-        className="flex gap-2 overflow-x-auto pb-2 lg:col-span-5 lg:flex-col lg:gap-1.5 lg:overflow-visible lg:pb-0"
-      >
-        {tabs.map((tab, i) => {
-          const isActive = i === active;
-          return (
-            <button
-              key={tab.id}
-              id={`feattab-${tab.id}`}
-              role="tab"
-              aria-selected={isActive}
-              aria-controls="feature-tabpanel"
-              onClick={() => setActive(i)}
-              className={cn(
-                "group relative shrink-0 overflow-hidden rounded-xl px-4 py-3 text-left transition-colors lg:shrink",
-                isActive
-                  ? "bg-card shadow-sm ring-1 ring-border"
-                  : "text-muted-foreground hover:bg-card/60",
-              )}
-            >
-              <span
+      {/* Tab list + pause control */}
+      <div className="lg:col-span-5">
+        <div
+          role="tablist"
+          aria-label="Features"
+          aria-orientation="vertical"
+          onKeyDown={onKeyDown}
+          className="flex gap-2 overflow-x-auto pb-2 lg:flex-col lg:gap-1.5 lg:overflow-visible lg:pb-0"
+        >
+          {tabs.map((tab, i) => {
+            const isActive = i === active;
+            return (
+              <button
+                key={tab.id}
+                id={`feattab-${tab.id}`}
+                role="tab"
+                aria-selected={isActive}
+                aria-controls="feature-tabpanel"
+                tabIndex={isActive ? 0 : -1}
+                onClick={() => setActive(i)}
                 className={cn(
-                  "block text-sm font-semibold lg:text-base",
-                  isActive ? "text-foreground" : "text-muted-foreground",
+                  "group relative shrink-0 overflow-hidden rounded-xl px-4 py-3 text-left transition-colors lg:shrink",
+                  isActive
+                    ? "bg-card shadow-sm ring-1 ring-border"
+                    : "text-muted-foreground hover:bg-card/60",
                 )}
               >
-                {tab.label}
-              </span>
-              <span className="hidden text-sm text-muted-foreground lg:mt-0.5 lg:block">
-                {isActive ? tab.blurb : ""}
-              </span>
-              {isActive && autoRotate ? (
-                <span className="absolute inset-x-0 bottom-0 h-0.5 overflow-hidden bg-border/60">
-                  <span
-                    key={active}
-                    onAnimationEnd={advance}
-                    className="block h-full w-full origin-left bg-accent animate-tab-progress will-change-transform"
-                    style={
-                      {
-                        "--tab-ms": `${autoRotateMs}ms`,
-                        animationPlayState: paused ? "paused" : "running",
-                      } as React.CSSProperties
-                    }
-                  />
+                <span
+                  className={cn(
+                    "block text-sm font-semibold lg:text-base",
+                    isActive ? "text-foreground" : "text-muted-foreground",
+                  )}
+                >
+                  {tab.label}
                 </span>
-              ) : null}
-            </button>
-          );
-        })}
+                <span className="hidden text-sm text-muted-foreground lg:mt-0.5 lg:block">
+                  {isActive ? tab.blurb : ""}
+                </span>
+                {isActive && autoRotate ? (
+                  <span className="absolute inset-x-0 bottom-0 h-0.5 overflow-hidden bg-border/60">
+                    <span
+                      key={active}
+                      onAnimationEnd={advance}
+                      className="block h-full w-full origin-left bg-accent animate-tab-progress will-change-transform"
+                      style={
+                        {
+                          "--tab-ms": `${autoRotateMs}ms`,
+                          animationPlayState: paused ? "paused" : "running",
+                        } as React.CSSProperties
+                      }
+                    />
+                  </span>
+                ) : null}
+              </button>
+            );
+          })}
+        </div>
+
+        {autoRotate ? (
+          <button
+            type="button"
+            onClick={() => setUserPaused((v) => !v)}
+            aria-pressed={userPaused}
+            className="mt-2.5 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium text-muted-foreground transition-colors hover:bg-card hover:text-foreground"
+          >
+            {userPaused ? (
+              <Play className="size-3.5" />
+            ) : (
+              <Pause className="size-3.5" />
+            )}
+            {userPaused ? "Play tour" : "Pause tour"}
+          </button>
+        ) : null}
       </div>
 
       {/* Active panel */}
@@ -121,7 +159,7 @@ export function FeatureTabs({
         </div>
         <div
           key={current.id}
-          className="animate-in fade-in duration-500 lg:h-[30rem] lg:overflow-hidden lg:[&>*]:h-full"
+          className="animate-in fade-in duration-500 lg:flex lg:min-h-[30rem] lg:flex-col lg:[&>*]:flex-1"
         >
           {current.visual}
         </div>

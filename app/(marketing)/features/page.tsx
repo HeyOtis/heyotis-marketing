@@ -88,8 +88,8 @@ const CAMPAIGN_QUERIES = [
 ] as const;
 
 const QUERY_TONE = {
-  emerald: "bg-emerald-500/12 text-emerald-600",
-  amber: "bg-amber-500/15 text-amber-600",
+  emerald: "bg-emerald-500/12 text-emerald-700",
+  amber: "bg-amber-500/15 text-amber-800",
   neutral: "border border-border text-muted-foreground",
 } as const;
 
@@ -102,7 +102,7 @@ function CampaignPanel() {
             <h4 className="text-sm font-semibold text-foreground">
               Product Visibility — NZ
             </h4>
-            <span className="flex items-center gap-1 rounded-full bg-emerald-500/12 px-2 py-0.5 text-[0.6rem] font-semibold text-emerald-600">
+            <span className="flex items-center gap-1 rounded-full bg-emerald-500/12 px-2 py-0.5 text-[0.6rem] font-semibold text-emerald-700">
               <span className="size-1.5 rounded-full bg-emerald-500" /> Active
             </span>
           </div>
@@ -378,7 +378,7 @@ function TrafficPanel() {
                 {tile.v}
               </span>
               {tile.d ? (
-                <span className="text-[0.6rem] font-semibold text-emerald-600">
+                <span className="text-[0.6rem] font-semibold text-emerald-700">
                   {tile.d}
                 </span>
               ) : null}
@@ -551,28 +551,28 @@ const DETECTORS: Detector[] = [
     title: "Declining visibility",
     body: "Catch a sustained drop in how often AI recommends you before it costs you the answer.",
     severity: "Critical",
-    severityTone: "bg-coral/15 text-coral",
+    severityTone: "bg-red-500/12 text-red-700",
   },
   {
     icon: Quote,
     title: "Citation displacement",
     body: "Spot when a third-party source overtakes your owned pages as the citation AI leans on.",
     severity: "Warning",
-    severityTone: "bg-amber-500/15 text-amber-600",
+    severityTone: "bg-amber-500/15 text-amber-800",
   },
   {
     icon: EyeOff,
     title: "Source suppression",
     body: "Surface queries where you're recommended in the answer but never cited as the source.",
     severity: "Warning",
-    severityTone: "bg-amber-500/15 text-amber-600",
+    severityTone: "bg-amber-500/15 text-amber-800",
   },
   {
     icon: Trophy,
     title: "Top-1 position loss",
     body: "Know the moment a competitor takes the first-named recommendation away from you.",
     severity: "Critical",
-    severityTone: "bg-coral/15 text-coral",
+    severityTone: "bg-red-500/12 text-red-700",
   },
   {
     icon: ShieldAlert,
