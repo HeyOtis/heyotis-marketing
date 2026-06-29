@@ -81,7 +81,7 @@ export function FeatureTabs({
                   <span
                     key={active}
                     onAnimationEnd={advance}
-                    className="tab-progress-bar block h-full w-full bg-accent will-change-transform"
+                    className="block h-full w-full origin-left bg-accent animate-tab-progress will-change-transform"
                     style={
                       {
                         "--tab-ms": `${autoRotateMs}ms`,

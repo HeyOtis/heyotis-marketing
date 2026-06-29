@@ -132,6 +132,14 @@
     from { transform: translateY(0); }
     to { transform: translateY(calc(-100% - var(--gap))); }
   }
+
+  /* FeatureTabs auto-rotate progress — registered like the marquee animation so
+     Tailwind emits an `animate-tab-progress` utility (reliable in dev + prod). */
+  --animate-tab-progress: tab-progress var(--tab-ms, 6s) linear forwards;
+  @keyframes tab-progress {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
 }
 
 @layer base {
@@ -228,19 +236,6 @@
   }
   .cta-nudge {
     animation: cta-nudge 3.6s ease-in-out infinite;
-  }
-
-  /* FeatureTabs auto-rotate progress — compositor-driven scaleX, no JS ticking.
-     Driven via the .tab-progress-bar class (NOT an inline `animation`) so
-     Lightning CSS doesn't tree-shake the keyframe — it only keeps keyframes
-     referenced from within the stylesheet. Duration comes from --tab-ms. */
-  @keyframes tab-progress {
-    from { transform: scaleX(0); }
-    to { transform: scaleX(1); }
-  }
-  .tab-progress-bar {
-    transform-origin: left;
-    animation: tab-progress var(--tab-ms, 6000ms) linear forwards;
   }
   @media (prefers-reduced-motion: reduce) {
     .cta-nudge { animation: none; }
