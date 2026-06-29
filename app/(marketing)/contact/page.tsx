@@ -121,7 +121,7 @@ export default function ContactPage() {
           <div>
             <div className="flex items-center gap-2.5 pb-4">
               <CalendarCheck className="size-4 text-accent" aria-hidden />
-              <p className="label-mono text-[0.65rem] text-muted-foreground/80">
+              <p className="label-mono text-[0.65rem] text-muted-foreground">
                 Pick a time
               </p>
             </div>

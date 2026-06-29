@@ -51,6 +51,9 @@ function Chrome({ variant }: { variant: MockVariant }) {
         <span className="label-mono text-[0.65rem] text-muted-foreground">
           {VARIANT_TITLE[variant]}
         </span>
+        <span className="rounded-full bg-brand/10 px-1.5 py-0.5 text-[0.55rem] font-semibold uppercase tracking-wide text-accent">
+          Sample
+        </span>
       </div>
       <div className="flex items-center gap-2">
         <span className="rounded-full bg-secondary px-2.5 py-1 text-[0.65rem] font-medium text-muted-foreground">

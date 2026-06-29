@@ -8,6 +8,7 @@ import { articleSchema, breadcrumbSchema } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
 import { getAllPostSlugs, getPostBySlug } from "@/lib/mdx";
 import { mdxComponents } from "@/mdx-components";
+import { CtaBand } from "@/components/marketing/sections/CtaBand";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -51,7 +52,8 @@ export default async function BlogPostPage({ params }: PageProps) {
   const { title, description, date, updated, author, tags } = post.frontmatter;
 
   return (
-    <article className="surface-cream pb-8 pt-28 sm:pt-32 lg:pt-36">
+    <>
+      <article className="surface-cream pb-16 pt-28 sm:pt-32 lg:pt-36">
       <JsonLd
         data={breadcrumbSchema([
           { name: "Home", href: "/" },
@@ -114,6 +116,12 @@ export default async function BlogPostPage({ params }: PageProps) {
           <MDXRemote source={post.content} components={mdxComponents} />
         </div>
       </Container>
-    </article>
+      </article>
+      <CtaBand
+        eyebrow="Try it on your brand"
+        title="See how AI recommends you"
+        sub="Book a 20-minute walkthrough — we'll run your brand against ChatGPT, Gemini and Perplexity and show you where you stand."
+      />
+    </>
   );
 }

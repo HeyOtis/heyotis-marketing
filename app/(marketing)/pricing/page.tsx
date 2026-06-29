@@ -303,7 +303,7 @@ function CompareCell({ value }: { value: Cell }) {
   if (value === true) {
     return (
       <span className="inline-flex">
-        <Check className="size-4 text-accent" aria-label="Included" />
+        <Check className="size-4 text-accent" role="img" aria-label="Included" />
       </span>
     );
   }
@@ -312,6 +312,7 @@ function CompareCell({ value }: { value: Cell }) {
       <span className="inline-flex">
         <Minus
           className="size-4 text-muted-foreground/40"
+          role="img"
           aria-label="Not included"
         />
       </span>

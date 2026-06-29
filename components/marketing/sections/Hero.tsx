@@ -42,7 +42,7 @@ export function Hero() {
         </h1>
 
         <p className="mt-6 flex items-center justify-center gap-2 text-sm text-muted-foreground">
-          <span className="label-mono text-muted-foreground/80">Live across</span>
+          <span className="label-mono text-muted-foreground">Live across</span>
           <RotatingWord
             words={["ChatGPT", "Gemini", "Perplexity"]}
             className="font-semibold text-foreground"
@@ -54,8 +54,8 @@ export function Hero() {
           data-speakable
         >
           HeyOtis tracks your Share of Voice, the citations AI trusts, and where
-          competitors get recommended instead — then turns it into a prioritized
-          action plan you can act on.
+          competitors get recommended instead — so you know exactly where to
+          focus to win the answer.
         </p>
 
         <div className="mt-9 flex flex-col items-center gap-3 sm:flex-row">
@@ -64,13 +64,13 @@ export function Hero() {
             href="#product"
             className="group inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-foreground/70 transition-colors hover:text-foreground"
           >
-            See a sample report
+            See the platform
             <ArrowDown className="size-4 transition-transform duration-200 group-hover:translate-y-0.5" />
           </a>
         </div>
 
         <div className="mt-14 flex flex-col items-center gap-4">
-          <p className="label-mono text-[0.65rem] text-muted-foreground/70">
+          <p className="label-mono text-[0.65rem] text-muted-foreground">
             Benchmarked across
           </p>
           <AiSourceLogos />

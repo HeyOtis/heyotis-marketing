@@ -10,7 +10,7 @@ export function Eyebrow({
 }) {
   return (
     <p className={cn("label-mono text-accent", className)}>
-      <span className="text-brand">/</span> {children}
+      <span aria-hidden className="opacity-60">/</span> {children}
     </p>
   );
 }

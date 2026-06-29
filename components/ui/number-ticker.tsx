@@ -1,7 +1,12 @@
 "use client"
 
 import { useEffect, useRef, type ComponentPropsWithoutRef } from "react"
-import { useInView, useMotionValue, useSpring } from "motion/react"
+import {
+  useInView,
+  useMotionValue,
+  useSpring,
+  useReducedMotion,
+} from "motion/react"
 
 import { cn } from "@/lib/utils"
 
@@ -29,11 +34,22 @@ export function NumberTicker({
     stiffness: 100,
   })
   const isInView = useInView(ref, { once: true, margin: "0px" })
+  const reduced = useReducedMotion()
+
+  // Reduced motion: render the final value immediately, skip the spring.
+  useEffect(() => {
+    if (reduced && ref.current) {
+      ref.current.textContent = Intl.NumberFormat("en-US", {
+        minimumFractionDigits: decimalPlaces,
+        maximumFractionDigits: decimalPlaces,
+      }).format(value)
+    }
+  }, [reduced, value, decimalPlaces])
 
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout> | null = null
 
-    if (isInView) {
+    if (isInView && !reduced) {
       timer = setTimeout(() => {
         motionValue.set(direction === "down" ? startValue : value)
       }, delay * 1000)
@@ -44,7 +60,7 @@ export function NumberTicker({
         clearTimeout(timer)
       }
     }
-  }, [motionValue, isInView, delay, value, direction, startValue])
+  }, [motionValue, isInView, delay, value, direction, startValue, reduced])
 
   useEffect(
     () =>

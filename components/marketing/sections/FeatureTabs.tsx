@@ -55,6 +55,10 @@ export function FeatureTabs({
       className="grid gap-8 lg:grid-cols-12 lg:gap-12"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
+      onFocusCapture={() => setPaused(true)}
+      onBlurCapture={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node)) setPaused(false);
+      }}
     >
       {/* Tab list */}
       <div
@@ -67,8 +71,10 @@ export function FeatureTabs({
           return (
             <button
               key={tab.id}
+              id={`feattab-${tab.id}`}
               role="tab"
               aria-selected={isActive}
+              aria-controls="feature-tabpanel"
               onClick={() => select(i)}
               className={cn(
                 "group relative shrink-0 overflow-hidden rounded-xl px-4 py-3 text-left transition-colors lg:shrink",
@@ -102,7 +108,13 @@ export function FeatureTabs({
       </div>
 
       {/* Active panel */}
-      <div className="lg:col-span-7" role="tabpanel">
+      <div
+        className="lg:col-span-7"
+        role="tabpanel"
+        id="feature-tabpanel"
+        aria-labelledby={`feattab-${current.id}`}
+        tabIndex={0}
+      >
         <div className="mb-5">
           <h3 className="display-sm text-foreground">{current.title}</h3>
           <p className="mt-2 text-muted-foreground">{current.blurb}</p>

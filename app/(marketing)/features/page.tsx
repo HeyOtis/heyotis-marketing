@@ -60,6 +60,9 @@ function PanelShell({
           <span className="label-mono text-[0.65rem] text-muted-foreground">
             {label}
           </span>
+          <span className="rounded-full bg-brand/10 px-1.5 py-0.5 text-[0.55rem] font-semibold uppercase tracking-wide text-accent">
+            Sample
+          </span>
         </div>
         {badge ? (
           <span className="rounded-full bg-secondary px-2.5 py-1 text-[0.65rem] font-medium text-muted-foreground">
@@ -410,7 +413,7 @@ const STATS = [
   },
   {
     value: 7,
-    label: "Detectors watching for visibility, citation and ranking risks",
+    label: "Detector types built to surface visibility, citation & ranking risks",
   },
   {
     value: 300,
@@ -500,7 +503,7 @@ export default function FeaturesPage() {
             HeyOtis runs scheduled campaigns of unbiased buyer-intent prompts
             across ChatGPT, Gemini and Perplexity, measures your Share of Voice,
             the citations AI trusts and how you rank against named competitors —
-            then turns it into a prioritized action plan and ties it to AI
+            surfaces the opportunities that matter most, and ties it to AI
             referral traffic in GA4.
           </p>
           <div className="mt-8">
@@ -527,7 +530,7 @@ export default function FeaturesPage() {
         <SectionHeading
           eyebrow="Insights & detectors"
           title="Signals HeyOtis surfaces"
-          sub="Purpose-built detectors watch your AI visibility around the clock and raise findings by severity and confidence — so risks and openings reach you while they still matter."
+          sub="Purpose-built detectors are designed to surface visibility, citation and ranking risks by severity and confidence — so the openings that matter never slip past."
           className="max-w-2xl"
         />
         <div className="mt-12 grid gap-4 md:grid-cols-3">
@@ -601,7 +604,7 @@ export default function FeaturesPage() {
         />
       </Section>
 
-      <CtaBand />
+      <CtaBand secondary={{ label: "See pricing", href: "/pricing" }} />
     </>
   );
 }

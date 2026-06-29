@@ -39,7 +39,7 @@ const PILLARS: Pillar[] = [
   {
     icon: ListChecks,
     title: "Act",
-    body: "Turn signals into a prioritized action plan — opportunities ranked by impact and effort, backed by evidence.",
+    body: "Turn signals into prioritized next moves — opportunities ranked by impact and effort, backed by evidence.",
     span: "md:col-span-2",
   },
   {

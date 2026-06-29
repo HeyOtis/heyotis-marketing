@@ -182,7 +182,7 @@ export default function AboutPage() {
 
         <Reveal delay={0.12}>
           <div className="mt-14 flex flex-col gap-5 border-t border-border pt-10 sm:flex-row sm:items-center sm:justify-between">
-            <p className="label-mono text-[0.7rem] text-muted-foreground/70">
+            <p className="label-mono text-[0.7rem] text-muted-foreground">
               Monitored today — more engines as adoption grows
             </p>
             <AiSourceLogos />
@@ -231,7 +231,7 @@ export default function AboutPage() {
                   <span className="flex size-10 items-center justify-center rounded-xl bg-brand/10 text-accent">
                     <Icon className="size-5" strokeWidth={1.75} />
                   </span>
-                  <span className="label-mono text-xs text-muted-foreground/60">
+                  <span className="label-mono text-xs text-muted-foreground">
                     {step}
                   </span>
                 </div>

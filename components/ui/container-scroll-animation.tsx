@@ -1,6 +1,12 @@
 "use client";
 import React, { useRef } from "react";
-import { useScroll, useTransform, motion, MotionValue } from "motion/react";
+import {
+  useScroll,
+  useTransform,
+  motion,
+  MotionValue,
+  useReducedMotion,
+} from "motion/react";
 
 export const ContainerScroll = ({
   titleComponent,
@@ -26,13 +32,26 @@ export const ContainerScroll = ({
     };
   }, []);
 
+  const reduced = useReducedMotion();
+
   const scaleDimensions = () => {
     return isMobile ? [0.7, 0.9] : [1.05, 1];
   };
 
-  const rotate = useTransform(scrollYProgress, [0, 1], [20, 0]);
-  const scale = useTransform(scrollYProgress, [0, 1], scaleDimensions());
-  const translate = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  // Under reduced-motion, feed constant values so the scroll-linked 3D tilt,
+  // scale and translate do not move (scroll-coupled rotation is a vestibular
+  // trigger). Hooks stay unconditional.
+  const rotate = useTransform(scrollYProgress, [0, 1], reduced ? [0, 0] : [20, 0]);
+  const scale = useTransform(
+    scrollYProgress,
+    [0, 1],
+    reduced ? [1, 1] : scaleDimensions(),
+  );
+  const translate = useTransform(
+    scrollYProgress,
+    [0, 1],
+    reduced ? [0, 0] : [0, -100],
+  );
 
   return (
     <div

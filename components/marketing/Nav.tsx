@@ -65,7 +65,7 @@ export function Nav() {
             >
               Log in
             </a>
-            <BookCta size="default" className="hidden sm:inline-flex" />
+            <BookCta size="default" className="inline-flex" />
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}

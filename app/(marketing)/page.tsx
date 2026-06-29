@@ -44,7 +44,7 @@ const STATS = [
 const FAQS: FaqItem[] = [
   {
     q: "What is HeyOtis?",
-    a: "HeyOtis is an AI brand visibility platform. It measures how AI assistants like ChatGPT, Gemini and Perplexity recommend your brand — your Share of Voice, the citations they trust, and how you rank against competitors — then turns that into a prioritized action plan.",
+    a: "HeyOtis is an AI brand visibility platform. It measures how AI assistants like ChatGPT, Gemini and Perplexity recommend your brand — your Share of Voice, the citations they trust, and how you rank against competitors — and shows you where to focus to improve.",
   },
   {
     q: "How does HeyOtis track AI search visibility?",
@@ -124,7 +124,7 @@ export default function HomePage() {
         <SectionHeading
           eyebrow="What you get"
           title="Everything you need to win the answer"
-          sub="The measurement that proves where you stand, and the plan that tells you what to do next."
+          sub="The measurement that proves where you stand, and a clear view of where to focus next."
           className="max-w-2xl"
         />
         <div className="mt-12">
