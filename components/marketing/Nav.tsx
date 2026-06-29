@@ -56,7 +56,7 @@ export function Nav() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 sm:gap-5">
             <a
               href={siteConfig.appUrl}
               target="_blank"
