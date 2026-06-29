@@ -29,7 +29,7 @@ import { cn } from "@/lib/utils";
 export const metadata = buildMetadata({
   title: "Pricing",
   description:
-    "HeyOtis pricing is contact-sales across four tiers — Basic, Plus, Premium and Enterprise. Plans scale with your tracked brands, prompt volume, AI responses and competitor sets across ChatGPT, Claude, Gemini and Perplexity. Talk to us for a tailored quote.",
+    "HeyOtis pricing is contact-sales across four tiers — scaled to your tracked brands, prompt volume, AI responses and competitors. Talk to us for a quote.",
   path: "/pricing",
 });
 
@@ -332,7 +332,7 @@ const FAQS: FaqItem[] = [
   },
   {
     q: "What counts as an AI response?",
-    a: "An AI response is a single prompt sent to one AI engine with its answer captured and analysed. So one prompt run across ChatGPT, Claude, Gemini and Perplexity counts as four AI responses. Your monthly volume is driven by the number of active prompts, the engines you track, and how often campaigns run.",
+    a: "An AI response is a single prompt sent to one AI engine with its answer captured and analyzed. So one prompt run across ChatGPT, Claude, Gemini and Perplexity counts as four AI responses. Your monthly volume is driven by the number of active prompts, the engines you track, and how often campaigns run.",
   },
   {
     q: "Can agencies manage multiple brands?",

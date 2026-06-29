@@ -2,10 +2,14 @@ import { siteConfig } from "@/lib/site";
 
 type WithContext<T> = T & { "@context": "https://schema.org" };
 
+// Stable @id so every Organization reference resolves to one entity (no dupes).
+const ORG_ID = `${siteConfig.url}/#organization`;
+
 export function organizationSchema(): WithContext<Record<string, unknown>> {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": ORG_ID,
     name: siteConfig.name,
     url: siteConfig.url,
     logo: new URL("/logo.png", siteConfig.url).toString(),
@@ -22,10 +26,11 @@ export function websiteSchema(): WithContext<Record<string, unknown>> {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${siteConfig.url}/#website`,
     name: siteConfig.name,
     url: siteConfig.url,
     description: siteConfig.description,
-    publisher: { "@type": "Organization", name: siteConfig.name },
+    publisher: { "@id": ORG_ID },
   };
 }
 
@@ -84,38 +89,21 @@ export function articleSchema(
     description: article.description,
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
     url,
-    image: article.image
-      ? new URL(article.image, siteConfig.url).toString()
-      : new URL(siteConfig.defaultOgImage, siteConfig.url).toString(),
+    image: new URL(
+      article.image ?? `/api/og?title=${encodeURIComponent(article.title)}`,
+      siteConfig.url,
+    ).toString(),
     datePublished: article.datePublished,
     dateModified: article.dateModified ?? article.datePublished,
     author: (article.authors ?? siteConfig.founders).map((name) => ({
       "@type": "Person",
       name,
     })),
-    publisher: {
-      "@type": "Organization",
-      name: siteConfig.name,
-      logo: {
-        "@type": "ImageObject",
-        url: new URL("/logo.png", siteConfig.url).toString(),
-      },
-    },
+    publisher: { "@id": ORG_ID },
     keywords: article.tags?.join(", "),
     speakable: {
       "@type": "SpeakableSpecification",
       cssSelector: ["h1", "h2", "[data-speakable]"],
     },
-  };
-}
-
-export function localBusinessSchema(): WithContext<Record<string, unknown>> {
-  return {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: siteConfig.name,
-    url: siteConfig.url,
-    email: siteConfig.contactEmail,
-    sameAs: Object.values(siteConfig.socials),
   };
 }

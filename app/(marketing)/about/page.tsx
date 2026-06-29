@@ -24,7 +24,7 @@ import { AiSourceLogos } from "@/components/marketing/visuals/AiSourceLogos";
 export const metadata = buildMetadata({
   title: "About",
   description:
-    "Why HeyOtis exists: AI assistants like ChatGPT, Claude, Gemini and Perplexity are becoming how buyers discover brands. We measure how your brand shows up in those answers — and how to show up better.",
+    "Why HeyOtis exists: AI assistants are becoming how buyers discover brands. We measure how your brand shows up in their answers — and how to show up better.",
   path: "/about",
 });
 
@@ -158,7 +158,7 @@ export default function AboutPage() {
             <p>
               For two decades, being found meant ranking on a page of blue
               links. People scanned, clicked, and decided for themselves. That
-              behaviour is changing fast.
+              behavior is changing fast.
             </p>
             <p>
               Now buyers ask ChatGPT, Claude, Gemini and Perplexity directly —
@@ -217,7 +217,7 @@ export default function AboutPage() {
               Query phrasing is auto-generated to stay unbiased and reflect how
               real buyers ask. But every metric — Share of Voice, rankings,
               citations, sentiment — is grounded in the assistants&rsquo; actual
-              responses. Nothing is inferred or modelled.
+              responses. Nothing is inferred or modeled.
             </figcaption>
           </figure>
         </Reveal>

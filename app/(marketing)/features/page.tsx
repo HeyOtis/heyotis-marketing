@@ -30,7 +30,7 @@ import { cn } from "@/lib/utils";
 export const metadata = buildMetadata({
   title: "Product features",
   description:
-    "Inside HeyOtis: scheduled campaigns of unbiased buyer-intent prompts, Share of Voice, citations, competitive benchmarking, prioritized opportunities and AI referral traffic from GA4 — across ChatGPT, Claude, Gemini and Perplexity.",
+    "Inside HeyOtis: Share of Voice, citations, competitive benchmarking and GA4 AI referral traffic across ChatGPT, Claude, Gemini and Perplexity.",
   path: "/features",
 });
 
@@ -603,7 +603,7 @@ const STATS = [
     value: 300,
     prefix: "+",
     suffix: "%",
-    label: "Lift in AI recommendation share is achievable",
+    label: "Illustrative lift in AI recommendation share",
     customer: "Illustrative outcome",
   },
   {

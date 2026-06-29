@@ -307,7 +307,7 @@ function CitationsPanel() {
   return (
     <div className="space-y-3.5">
       <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-4">
-        <KpiTile label="Own citations" value="42" />
+        <KpiTile label="Own citations" value="154" />
         <KpiTile label="Citation share" value="12.4%" delta="▲ 3.1 pts" />
         <KpiTile label="Top competitor" value="Northwind" sub="58 citations" />
         <KpiTile label="Total citations" value="1,240" />

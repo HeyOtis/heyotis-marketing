@@ -15,12 +15,14 @@ const STATIC_ROUTES: Array<{
   { path: "/blog", changeFrequency: "weekly", priority: 0.8 },
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
+// Stable date for static routes so the sitemap doesn't churn on every deploy.
+// Bump when the marketing pages get a substantive content update.
+const STATIC_LAST_MODIFIED = "2026-06-29";
 
+export default function sitemap(): MetadataRoute.Sitemap {
   const staticEntries = STATIC_ROUTES.map((route) => ({
     url: new URL(route.path, siteConfig.url).toString(),
-    lastModified: now,
+    lastModified: STATIC_LAST_MODIFIED,
     changeFrequency: route.changeFrequency,
     priority: route.priority,
   }));
