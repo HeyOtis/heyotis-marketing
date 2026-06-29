@@ -23,19 +23,61 @@ export function FeatureTabs({
   autoRotateMs?: number;
 }) {
   const [active, setActive] = React.useState(0);
-  const [hovered, setHovered] = React.useState(false);
   const [userPaused, setUserPaused] = React.useState(false);
+  // Pause only while the visitor is engaging with the *content* panel (reading
+  // the showcased feature) — NOT when merely mousing over the tab rail, which
+  // previously made the bar appear frozen.
+  const [panelHovered, setPanelHovered] = React.useState(false);
   const reduced = useIsomorphicReducedMotion();
   // The tab list is a horizontal scroller on mobile, a vertical column at lg+.
   const isLgUp = useMediaQuery("(min-width: 1024px)");
 
   const current = tabs[active];
-  // Auto-rotation is purely CSS-animation driven: the active tab's progress bar
-  // scales 0→1 over `autoRotateMs`, and we advance on `animationend`. A paused
-  // animation never fires `animationend`, so the pause is exact.
   const autoRotate = !reduced && tabs.length > 1;
-  const paused = hovered || userPaused;
-  const advance = () => setActive((a) => (a + 1) % tabs.length);
+  const paused = userPaused || panelHovered;
+
+  // Keep the latest `paused` in a ref so the rAF loop reads it without
+  // restarting (which would lose elapsed progress).
+  const pausedRef = React.useRef(paused);
+  React.useEffect(() => {
+    pausedRef.current = paused;
+  }, [paused]);
+
+  // Auto-rotation driven by requestAnimationFrame. We grow the active tab's
+  // progress bar by mutating its transform directly (no per-frame re-render),
+  // and advance to the next tab once it fills. This is fully self-contained JS:
+  // it never depends on a CSS @keyframes surviving the production build, nor on
+  // `animationend` firing — the two things that made earlier versions flaky.
+  const barRef = React.useRef<HTMLSpanElement | null>(null);
+  React.useEffect(() => {
+    const bar = barRef.current;
+    if (bar) bar.style.transform = "scaleX(0)";
+    if (!autoRotate) return;
+
+    let raf = 0;
+    let last: number | null = null;
+    let elapsed = 0;
+
+    const tick = (now: number) => {
+      if (last === null) last = now;
+      const dt = now - last;
+      last = now;
+      if (!pausedRef.current) {
+        elapsed += dt;
+        const progress = elapsed < autoRotateMs ? elapsed / autoRotateMs : 1;
+        if (barRef.current) {
+          barRef.current.style.transform = `scaleX(${progress})`;
+        }
+        if (progress >= 1) {
+          setActive((a) => (a + 1) % tabs.length);
+          return; // effect re-runs on `active` change, resetting the bar
+        }
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [active, autoRotate, autoRotateMs, tabs.length]);
 
   // Roving-tabindex keyboard nav for the WAI-ARIA tabs pattern.
   const onKeyDown = (e: React.KeyboardEvent) => {
@@ -53,15 +95,7 @@ export function FeatureTabs({
   };
 
   return (
-    <div
-      className="grid gap-8 lg:grid-cols-12 lg:gap-12"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      onFocusCapture={() => setHovered(true)}
-      onBlurCapture={(e) => {
-        if (!e.currentTarget.contains(e.relatedTarget as Node)) setHovered(false);
-      }}
-    >
+    <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
       {/* Tab list + pause control */}
       <div className="lg:col-span-5">
         <div
@@ -103,15 +137,9 @@ export function FeatureTabs({
                 {isActive && autoRotate ? (
                   <span className="absolute inset-x-0 bottom-0 h-0.5 overflow-hidden bg-border/60">
                     <span
-                      key={active}
-                      onAnimationEnd={advance}
-                      className="block h-full w-full origin-left bg-accent animate-tab-progress will-change-transform"
-                      style={
-                        {
-                          "--tab-ms": `${autoRotateMs}ms`,
-                          animationPlayState: paused ? "paused" : "running",
-                        } as React.CSSProperties
-                      }
+                      ref={barRef}
+                      className="block h-full w-full origin-left bg-accent will-change-transform"
+                      style={{ transform: "scaleX(0)" }}
                     />
                   </span>
                 ) : null}
@@ -123,15 +151,7 @@ export function FeatureTabs({
         {autoRotate ? (
           <button
             type="button"
-            onClick={() => {
-              const next = !userPaused;
-              setUserPaused(next);
-              // Explicit "Play" overrides the transient hover/focus pause so the
-              // tour resumes immediately even while the pointer is still inside.
-              // (There's no mousemove handler, so this sticks until the next
-              // enter/focus, which re-engages hover-pause naturally.)
-              if (!next) setHovered(false);
-            }}
+            onClick={() => setUserPaused((v) => !v)}
             aria-pressed={userPaused}
             className="mt-2.5 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium text-muted-foreground transition-colors hover:bg-card hover:text-foreground"
           >
@@ -145,13 +165,21 @@ export function FeatureTabs({
         ) : null}
       </div>
 
-      {/* Active panel */}
+      {/* Active panel — hovering/focusing here pauses the tour so content
+          isn't yanked while the visitor is reading it. */}
       <div
         className="lg:col-span-7"
         role="tabpanel"
         id="feature-tabpanel"
         aria-labelledby={`feattab-${current.id}`}
         tabIndex={0}
+        onMouseEnter={() => setPanelHovered(true)}
+        onMouseLeave={() => setPanelHovered(false)}
+        onFocusCapture={() => setPanelHovered(true)}
+        onBlurCapture={(e) => {
+          if (!e.currentTarget.contains(e.relatedTarget as Node))
+            setPanelHovered(false);
+        }}
       >
         <div className="mb-5">
           <h3 className="display-sm text-foreground">{current.title}</h3>

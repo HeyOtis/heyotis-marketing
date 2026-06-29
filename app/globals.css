@@ -132,14 +132,6 @@
     from { transform: translateY(0); }
     to { transform: translateY(calc(-100% - var(--gap))); }
   }
-
-  /* FeatureTabs auto-rotate progress — registered like the marquee animation so
-     Tailwind emits an `animate-tab-progress` utility (reliable in dev + prod). */
-  --animate-tab-progress: tab-progress var(--tab-ms, 6s) linear forwards;
-  @keyframes tab-progress {
-    from { transform: scaleX(0); }
-    to { transform: scaleX(1); }
-  }
 }
 
 @layer base {
