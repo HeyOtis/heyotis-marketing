@@ -1,7 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
+import { useIsomorphicReducedMotion } from "@/lib/use-reduced-motion";
 import { cn } from "@/lib/utils";
 
 /**
@@ -18,7 +19,7 @@ export function RotatingWord({
   interval?: number;
 }) {
   const [i, setI] = React.useState(0);
-  const reduced = useReducedMotion();
+  const reduced = useIsomorphicReducedMotion();
 
   React.useEffect(() => {
     if (reduced || words.length <= 1) return;

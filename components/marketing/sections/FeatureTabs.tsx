@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { Check } from "lucide-react";
-import { useReducedMotion } from "motion/react";
+import { useIsomorphicReducedMotion } from "@/lib/use-reduced-motion";
 import { cn } from "@/lib/utils";
 
 export type FeatureTab = {
@@ -23,7 +23,7 @@ export function FeatureTabs({
 }) {
   const [active, setActive] = React.useState(0);
   const [paused, setPaused] = React.useState(false);
-  const reduced = useReducedMotion();
+  const reduced = useIsomorphicReducedMotion();
 
   const current = tabs[active];
   // Auto-rotation is purely CSS-animation driven: the active tab's progress bar

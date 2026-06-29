@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
+import { useIsomorphicReducedMotion } from "@/lib/use-reduced-motion";
 
 type RevealProps = {
   children: React.ReactNode;
@@ -14,7 +15,7 @@ type RevealProps = {
  * rendering its children statically (no transform, no opacity gate).
  */
 export function Reveal({ children, delay = 0, y = 16, className }: RevealProps) {
-  const reduced = useReducedMotion();
+  const reduced = useIsomorphicReducedMotion();
 
   if (reduced) {
     return <div className={className}>{children}</div>;
