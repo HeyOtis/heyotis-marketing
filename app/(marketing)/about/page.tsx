@@ -114,7 +114,7 @@ export default function AboutPage() {
           />
         </div>
 
-        <Container className="relative max-w-4xl pb-12 pt-28 sm:pt-32 md:pb-16 lg:pt-36">
+        <Container className="relative pb-12 pt-28 sm:pt-32 md:pb-16 lg:pt-36">
           <Eyebrow>About HeyOtis</Eyebrow>
           <h1
             className="mt-6 max-w-3xl font-display text-[clamp(2.25rem,5.5vw,4.25rem)] leading-[1.0] tracking-[-0.03em] text-foreground"

@@ -49,10 +49,10 @@ export default function ContactPage() {
           />
         </div>
 
-        <Container className="relative max-w-3xl pb-12 pt-28 sm:pt-32 md:pb-16 lg:pt-36">
+        <Container className="relative pb-12 pt-28 sm:pt-32 md:pb-16 lg:pt-36">
           <Eyebrow>Contact</Eyebrow>
           <h1
-            className="display-lg mt-5 text-balance"
+            className="display-lg mt-5 max-w-3xl text-balance"
             style={{ fontStretch: "80%", letterSpacing: "-0.02em" }}
           >
             Book a chat — and watch{" "}
