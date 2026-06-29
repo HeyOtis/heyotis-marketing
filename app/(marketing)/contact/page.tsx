@@ -4,6 +4,7 @@ import { Section } from "@/components/marketing/primitives/Section";
 import { Eyebrow } from "@/components/marketing/primitives/Eyebrow";
 import { BookCta } from "@/components/marketing/primitives/BookCta";
 import { AiSourceLogos } from "@/components/marketing/visuals/AiSourceLogos";
+import { HubSpotMeetings } from "@/components/marketing/visuals/HubSpotMeetings";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema, localBusinessSchema } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
@@ -125,13 +126,10 @@ export default function ContactPage() {
                 Pick a time
               </p>
             </div>
-            <div className="relative overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
-              <iframe
-                src={siteConfig.bookingUrl}
-                title="Book a demo with HeyOtis"
-                data-lenis-prevent=""
-                loading="lazy"
-                className="block h-[640px] min-h-[640px] w-full"
+            <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-2 shadow-sm">
+              <HubSpotMeetings
+                src={`${siteConfig.bookingUrl}?embed=true`}
+                className="rounded-xl"
               />
             </div>
             <p className="mt-3 text-sm text-muted-foreground">

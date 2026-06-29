@@ -6,9 +6,13 @@ export const siteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://heyotis.com",
   // Product app (login / signup) destination.
   appUrl: "https://heyotis.ai",
-  // Primary CTA destination ("Book a chat"). TODO: replace with the real
-  // Cal.com / Calendly scheduling link.
-  bookingUrl: "https://cal.com/heyotis",
+  // Primary CTA destination ("Book a chat") — HubSpot Meetings scheduling page.
+  // Booking creates/updates a HubSpot contact and books the rep's connected
+  // Google Calendar (with a Google Meet link). Env-overridable so the rep or a
+  // round-robin/team link can change without a code change.
+  bookingUrl:
+    process.env.NEXT_PUBLIC_BOOKING_URL ??
+    "https://meetings-eu1.hubspot.com/georege-bowes",
   description:
     "See how ChatGPT, Gemini and Perplexity recommend your brand — and what to do about it. HeyOtis measures your AI Share of Voice, citations and competitive rank.",
   locale: "en-US",
