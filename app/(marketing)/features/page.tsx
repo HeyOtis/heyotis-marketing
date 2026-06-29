@@ -50,7 +50,7 @@ function PanelShell({
   return (
     <div
       className={cn(
-        "w-full overflow-hidden rounded-2xl border border-border bg-card shadow-[0_1px_0_0_rgba(0,0,0,0.03),0_18px_48px_-24px_rgba(40,30,70,0.35)]",
+        "flex w-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-[0_1px_0_0_rgba(0,0,0,0.03),0_18px_48px_-24px_rgba(40,30,70,0.35)]",
         className,
       )}
     >
@@ -74,7 +74,7 @@ function PanelShell({
           </span>
         ) : null}
       </div>
-      <div className="p-4 sm:p-6">{children}</div>
+      <div className="flex-1 p-4 sm:p-6">{children}</div>
     </div>
   );
 }
@@ -211,7 +211,7 @@ function StrategyPanel() {
         <div>
           <p className="text-sm font-semibold text-foreground">Your action plan</p>
           <p className="mt-0.5 text-[0.7rem] text-muted-foreground">
-            3 opportunities to focus on this month
+            Top opportunities to focus on this month
           </p>
         </div>
         <div className="flex items-center gap-2">
@@ -258,7 +258,7 @@ function StrategyPanel() {
       </div>
 
       <div className="mt-3 space-y-2.5">
-        {OPPORTUNITIES.map((o, i) => (
+        {OPPORTUNITIES.slice(0, 2).map((o, i) => (
           <div
             key={o.title}
             className="rounded-xl border border-border bg-background/60 p-3"
@@ -316,59 +316,122 @@ function StrategyPanel() {
 }
 
 const TRAFFIC_SOURCES = [
-  { name: "ChatGPT", share: 50, tone: "bg-brand" },
-  { name: "Claude", share: 20, tone: "bg-coral" },
-  { name: "Perplexity", share: 18, tone: "bg-sky" },
-  { name: "Gemini", share: 12, tone: "bg-soft-orange" },
+  { name: "ChatGPT", sessions: "2,410", share: 50, tone: "bg-brand" },
+  { name: "Claude", sessions: "965", share: 20, tone: "bg-coral" },
+  { name: "Perplexity", sessions: "868", share: 18, tone: "bg-sky" },
+  { name: "Gemini", sessions: "577", share: 12, tone: "bg-soft-orange" },
 ] as const;
+
+const TRAFFIC_KPIS = [
+  { k: "AI sessions", v: "4,820", d: "▲ 38%" },
+  { k: "AI conversions", v: "312", d: "▲ 21%" },
+  { k: "AI traffic share", v: "0.4%" },
+];
+
+function TrafficChart() {
+  return (
+    <svg
+      viewBox="0 0 600 150"
+      className="mt-3 h-24 w-full sm:h-28"
+      fill="none"
+      preserveAspectRatio="none"
+      aria-hidden
+    >
+      <defs>
+        <linearGradient id="traffic-fill" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="oklch(0.78 0.13 60)" stopOpacity="0.25" />
+          <stop offset="100%" stopColor="oklch(0.78 0.13 60)" stopOpacity="0" />
+        </linearGradient>
+      </defs>
+      <path
+        d="M0,115 C30,108 45,62 75,62 C105,62 120,112 150,112 C175,112 190,40 220,40 C250,40 265,114 300,114 C330,114 350,74 380,74 C410,74 425,114 450,114 C475,114 495,36 525,36 C555,36 575,112 600,112 L600,150 L0,150 Z"
+        fill="url(#traffic-fill)"
+      />
+      <path
+        d="M0,115 C30,108 45,62 75,62 C105,62 120,112 150,112 C175,112 190,40 220,40 C250,40 265,114 300,114 C330,114 350,74 380,74 C410,74 425,114 450,114 C475,114 495,36 525,36 C555,36 575,112 600,112"
+        stroke="oklch(0.72 0.15 55)"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
 
 function TrafficPanel() {
   return (
     <PanelShell label="AI Traffic · GA4" badge="Last 30 days">
-      <div className="grid grid-cols-2 gap-3">
-        {[
-          { k: "AI referral sessions", v: "4,820", d: "▲ 38%" },
-          { k: "AI conversions", v: "312", d: "▲ 21%" },
-        ].map((tile) => (
+      <div className="grid grid-cols-3 gap-2.5">
+        {TRAFFIC_KPIS.map((tile) => (
           <div
             key={tile.k}
-            className="rounded-xl border border-border bg-background/60 p-4"
+            className="rounded-xl border border-border bg-background/60 p-3"
           >
-            <p className="label-mono text-[0.6rem] text-muted-foreground">
+            <p className="label-mono text-[0.55rem] text-muted-foreground">
               {tile.k}
             </p>
-            <p
-              className="mt-1 font-display text-3xl text-foreground"
-              style={{ fontStretch: "80%", letterSpacing: "-0.02em" }}
-            >
-              {tile.v}
-            </p>
-            <span className="mt-1 inline-block rounded-full bg-emerald-500/12 px-2 py-0.5 text-[0.65rem] font-semibold text-emerald-600">
-              {tile.d}
-            </span>
+            <div className="mt-1 flex items-baseline gap-1.5">
+              <span
+                className="font-display text-xl text-foreground sm:text-2xl"
+                style={{ fontStretch: "80%", letterSpacing: "-0.02em" }}
+              >
+                {tile.v}
+              </span>
+              {tile.d ? (
+                <span className="text-[0.6rem] font-semibold text-emerald-600">
+                  {tile.d}
+                </span>
+              ) : null}
+            </div>
           </div>
         ))}
       </div>
-      <p className="mt-4 label-mono text-[0.6rem] text-muted-foreground">
-        Sessions by AI source
-      </p>
-      <div className="mt-2 space-y-2">
-        {TRAFFIC_SOURCES.map((s) => (
-          <div key={s.name} className="flex items-center gap-3">
-            <span className="w-24 shrink-0 text-sm font-medium text-foreground">
-              {s.name}
+
+      <div className="mt-3 rounded-xl border border-border bg-background/60 p-4">
+        <div className="flex items-center justify-between">
+          <p className="label-mono text-[0.6rem] text-muted-foreground">
+            AI performance over time
+          </p>
+          <div className="flex items-center gap-0.5 rounded-full bg-secondary p-0.5 text-[0.55rem]">
+            <span className="rounded-full px-2 py-0.5 text-muted-foreground">
+              Revenue
             </span>
-            <div className="h-2 flex-1 overflow-hidden rounded-full bg-secondary">
-              <div
-                className={cn("h-full rounded-full", s.tone)}
-                style={{ width: `${s.share}%` }}
-              />
-            </div>
-            <span className="w-10 shrink-0 text-right text-sm tabular-nums text-muted-foreground">
-              {s.share}%
+            <span className="rounded-full bg-card px-2 py-0.5 font-semibold text-foreground shadow-sm">
+              Sessions
             </span>
           </div>
-        ))}
+        </div>
+        <TrafficChart />
+      </div>
+
+      <div className="mt-3 rounded-xl border border-border bg-background/60 p-4">
+        <div className="flex items-center justify-between">
+          <p className="label-mono text-[0.6rem] text-muted-foreground">
+            Sessions by AI source
+          </p>
+          <span className="label-mono text-[0.55rem] text-muted-foreground/70">
+            Sessions
+          </span>
+        </div>
+        <div className="mt-2.5 space-y-2">
+          {TRAFFIC_SOURCES.map((s) => (
+            <div key={s.name} className="flex items-center gap-3">
+              <span className={cn("size-2 shrink-0 rounded-full", s.tone)} />
+              <span className="w-20 shrink-0 text-xs font-medium text-foreground">
+                {s.name}
+              </span>
+              <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-secondary">
+                <div
+                  className={cn("h-full rounded-full", s.tone)}
+                  style={{ width: `${s.share}%` }}
+                />
+              </div>
+              <span className="w-12 shrink-0 text-right text-xs tabular-nums text-foreground">
+                {s.sessions}
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
     </PanelShell>
   );

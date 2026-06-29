@@ -119,7 +119,10 @@ export function FeatureTabs({
             ))}
           </ul>
         </div>
-        <div key={current.id} className="animate-in fade-in duration-500">
+        <div
+          key={current.id}
+          className="animate-in fade-in duration-500 lg:h-[30rem] lg:overflow-hidden lg:[&>*]:h-full"
+        >
           {current.visual}
         </div>
       </div>

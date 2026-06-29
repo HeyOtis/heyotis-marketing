@@ -20,12 +20,12 @@ export function MockDashboard({
   return (
     <div
       className={cn(
-        "w-full overflow-hidden rounded-2xl border border-border bg-card shadow-[0_1px_0_0_rgba(0,0,0,0.03),0_18px_48px_-24px_rgba(40,30,70,0.35)]",
+        "flex w-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-[0_1px_0_0_rgba(0,0,0,0.03),0_18px_48px_-24px_rgba(40,30,70,0.35)]",
         className,
       )}
     >
       <Chrome variant={variant} />
-      <div className="p-4 sm:p-5">
+      <div className="flex-1 p-4 sm:p-5">
         {variant === "overview" ? <OverviewPanel /> : null}
         {variant === "citations" ? <CitationsPanel /> : null}
         {variant === "competitors" ? <CompetitorsPanel /> : null}
