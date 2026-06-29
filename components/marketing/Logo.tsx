@@ -36,7 +36,7 @@ export function Wordmark({
       )}
       style={{ fontStretch: "72%", fontWeight: 800, letterSpacing: "-0.03em" }}
     >
-      heyotis
+      HeyOtis
     </span>
   );
 }

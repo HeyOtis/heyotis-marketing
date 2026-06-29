@@ -73,7 +73,7 @@ export async function GET(request: Request) {
               lineHeight: 1,
             }}
           >
-            heyotis
+            HeyOtis
           </div>
         </div>
 
