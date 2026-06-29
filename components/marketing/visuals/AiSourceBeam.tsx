@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { OpenAI, Gemini, Perplexity } from "@lobehub/icons";
+import { OpenAI, Claude, Gemini, Perplexity } from "@lobehub/icons";
 import { useReducedMotion } from "motion/react";
 import { AnimatedBeam } from "@/components/ui/animated-beam";
 import { LogoGlyph } from "@/components/marketing/Logo";
@@ -27,6 +27,7 @@ export function AiSourceBeam({ className }: { className?: string }) {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const brandRef = React.useRef<HTMLDivElement>(null);
   const chatgptRef = React.useRef<HTMLDivElement>(null);
+  const claudeRef = React.useRef<HTMLDivElement>(null);
   const geminiRef = React.useRef<HTMLDivElement>(null);
   const perplexityRef = React.useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
@@ -43,7 +44,7 @@ export function AiSourceBeam({ className }: { className?: string }) {
     <div
       ref={containerRef}
       className={cn(
-        "relative mx-auto flex h-[300px] w-full max-w-lg items-center justify-between px-2 sm:px-6",
+        "relative mx-auto flex h-[360px] w-full max-w-lg items-center justify-between px-2 sm:px-6",
         className,
       )}
     >
@@ -56,9 +57,12 @@ export function AiSourceBeam({ className }: { className?: string }) {
         </span>
       </div>
 
-      <div className="flex flex-col gap-7">
+      <div className="flex flex-col gap-6">
         <EngineRow nodeRef={chatgptRef} name="ChatGPT">
           <OpenAI size={26} />
+        </EngineRow>
+        <EngineRow nodeRef={claudeRef} name="Claude">
+          <Claude size={26} />
         </EngineRow>
         <EngineRow nodeRef={geminiRef} name="Gemini">
           <Gemini size={26} />
@@ -74,23 +78,31 @@ export function AiSourceBeam({ className }: { className?: string }) {
             containerRef={containerRef}
             fromRef={brandRef}
             toRef={chatgptRef}
-            curvature={-65}
+            curvature={-80}
+            {...beam}
+          />
+          <AnimatedBeam
+            containerRef={containerRef}
+            fromRef={brandRef}
+            toRef={claudeRef}
+            curvature={-28}
+            delay={0.3}
             {...beam}
           />
           <AnimatedBeam
             containerRef={containerRef}
             fromRef={brandRef}
             toRef={geminiRef}
-            curvature={0}
-            delay={0.4}
+            curvature={28}
+            delay={0.6}
             {...beam}
           />
           <AnimatedBeam
             containerRef={containerRef}
             fromRef={brandRef}
             toRef={perplexityRef}
-            curvature={65}
-            delay={0.8}
+            curvature={80}
+            delay={0.9}
             {...beam}
           />
         </>

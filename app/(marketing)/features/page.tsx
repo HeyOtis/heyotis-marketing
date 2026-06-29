@@ -26,7 +26,7 @@ import { cn } from "@/lib/utils";
 export const metadata = buildMetadata({
   title: "Product features",
   description:
-    "Inside HeyOtis: scheduled campaigns of unbiased buyer-intent prompts, Share of Voice, citations, competitive benchmarking, prioritized opportunities and AI referral traffic from GA4 — across ChatGPT, Gemini and Perplexity.",
+    "Inside HeyOtis: scheduled campaigns of unbiased buyer-intent prompts, Share of Voice, citations, competitive benchmarking, prioritized opportunities and AI referral traffic from GA4 — across ChatGPT, Claude, Gemini and Perplexity.",
   path: "/features",
 });
 
@@ -93,7 +93,7 @@ function CampaignPanel() {
         {[
           { k: "Region", v: "United States" },
           { k: "Customer voice", v: "Premium" },
-          { k: "Engines", v: "All 3" },
+          { k: "Engines", v: "All 4" },
         ].map((chip) => (
           <span
             key={chip.k}
@@ -196,9 +196,10 @@ function StrategyPanel() {
 }
 
 const TRAFFIC_SOURCES = [
-  { name: "ChatGPT", share: 58, tone: "bg-brand" },
-  { name: "Perplexity", share: 27, tone: "bg-sky" },
-  { name: "Gemini", share: 15, tone: "bg-soft-orange" },
+  { name: "ChatGPT", share: 50, tone: "bg-brand" },
+  { name: "Claude", share: 20, tone: "bg-coral" },
+  { name: "Perplexity", share: 18, tone: "bg-sky" },
+  { name: "Gemini", share: 12, tone: "bg-soft-orange" },
 ] as const;
 
 function TrafficPanel() {
@@ -266,7 +267,7 @@ const TABS: FeatureTab[] = [
       "Unbiased query generation",
       "Region & customer voice",
       "Review queue & scheduling",
-      "ChatGPT, Gemini, Perplexity",
+      "ChatGPT, Claude, Gemini, Perplexity",
     ],
     visual: <CampaignPanel />,
   },
@@ -345,7 +346,7 @@ const TABS: FeatureTab[] = [
       "AI referral traffic",
       "AI Traffic Share",
       "Conversions by source",
-      "ChatGPT, Gemini, Perplexity",
+      "ChatGPT, Claude, Gemini, Perplexity",
     ],
     visual: <TrafficPanel />,
   },
@@ -408,8 +409,8 @@ const DETECTORS: Detector[] = [
 
 const STATS = [
   {
-    value: 3,
-    label: "AI assistants monitored — ChatGPT, Gemini & Perplexity",
+    value: 4,
+    label: "AI assistants monitored — ChatGPT, Claude, Gemini & Perplexity",
   },
   {
     value: 7,
@@ -444,7 +445,7 @@ const FAQS: FaqItem[] = [
   },
   {
     q: "Which AI engines are supported?",
-    a: "HeyOtis monitors ChatGPT, Gemini and Perplexity — the assistants most people use to research and compare brands. Every campaign runs across all three, and we add engines as adoption grows.",
+    a: "HeyOtis monitors ChatGPT, Claude, Gemini and Perplexity — the assistants most people use to research and compare brands. Every campaign runs across all four, and we add engines as adoption grows.",
   },
   {
     q: "What are citations and why do they matter?",
@@ -501,7 +502,7 @@ export default function FeaturesPage() {
             data-speakable
           >
             HeyOtis runs scheduled campaigns of unbiased buyer-intent prompts
-            across ChatGPT, Gemini and Perplexity, measures your Share of Voice,
+            across ChatGPT, Claude, Gemini and Perplexity, measures your Share of Voice,
             the citations AI trusts and how you rank against named competitors —
             surfaces the opportunities that matter most, and ties it to AI
             referral traffic in GA4.
@@ -576,7 +577,7 @@ export default function FeaturesPage() {
             <SectionHeading
               eyebrow="Coverage"
               title="Across every assistant that matters"
-              sub="Your customers ask ChatGPT, Gemini and Perplexity what to buy, compare and trust. Every HeyOtis campaign runs across all three — capturing how each one answers, who it recommends, and which sources it leans on."
+              sub="Your customers ask ChatGPT, Claude, Gemini and Perplexity what to buy, compare and trust. Every HeyOtis campaign runs across all four — capturing how each one answers, who it recommends, and which sources it leans on."
             />
           </div>
           <AiSourceBeam />

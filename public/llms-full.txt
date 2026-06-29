@@ -3,25 +3,25 @@
 > A plain-text overview of HeyOtis for AI assistants without live-crawl access. HeyOtis is an AI brand visibility (Answer Engine Optimization / AEO) platform.
 
 ## What HeyOtis is
-HeyOtis measures how AI assistants recommend your brand — and turns that into a plan. As buyers increasingly ask ChatGPT, Gemini and Perplexity what to buy, compare and trust, the AI's answer has become the new shortlist. HeyOtis shows whether your brand is on it, how you compare to named competitors, which sources the AI trusts, and what to do to improve.
+HeyOtis measures how AI assistants recommend your brand — and turns that into a plan. As buyers increasingly ask ChatGPT, Claude, Gemini and Perplexity what to buy, compare and trust, the AI's answer has become the new shortlist. HeyOtis shows whether your brand is on it, how you compare to named competitors, which sources the AI trusts, and what to do to improve.
 
 ## How it works
 1. Define a campaign: choose your brand, region, customer voice and competitors. HeyOtis auto-generates a set of unbiased, buyer-intent prompts that you review and approve.
-2. Run it across engines: HeyOtis runs the prompts against ChatGPT, Gemini and Perplexity on a schedule and captures every answer.
+2. Run it across engines: HeyOtis runs the prompts against ChatGPT, Claude, Gemini and Perplexity on a schedule and captures every answer.
 3. Measure: it scores your visibility and Share of Voice, your Top-1/Top-3 presence, sentiment, and how you rank versus competitors.
 4. Trace citations: it records which domains the assistants cite — owned vs third-party — and flags where you're recommended but not cited.
 5. Act: it turns the signals into a prioritized action plan, with opportunities ranked by impact and effort and backed by evidence.
 6. Prove: it connects AI visibility to real referral traffic and conversions from AI sources via GA4.
 
 ## The five pillars
-- Measure — visibility and Share of Voice across ChatGPT, Gemini and Perplexity.
+- Measure — visibility and Share of Voice across ChatGPT, Claude, Gemini and Perplexity.
 - Benchmark — Top-1/Top-3 presence and head-to-head ranking vs named competitors.
 - Own your citations — the domains AI trusts; owned vs third-party; recommended-but-not-cited gaps.
 - Act — a prioritized action plan; opportunities ranked by impact × effort.
 - Prove ROI — AI referral traffic and conversions via GA4.
 
 ## Engines monitored
-ChatGPT, Gemini and Perplexity — the assistants most people use to research and compare brands. More are added as adoption grows.
+ChatGPT, Claude, Gemini and Perplexity — the assistants most people use to research and compare brands. More are added as adoption grows.
 
 ## Who it's for
 In-house brand marketing and SEO/AEO teams, and agencies managing multiple brands. Strong fit for retail and consumer brands.
@@ -33,7 +33,7 @@ SEO optimizes for ranked links on search engines. HeyOtis focuses on Answer Engi
 HeyOtis is sold through a sales-led model with plans that scale with your needs (Basic, Plus, Premium, Enterprise). There are no public self-serve prices; book a chat to get set up.
 
 ## Getting started
-Book a 20-minute walkthrough at https://heyotis.com/contact — we run your brand against ChatGPT, Gemini and Perplexity and walk you through a sample report.
+Book a 20-minute walkthrough at https://heyotis.com/contact — we run your brand against ChatGPT, Claude, Gemini and Perplexity and walk you through a sample report.
 
 ## Key pages
 - Home: https://heyotis.com/

@@ -51,9 +51,10 @@ rivals, owning the citations AI trusts, and proving AI-driven traffic to leaders
   Enterprise with usage metering.
 
 ### Claim guardrails (DO NOT violate)
-1. **Monitored AI engines = ChatGPT, Gemini, Perplexity ONLY.** The API has live
-   provider clients for exactly these three. Claude is used *internally* to synthesize
-   reports — it is NOT a monitored engine. **Do not** show Meta/Mistral/Grok/Cohere as
+1. **Monitored AI engines = ChatGPT, Claude, Gemini, Perplexity.** (UPDATED 2026-06-29:
+   the product owner confirmed Claude IS a tracked engine, overriding the original
+   code-audit finding that Claude was internal-only. The site markets all four.)
+   **Do not** show Meta/Mistral/Grok/Cohere as
    monitored. (Marketing may mention "and more coming" but must not list unshipped
    engines as live.)
 2. **Lead with provably-live capabilities:** Campaigns, Share of Voice, competitive

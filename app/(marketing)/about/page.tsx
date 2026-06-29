@@ -24,7 +24,7 @@ import { AiSourceLogos } from "@/components/marketing/visuals/AiSourceLogos";
 export const metadata = buildMetadata({
   title: "About",
   description:
-    "Why HeyOtis exists: AI assistants like ChatGPT, Gemini and Perplexity are becoming how buyers discover brands. We measure how your brand shows up in those answers — and how to show up better.",
+    "Why HeyOtis exists: AI assistants like ChatGPT, Claude, Gemini and Perplexity are becoming how buyers discover brands. We measure how your brand shows up in those answers — and how to show up better.",
   path: "/about",
 });
 
@@ -41,7 +41,7 @@ const METHOD_STEPS: { step: string; icon: LucideIcon; title: string; blurb: stri
     icon: Radar,
     title: "Capture the real answers",
     blurb:
-      "Each campaign runs against ChatGPT, Gemini and Perplexity on a schedule, recording exactly how every assistant responds, which brands it names, and which sources it cites.",
+      "Each campaign runs against ChatGPT, Claude, Gemini and Perplexity on a schedule, recording exactly how every assistant responds, which brands it names, and which sources it cites.",
   },
   {
     step: "03",
@@ -161,7 +161,7 @@ export default function AboutPage() {
               behaviour is changing fast.
             </p>
             <p>
-              Now buyers ask ChatGPT, Gemini and Perplexity directly —
+              Now buyers ask ChatGPT, Claude, Gemini and Perplexity directly —
               &ldquo;what&rsquo;s the best option for me?&rdquo; — and act on a
               single, synthesized answer. The assistant does the shortlisting.
               If your brand isn&rsquo;t in that answer, you&rsquo;re not in the

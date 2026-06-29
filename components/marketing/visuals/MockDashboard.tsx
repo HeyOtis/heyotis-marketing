@@ -97,6 +97,7 @@ function OverviewPanel() {
           How AI answers you
         </p>
         <ScoreRow engine="ChatGPT" status="Recommended" tone="emerald" />
+        <ScoreRow engine="Claude" status="Recommended" tone="emerald" />
         <ScoreRow engine="Gemini" status="Mentioned" tone="amber" />
         <ScoreRow engine="Perplexity" status="Missing" tone="zinc" />
       </div>

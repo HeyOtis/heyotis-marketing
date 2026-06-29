@@ -12,7 +12,7 @@ import { getAllPosts } from "@/lib/mdx";
 export const metadata = buildMetadata({
   title: "Blog",
   description:
-    "Field notes on Answer Engine Optimization (AEO/GEO): how ChatGPT, Gemini and Perplexity choose which brands to recommend, and how to measure and grow your Share of Voice in AI search.",
+    "Field notes on Answer Engine Optimization (AEO/GEO): how ChatGPT, Claude, Gemini and Perplexity choose which brands to recommend, and how to measure and grow your Share of Voice in AI search.",
   path: "/blog",
 });
 
@@ -50,7 +50,7 @@ export default function BlogIndexPage() {
             className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground"
             data-speakable
           >
-            Practical guides on AI brand visibility — how ChatGPT, Gemini and
+            Practical guides on AI brand visibility — how ChatGPT, Claude, Gemini and
             Perplexity decide which brands to recommend, and how to measure,
             benchmark and grow your Share of Voice in their answers.
           </p>

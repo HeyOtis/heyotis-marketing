@@ -57,6 +57,7 @@
 
   /* AI-source colors (for "across these assistants" visuals) */
   --ai-chatgpt: oklch(0.68 0.1 280);
+  --ai-claude: oklch(0.7 0.13 50);
   --ai-gemini: oklch(0.68 0.15 30);
   --ai-perplexity: oklch(0.65 0.14 230);
 
@@ -105,6 +106,7 @@
   --color-chart-5: var(--chart-5);
 
   --color-ai-chatgpt: var(--ai-chatgpt);
+  --color-ai-claude: var(--ai-claude);
   --color-ai-gemini: var(--ai-gemini);
   --color-ai-perplexity: var(--ai-perplexity);
 

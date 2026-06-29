@@ -29,7 +29,7 @@ import { cn } from "@/lib/utils";
 export const metadata = buildMetadata({
   title: "Pricing",
   description:
-    "HeyOtis pricing is contact-sales across four tiers — Basic, Plus, Premium and Enterprise. Plans scale with your tracked brands, prompt volume, AI responses and competitor sets across ChatGPT, Gemini and Perplexity. Talk to us for a tailored quote.",
+    "HeyOtis pricing is contact-sales across four tiers — Basic, Plus, Premium and Enterprise. Plans scale with your tracked brands, prompt volume, AI responses and competitor sets across ChatGPT, Claude, Gemini and Perplexity. Talk to us for a tailored quote.",
   path: "/pricing",
 });
 
@@ -54,7 +54,7 @@ const TIERS: Tier[] = [
       "Up to 3 active prompts per campaign",
       "1,000 AI responses / month",
       "Up to 3 competitors benchmarked",
-      "ChatGPT, Gemini & Perplexity",
+      "ChatGPT, Claude, Gemini & Perplexity",
       "2 team seats",
     ],
     ctaVariant: "secondary",
@@ -69,7 +69,7 @@ const TIERS: Tier[] = [
       "Up to 10 active prompts per campaign",
       "5,000 AI responses / month",
       "Up to 6 competitors benchmarked",
-      "ChatGPT, Gemini & Perplexity",
+      "ChatGPT, Claude, Gemini & Perplexity",
       "5 team seats",
       "GA4 AI referral traffic",
     ],
@@ -85,7 +85,7 @@ const TIERS: Tier[] = [
       "Up to 25 active prompts per campaign",
       "20,000 AI responses / month",
       "Up to 12 competitors benchmarked",
-      "ChatGPT, Gemini & Perplexity",
+      "ChatGPT, Claude, Gemini & Perplexity",
       "10 team seats",
       "GA4 AI referral traffic",
       "Strategy Engine access",
@@ -103,7 +103,7 @@ const TIERS: Tier[] = [
       "Custom active prompts per campaign",
       "Custom AI response volume",
       "Custom competitor sets",
-      "ChatGPT, Gemini & Perplexity",
+      "ChatGPT, Claude, Gemini & Perplexity",
       "Custom seats with SSO",
       "GA4 AI referral traffic",
       "Strategy Engine access",
@@ -234,10 +234,10 @@ const COMPARE_GROUPS: { heading: string; rows: CompareRow[] }[] = [
     rows: [
       {
         label: "Monitored AI engines",
-        basic: "All 3",
-        plus: "All 3",
-        premium: "All 3",
-        enterprise: "All 3",
+        basic: "All 4",
+        plus: "All 4",
+        premium: "All 4",
+        enterprise: "All 4",
       },
       {
         label: "Share of Voice & rankings",
@@ -324,15 +324,15 @@ function CompareCell({ value }: { value: Cell }) {
 const FAQS: FaqItem[] = [
   {
     q: "How is HeyOtis pricing structured?",
-    a: "HeyOtis is contact-sales across four tiers — Basic, Plus, Premium and Enterprise. Each plan is scoped to your number of tracked brands, active prompts, monthly AI responses and competitor set size, all monitored across ChatGPT, Gemini and Perplexity. Book a chat and we'll size a plan to your category and goals.",
+    a: "HeyOtis is contact-sales across four tiers — Basic, Plus, Premium and Enterprise. Each plan is scoped to your number of tracked brands, active prompts, monthly AI responses and competitor set size, all monitored across ChatGPT, Claude, Gemini and Perplexity. Book a chat and we'll size a plan to your category and goals.",
   },
   {
     q: "Is there a free trial or self-serve sign-up?",
-    a: "No. HeyOtis is demo-led rather than self-serve. We book a short call, run your brand against ChatGPT, Gemini and Perplexity, walk you through a sample report, and then tailor a plan — so campaigns reflect your real competitors and category from day one.",
+    a: "No. HeyOtis is demo-led rather than self-serve. We book a short call, run your brand against ChatGPT, Claude, Gemini and Perplexity, walk you through a sample report, and then tailor a plan — so campaigns reflect your real competitors and category from day one.",
   },
   {
     q: "What counts as an AI response?",
-    a: "An AI response is a single prompt sent to one AI engine with its answer captured and analysed. So one prompt run across ChatGPT, Gemini and Perplexity counts as three AI responses. Your monthly volume is driven by the number of active prompts, the engines you track, and how often campaigns run.",
+    a: "An AI response is a single prompt sent to one AI engine with its answer captured and analysed. So one prompt run across ChatGPT, Claude, Gemini and Perplexity counts as four AI responses. Your monthly volume is driven by the number of active prompts, the engines you track, and how often campaigns run.",
   },
   {
     q: "Can agencies manage multiple brands?",
@@ -373,8 +373,8 @@ export default function PricingPage() {
               HeyOtis pricing is tailored, not off-the-shelf. There&apos;s no
               self-serve sign-up — every plan is contact-sales and scoped to your
               tracked brands, prompt volume and competitor sets across ChatGPT,
-              Gemini and Perplexity. Pick the tier that fits and we&apos;ll size
-              the rest with you.
+              Claude, Gemini and Perplexity. Pick the tier that fits and
+              we&apos;ll size the rest with you.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <BookCta label="Talk to us" nudge withArrow />
@@ -391,7 +391,7 @@ export default function PricingPage() {
         <SectionHeading
           eyebrow="Tiers"
           title="Four tiers, one tailored quote"
-          sub="Every tier monitors ChatGPT, Gemini and Perplexity. The difference is scale — how many brands, prompts, AI responses and competitors you track, plus the depth of strategy and support."
+          sub="Every tier monitors ChatGPT, Claude, Gemini and Perplexity. The difference is scale — how many brands, prompts, AI responses and competitors you track, plus the depth of strategy and support."
           className="max-w-2xl"
         />
         <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -501,7 +501,7 @@ export default function PricingPage() {
             <br className="hidden sm:block" /> for your brand.
           </>
         }
-        sub="Book a 20-minute walkthrough. We'll run your brand against ChatGPT, Gemini and Perplexity, show you the gaps, and recommend the tier that fits."
+        sub="Book a 20-minute walkthrough. We'll run your brand against ChatGPT, Claude, Gemini and Perplexity, show you the gaps, and recommend the tier that fits."
       />
     </>
   );

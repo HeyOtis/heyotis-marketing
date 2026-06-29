@@ -13,12 +13,12 @@ import { siteConfig } from "@/lib/site";
 export const metadata = buildMetadata({
   title: "Book a chat",
   description:
-    "Book a 20-minute walkthrough with HeyOtis. We run your brand against ChatGPT, Gemini and Perplexity, show your Share of Voice and competitive rank, and walk you through a sample report.",
+    "Book a 20-minute walkthrough with HeyOtis. We run your brand against ChatGPT, Claude, Gemini and Perplexity, show your Share of Voice and competitive rank, and walk you through a sample report.",
   path: "/contact",
 });
 
 const EXPECT: string[] = [
-  "We run a live campaign of buyer-intent prompts against ChatGPT, Gemini and Perplexity for your brand.",
+  "We run a live campaign of buyer-intent prompts against ChatGPT, Claude, Gemini and Perplexity for your brand.",
   "You see your Share of Voice and how you rank against the competitors you name.",
   "We show the citations and sources the assistants are leaning on to build their answers.",
   "You leave with a sample report and a prioritized view of where to act first.",
@@ -63,8 +63,8 @@ export default function ContactPage() {
             data-speakable
           >
             Spend 20 minutes with us. We&apos;ll run your brand against ChatGPT,
-            Gemini and Perplexity live, show you where you stand against your
-            competitors, and walk you through a sample report — no prep
+            Claude, Gemini and Perplexity live, show you where you stand against
+            your competitors, and walk you through a sample report — no prep
             required.
           </p>
           <div className="mt-8">

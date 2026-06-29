@@ -20,7 +20,7 @@ const PILLARS: Pillar[] = [
   {
     icon: Gauge,
     title: "Measure",
-    body: "Track your visibility and Share of Voice across the assistants people actually use — ChatGPT, Gemini and Perplexity — with scheduled campaigns of unbiased queries.",
+    body: "Track your visibility and Share of Voice across the assistants people actually use — ChatGPT, Claude, Gemini and Perplexity — with scheduled campaigns of unbiased queries.",
     span: "md:col-span-4",
     feature: true,
   },

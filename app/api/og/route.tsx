@@ -10,7 +10,7 @@ export async function GET(request: Request) {
     searchParams.get("title") ?? "See how AI recommends your brand";
   const subtitle =
     searchParams.get("subtitle") ??
-    "AI brand visibility across ChatGPT, Gemini & Perplexity";
+    "AI brand visibility across ChatGPT, Claude, Gemini & Perplexity";
 
   const bars = [
     { h: 150, c: "#aa9fe2" },
