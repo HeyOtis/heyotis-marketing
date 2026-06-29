@@ -1,140 +1,81 @@
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Card } from "@/components/ui/card";
+import { ArrowDown } from "lucide-react";
 import { Container } from "@/components/marketing/Container";
+import { BookCta } from "@/components/marketing/primitives/BookCta";
+import { RotatingWord } from "@/components/marketing/primitives/RotatingWord";
+import { AiSourceLogos } from "@/components/marketing/visuals/AiSourceLogos";
 
 export function Hero() {
   return (
-    <section className="relative flex min-h-[calc(100vh-5rem)] items-center overflow-hidden surface-dark">
-      <Container className="relative grid w-full items-stretch gap-10 py-10 sm:py-14 lg:grid-cols-12 lg:gap-10 lg:py-16">
-        <div className="lg:col-span-6">
-          <div className="flex flex-wrap items-center gap-3">
-            <Badge className="rounded-full bg-foreground/10 text-primary-foreground border-transparent backdrop-blur">
-              <span
-                aria-hidden
-                className="inline-block size-1.5 rounded-full bg-coral"
-              />
-              AI brand intelligence + GEO strategy
-            </Badge>
-          </div>
+    <section className="relative overflow-hidden">
+      {/* Background: faded grid + soft purple glow (pure CSS — LCP-safe). */}
+      <div aria-hidden className="absolute inset-0 -z-10">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, oklch(0.24 0.02 285 / 0.045) 1px, transparent 1px), linear-gradient(to bottom, oklch(0.24 0.02 285 / 0.045) 1px, transparent 1px)",
+            backgroundSize: "64px 64px",
+            maskImage:
+              "radial-gradient(ellipse 95% 65% at 50% 0%, black 40%, transparent 82%)",
+            WebkitMaskImage:
+              "radial-gradient(ellipse 95% 65% at 50% 0%, black 40%, transparent 82%)",
+          }}
+        />
+        <div
+          className="absolute left-1/2 top-[-12%] h-[460px] w-[min(760px,90vw)] -translate-x-1/2 rounded-full"
+          style={{
+            background:
+              "radial-gradient(closest-side, oklch(0.68 0.1 280 / 0.20), transparent)",
+          }}
+        />
+      </div>
 
-          <h1 className="mt-6 font-display text-[clamp(2.25rem,5vw,4.5rem)] leading-[0.95] tracking-tight text-accent">
-            AI search is
-            <br />
-            rewriting brand
-            <br />
-            discovery.
-          </h1>
+      <Container className="relative flex flex-col items-center pb-16 pt-20 text-center sm:pt-28 lg:pb-24 lg:pt-32">
+        <p className="label-mono text-accent">AI visibility, measured</p>
 
-          <p className="mt-6 max-w-xl text-base text-primary-foreground/80 sm:text-lg" data-speakable>
-            Consumers now use ChatGPT, Gemini, Perplexity, Claude, Meta AI and
-            Mistral to discover, compare and choose products. But AI search does
-            not play by the same rules as Google, paid media or retail. The
-            rules change by category, product, audience and region. HeyOtis
-            combines an AI brand intelligence platform with hands-on GEO
-            strategy, so you can see how AI talks about your brand, where
-            competitors are being recommended instead, and what to do next.
-          </p>
+        <h1
+          className="mt-6 max-w-4xl font-display text-[clamp(2.5rem,6vw,5rem)] leading-[0.98] tracking-[-0.03em] text-foreground"
+          style={{ fontStretch: "75%", fontWeight: 800 }}
+        >
+          See how AI recommends your brand —{" "}
+          <span className="text-accent">and the plan to win the answer.</span>
+        </h1>
 
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <Button
-              asChild
-              size="lg"
-              className="rounded-md bg-accent text-accent-foreground hover:bg-accent/90"
-            >
-              <Link href="/contact">Book a chat</Link>
-            </Button>
-          </div>
+        <p className="mt-6 flex items-center justify-center gap-2 text-sm text-muted-foreground">
+          <span className="label-mono text-muted-foreground/80">Live across</span>
+          <RotatingWord
+            words={["ChatGPT", "Gemini", "Perplexity"]}
+            className="font-semibold text-foreground"
+          />
+        </p>
+
+        <p
+          className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground"
+          data-speakable
+        >
+          HeyOtis tracks your Share of Voice, the citations AI trusts, and where
+          competitors get recommended instead — then turns it into a prioritized
+          action plan you can act on.
+        </p>
+
+        <div className="mt-9 flex flex-col items-center gap-3 sm:flex-row">
+          <BookCta nudge withArrow />
+          <a
+            href="#product"
+            className="group inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-foreground/70 transition-colors hover:text-foreground"
+          >
+            See a sample report
+            <ArrowDown className="size-4 transition-transform duration-200 group-hover:translate-y-0.5" />
+          </a>
         </div>
 
-        <div className="lg:col-span-6">
-          <HeroVisual className="h-full lg:-mt-6" />
+        <div className="mt-14 flex flex-col items-center gap-4">
+          <p className="label-mono text-[0.65rem] text-muted-foreground/70">
+            Benchmarked across
+          </p>
+          <AiSourceLogos />
         </div>
       </Container>
     </section>
-  );
-}
-
-function HeroVisual({ className }: { className?: string }) {
-  return (
-    <div
-      className={`relative mx-auto aspect-[4/5] w-full max-w-xl overflow-hidden rounded-3xl bg-foreground/10 shadow-2xl ring-1 ring-foreground/10 sm:aspect-[5/6] lg:aspect-auto lg:min-h-[28rem] ${className ?? ""}`}
-    >
-      {/* photo placeholder — replace with real image */}
-      <div
-        aria-hidden
-        className="absolute inset-0"
-        style={{
-          background:
-            "linear-gradient(135deg, oklch(0.78 0.09 290) 0%, oklch(0.8 0.09 320) 50%, oklch(0.84 0.1 70) 100%)",
-        }}
-      />
-      <div
-        aria-hidden
-        className="absolute inset-0 mix-blend-overlay opacity-30"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 20% 30%, white 1px, transparent 1px), radial-gradient(circle at 70% 60%, white 1px, transparent 1px)",
-          backgroundSize: "32px 32px, 48px 48px",
-        }}
-      />
-      <span className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full bg-card/90 px-3 py-1.5 text-xs font-medium text-foreground shadow-sm backdrop-blur">
-        <span className="size-1.5 rounded-full bg-teal" aria-hidden />
-        AI brand scorecard
-      </span>
-
-      {/* floating metric card */}
-      <Card className="absolute bottom-6 left-6 right-6 rounded-2xl border-transparent bg-card/95 p-5 shadow-xl backdrop-blur">
-        <div className="flex items-end justify-between gap-3">
-          <div>
-            <p className="text-xs text-muted-foreground">
-              AI recommendation share
-            </p>
-            <p className="mt-1 font-display text-4xl tracking-tight text-foreground">
-              3.7%
-            </p>
-          </div>
-          <div className="inline-flex items-center gap-1.5 rounded-xl bg-lime px-3 py-2 text-sm font-semibold text-lime-foreground">
-            <ArrowRight
-              aria-hidden
-              className="size-3.5 -rotate-45 rounded-full bg-foreground/10 p-0.5"
-            />
-            <span>+300%</span>
-            <span className="text-xs font-medium text-foreground/70">
-              vs start
-            </span>
-          </div>
-        </div>
-        <div className="mt-5 grid grid-cols-3 gap-3 text-xs">
-          {[
-            { label: "ChatGPT", value: "Recommended", tone: "bg-primary" },
-            { label: "Gemini", value: "Mentioned", tone: "bg-violet" },
-            { label: "Perplexity", value: "Missing", tone: "bg-foreground/40" },
-          ].map((row) => (
-            <div key={row.label}>
-              <div className="flex items-center gap-1.5 text-foreground/70">
-                <span
-                  aria-hidden
-                  className={`size-1.5 rounded-full ${row.tone}`}
-                />
-                {row.label}
-              </div>
-              <p className="mt-1 text-foreground/40">{row.value}</p>
-            </div>
-          ))}
-        </div>
-        <div className="mt-4 h-1.5 w-full overflow-hidden rounded-full bg-foreground/10">
-          <div
-            className="h-full w-2/3 rounded-full"
-            style={{
-              background:
-                "linear-gradient(90deg, var(--accent) 0%, var(--coral) 60%, oklch(0.85 0.1 70) 100%)",
-            }}
-          />
-        </div>
-      </Card>
-    </div>
   );
 }
