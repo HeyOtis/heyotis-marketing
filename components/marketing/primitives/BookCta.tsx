@@ -2,7 +2,6 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { siteConfig } from "@/lib/site";
 
 type BookCtaProps = {
   variant?: "primary" | "inverse" | "secondary";
@@ -22,14 +21,16 @@ const variantClass = {
 } as const;
 
 /**
- * The site's recurring call-to-action. Defaults to the booking link
- * (`siteConfig.bookingUrl`); pass `href`/`label` to repurpose it (e.g. the
- * "See a sample report" secondary action that anchors within a page).
+ * The site's recurring call-to-action. Defaults to the on-site booking section
+ * (`/contact#book`, where the HubSpot Meetings widget is embedded) so visitors
+ * stay on our site. Pass `href`/`label` to repurpose it for secondary actions.
  */
 export function BookCta({
   variant = "primary",
   label = "Book a chat",
-  href = siteConfig.bookingUrl,
+  // On-site booking section (HubSpot widget is embedded there) — keeps visitors
+  // on our site rather than sending them to hubspot.com.
+  href = "/contact#book",
   className,
   nudge = false,
   withArrow = false,

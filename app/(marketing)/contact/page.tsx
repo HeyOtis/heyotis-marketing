@@ -74,7 +74,7 @@ export default function ContactPage() {
       </section>
 
       {/* Two-column: what to expect + booking embed */}
-      <Section surface="card">
+      <Section surface="card" id="book">
         <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Left — supporting copy */}
           <div>
