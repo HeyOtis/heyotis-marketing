@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { cn } from "@/lib/utils";
 
 const EMBED_SCRIPT =
-  "https://static.hsappstatic.net/MeetingsEmbedCode/static-1.5/MeetingsEmbedCode.js";
+  "https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js";
 
 /**
  * HubSpot Meetings inline embed. Renders the native booking widget in-page (so
