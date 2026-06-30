@@ -4,7 +4,9 @@ import { buildMetadata } from "@/lib/seo";
 import { Hero } from "@/components/marketing/sections/Hero";
 import { ProductReveal } from "@/components/marketing/sections/ProductReveal";
 import { FeatureCards } from "@/components/marketing/sections/FeatureCards";
-import { PillarBento } from "@/components/marketing/sections/PillarBento";
+import { StrategyLoop } from "@/components/marketing/visuals/StrategyLoop";
+import { ProofHalenstein } from "@/components/marketing/sections/ProofHalenstein";
+import { Reveal } from "@/components/marketing/primitives/Reveal";
 import { StatBand } from "@/components/marketing/sections/StatBand";
 import { CtaBand } from "@/components/marketing/sections/CtaBand";
 import { Faq, faqItemsToSchema, type FaqItem } from "@/components/marketing/sections/Faq";
@@ -26,8 +28,8 @@ const STATS = [
     value: 300,
     prefix: "+",
     suffix: "%",
-    label: "Illustrative lift in AI recommendation share",
-    customer: "Illustrative outcome",
+    label: "AI recommendation share lift — Halenstein, Australia",
+    customer: "Halenstein",
   },
   {
     value: 24,
@@ -92,16 +94,24 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* How it works — pillars */}
+      {/* How it works — the loop */}
       <Section surface="cream">
         <SectionHeading
           eyebrow="How it works"
-          title="From AI answers to action, in one loop"
-          sub="Measure where you stand, benchmark the competition, own the citations AI trusts, act on what matters, and prove the impact."
+          title="A campaign-led loop that closes itself"
+          sub="Measure where you stand, diagnose the gaps, prioritize the moves — then verify they shipped and prove your recommendation share moved."
           className="max-w-2xl"
         />
         <div className="mt-12">
-          <PillarBento />
+          <StrategyLoop />
+        </div>
+        <div className="mt-10">
+          <a
+            href="/strategy-engine"
+            className="group inline-flex items-center gap-1.5 text-sm font-medium text-accent underline-offset-4 hover:underline"
+          >
+            Go deeper on the Strategy Engine →
+          </a>
         </div>
       </Section>
 
@@ -130,6 +140,19 @@ export default function HomePage() {
         <div className="mt-12">
           <FeatureCards />
         </div>
+      </Section>
+
+      {/* Proof */}
+      <Section surface="card">
+        <SectionHeading
+          align="center"
+          eyebrow="Proof"
+          title="AI presence can be improved — and measured"
+          className="mx-auto max-w-2xl"
+        />
+        <Reveal className="mt-10">
+          <ProofHalenstein />
+        </Reveal>
       </Section>
 
       {/* FAQ */}

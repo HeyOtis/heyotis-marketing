@@ -31,14 +31,14 @@ export function Hero() {
       </div>
 
       <Container className="relative flex flex-col items-center pb-16 pt-20 text-center sm:pt-28 lg:pb-24 lg:pt-32">
-        <p className="label-mono text-accent">AI visibility, measured</p>
+        <p className="label-mono text-accent">The Strategy Engine for AI search</p>
 
         <h1
           className="mt-6 max-w-4xl font-display text-[clamp(2.5rem,6vw,5rem)] leading-[0.98] tracking-[-0.03em] text-foreground"
           style={{ fontStretch: "75%", fontWeight: 800 }}
         >
           See how AI recommends your brand —{" "}
-          <span className="text-accent">and the plan to win the answer.</span>
+          <span className="text-accent">then prove you changed it.</span>
         </h1>
 
         <p className="mt-6 flex items-center justify-center gap-2 text-sm text-muted-foreground">
@@ -53,9 +53,9 @@ export function Hero() {
           className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground"
           data-speakable
         >
-          HeyOtis tracks your Share of Voice, the citations AI trusts, and where
-          competitors get recommended instead — so you know exactly where to
-          focus to win the answer.
+          HeyOtis measures how AI assistants recommend you, finds the moves that
+          grow your recommendation share, and proves the lift — a campaign-led
+          Strategy Engine, not another dashboard.
         </p>
 
         <div className="mt-9 flex flex-col items-center gap-3 sm:flex-row">
