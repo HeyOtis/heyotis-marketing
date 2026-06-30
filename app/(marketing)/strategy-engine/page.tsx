@@ -253,7 +253,7 @@ export default function StrategyEnginePage() {
       {/* 10 — Where this is heading (vision) */}
       <Section surface="card">
         <div className="mx-auto max-w-2xl text-center">
-          <Eyebrow className="justify-center">Where this is heading</Eyebrow>
+          <Eyebrow>Where this is heading</Eyebrow>
           <h2
             className="mt-5 display-sm text-balance"
             style={{ fontStretch: "80%", letterSpacing: "-0.02em" }}

@@ -119,7 +119,7 @@ function CampaignPanel() {
         {[
           { k: "Region", v: "New Zealand" },
           { k: "Customer voice", v: "Premium" },
-          { k: "Engines", v: "All 4" },
+          { k: "Engines", v: "All 6" },
         ].map((chip) => (
           <span
             key={chip.k}
@@ -603,8 +603,8 @@ const STATS = [
     value: 300,
     prefix: "+",
     suffix: "%",
-    label: "Illustrative lift in AI recommendation share",
-    customer: "Illustrative outcome",
+    label: "AI recommendation share lift — Halenstein, Australia",
+    customer: "Halenstein",
   },
   {
     value: 24,

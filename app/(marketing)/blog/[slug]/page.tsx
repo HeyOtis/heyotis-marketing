@@ -137,7 +137,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       <CtaBand
         eyebrow="Try it on your brand"
         title="See how AI recommends you"
-        sub="Book a 20-minute walkthrough — we'll run your brand against ChatGPT, Claude, Gemini and Perplexity and show you where you stand."
+        sub="Book a 20-minute walkthrough — we'll run your brand against ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral and show you where you stand."
       />
     </>
   );

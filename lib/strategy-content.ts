@@ -143,14 +143,14 @@ export type Opportunity = {
 export const OPPORTUNITIES: Opportunity[] = [
   {
     rank: 1,
-    title: 'Own the "best for everyday" recommendation',
+    title: 'Own the “best for everyday” recommendation',
     impact: "High",
     effort: "Medium",
     measure: "ChatGPT recommendation share",
     signals: 4,
     why: "You're named in the answer but rarely first, and never as the cited source — assistants lean on a retailer page instead of yours.",
     doThis: [
-      'Publish a comparison page targeting the "best everyday" buying question.',
+      'Publish a comparison page targeting the “best everyday” buying question.',
       "Add Product and FAQ structured data so assistants can ground on you.",
       "Reclaim the citation with first-party proof points and reviews.",
     ],
@@ -200,13 +200,13 @@ export type Attribution = {
 
 export const ATTRIBUTION: Attribution = {
   metric: "ChatGPT recommendation share",
-  pre: "0.9%",
-  post: "3.7%",
-  preNum: 0.9,
-  postNum: 3.7,
-  deltaLabel: "+300%",
+  pre: "1.4%",
+  post: "4.9%",
+  preNum: 1.4,
+  postNum: 4.9,
+  deltaLabel: "+250%",
   windowDays: 30,
-  evidence: "Measured across 64 tracked prompts · evidence trail attached",
+  evidence: "Illustrative · 30-day window across tracked prompts, evidence trail attached",
 };
 
 /* ── Real proof (cleared — appears in the cofounder's website copy) ───────── */

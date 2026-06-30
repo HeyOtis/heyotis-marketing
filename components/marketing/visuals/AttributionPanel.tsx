@@ -29,6 +29,9 @@ export function AttributionPanel({ className }: { className?: string }) {
           <h3 className="mt-1 text-base font-semibold tracking-tight text-foreground">
             {metric}
           </h3>
+          <span className="rounded-full bg-brand/10 px-1.5 py-0.5 text-[0.55rem] font-semibold uppercase tracking-wide text-accent">
+            Sample
+          </span>
         </div>
         <span className="inline-flex items-center gap-1 rounded-full bg-brand/10 px-2.5 py-1 text-sm font-semibold text-accent">
           <ArrowUpRight className="size-4" aria-hidden />

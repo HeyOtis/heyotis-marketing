@@ -36,6 +36,9 @@ export function OpportunityBoard({ className }: { className?: string }) {
           <p className="text-sm text-muted-foreground">
             {OPPORTUNITIES.length} opportunities to focus on this month
           </p>
+          <span className="rounded-full bg-brand/10 px-1.5 py-0.5 text-[0.55rem] font-semibold uppercase tracking-wide text-accent">
+            Sample
+          </span>
         </div>
         <span className="label-mono shrink-0 rounded-full bg-brand/10 px-2 py-0.5 text-[0.6rem] text-accent">
           Impact × Effort
