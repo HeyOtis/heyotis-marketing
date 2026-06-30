@@ -19,8 +19,8 @@ export const metadata = buildMetadata({
 
 const STATS = [
   {
-    value: 4,
-    label: "AI assistants monitored — ChatGPT, Claude, Gemini & Perplexity",
+    value: 6,
+    label: "AI assistants monitored — ChatGPT, Gemini, Perplexity, Claude, Meta AI & Mistral",
   },
   {
     value: 300,
@@ -44,15 +44,15 @@ const STATS = [
 const FAQS: FaqItem[] = [
   {
     q: "What is HeyOtis?",
-    a: "HeyOtis is an AI brand visibility platform. It measures how AI assistants like ChatGPT, Claude, Gemini and Perplexity recommend your brand — your Share of Voice, the citations they trust, and how you rank against competitors — and shows you where to focus to improve.",
+    a: "HeyOtis is an AI brand visibility platform. It measures how AI assistants like ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral recommend your brand — your Share of Voice, the citations they trust, and how you rank against competitors — and shows you where to focus to improve.",
   },
   {
     q: "How does HeyOtis track AI search visibility?",
-    a: "HeyOtis runs scheduled campaigns of unbiased, buyer-intent prompts against ChatGPT, Claude, Gemini and Perplexity, captures each answer, and measures whether and how your brand appears — including position, sentiment and the sources the AI cited.",
+    a: "HeyOtis runs scheduled campaigns of unbiased, buyer-intent prompts against ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral, captures each answer, and measures whether and how your brand appears — including position, sentiment and the sources the AI cited.",
   },
   {
     q: "Which AI assistants does HeyOtis monitor?",
-    a: "Today HeyOtis monitors ChatGPT, Claude, Gemini and Perplexity — the assistants most people use to research and compare brands. We add engines as adoption grows.",
+    a: "HeyOtis monitors ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral — the assistants most people use to research and compare brands. We add engines as adoption grows.",
   },
   {
     q: "What is Share of Voice in AI search?",
@@ -112,7 +112,7 @@ export default function HomePage() {
             <SectionHeading
               eyebrow="Coverage"
               title="Across every assistant that matters"
-              sub="Your customers ask ChatGPT, Claude, Gemini and Perplexity what to buy, compare and trust. HeyOtis watches all four — capturing how each one answers, who it recommends, and which sources it leans on."
+              sub="Your customers ask ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral what to buy, compare and trust. HeyOtis watches all six — capturing how each one answers, who it recommends, and which sources it leans on."
             />
           </div>
           <AiSourceBeam />

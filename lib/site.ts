@@ -19,7 +19,7 @@ export const siteConfig = {
     process.env.NEXT_PUBLIC_BOOKING_URL ??
     "https://meetings-eu1.hubspot.com/george-bowes",
   description:
-    "See how ChatGPT, Claude, Gemini and Perplexity recommend your brand — and what to do about it. HeyOtis measures your AI Share of Voice, citations and competitive rank.",
+    "See how ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral recommend your brand — and what to do about it. HeyOtis measures your AI recommendation share, citations and competitive rank.",
   locale: "en-US",
   defaultOgImage: "/api/og",
   twitterHandle: "@heyotis",
