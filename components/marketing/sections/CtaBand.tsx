@@ -20,7 +20,7 @@ export function CtaBand({
       <br className="hidden sm:block" /> your brand today.
     </>
   ),
-  sub = "Book a 20-minute walkthrough. We'll run your brand against ChatGPT, Claude, Gemini and Perplexity and show you the gaps.",
+  sub = "Book a 20-minute walkthrough. We'll run your brand against ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral and show you the gaps.",
   secondary = { label: "Explore the platform", href: "/features" },
   className,
 }: CtaBandProps) {

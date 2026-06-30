@@ -36,7 +36,7 @@ const CARDS: FeatureCard[] = [
   {
     icon: LineChart,
     title: "Proven in real traffic",
-    body: "Connect AI visibility to referral traffic and conversions from ChatGPT, Claude, Gemini and Perplexity with your GA4 data.",
+    body: "Connect AI visibility to referral traffic and conversions from ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral with your GA4 data.",
     points: ["AI referral traffic", "Conversions by source", "AI traffic share"],
   },
 ];

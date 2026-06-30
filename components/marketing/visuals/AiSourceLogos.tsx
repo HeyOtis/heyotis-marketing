@@ -1,22 +1,20 @@
-import { OpenAI, Claude, Gemini, Perplexity } from "@lobehub/icons";
+import { OpenAI, Claude, Gemini, Perplexity, MetaAI, Mistral } from "@lobehub/icons";
 import { cn } from "@/lib/utils";
 
 type LobeIcon = React.ComponentType<{ size?: number }>;
 
-/** The four AI engines HeyOtis actually monitors. Order is intentional. */
+/** The AI engines HeyOtis monitors. Order is intentional. */
 export const AI_SOURCES: Array<{
   key: string;
   name: string;
   Icon: LobeIcon;
 }> = [
   { key: "chatgpt", name: "ChatGPT", Icon: OpenAI },
-  { key: "claude", name: "Claude", Icon: Claude },
   { key: "gemini", name: "Gemini", Icon: Gemini },
-  {
-    key: "perplexity",
-    name: "Perplexity",
-    Icon: Perplexity,
-  },
+  { key: "perplexity", name: "Perplexity", Icon: Perplexity },
+  { key: "claude", name: "Claude", Icon: Claude },
+  { key: "metaai", name: "Meta AI", Icon: MetaAI },
+  { key: "mistral", name: "Mistral", Icon: Mistral },
 ];
 
 export function AiSourceLogos({

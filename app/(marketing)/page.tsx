@@ -4,7 +4,9 @@ import { buildMetadata } from "@/lib/seo";
 import { Hero } from "@/components/marketing/sections/Hero";
 import { ProductReveal } from "@/components/marketing/sections/ProductReveal";
 import { FeatureCards } from "@/components/marketing/sections/FeatureCards";
-import { PillarBento } from "@/components/marketing/sections/PillarBento";
+import { StrategyLoop } from "@/components/marketing/visuals/StrategyLoop";
+import { ProofHalenstein } from "@/components/marketing/sections/ProofHalenstein";
+import { Reveal } from "@/components/marketing/primitives/Reveal";
 import { StatBand } from "@/components/marketing/sections/StatBand";
 import { CtaBand } from "@/components/marketing/sections/CtaBand";
 import { Faq, faqItemsToSchema, type FaqItem } from "@/components/marketing/sections/Faq";
@@ -19,15 +21,15 @@ export const metadata = buildMetadata({
 
 const STATS = [
   {
-    value: 4,
-    label: "AI assistants monitored — ChatGPT, Claude, Gemini & Perplexity",
+    value: 6,
+    label: "AI assistants monitored — ChatGPT, Gemini, Perplexity, Claude, Meta AI & Mistral",
   },
   {
     value: 300,
     prefix: "+",
     suffix: "%",
-    label: "Illustrative lift in AI recommendation share",
-    customer: "Illustrative outcome",
+    label: "AI recommendation share lift — Halenstein, Australia",
+    customer: "Halenstein",
   },
   {
     value: 24,
@@ -44,15 +46,15 @@ const STATS = [
 const FAQS: FaqItem[] = [
   {
     q: "What is HeyOtis?",
-    a: "HeyOtis is an AI brand visibility platform. It measures how AI assistants like ChatGPT, Claude, Gemini and Perplexity recommend your brand — your Share of Voice, the citations they trust, and how you rank against competitors — and shows you where to focus to improve.",
+    a: "HeyOtis is an AI brand visibility platform. It measures how AI assistants like ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral recommend your brand — your Share of Voice, the citations they trust, and how you rank against competitors — and shows you where to focus to improve.",
   },
   {
     q: "How does HeyOtis track AI search visibility?",
-    a: "HeyOtis runs scheduled campaigns of unbiased, buyer-intent prompts against ChatGPT, Claude, Gemini and Perplexity, captures each answer, and measures whether and how your brand appears — including position, sentiment and the sources the AI cited.",
+    a: "HeyOtis runs scheduled campaigns of unbiased, buyer-intent prompts against ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral, captures each answer, and measures whether and how your brand appears — including position, sentiment and the sources the AI cited.",
   },
   {
     q: "Which AI assistants does HeyOtis monitor?",
-    a: "Today HeyOtis monitors ChatGPT, Claude, Gemini and Perplexity — the assistants most people use to research and compare brands. We add engines as adoption grows.",
+    a: "HeyOtis monitors ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral — the assistants most people use to research and compare brands. We add engines as adoption grows.",
   },
   {
     q: "What is Share of Voice in AI search?",
@@ -92,16 +94,24 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* How it works — pillars */}
+      {/* How it works — the loop */}
       <Section surface="cream">
         <SectionHeading
           eyebrow="How it works"
-          title="From AI answers to action, in one loop"
-          sub="Measure where you stand, benchmark the competition, own the citations AI trusts, act on what matters, and prove the impact."
+          title="A campaign-led loop that closes itself"
+          sub="Measure where you stand, diagnose the gaps, prioritize the moves — then verify they shipped and prove your recommendation share moved."
           className="max-w-2xl"
         />
         <div className="mt-12">
-          <PillarBento />
+          <StrategyLoop />
+        </div>
+        <div className="mt-10">
+          <a
+            href="/strategy-engine"
+            className="group inline-flex items-center gap-1.5 text-sm font-medium text-accent underline-offset-4 hover:underline"
+          >
+            Go deeper on the Strategy Engine →
+          </a>
         </div>
       </Section>
 
@@ -112,7 +122,7 @@ export default function HomePage() {
             <SectionHeading
               eyebrow="Coverage"
               title="Across every assistant that matters"
-              sub="Your customers ask ChatGPT, Claude, Gemini and Perplexity what to buy, compare and trust. HeyOtis watches all four — capturing how each one answers, who it recommends, and which sources it leans on."
+              sub="Your customers ask ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral what to buy, compare and trust. HeyOtis watches all six — capturing how each one answers, who it recommends, and which sources it leans on."
             />
           </div>
           <AiSourceBeam />
@@ -130,6 +140,19 @@ export default function HomePage() {
         <div className="mt-12">
           <FeatureCards />
         </div>
+      </Section>
+
+      {/* Proof */}
+      <Section surface="card">
+        <SectionHeading
+          align="center"
+          eyebrow="Proof"
+          title="AI presence can be improved — and measured"
+          className="mx-auto max-w-2xl"
+        />
+        <Reveal className="mt-10">
+          <ProofHalenstein />
+        </Reveal>
       </Section>
 
       {/* FAQ */}
