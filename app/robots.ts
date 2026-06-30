@@ -4,7 +4,11 @@ import { siteConfig } from "@/lib/site";
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      { userAgent: "*", allow: "/", disallow: ["/api/", "/_next/"] },
+      {
+        userAgent: "*",
+        allow: ["/", "/api/og"],
+        disallow: ["/api/", "/_next/"],
+      },
       { userAgent: "GPTBot", allow: "/" },
       { userAgent: "OAI-SearchBot", allow: "/" },
       { userAgent: "ChatGPT-User", allow: "/" },

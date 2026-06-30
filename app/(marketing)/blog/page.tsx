@@ -12,7 +12,7 @@ import { getAllPosts } from "@/lib/mdx";
 export const metadata = buildMetadata({
   title: "Blog",
   description:
-    "Field notes on Answer Engine Optimization (AEO/GEO): how ChatGPT, Claude, Gemini and Perplexity choose which brands to recommend, and how to measure and grow your Share of Voice in AI search.",
+    "Field notes on Answer Engine Optimization (AEO/GEO): how AI assistants choose which brands to recommend, and how to grow your Share of Voice in AI search.",
   path: "/blog",
 });
 

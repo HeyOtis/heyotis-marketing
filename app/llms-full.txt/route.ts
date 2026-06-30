@@ -1,4 +1,12 @@
-# HeyOtis — full content snapshot
+import { siteConfig } from "@/lib/site";
+
+// Full plain-text snapshot for AI assistants without live-crawl access.
+// URLs generated from siteConfig.url so they can't drift from canonical.
+export const dynamic = "force-static";
+
+export function GET() {
+  const u = siteConfig.url.replace(/\/$/, "");
+  const body = `# HeyOtis — full content snapshot
 
 > A plain-text overview of HeyOtis for AI assistants without live-crawl access. HeyOtis is an AI brand visibility (Answer Engine Optimization / AEO) platform.
 
@@ -33,12 +41,17 @@ SEO optimizes for ranked links on search engines. HeyOtis focuses on Answer Engi
 HeyOtis is sold through a sales-led model with plans that scale with your needs (Basic, Plus, Premium, Enterprise). There are no public self-serve prices; book a chat to get set up.
 
 ## Getting started
-Book a 20-minute walkthrough at https://heyotis.com/contact — we run your brand against ChatGPT, Claude, Gemini and Perplexity and walk you through a sample report.
+Book a 20-minute walkthrough at ${u}/contact — we run your brand against ChatGPT, Claude, Gemini and Perplexity and walk you through a sample report.
 
 ## Key pages
-- Home: https://heyotis.com/
-- Product / features: https://heyotis.com/features
-- Pricing: https://heyotis.com/pricing
-- About: https://heyotis.com/about
-- Blog: https://heyotis.com/blog
-- Contact: https://heyotis.com/contact
+- Home: ${u}/
+- Product / features: ${u}/features
+- Pricing: ${u}/pricing
+- About: ${u}/about
+- Blog: ${u}/blog
+- Contact: ${u}/contact
+`;
+  return new Response(body, {
+    headers: { "content-type": "text/plain; charset=utf-8" },
+  });
+}

@@ -4,7 +4,7 @@ import { Container } from "@/components/marketing/Container";
 import { LogoGlyph, Wordmark } from "@/components/marketing/Logo";
 import { BookCta } from "@/components/marketing/primitives/BookCta";
 
-const currentYear = 2026;
+const currentYear = new Date().getFullYear();
 
 export function Footer() {
   return (

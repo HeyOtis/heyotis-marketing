@@ -6,14 +6,14 @@ import { BookCta } from "@/components/marketing/primitives/BookCta";
 import { AiSourceLogos } from "@/components/marketing/visuals/AiSourceLogos";
 import { HubSpotMeetings } from "@/components/marketing/visuals/HubSpotMeetings";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { breadcrumbSchema, localBusinessSchema } from "@/lib/schema";
+import { breadcrumbSchema } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
 
 export const metadata = buildMetadata({
   title: "Book a chat",
   description:
-    "Book a 20-minute walkthrough with HeyOtis. We run your brand against ChatGPT, Claude, Gemini and Perplexity, show your Share of Voice and competitive rank, and walk you through a sample report.",
+    "Book a 20-minute HeyOtis walkthrough — see your Share of Voice and competitive rank across ChatGPT, Claude, Gemini and Perplexity, plus a sample report.",
   path: "/contact",
 });
 
@@ -35,7 +35,6 @@ export default function ContactPage() {
           { name: "Contact", href: "/contact" },
         ])}
       />
-      <JsonLd data={localBusinessSchema()} />
 
       {/* Hero */}
       <section className="surface-cream relative overflow-hidden">

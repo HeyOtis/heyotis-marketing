@@ -26,7 +26,7 @@ const STATS = [
     value: 300,
     prefix: "+",
     suffix: "%",
-    label: "Lift in AI recommendation share is achievable",
+    label: "Illustrative lift in AI recommendation share",
     customer: "Illustrative outcome",
   },
   {

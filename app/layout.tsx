@@ -15,6 +15,8 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
   display: "swap",
+  // Only used for small eyebrow/labels — keep it off the critical font path.
+  preload: false,
 });
 
 const bricolage = Bricolage_Grotesque({

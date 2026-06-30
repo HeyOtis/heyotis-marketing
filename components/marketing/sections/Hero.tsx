@@ -45,7 +45,7 @@ export function Hero() {
           <span className="label-mono text-muted-foreground">Live across</span>
           <RotatingWord
             words={["ChatGPT", "Claude", "Gemini", "Perplexity"]}
-            className="font-semibold text-foreground"
+            className="min-w-[6rem] justify-items-start font-semibold text-foreground"
           />
         </p>
 

@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 export function Nav() {
   const [scrolled, setScrolled] = React.useState(false);
   const [open, setOpen] = React.useState(false);
+  const toggleRef = React.useRef<HTMLButtonElement>(null);
 
   React.useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
@@ -27,6 +28,19 @@ export function Nav() {
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
   }, []);
+
+  // Close the mobile menu on Escape and return focus to the toggle.
+  React.useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        toggleRef.current?.focus();
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [open]);
 
   return (
     <header className="sticky top-0 z-50">
@@ -67,10 +81,12 @@ export function Nav() {
             </a>
             <BookCta size="default" className="inline-flex" />
             <button
+              ref={toggleRef}
               type="button"
               onClick={() => setOpen((v) => !v)}
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
+              aria-controls="mobile-menu"
               className="inline-flex size-9 items-center justify-center rounded-full text-foreground transition-colors hover:bg-secondary md:hidden"
             >
               {open ? <X className="size-5" /> : <Menu className="size-5" />}
@@ -78,12 +94,15 @@ export function Nav() {
           </div>
         </div>
 
-        {open ? (
-          <div className="border-t border-border/60 md:hidden">
-            <nav
-              aria-label="Mobile"
-              className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4 sm:px-6"
-            >
+        <div
+          id="mobile-menu"
+          hidden={!open}
+          className="border-t border-border/60 md:hidden"
+        >
+          <nav
+            aria-label="Mobile"
+            className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4 sm:px-6"
+          >
               {siteConfig.nav.map((item) => (
                 <Link
                   key={item.href}
@@ -105,9 +124,8 @@ export function Nav() {
               <div className="px-3 pt-3">
                 <BookCta className="w-full" />
               </div>
-            </nav>
-          </div>
-        ) : null}
+          </nav>
+        </div>
       </div>
     </header>
   );

@@ -132,14 +132,6 @@
     from { transform: translateY(0); }
     to { transform: translateY(calc(-100% - var(--gap))); }
   }
-
-  /* FeatureTabs auto-rotate progress — registered like the marquee animation so
-     Tailwind emits an `animate-tab-progress` utility (reliable in dev + prod). */
-  --animate-tab-progress: tab-progress var(--tab-ms, 6s) linear forwards;
-  @keyframes tab-progress {
-    from { transform: scaleX(0); }
-    to { transform: scaleX(1); }
-  }
 }
 
 @layer base {
@@ -162,22 +154,16 @@
     color: var(--surface-dark);
   }
 
-  /* Lenis smooth-scroll (mounted in marketing layout). */
-  html.lenis,
-  html.lenis body {
-    height: auto;
+  /* Consistent keyboard focus on links (Button/Accordion carry their own ring). */
+  a:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: 0.25rem;
   }
-  .lenis.lenis-smooth {
-    scroll-behavior: auto !important;
-  }
-  .lenis.lenis-smooth [data-lenis-prevent] {
-    overscroll-behavior: contain;
-  }
-  .lenis.lenis-stopped {
-    overflow: hidden;
-  }
-  .lenis.lenis-scrolling iframe {
-    pointer-events: none;
+  /* On the dark surface (nav/footer/CTA bands) the purple ring is only ~2.8:1;
+     swap to the light foreground so focus clears WCAG 1.4.11 (3:1). */
+  .surface-dark a:focus-visible {
+    outline-color: var(--surface-dark-foreground);
   }
 
   @media (prefers-reduced-motion: reduce) {

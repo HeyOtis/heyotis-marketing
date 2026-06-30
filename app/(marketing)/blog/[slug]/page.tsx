@@ -25,9 +25,9 @@ export async function generateMetadata({ params }: PageProps) {
     title: post.frontmatter.title,
     description: post.frontmatter.description,
     path: `/blog/${post.slug}`,
-    image:
-      post.frontmatter.image ??
-      `/api/og?title=${encodeURIComponent(post.frontmatter.title)}`,
+    // Leave image undefined unless the post sets one: buildMetadata then bakes
+    // the post title AND description into the default /api/og card.
+    image: post.frontmatter.image,
     type: "article",
     publishedTime: post.frontmatter.date,
     modifiedTime: post.frontmatter.updated ?? post.frontmatter.date,
@@ -42,6 +42,19 @@ function formatDate(date: string) {
     month: "long",
     day: "numeric",
   });
+}
+
+/**
+ * Fallback when an MDX body fails to compile — keeps one bad post from
+ * crashing the whole static build, and surfaces the cause in build logs.
+ */
+function MdxError({ error }: { error: Error }) {
+  console.error("[blog] MDX failed to render:", error);
+  return (
+    <p className="rounded-2xl border border-dashed border-border/60 p-6 text-sm text-muted-foreground">
+      This article is temporarily unavailable. Please check back shortly.
+    </p>
+  );
 }
 
 export default async function BlogPostPage({ params }: PageProps) {
@@ -113,7 +126,11 @@ export default async function BlogPostPage({ params }: PageProps) {
         </header>
 
         <div className="prose-like mt-10">
-          <MDXRemote source={post.content} components={mdxComponents} />
+          <MDXRemote
+            source={post.content}
+            components={mdxComponents}
+            onError={MdxError}
+          />
         </div>
       </Container>
       </article>

@@ -2,7 +2,8 @@
 
 import * as React from "react";
 import { OpenAI, Claude, Gemini, Perplexity } from "@lobehub/icons";
-import { useReducedMotion } from "motion/react";
+import { useInView } from "motion/react";
+import { useIsomorphicReducedMotion } from "@/lib/use-reduced-motion";
 import { AnimatedBeam } from "@/components/ui/animated-beam";
 import { LogoGlyph } from "@/components/marketing/Logo";
 import { cn } from "@/lib/utils";
@@ -30,7 +31,10 @@ export function AiSourceBeam({ className }: { className?: string }) {
   const claudeRef = React.useRef<HTMLDivElement>(null);
   const geminiRef = React.useRef<HTMLDivElement>(null);
   const perplexityRef = React.useRef<HTMLDivElement>(null);
-  const reduced = useReducedMotion();
+  const reduced = useIsomorphicReducedMotion();
+  // Only mount the infinite beam animations while the section is on-screen, so
+  // they don't keep repainting on the main thread after scrolling away.
+  const inView = useInView(containerRef, { margin: "0px" });
 
   const beam = {
     gradientStartColor: "oklch(0.72 0.1 280)",
@@ -72,7 +76,7 @@ export function AiSourceBeam({ className }: { className?: string }) {
         </EngineRow>
       </div>
 
-      {!reduced ? (
+      {!reduced && inView ? (
         <>
           <AnimatedBeam
             containerRef={containerRef}

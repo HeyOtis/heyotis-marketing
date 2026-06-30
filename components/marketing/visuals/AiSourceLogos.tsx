@@ -9,13 +9,13 @@ export const AI_SOURCES: Array<{
   name: string;
   Icon: LobeIcon;
 }> = [
-  { key: "chatgpt", name: "ChatGPT", Icon: OpenAI as unknown as LobeIcon },
-  { key: "claude", name: "Claude", Icon: Claude as unknown as LobeIcon },
-  { key: "gemini", name: "Gemini", Icon: Gemini as unknown as LobeIcon },
+  { key: "chatgpt", name: "ChatGPT", Icon: OpenAI },
+  { key: "claude", name: "Claude", Icon: Claude },
+  { key: "gemini", name: "Gemini", Icon: Gemini },
   {
     key: "perplexity",
     name: "Perplexity",
-    Icon: Perplexity as unknown as LobeIcon,
+    Icon: Perplexity,
   },
 ];
 

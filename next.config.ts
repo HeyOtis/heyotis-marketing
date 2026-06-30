@@ -1,15 +1,15 @@
 import type { NextConfig } from "next";
-import createMDX from "@next/mdx";
 
 const nextConfig: NextConfig = {
-  pageExtensions: ["ts", "tsx", "md", "mdx"],
+  pageExtensions: ["ts", "tsx"],
   images: {
     formats: ["image/avif", "image/webp"],
   },
+  experimental: {
+    // lobehub icons are compound (Mono/Text/Combine/Avatar); let Next strip the
+    // unused variants from the client bundle and speed up dev compiles.
+    optimizePackageImports: ["@lobehub/icons"],
+  },
 };
 
-const withMDX = createMDX({
-  extension: /\.(md|mdx)$/,
-});
-
-export default withMDX(nextConfig);
+export default nextConfig;

@@ -29,7 +29,13 @@ export function buildMetadata({
   const url = new URL(path, siteConfig.url).toString();
   const resolvedTitle = title ?? siteConfig.name;
   const fullTitle = title ? `${title} — ${siteConfig.name}` : siteConfig.name;
-  const imageUrl = new URL(image, siteConfig.url).toString();
+  // Per-route OG card: when using the default generator, bake the page's title
+  // and description into it so each shared link gets a distinct, titled image.
+  const ogImage =
+    image === siteConfig.defaultOgImage
+      ? `/api/og?title=${encodeURIComponent(resolvedTitle)}&subtitle=${encodeURIComponent(description)}`
+      : image;
+  const imageUrl = new URL(ogImage, siteConfig.url).toString();
 
   return {
     title: fullTitle,

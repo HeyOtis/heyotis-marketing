@@ -12,9 +12,17 @@ const EMBED_SCRIPT =
  * `.meetings-iframe-container` and injects the scheduling iframe. Bookings flow
  * into HubSpot CRM and the rep's connected Google Calendar.
  *
- * `data-lenis-prevent` keeps smooth-scroll from hijacking wheel events over the
- * widget. The script is appended on mount and removed on unmount so client-side
- * navigation back to this page re-initialises the embed.
+ * The loader script is appended on mount and removed on unmount so client-side
+ * navigation back to this page re-scans the fresh container and re-renders the
+ * widget. Note: re-running the loader is deliberate — it's what guarantees the
+ * embed renders on repeat visits. The trade-off is that HubSpot's loader
+ * attaches anonymous `message` listeners to `window` (resize + privacy consent)
+ * that we cannot detach (removing the <script> tag does not remove them), so a
+ * couple of dead listeners accumulate per repeat visit to /contact. This is a
+ * known third-party limitation; render reliability on this conversion path is
+ * prioritised over shedding those listeners. Don't "optimise" by loading the
+ * script once without a verified re-scan API — that blanks the widget on
+ * back-navigation.
  */
 export function HubSpotMeetings({
   src,
@@ -37,7 +45,6 @@ export function HubSpotMeetings({
     <div
       className={cn("meetings-iframe-container min-h-[640px]", className)}
       data-src={src}
-      data-lenis-prevent=""
     />
   );
 }

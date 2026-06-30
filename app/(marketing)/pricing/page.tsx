@@ -29,7 +29,7 @@ import { cn } from "@/lib/utils";
 export const metadata = buildMetadata({
   title: "Pricing",
   description:
-    "HeyOtis pricing is contact-sales across four tiers — Basic, Plus, Premium and Enterprise. Plans scale with your tracked brands, prompt volume, AI responses and competitor sets across ChatGPT, Claude, Gemini and Perplexity. Talk to us for a tailored quote.",
+    "HeyOtis pricing is contact-sales across four tiers — scaled to your tracked brands, prompt volume, AI responses and competitors. Talk to us for a quote.",
   path: "/pricing",
 });
 
@@ -332,7 +332,7 @@ const FAQS: FaqItem[] = [
   },
   {
     q: "What counts as an AI response?",
-    a: "An AI response is a single prompt sent to one AI engine with its answer captured and analysed. So one prompt run across ChatGPT, Claude, Gemini and Perplexity counts as four AI responses. Your monthly volume is driven by the number of active prompts, the engines you track, and how often campaigns run.",
+    a: "An AI response is a single prompt sent to one AI engine with its answer captured and analyzed. So one prompt run across ChatGPT, Claude, Gemini and Perplexity counts as four AI responses. Your monthly volume is driven by the number of active prompts, the engines you track, and how often campaigns run.",
   },
   {
     q: "Can agencies manage multiple brands?",
@@ -417,7 +417,7 @@ export default function PricingPage() {
           <Table className="min-w-[720px]">
             <TableHeader>
               <TableRow className="hover:bg-transparent">
-                <TableHead className="w-[34%] py-4 pl-6 text-sm font-medium text-muted-foreground">
+                <TableHead className="sticky left-0 z-20 w-[34%] border-r border-border/60 bg-card py-4 pl-6 text-sm font-medium text-muted-foreground">
                   Capability
                 </TableHead>
                 {TIER_COLUMNS.map((col) => {
@@ -449,14 +449,14 @@ export default function PricingPage() {
                   <TableRow className="hover:bg-transparent">
                     <TableCell
                       colSpan={5}
-                      className="label-mono bg-secondary/40 py-2.5 pl-6 text-[0.65rem] text-muted-foreground"
+                      className="label-mono sticky left-0 bg-secondary/40 py-2.5 pl-6 text-[0.65rem] text-muted-foreground"
                     >
                       {group.heading}
                     </TableCell>
                   </TableRow>
                   {group.rows.map((row) => (
                     <TableRow key={row.label}>
-                      <TableCell className="py-3.5 pl-6 text-sm font-medium text-foreground">
+                      <TableCell className="sticky left-0 z-10 border-r border-border/60 bg-card py-3.5 pl-6 text-sm font-medium text-foreground">
                         {row.label}
                       </TableCell>
                       <TableCell className="text-center">

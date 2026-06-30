@@ -6,8 +6,8 @@ import {
   useSpring,
   motion,
   MotionValue,
-  useReducedMotion,
 } from "motion/react";
+import { useIsomorphicReducedMotion } from "@/lib/use-reduced-motion";
 
 export const ContainerScroll = ({
   titleComponent,
@@ -40,7 +40,7 @@ export const ContainerScroll = ({
     };
   }, []);
 
-  const reduced = useReducedMotion();
+  const reduced = useIsomorphicReducedMotion();
 
   const scaleDimensions = () => {
     return isMobile ? [0.7, 0.9] : [1.05, 1];

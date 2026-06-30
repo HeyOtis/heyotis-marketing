@@ -30,7 +30,7 @@ import { cn } from "@/lib/utils";
 export const metadata = buildMetadata({
   title: "Product features",
   description:
-    "Inside HeyOtis: scheduled campaigns of unbiased buyer-intent prompts, Share of Voice, citations, competitive benchmarking, prioritized opportunities and AI referral traffic from GA4 — across ChatGPT, Claude, Gemini and Perplexity.",
+    "Inside HeyOtis: Share of Voice, citations, competitive benchmarking and GA4 AI referral traffic across ChatGPT, Claude, Gemini and Perplexity.",
   path: "/features",
 });
 
@@ -88,8 +88,8 @@ const CAMPAIGN_QUERIES = [
 ] as const;
 
 const QUERY_TONE = {
-  emerald: "bg-emerald-500/12 text-emerald-600",
-  amber: "bg-amber-500/15 text-amber-600",
+  emerald: "bg-emerald-500/12 text-emerald-700",
+  amber: "bg-amber-500/15 text-amber-800",
   neutral: "border border-border text-muted-foreground",
 } as const;
 
@@ -102,7 +102,7 @@ function CampaignPanel() {
             <h4 className="text-sm font-semibold text-foreground">
               Product Visibility — NZ
             </h4>
-            <span className="flex items-center gap-1 rounded-full bg-emerald-500/12 px-2 py-0.5 text-[0.6rem] font-semibold text-emerald-600">
+            <span className="flex items-center gap-1 rounded-full bg-emerald-500/12 px-2 py-0.5 text-[0.6rem] font-semibold text-emerald-700">
               <span className="size-1.5 rounded-full bg-emerald-500" /> Active
             </span>
           </div>
@@ -378,7 +378,7 @@ function TrafficPanel() {
                 {tile.v}
               </span>
               {tile.d ? (
-                <span className="text-[0.6rem] font-semibold text-emerald-600">
+                <span className="text-[0.6rem] font-semibold text-emerald-700">
                   {tile.d}
                 </span>
               ) : null}
@@ -551,28 +551,28 @@ const DETECTORS: Detector[] = [
     title: "Declining visibility",
     body: "Catch a sustained drop in how often AI recommends you before it costs you the answer.",
     severity: "Critical",
-    severityTone: "bg-coral/15 text-coral",
+    severityTone: "bg-red-500/12 text-red-700",
   },
   {
     icon: Quote,
     title: "Citation displacement",
     body: "Spot when a third-party source overtakes your owned pages as the citation AI leans on.",
     severity: "Warning",
-    severityTone: "bg-amber-500/15 text-amber-600",
+    severityTone: "bg-amber-500/15 text-amber-800",
   },
   {
     icon: EyeOff,
     title: "Source suppression",
     body: "Surface queries where you're recommended in the answer but never cited as the source.",
     severity: "Warning",
-    severityTone: "bg-amber-500/15 text-amber-600",
+    severityTone: "bg-amber-500/15 text-amber-800",
   },
   {
     icon: Trophy,
     title: "Top-1 position loss",
     body: "Know the moment a competitor takes the first-named recommendation away from you.",
     severity: "Critical",
-    severityTone: "bg-coral/15 text-coral",
+    severityTone: "bg-red-500/12 text-red-700",
   },
   {
     icon: ShieldAlert,
@@ -596,14 +596,14 @@ const STATS = [
     label: "AI assistants monitored — ChatGPT, Claude, Gemini & Perplexity",
   },
   {
-    value: 7,
+    value: 6,
     label: "Detector types built to surface visibility, citation & ranking risks",
   },
   {
     value: 300,
     prefix: "+",
     suffix: "%",
-    label: "Lift in AI recommendation share is achievable",
+    label: "Illustrative lift in AI recommendation share",
     customer: "Illustrative outcome",
   },
   {
@@ -714,7 +714,7 @@ export default function FeaturesPage() {
         <SectionHeading
           eyebrow="Insights & detectors"
           title="Signals HeyOtis surfaces"
-          sub="Purpose-built detectors are designed to surface visibility, citation and ranking risks by severity and confidence — so the openings that matter never slip past."
+          sub="Purpose-built detectors are designed to surface visibility, citation and ranking risks by severity — so the openings that matter never slip past."
           className="max-w-2xl"
         />
         <div className="mt-12 grid gap-4 md:grid-cols-3">
