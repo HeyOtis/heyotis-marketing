@@ -441,6 +441,20 @@ function TrafficPanel() {
 
 const TABS: FeatureTab[] = [
   {
+    id: "strategy",
+    label: "Strategy Engine",
+    title: "From signals to a prioritized plan that proves itself",
+    blurb:
+      "The campaign-led loop: opportunities ranked by impact and effort, each backed by evidence — then verified live and measured for lift.",
+    bullets: [
+      "Opportunities by impact × effort",
+      "Verified live, measured for lift",
+      "Detector-driven findings",
+      "Evidence behind every move",
+    ],
+    visual: <StrategyPanel />,
+  },
+  {
     id: "campaigns",
     label: "Campaigns",
     title: "Scheduled campaigns of unbiased prompts",
@@ -504,20 +518,6 @@ const TABS: FeatureTab[] = [
         className="h-full border-0 shadow-none"
       />
     ),
-  },
-  {
-    id: "strategy",
-    label: "Strategy & Insights",
-    title: "From signals to a prioritized plan",
-    blurb:
-      "Turn the data into opportunities ranked by impact and effort, plus detector-driven findings — each backed by the evidence.",
-    bullets: [
-      "Opportunities by impact × effort",
-      "Onsite / rankings / citations",
-      "Detector-driven findings",
-      "Evidence drawer per item",
-    ],
-    visual: <StrategyPanel />,
   },
   {
     id: "traffic",
