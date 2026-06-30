@@ -31,6 +31,7 @@ export const siteConfig = {
     github: "https://github.com/heyotis",
   },
   nav: [
+    { href: "/strategy-engine", label: "Strategy Engine" },
     { href: "/features", label: "Product" },
     { href: "/pricing", label: "Pricing" },
     { href: "/blog", label: "Resources" },
