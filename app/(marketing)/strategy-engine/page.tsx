@@ -9,6 +9,7 @@ import { AiSourceLogos } from "@/components/marketing/visuals/AiSourceLogos";
 import { StrategyLoopOrbit } from "@/components/marketing/visuals/StrategyLoopOrbit";
 import { OpportunityBoard } from "@/components/marketing/visuals/OpportunityBoard";
 import { SignalIntake } from "@/components/marketing/visuals/SignalIntake";
+import { CompoundingChart } from "@/components/marketing/visuals/CompoundingChart";
 import { MaturityLevels } from "@/components/marketing/sections/MaturityLevels";
 import { EvidenceLadder } from "@/components/marketing/sections/EvidenceLadder";
 import { ProofHalenstein } from "@/components/marketing/sections/ProofHalenstein";
@@ -229,7 +230,39 @@ export default function StrategyEnginePage() {
         </div>
       </Section>
 
-      {/* 7 — Honesty architecture */}
+      {/* 8 — It learns */}
+      <Section surface="card">
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <SectionHeading
+              eyebrow="The feedback loop"
+              title="Every campaign makes the next one sharper"
+              sub="Proof isn't the end of the loop — it's the input to the next one. Every outcome, proven or disproven, reweights what the engine recommends next."
+            />
+            <ul className="mt-8 flex flex-col gap-4">
+              {[
+                "Proven moves raise the weighting of moves like them",
+                "Disproven moves get deprioritized — honestly",
+                "Every cycle starts smarter than the last",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-brand/10 text-accent">
+                    <Check className="size-3.5" aria-hidden />
+                  </span>
+                  <span className="text-base leading-relaxed text-muted-foreground">
+                    {item}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <Reveal delay={0.08}>
+            <CompoundingChart />
+          </Reveal>
+        </div>
+      </Section>
+
+      {/* 9 — Honesty architecture */}
       <Section surface="cream">
         <SectionHeading
           eyebrow="Built on evidence"
@@ -253,7 +286,7 @@ export default function StrategyEnginePage() {
         </div>
       </Section>
 
-      {/* 8 — Proof */}
+      {/* 10 — Proof */}
       <Section surface="card">
         <SectionHeading
           eyebrow="Proof"
@@ -265,7 +298,7 @@ export default function StrategyEnginePage() {
         </Reveal>
       </Section>
 
-      {/* 9 — Platform + strategists */}
+      {/* 11 — Platform + strategists */}
       <Section surface="cream">
         <div className="grid gap-12 lg:grid-cols-[1fr_0.85fr] lg:gap-16">
           <Reveal>
@@ -284,7 +317,7 @@ export default function StrategyEnginePage() {
         </div>
       </Section>
 
-      {/* 10 — Where this is heading (vision) */}
+      {/* 12 — Where this is heading (vision) */}
       <Section surface="card">
         <div className="mx-auto max-w-2xl text-center">
           <Eyebrow>Where this is heading</Eyebrow>
