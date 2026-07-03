@@ -76,13 +76,14 @@ export function AiSourceBeam({ className }: { className?: string }) {
         </EngineRow>
       </div>
 
-      {!reduced && inView ? (
+      {reduced || inView ? (
         <>
           <AnimatedBeam
             containerRef={containerRef}
             fromRef={brandRef}
             toRef={chatgptRef}
             curvature={-80}
+            static={reduced}
             {...beam}
           />
           <AnimatedBeam
@@ -91,6 +92,7 @@ export function AiSourceBeam({ className }: { className?: string }) {
             toRef={claudeRef}
             curvature={-28}
             delay={0.3}
+            static={reduced}
             {...beam}
           />
           <AnimatedBeam
@@ -99,6 +101,7 @@ export function AiSourceBeam({ className }: { className?: string }) {
             toRef={geminiRef}
             curvature={28}
             delay={0.6}
+            static={reduced}
             {...beam}
           />
           <AnimatedBeam
@@ -107,6 +110,7 @@ export function AiSourceBeam({ className }: { className?: string }) {
             toRef={perplexityRef}
             curvature={80}
             delay={0.9}
+            static={reduced}
             {...beam}
           />
         </>

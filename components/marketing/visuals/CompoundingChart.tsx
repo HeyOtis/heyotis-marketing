@@ -120,16 +120,6 @@ export function CompoundingChart({ className }: { className?: string }) {
                 stroke="var(--card)"
                 strokeWidth="2"
               />
-              <text
-                x={cx}
-                y={H - 12}
-                textAnchor={i === 0 ? "start" : i === last ? "end" : "middle"}
-                fontSize="10"
-                className="font-mono"
-                fill="var(--muted-foreground)"
-              >
-                {p.cycle}
-              </text>
               <g className="pointer-events-none opacity-0 transition-opacity duration-150 group-hover:opacity-100">
                 <rect
                   x={tx}
@@ -149,6 +139,20 @@ export function CompoundingChart({ className }: { className?: string }) {
             </g>
           );
         })}
+
+        {pts.map((p, i) => (
+          <text
+            key={p.cycle}
+            x={px(i)}
+            y={H - 12}
+            textAnchor={i === 0 ? "start" : i === last ? "end" : "middle"}
+            fontSize="10"
+            className="font-mono"
+            fill="var(--muted-foreground)"
+          >
+            {p.cycle}
+          </text>
+        ))}
 
         <text
           x={px(0) + 8}

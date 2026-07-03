@@ -282,21 +282,20 @@ export const SIGNAL_STREAMS: SignalStream[] = [
 
 /* ── Sample ingest feed (illustrative — mirrors the product's log ingestion) ─ */
 export type LogLine = {
-  time: string;
   tag: string;
   text: string;
   kind: "bot" | "referral" | "session";
 };
 
 export const LOG_LINES: LogLine[] = [
-  { time: "09:41:07", tag: "GPTBot", text: "GET /compare/best-everyday · 200", kind: "bot" },
-  { time: "09:41:32", tag: "PerplexityBot", text: "GET /compare/best-everyday · 200", kind: "bot" },
-  { time: "09:43:10", tag: "ClaudeBot", text: "GET /products/everyday · 200", kind: "bot" },
-  { time: "10:02:55", tag: "referral", text: "chatgpt.com → /compare/best-everyday", kind: "referral" },
-  { time: "10:03:41", tag: "session", text: "4 pages · 6m 12s · demo booked", kind: "session" },
-  { time: "10:18:24", tag: "ChatGPT-User", text: "GET /compare/best-everyday · 200", kind: "bot" },
-  { time: "10:26:09", tag: "referral", text: "perplexity.ai → /products/everyday", kind: "referral" },
-  { time: "10:27:02", tag: "session", text: "3 pages · 4m 05s · signup", kind: "session" },
+  { tag: "GPTBot", text: "GET /compare/best-everyday · 200", kind: "bot" },
+  { tag: "PerplexityBot", text: "GET /compare/best-everyday · 200", kind: "bot" },
+  { tag: "ClaudeBot", text: "GET /products/everyday · 200", kind: "bot" },
+  { tag: "referral", text: "chatgpt.com → /compare/best-everyday", kind: "referral" },
+  { tag: "session", text: "4 pages · 6m 12s · demo booked", kind: "session" },
+  { tag: "ChatGPT-User", text: "GET /compare/best-everyday · 200", kind: "bot" },
+  { tag: "referral", text: "perplexity.ai → /products/everyday", kind: "referral" },
+  { tag: "session", text: "3 pages · 4m 05s · signup", kind: "session" },
 ];
 
 /* ── Compounding share across loop cycles (illustrative numbers) ─────────── */

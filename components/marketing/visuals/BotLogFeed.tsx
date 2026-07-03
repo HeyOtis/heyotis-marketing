@@ -9,6 +9,18 @@ import { cn } from "@/lib/utils";
 const VISIBLE = 6;
 const TICK_MS = 2200;
 
+/* Monotonic clock: the feed loops through LOG_LINES, so stored times would
+   rewind on wrap — derive each line's time from its position instead. */
+const BASE_SECONDS = 9 * 3600 + 41 * 60 + 7; // 09:41:07
+function timeAt(i: number) {
+  const t = BASE_SECONDS + i * 47;
+  const h = Math.floor(t / 3600) % 24;
+  const m = Math.floor((t % 3600) / 60);
+  const s = t % 60;
+  const pad = (n: number) => String(n).padStart(2, "0");
+  return `${pad(h)}:${pad(m)}:${pad(s)}`;
+}
+
 function tagTone(kind: LogLine["kind"]) {
   switch (kind) {
     case "bot":
@@ -70,7 +82,7 @@ export function BotLogFeed({ className }: { className?: string }) {
                 transition={{ duration: 0.3, ease: "easeOut" }}
                 className="flex gap-2 whitespace-nowrap"
               >
-                <span className="text-surface-dark-foreground/35">{l.time}</span>
+                <span className="text-surface-dark-foreground/35">{timeAt(l.key)}</span>
                 <span className={cn("font-semibold", tagTone(l.kind))}>{l.tag}</span>
                 <span className="truncate text-surface-dark-foreground/70">{l.text}</span>
               </motion.p>

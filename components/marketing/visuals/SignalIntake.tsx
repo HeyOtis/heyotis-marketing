@@ -115,7 +115,7 @@ export function SignalIntake({ className }: { className?: string }) {
         </span>
       </div>
 
-      {!reduced && inView ? (
+      {reduced || inView ? (
         <>
           {SIGNAL_STREAMS.map((s, i) => (
             <AnimatedBeam
@@ -125,6 +125,7 @@ export function SignalIntake({ className }: { className?: string }) {
               toRef={coreRef}
               curvature={CURVES[i]}
               delay={i * 0.3}
+              static={reduced}
               {...beam}
             />
           ))}
@@ -133,6 +134,7 @@ export function SignalIntake({ className }: { className?: string }) {
             fromRef={coreRef}
             toRef={outRef}
             delay={1.6}
+            static={reduced}
             {...beam}
             duration={3}
           />

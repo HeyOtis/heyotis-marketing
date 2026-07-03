@@ -81,7 +81,7 @@ function ReferralStat() {
         </div>
         <span className="inline-flex items-center gap-1 rounded-full bg-brand/10 px-2.5 py-1 text-sm font-semibold text-accent">
           <ArrowUpRight className="size-4" aria-hidden />
-          +142%
+          +96%
         </span>
       </div>
       <dl className="mt-6 grid grid-cols-3 gap-3">
