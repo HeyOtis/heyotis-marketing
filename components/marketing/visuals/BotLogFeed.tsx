@@ -84,7 +84,7 @@ export function BotLogFeed({ className }: { className?: string }) {
               >
                 <span className="text-surface-dark-foreground/35">{timeAt(l.key)}</span>
                 <span className={cn("font-semibold", tagTone(l.kind))}>{l.tag}</span>
-                <span className="truncate text-surface-dark-foreground/70">{l.text}</span>
+                <span className="min-w-0 truncate text-surface-dark-foreground/70">{l.text}</span>
               </motion.p>
             ))}
           </AnimatePresence>
