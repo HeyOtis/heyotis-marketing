@@ -21,6 +21,16 @@ HeyOtis measures how AI assistants recommend your brand — then closes the loop
 5. Verify: detectors confirm a recommended move actually shipped — no self-reporting.
 6. Prove: measure the before-and-after lift in recommendation share on the real metric, with an immutable evidence trail — then feed it back in.
 
+## What feeds the engine (five signal streams)
+- AI answer sampling: how ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral answer, cite and rank you.
+- AI traffic & bot logs: HeyOtis ingests your traffic and bot logs — which AI crawlers (GPTBot, ClaudeBot, PerplexityBot, ChatGPT-User) fetch which pages, and the human visitors assistants refer.
+- Site analytics: sessions, conversions and landing pages, so lift ties to business outcomes.
+- Your surfaces: crawls of your own site — structured data, freshness, what actually shipped.
+- Competitive signals: who wins the answer when you don't, and why.
+
+## Attribution and learning
+Attribution runs three layers deep: (1) the crawl — AI bots fetch the changed pages after a move ships, visible in your logs; (2) the visit — referral sessions arrive from assistant surfaces onto the pages the move touched; (3) the lift — recommendation share is re-measured on the same prompts, before and after, with the evidence trail attached. Every outcome, proven or disproven, feeds back into the engine and reweights what it recommends next — each campaign cycle starts smarter than the last.
+
 ## The four levels the engine operates at
 - Diagnostic — here's what's happening.
 - Prescriptive — here's what to do about it.

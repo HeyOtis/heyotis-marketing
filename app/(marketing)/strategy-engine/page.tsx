@@ -22,7 +22,7 @@ import { SIGNAL_STREAMS } from "@/lib/strategy-content";
 export const metadata = buildMetadata({
   title: "The Strategy Engine",
   description:
-    "Dashboards tell you where you stand. The HeyOtis Strategy Engine finds the move, verifies it shipped, and proves whether your AI recommendation share actually moved.",
+    "The HeyOtis Strategy Engine finds the move, verifies it shipped, and proves it worked — from AI bot-log evidence to recommendation-share lift — then learns from every outcome.",
   path: "/strategy-engine",
 });
 
