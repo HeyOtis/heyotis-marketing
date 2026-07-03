@@ -4,7 +4,7 @@ import { buildMetadata } from "@/lib/seo";
 import { Hero } from "@/components/marketing/sections/Hero";
 import { ProductReveal } from "@/components/marketing/sections/ProductReveal";
 import { FeatureCards } from "@/components/marketing/sections/FeatureCards";
-import { StrategyLoop } from "@/components/marketing/visuals/StrategyLoop";
+import { StrategyLoopOrbit } from "@/components/marketing/visuals/StrategyLoopOrbit";
 import { ProofHalenstein } from "@/components/marketing/sections/ProofHalenstein";
 import { Reveal } from "@/components/marketing/primitives/Reveal";
 import { StatBand } from "@/components/marketing/sections/StatBand";
@@ -103,7 +103,7 @@ export default function HomePage() {
           className="max-w-2xl"
         />
         <div className="mt-12">
-          <StrategyLoop />
+          <StrategyLoopOrbit compact />
         </div>
         <div className="mt-10">
           <a
