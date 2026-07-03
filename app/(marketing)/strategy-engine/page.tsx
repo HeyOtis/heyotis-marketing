@@ -9,12 +9,14 @@ import { AiSourceLogos } from "@/components/marketing/visuals/AiSourceLogos";
 import { StrategyLoop } from "@/components/marketing/visuals/StrategyLoop";
 import { OpportunityBoard } from "@/components/marketing/visuals/OpportunityBoard";
 import { AttributionPanel } from "@/components/marketing/visuals/AttributionPanel";
+import { SignalIntake } from "@/components/marketing/visuals/SignalIntake";
 import { MaturityLevels } from "@/components/marketing/sections/MaturityLevels";
 import { ProofHalenstein } from "@/components/marketing/sections/ProofHalenstein";
 import { CtaBand } from "@/components/marketing/sections/CtaBand";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
+import { SIGNAL_STREAMS } from "@/lib/strategy-content";
 
 export const metadata = buildMetadata({
   title: "The Strategy Engine",
@@ -121,8 +123,41 @@ export default function StrategyEnginePage() {
         </div>
       </Section>
 
-      {/* 3 — The loop */}
-      <Section surface="cream" id="loop">
+      {/* 3 — What flows in */}
+      <Section surface="cream">
+        <div className="grid items-center gap-12 lg:grid-cols-[0.95fr_1fr] lg:gap-16">
+          <div>
+            <SectionHeading
+              eyebrow="The inputs"
+              title="Five signal streams. One picture of how AI sees you."
+              sub="The engine is only as good as its evidence — so it ingests the evidence. Your answers, your traffic and bot logs, your analytics, your own pages and your competitors' wins all flow into one model of the gap."
+            />
+            <ul className="mt-8 flex flex-col gap-4">
+              {SIGNAL_STREAMS.map((s) => (
+                <li key={s.id} className="flex items-start gap-3">
+                  <span
+                    className={
+                      s.differentiator
+                        ? "mt-1 size-2 shrink-0 rounded-full bg-accent"
+                        : "mt-1 size-2 shrink-0 rounded-full bg-brand/40"
+                    }
+                  />
+                  <p className="text-base leading-relaxed text-muted-foreground">
+                    <span className="font-medium text-foreground">{s.name}.</span>{" "}
+                    {s.blurb}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <Reveal delay={0.08}>
+            <SignalIntake />
+          </Reveal>
+        </div>
+      </Section>
+
+      {/* 4 — The loop */}
+      <Section surface="card" id="loop">
         <SectionHeading
           eyebrow="The loop"
           title="One campaign-led loop, end to end"
@@ -134,8 +169,8 @@ export default function StrategyEnginePage() {
         </div>
       </Section>
 
-      {/* 4 — Four levels */}
-      <Section surface="card">
+      {/* 5 — Four levels */}
+      <Section surface="cream">
         <SectionHeading
           eyebrow="How deep it goes"
           title="Four levels the engine operates at"
@@ -147,8 +182,8 @@ export default function StrategyEnginePage() {
         </div>
       </Section>
 
-      {/* 5 — The action plan */}
-      <Section surface="cream">
+      {/* 6 — The action plan */}
+      <Section surface="card">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
             <SectionHeading
