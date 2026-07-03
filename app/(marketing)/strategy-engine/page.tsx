@@ -8,9 +8,9 @@ import { Reveal } from "@/components/marketing/primitives/Reveal";
 import { AiSourceLogos } from "@/components/marketing/visuals/AiSourceLogos";
 import { StrategyLoopOrbit } from "@/components/marketing/visuals/StrategyLoopOrbit";
 import { OpportunityBoard } from "@/components/marketing/visuals/OpportunityBoard";
-import { AttributionPanel } from "@/components/marketing/visuals/AttributionPanel";
 import { SignalIntake } from "@/components/marketing/visuals/SignalIntake";
 import { MaturityLevels } from "@/components/marketing/sections/MaturityLevels";
+import { EvidenceLadder } from "@/components/marketing/sections/EvidenceLadder";
 import { ProofHalenstein } from "@/components/marketing/sections/ProofHalenstein";
 import { CtaBand } from "@/components/marketing/sections/CtaBand";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -214,19 +214,18 @@ export default function StrategyEnginePage() {
         </div>
       </Section>
 
-      {/* 6 — Real attribution */}
-      <Section surface="card">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          <Reveal className="lg:order-2">
-            <AttributionPanel />
-          </Reveal>
-          <div className="lg:order-1">
-            <SectionHeading
-              eyebrow="Real attribution"
-              title="Proof it mattered — not just that it shipped"
-              sub="When a move goes live, the engine watches the real metric and measures the before-and-after, with an evidence trail you can open. The wording is generated; the evidence is not."
-            />
-          </div>
+      {/* 7 — Real attribution, three layers deep */}
+      <Section surface="cream">
+        <SectionHeading
+          eyebrow="Real attribution"
+          title="Three layers of proof"
+          sub={
+            "“It worked” isn't a vibe. Because HeyOtis ingests your traffic and AI-bot logs, you can watch the crawlers fetch the fix, the assistants send the visitors, and the share move — with the evidence trail open."
+          }
+          className="max-w-2xl"
+        />
+        <div className="mt-12">
+          <EvidenceLadder />
         </div>
       </Section>
 
