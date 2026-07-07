@@ -18,8 +18,15 @@ export function GET() {
 - Verify: detectors confirm a recommended move actually shipped.
 - Prove: measure the before-and-after lift in recommendation share, with an evidence trail.
 
+## What feeds it (the five signal streams)
+- AI answer sampling: how six assistants answer, cite and rank you across the prompts that matter.
+- AI traffic & bot logs: which AI crawlers (GPTBot, ClaudeBot, PerplexityBot, ChatGPT-User) fetch which pages, and the human visitors assistants refer.
+- Site analytics: sessions, conversions and landing pages, so lift ties to business outcomes.
+- Your surfaces: crawls of your own site — structured data, freshness, what actually shipped.
+- Competitive signals: who wins the answer when you don't, and why.
+
 ## Why it's different
-HeyOtis won't recommend a move it can't verify and prove. Most tools stop at measurement; the Strategy Engine closes the loop. It pairs the platform with hands-on GEO strategists.
+HeyOtis won't recommend a move it can't verify and prove. Most tools stop at measurement; the Strategy Engine closes the loop. Attribution runs three layers deep — AI crawlers fetching a shipped fix in your logs, referral sessions arriving from assistants, and the before-and-after change in recommendation share. Every proven or disproven move feeds back in, so recommendations get sharper each cycle. It pairs the platform with hands-on GEO strategists.
 
 ## Proof
 Halenstein grew AI recommendation share by 300% in Australia — from near-zero to 3.7% — after benchmarking, diagnosing the gaps and improving the signals that mattered.

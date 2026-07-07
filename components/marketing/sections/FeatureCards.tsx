@@ -36,8 +36,8 @@ const CARDS: FeatureCard[] = [
   {
     icon: LineChart,
     title: "Proven in real traffic",
-    body: "Connect AI visibility to referral traffic and conversions from ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral with your GA4 data.",
-    points: ["AI referral traffic", "Conversions by source", "AI traffic share"],
+    body: "HeyOtis ingests your traffic and AI-bot logs — GPTBot, ClaudeBot, PerplexityBot and friends — and ties AI referral visits and conversions back to the moves that earned them.",
+    points: ["AI bot & crawler logs", "Referrals by assistant", "Conversions by source"],
   },
 ];
 

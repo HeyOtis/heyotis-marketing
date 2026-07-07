@@ -214,6 +214,15 @@
     @apply text-xs font-medium uppercase tracking-[0.18em];
   }
 
+  .orbit-dash {
+    animation: orbit-dash 1.4s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .orbit-dash {
+      animation: none;
+    }
+  }
+
   /* CTA micro-nudge — a single hop, classier than a pulse. */
   @keyframes cta-nudge {
     0%, 86%, 100% { transform: translateY(0); }
@@ -273,5 +282,11 @@
   }
   .prose-like hr {
     @apply my-10 border-border;
+  }
+}
+
+@keyframes orbit-dash {
+  to {
+    stroke-dashoffset: -12;
   }
 }

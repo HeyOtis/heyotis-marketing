@@ -6,20 +6,23 @@ import { Eyebrow } from "@/components/marketing/primitives/Eyebrow";
 import { BookCta } from "@/components/marketing/primitives/BookCta";
 import { Reveal } from "@/components/marketing/primitives/Reveal";
 import { AiSourceLogos } from "@/components/marketing/visuals/AiSourceLogos";
-import { StrategyLoop } from "@/components/marketing/visuals/StrategyLoop";
+import { StrategyLoopOrbit } from "@/components/marketing/visuals/StrategyLoopOrbit";
 import { OpportunityBoard } from "@/components/marketing/visuals/OpportunityBoard";
-import { AttributionPanel } from "@/components/marketing/visuals/AttributionPanel";
+import { SignalIntake } from "@/components/marketing/visuals/SignalIntake";
+import { CompoundingChart } from "@/components/marketing/visuals/CompoundingChart";
 import { MaturityLevels } from "@/components/marketing/sections/MaturityLevels";
+import { EvidenceLadder } from "@/components/marketing/sections/EvidenceLadder";
 import { ProofHalenstein } from "@/components/marketing/sections/ProofHalenstein";
 import { CtaBand } from "@/components/marketing/sections/CtaBand";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
+import { SIGNAL_STREAMS } from "@/lib/strategy-content";
 
 export const metadata = buildMetadata({
   title: "The Strategy Engine",
   description:
-    "Dashboards tell you where you stand. The HeyOtis Strategy Engine finds the move, verifies it shipped, and proves whether your AI recommendation share actually moved.",
+    "The HeyOtis Strategy Engine finds the move, verifies it shipped, and proves it worked — from AI bot-log evidence to recommendation-share lift — then learns from every outcome.",
   path: "/strategy-engine",
 });
 
@@ -121,8 +124,41 @@ export default function StrategyEnginePage() {
         </div>
       </Section>
 
-      {/* 3 — The loop */}
-      <Section surface="cream" id="loop">
+      {/* 3 — What flows in */}
+      <Section surface="cream">
+        <div className="grid items-center gap-12 lg:grid-cols-[0.95fr_1fr] lg:gap-16">
+          <div>
+            <SectionHeading
+              eyebrow="The inputs"
+              title="Five signal streams. One picture of how AI sees you."
+              sub="The engine is only as good as its evidence — so it ingests the evidence. Your answers, your traffic and bot logs, your analytics, your own pages and your competitors' wins all flow into one model of the gap."
+            />
+            <ul className="mt-8 flex flex-col gap-4">
+              {SIGNAL_STREAMS.map((s) => (
+                <li key={s.id} className="flex items-start gap-3">
+                  <span
+                    className={
+                      s.differentiator
+                        ? "mt-1 size-2 shrink-0 rounded-full bg-accent"
+                        : "mt-1 size-2 shrink-0 rounded-full bg-brand/40"
+                    }
+                  />
+                  <p className="text-base leading-relaxed text-muted-foreground">
+                    <span className="font-medium text-foreground">{s.name}.</span>{" "}
+                    {s.blurb}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <Reveal delay={0.08}>
+            <SignalIntake />
+          </Reveal>
+        </div>
+      </Section>
+
+      {/* 4 — The loop */}
+      <Section surface="card" id="loop">
         <SectionHeading
           eyebrow="The loop"
           title="One campaign-led loop, end to end"
@@ -130,12 +166,12 @@ export default function StrategyEnginePage() {
           className="max-w-2xl"
         />
         <div className="mt-12">
-          <StrategyLoop />
+          <StrategyLoopOrbit />
         </div>
       </Section>
 
-      {/* 4 — Four levels */}
-      <Section surface="card">
+      {/* 5 — Four levels */}
+      <Section surface="cream">
         <SectionHeading
           eyebrow="How deep it goes"
           title="Four levels the engine operates at"
@@ -147,8 +183,8 @@ export default function StrategyEnginePage() {
         </div>
       </Section>
 
-      {/* 5 — The action plan */}
-      <Section surface="cream">
+      {/* 6 — The action plan */}
+      <Section surface="card">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
             <SectionHeading
@@ -179,23 +215,54 @@ export default function StrategyEnginePage() {
         </div>
       </Section>
 
-      {/* 6 — Real attribution */}
-      <Section surface="card">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          <Reveal className="lg:order-2">
-            <AttributionPanel />
-          </Reveal>
-          <div className="lg:order-1">
-            <SectionHeading
-              eyebrow="Real attribution"
-              title="Proof it mattered — not just that it shipped"
-              sub="When a move goes live, the engine watches the real metric and measures the before-and-after, with an evidence trail you can open. The wording is generated; the evidence is not."
-            />
-          </div>
+      {/* 7 — Real attribution, three layers deep */}
+      <Section surface="cream">
+        <SectionHeading
+          eyebrow="Real attribution"
+          title="Three layers of proof"
+          sub={
+            "“It worked” isn't a vibe. Because HeyOtis ingests your traffic and AI-bot logs, you can watch the crawlers fetch the fix, the assistants send the visitors, and the share move — with the evidence trail open."
+          }
+          className="max-w-2xl"
+        />
+        <div className="mt-12">
+          <EvidenceLadder />
         </div>
       </Section>
 
-      {/* 7 — Honesty architecture */}
+      {/* 8 — It learns */}
+      <Section surface="card">
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <SectionHeading
+              eyebrow="The feedback loop"
+              title="Every campaign makes the next one sharper"
+              sub="Proof isn't the end of the loop — it's the input to the next one. Every outcome, proven or disproven, reweights what the engine recommends next."
+            />
+            <ul className="mt-8 flex flex-col gap-4">
+              {[
+                "Proven moves raise the weighting of moves like them",
+                "Disproven moves get deprioritized — honestly",
+                "Every cycle starts smarter than the last",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-brand/10 text-accent">
+                    <Check className="size-3.5" aria-hidden />
+                  </span>
+                  <span className="text-base leading-relaxed text-muted-foreground">
+                    {item}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <Reveal delay={0.08}>
+            <CompoundingChart />
+          </Reveal>
+        </div>
+      </Section>
+
+      {/* 9 — Honesty architecture */}
       <Section surface="cream">
         <SectionHeading
           eyebrow="Built on evidence"
@@ -219,7 +286,7 @@ export default function StrategyEnginePage() {
         </div>
       </Section>
 
-      {/* 8 — Proof */}
+      {/* 10 — Proof */}
       <Section surface="card">
         <SectionHeading
           eyebrow="Proof"
@@ -231,7 +298,7 @@ export default function StrategyEnginePage() {
         </Reveal>
       </Section>
 
-      {/* 9 — Platform + strategists */}
+      {/* 11 — Platform + strategists */}
       <Section surface="cream">
         <div className="grid gap-12 lg:grid-cols-[1fr_0.85fr] lg:gap-16">
           <Reveal>
@@ -250,7 +317,7 @@ export default function StrategyEnginePage() {
         </div>
       </Section>
 
-      {/* 10 — Where this is heading (vision) */}
+      {/* 12 — Where this is heading (vision) */}
       <Section surface="card">
         <div className="mx-auto max-w-2xl text-center">
           <Eyebrow>Where this is heading</Eyebrow>

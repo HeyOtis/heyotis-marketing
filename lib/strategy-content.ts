@@ -9,6 +9,11 @@ import {
   ClipboardList,
   Radar,
   Bot,
+  MessageSquare,
+  Terminal,
+  LineChart,
+  Globe,
+  Users,
   type LucideIcon,
 } from "lucide-react";
 
@@ -219,3 +224,91 @@ export const HALENSTEIN = {
   detail:
     "Halenstein started from near-zero presence in Australian AI recommendations. After benchmarking where the brand stood, diagnosing the gaps and improving the signals that mattered, recommendation share grew 300%. The result wasn't just more mentions — it was a clear view of where competitors were chosen instead, and what to do about it.",
 } as const;
+
+/* ── The five signal streams the engine ingests ──────────────────────────── */
+export type SignalStream = {
+  id: string;
+  name: string;
+  /** Short label used inside the intake diagram nodes. */
+  short: string;
+  blurb: string;
+  icon: LucideIcon;
+  /** The stream that powers log-level attribution — visually emphasized. */
+  differentiator?: boolean;
+};
+
+export const SIGNAL_STREAMS: SignalStream[] = [
+  {
+    id: "answers",
+    name: "AI answer sampling",
+    short: "AI answers",
+    blurb:
+      "How six assistants answer, cite and rank you across the prompts that matter.",
+    icon: MessageSquare,
+  },
+  {
+    id: "logs",
+    name: "AI traffic & bot logs",
+    short: "Bot logs",
+    blurb:
+      "GPTBot, ClaudeBot, PerplexityBot, ChatGPT-User — which pages they fetch, and the humans assistants send you.",
+    icon: Terminal,
+    differentiator: true,
+  },
+  {
+    id: "analytics",
+    name: "Site analytics",
+    short: "Analytics",
+    blurb:
+      "Sessions, conversions and landing pages, so lift ties to business outcomes.",
+    icon: LineChart,
+  },
+  {
+    id: "surfaces",
+    name: "Your surfaces",
+    short: "Your site",
+    blurb:
+      "Crawls of your own site — structured data, freshness, what actually shipped.",
+    icon: Globe,
+  },
+  {
+    id: "competitive",
+    name: "Competitive signals",
+    short: "Competitors",
+    blurb: "Who wins the answer when you don't, and why.",
+    icon: Users,
+  },
+];
+
+/* ── Sample ingest feed (illustrative — mirrors the product's log ingestion) ─ */
+export type LogLine = {
+  tag: string;
+  text: string;
+  kind: "bot" | "referral" | "session";
+};
+
+export const LOG_LINES: LogLine[] = [
+  { tag: "GPTBot", text: "GET /compare/best-everyday · 200", kind: "bot" },
+  { tag: "PerplexityBot", text: "GET /compare/best-everyday · 200", kind: "bot" },
+  { tag: "ClaudeBot", text: "GET /products/everyday · 200", kind: "bot" },
+  { tag: "referral", text: "chatgpt.com → /compare/best-everyday", kind: "referral" },
+  { tag: "session", text: "4 pages · 6m 12s · demo booked", kind: "session" },
+  { tag: "ChatGPT-User", text: "GET /compare/best-everyday · 200", kind: "bot" },
+  { tag: "referral", text: "perplexity.ai → /products/everyday", kind: "referral" },
+  { tag: "session", text: "3 pages · 4m 05s · signup", kind: "session" },
+];
+
+/* ── Compounding share across loop cycles (illustrative numbers) ─────────── */
+export type CompoundingPoint = {
+  cycle: string;
+  /** AI recommendation share, % */
+  share: number;
+  note: string;
+};
+
+export const COMPOUNDING_POINTS: CompoundingPoint[] = [
+  { cycle: "Cycle 1", share: 1.2, note: "Baseline measured" },
+  { cycle: "Cycle 2", share: 2.1, note: "Comparison page proven" },
+  { cycle: "Cycle 3", share: 3.4, note: "Citation moves reweighted" },
+  { cycle: "Cycle 4", share: 4.9, note: "Schema moves prioritized" },
+];

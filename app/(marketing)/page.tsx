@@ -4,7 +4,7 @@ import { buildMetadata } from "@/lib/seo";
 import { Hero } from "@/components/marketing/sections/Hero";
 import { ProductReveal } from "@/components/marketing/sections/ProductReveal";
 import { FeatureCards } from "@/components/marketing/sections/FeatureCards";
-import { StrategyLoop } from "@/components/marketing/visuals/StrategyLoop";
+import { StrategyLoopOrbit } from "@/components/marketing/visuals/StrategyLoopOrbit";
 import { ProofHalenstein } from "@/components/marketing/sections/ProofHalenstein";
 import { Reveal } from "@/components/marketing/primitives/Reveal";
 import { StatBand } from "@/components/marketing/sections/StatBand";
@@ -51,6 +51,10 @@ const FAQS: FaqItem[] = [
   {
     q: "How does HeyOtis track AI search visibility?",
     a: "HeyOtis runs scheduled campaigns of unbiased, buyer-intent prompts against ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral, captures each answer, and measures whether and how your brand appears — including position, sentiment and the sources the AI cited.",
+  },
+  {
+    q: "How does HeyOtis prove AI actually drove the result?",
+    a: "HeyOtis ingests your traffic and AI-bot logs. When a recommended move ships, you can watch AI crawlers like GPTBot and PerplexityBot fetch the changed pages, see referral sessions arrive from assistants like ChatGPT and Perplexity, and measure the before-and-after change in your AI recommendation share — three layers of evidence, from raw log line to business metric.",
   },
   {
     q: "Which AI assistants does HeyOtis monitor?",
@@ -103,7 +107,7 @@ export default function HomePage() {
           className="max-w-2xl"
         />
         <div className="mt-12">
-          <StrategyLoop />
+          <StrategyLoopOrbit compact />
         </div>
         <div className="mt-10">
           <a
