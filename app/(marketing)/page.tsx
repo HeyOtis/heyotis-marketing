@@ -3,6 +3,7 @@ import { breadcrumbSchema, faqPageSchema } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
 import { Hero } from "@/components/marketing/sections/Hero";
 import { PlatformCard } from "@/components/marketing/sections/PlatformCard";
+import { EvidenceCards } from "@/components/marketing/sections/EvidenceCards";
 import { FeatureCards } from "@/components/marketing/sections/FeatureCards";
 import { StrategyLoopOrbit } from "@/components/marketing/visuals/StrategyLoopOrbit";
 import { ProofHalenstein } from "@/components/marketing/sections/ProofHalenstein";
@@ -21,10 +22,6 @@ export const metadata = buildMetadata({
 
 const STATS = [
   {
-    value: 6,
-    label: "AI assistants monitored — ChatGPT, Gemini, Perplexity, Claude, Meta AI & Mistral",
-  },
-  {
     value: 300,
     prefix: "+",
     suffix: "%",
@@ -32,14 +29,14 @@ const STATS = [
     customer: "Halenstein",
   },
   {
+    value: 6,
+    label:
+      "AI assistants monitored — ChatGPT, Gemini, Perplexity, Claude, Meta AI & Mistral",
+  },
+  {
     value: 24,
     suffix: "/7",
     label: "Always-on tracking of how AI answers about you",
-  },
-  {
-    value: 100,
-    suffix: "%",
-    label: "Of your named competitor set, benchmarked head-to-head",
   },
 ];
 
@@ -84,6 +81,8 @@ export default function HomePage() {
 
       <PlatformCard />
 
+      <EvidenceCards />
+
       {/* Why it matters + illustrative outcomes */}
       <Section surface="card">
         <SectionHeading
@@ -94,7 +93,7 @@ export default function HomePage() {
           className="mx-auto max-w-3xl"
         />
         <div className="mt-14">
-          <StatBand stats={STATS} />
+          <StatBand stats={STATS} className="lg:grid-cols-3" />
         </div>
       </Section>
 
