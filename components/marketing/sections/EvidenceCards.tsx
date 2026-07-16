@@ -39,31 +39,36 @@ function FindingsPills({ playing, reduced }: { playing: boolean; reduced: boolea
   }
 
   return (
-    <div aria-hidden>
-      <Stage className="flex h-[190px] flex-col justify-end gap-2.5 overflow-hidden">
-        <AnimatePresence initial={false}>
-          {pills.map((p) => {
-            const Icon = p.icon;
-            return (
-              <motion.div
-                key={p.key}
-                layout={!reduced}
-                initial={reduced ? false : { opacity: 0, y: 14 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.4, ease: EASE }}
-                className="flex w-fit items-center gap-2 rounded-full bg-card py-1.5 pl-2 pr-3.5 shadow-sm"
-              >
-                <Chip tone={p.tone} className="rounded-full px-1.5 py-1">
-                  <Icon className="size-3.5" strokeWidth={2.25} />
-                </Chip>
-                <span className="text-sm font-medium text-foreground">{p.text}</span>
-              </motion.div>
-            );
-          })}
-        </AnimatePresence>
-      </Stage>
-    </div>
+    <>
+      <div aria-hidden>
+        <Stage className="flex h-[190px] flex-col justify-end gap-2.5 overflow-hidden">
+          <AnimatePresence initial={false}>
+            {pills.map((p) => {
+              const Icon = p.icon;
+              return (
+                <motion.div
+                  key={p.key}
+                  layout={!reduced}
+                  initial={reduced ? false : { opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.4, ease: EASE }}
+                  className="flex w-fit items-center gap-2 rounded-full bg-card py-1.5 pl-2 pr-3.5 shadow-sm"
+                >
+                  <Chip tone={p.tone} className="rounded-full px-1.5 py-1">
+                    <Icon className="size-3.5" strokeWidth={2.25} />
+                  </Chip>
+                  <span className="text-sm font-medium text-foreground">{p.text}</span>
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
+        </Stage>
+      </div>
+      <p className="label-mono mt-3 text-[0.6rem] text-muted-foreground">
+        Illustrative — mirrors the engine&apos;s findings feed
+      </p>
+    </>
   );
 }
 
