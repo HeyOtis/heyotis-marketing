@@ -1,7 +1,14 @@
 "use client";
 
 import * as React from "react";
-import { OpenAI, Claude, Gemini, Perplexity } from "@lobehub/icons";
+import {
+  OpenAI,
+  Claude,
+  Gemini,
+  Perplexity,
+  MetaAI,
+  Mistral,
+} from "@lobehub/icons";
 import { useInView } from "motion/react";
 import { useIsomorphicReducedMotion } from "@/lib/use-reduced-motion";
 import { AnimatedBeam } from "@/components/ui/animated-beam";
@@ -15,7 +22,7 @@ const Node = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "z-10 flex size-14 items-center justify-center rounded-2xl border border-border bg-card shadow-[0_8px_24px_-12px_rgba(40,30,70,0.4)]",
+      "z-10 flex size-12 items-center justify-center rounded-2xl border border-border bg-card shadow-[0_8px_24px_-12px_rgba(40,30,70,0.4)]",
       className,
     )}
   >
@@ -24,13 +31,23 @@ const Node = React.forwardRef<
 ));
 Node.displayName = "BeamNode";
 
+/* All six engines the copy promises — keep in sync with AiSourceLogos. */
+const ENGINES = [
+  { name: "ChatGPT", Icon: OpenAI, curvature: -110 },
+  { name: "Claude", Icon: Claude, curvature: -66 },
+  { name: "Gemini", Icon: Gemini, curvature: -22 },
+  { name: "Perplexity", Icon: Perplexity, curvature: 22 },
+  { name: "Meta AI", Icon: MetaAI, curvature: 66 },
+  { name: "Mistral", Icon: Mistral, curvature: 110 },
+] as const;
+
 export function AiSourceBeam({ className }: { className?: string }) {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const brandRef = React.useRef<HTMLDivElement>(null);
-  const chatgptRef = React.useRef<HTMLDivElement>(null);
-  const claudeRef = React.useRef<HTMLDivElement>(null);
-  const geminiRef = React.useRef<HTMLDivElement>(null);
-  const perplexityRef = React.useRef<HTMLDivElement>(null);
+  const engineRefs = React.useMemo(
+    () => ENGINES.map(() => React.createRef<HTMLDivElement>()),
+    [],
+  );
   const reduced = useIsomorphicReducedMotion();
   // Only mount the infinite beam animations while the section is on-screen, so
   // they don't keep repainting on the main thread after scrolling away.
@@ -48,7 +65,7 @@ export function AiSourceBeam({ className }: { className?: string }) {
     <div
       ref={containerRef}
       className={cn(
-        "relative mx-auto flex h-[360px] w-full max-w-lg items-center justify-between px-2 sm:px-6",
+        "relative mx-auto flex h-[440px] w-full max-w-lg items-center justify-between px-2 sm:px-6",
         className,
       )}
     >
@@ -61,77 +78,33 @@ export function AiSourceBeam({ className }: { className?: string }) {
         </span>
       </div>
 
-      <div className="flex flex-col gap-6">
-        <EngineRow nodeRef={chatgptRef} name="ChatGPT">
-          <OpenAI size={26} />
-        </EngineRow>
-        <EngineRow nodeRef={claudeRef} name="Claude">
-          <Claude size={26} />
-        </EngineRow>
-        <EngineRow nodeRef={geminiRef} name="Gemini">
-          <Gemini size={26} />
-        </EngineRow>
-        <EngineRow nodeRef={perplexityRef} name="Perplexity">
-          <Perplexity size={26} />
-        </EngineRow>
+      <div className="flex flex-col gap-4">
+        {ENGINES.map(({ name, Icon }, i) => (
+          <div key={name} className="flex items-center gap-3 text-foreground">
+            <Node ref={engineRefs[i]}>
+              <Icon size={22} />
+            </Node>
+            <span className="text-sm font-medium">{name}</span>
+          </div>
+        ))}
       </div>
 
       {reduced || inView ? (
         <>
-          <AnimatedBeam
-            containerRef={containerRef}
-            fromRef={brandRef}
-            toRef={chatgptRef}
-            curvature={-80}
-            static={reduced}
-            {...beam}
-          />
-          <AnimatedBeam
-            containerRef={containerRef}
-            fromRef={brandRef}
-            toRef={claudeRef}
-            curvature={-28}
-            delay={0.3}
-            static={reduced}
-            {...beam}
-          />
-          <AnimatedBeam
-            containerRef={containerRef}
-            fromRef={brandRef}
-            toRef={geminiRef}
-            curvature={28}
-            delay={0.6}
-            static={reduced}
-            {...beam}
-          />
-          <AnimatedBeam
-            containerRef={containerRef}
-            fromRef={brandRef}
-            toRef={perplexityRef}
-            curvature={80}
-            delay={0.9}
-            static={reduced}
-            {...beam}
-          />
+          {ENGINES.map(({ name, curvature }, i) => (
+            <AnimatedBeam
+              key={name}
+              containerRef={containerRef}
+              fromRef={brandRef}
+              toRef={engineRefs[i]}
+              curvature={curvature}
+              delay={i * 0.3}
+              static={reduced}
+              {...beam}
+            />
+          ))}
         </>
       ) : null}
-    </div>
-  );
-}
-
-function EngineRow({
-  nodeRef,
-  name,
-  children,
-}: {
-  nodeRef: React.RefObject<HTMLDivElement | null>;
-  name: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className="flex items-center gap-3 text-foreground">
-      <Node ref={nodeRef}>{children}</Node>
-      <span className="text-sm font-medium">{name}</span>
     </div>
   );
 }

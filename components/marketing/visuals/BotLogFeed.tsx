@@ -70,7 +70,9 @@ export function BotLogFeed({ className }: { className?: string }) {
             otis-ingest · access.log
           </span>
         </div>
-        <div className="flex h-[216px] flex-col justify-end gap-1 px-4 py-3 font-mono text-[0.7rem] leading-relaxed sm:text-xs">
+        {/* overflow-hidden: transient enter/exit states must never paint
+            over the window-chrome row above. */}
+        <div className="flex h-[216px] flex-col justify-end gap-1 overflow-hidden px-4 py-3 font-mono text-[0.7rem] leading-relaxed sm:text-xs">
           <AnimatePresence initial={false}>
             {lines.map((l) => (
               <motion.p
