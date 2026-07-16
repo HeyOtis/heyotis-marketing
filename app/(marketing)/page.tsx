@@ -5,7 +5,7 @@ import { Hero } from "@/components/marketing/sections/Hero";
 import { PlatformCard } from "@/components/marketing/sections/PlatformCard";
 import { EvidenceCards } from "@/components/marketing/sections/EvidenceCards";
 import { FeatureCards } from "@/components/marketing/sections/FeatureCards";
-import { StrategyLoopOrbit } from "@/components/marketing/visuals/StrategyLoopOrbit";
+import { LoopBento } from "@/components/marketing/visuals/LoopBento";
 import { ProofHalenstein } from "@/components/marketing/sections/ProofHalenstein";
 import { Reveal } from "@/components/marketing/primitives/Reveal";
 import { StatBand } from "@/components/marketing/sections/StatBand";
@@ -106,7 +106,7 @@ export default function HomePage() {
           className="max-w-2xl"
         />
         <div className="mt-12">
-          <StrategyLoopOrbit compact />
+          <LoopBento compact />
         </div>
         <div className="mt-10">
           <a
