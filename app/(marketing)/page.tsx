@@ -2,7 +2,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema, faqPageSchema } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
 import { Hero } from "@/components/marketing/sections/Hero";
-import { ProductReveal } from "@/components/marketing/sections/ProductReveal";
+import { PlatformCard } from "@/components/marketing/sections/PlatformCard";
 import { FeatureCards } from "@/components/marketing/sections/FeatureCards";
 import { StrategyLoopOrbit } from "@/components/marketing/visuals/StrategyLoopOrbit";
 import { ProofHalenstein } from "@/components/marketing/sections/ProofHalenstein";
@@ -82,7 +82,7 @@ export default function HomePage() {
 
       <Hero />
 
-      <ProductReveal />
+      <PlatformCard />
 
       {/* Why it matters + illustrative outcomes */}
       <Section surface="card">
