@@ -127,6 +127,14 @@ function PrioritizeScene({ live }: { live: boolean }) {
   );
 }
 
+const barFill = {
+  hidden: { scaleX: 0 },
+  show: {
+    scaleX: 1,
+    transition: { duration: 0.9, delay: 0.4, ease: EASE },
+  },
+};
+
 function ProveScene(_props: { live: boolean }) {
   return (
     <motion.div variants={scene} className="flex h-full flex-col justify-center gap-2.5">
@@ -138,10 +146,7 @@ function ProveScene(_props: { live: boolean }) {
           <span className="label-mono w-10 text-[0.6rem] text-muted-foreground">{b.cap}</span>
           <span className="h-2 flex-1 overflow-hidden rounded-full bg-card shadow-sm">
             <motion.span
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.9, delay: 0.4, ease: EASE }}
+              variants={barFill}
               style={{ width: b.w }}
               className={cn(
                 "block h-full origin-left rounded-full",
