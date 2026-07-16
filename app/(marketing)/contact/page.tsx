@@ -105,14 +105,18 @@ export default function ContactPage() {
               </p>
               <p className="flex items-center gap-2.5 text-sm text-muted-foreground">
                 <Mail className="size-4 text-accent" aria-hidden />
-                Prefer email? Reach us at{" "}
-                <a
-                  href={emailHref}
-                  className="font-medium text-foreground underline-offset-4 hover:underline"
-                >
-                  {siteConfig.contactEmail}
-                </a>
-                .
+                {/* One span so the flex gap separates icon and sentence only,
+                    not every text node inside the sentence. */}
+                <span>
+                  Prefer email? Reach us at{" "}
+                  <a
+                    href={emailHref}
+                    className="font-medium text-foreground underline-offset-4 hover:underline"
+                  >
+                    {siteConfig.contactEmail}
+                  </a>
+                  .
+                </span>
               </p>
             </div>
           </div>
