@@ -30,8 +30,7 @@ const CURVES = [-84, -42, 0, 42, 84];
 /**
  * The five signal streams converging into the engine core, which emits ranked
  * moves. Decorative (aria-hidden) — the section's semantic stream list carries
- * the content. Beams mount only in view and never under reduced motion,
- * matching AiSourceBeam.
+ * the content. Beams mount only in view and never under reduced motion.
  */
 export function SignalIntake({ className }: { className?: string }) {
   const containerRef = React.useRef<HTMLDivElement>(null);

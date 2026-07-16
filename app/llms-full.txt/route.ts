@@ -22,7 +22,7 @@ HeyOtis measures how AI assistants recommend your brand — then closes the loop
 6. Prove: measure the before-and-after lift in recommendation share on the real metric, with an immutable evidence trail — then feed it back in.
 
 ## What feeds the engine (five signal streams)
-- AI answer sampling: how ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral answer, cite and rank you.
+- AI answer sampling: visibility, sentiment, citations and fan-out coverage — how ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral answer, cite and rank you.
 - AI traffic & bot logs: HeyOtis ingests your traffic and bot logs — which AI crawlers (GPTBot, ClaudeBot, PerplexityBot, ChatGPT-User) fetch which pages, and the human visitors assistants refer.
 - Site analytics: sessions, conversions and landing pages, so lift ties to business outcomes.
 - Your surfaces: crawls of your own site — structured data, freshness, what actually shipped.

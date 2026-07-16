@@ -19,7 +19,7 @@ export function GET() {
 - Prove: measure the before-and-after lift in recommendation share, with an evidence trail.
 
 ## What feeds it (the five signal streams)
-- AI answer sampling: how six assistants answer, cite and rank you across the prompts that matter.
+- AI answer sampling: visibility, sentiment, citations and fan-out coverage — how six assistants answer, cite and rank you across the prompts that matter.
 - AI traffic & bot logs: which AI crawlers (GPTBot, ClaudeBot, PerplexityBot, ChatGPT-User) fetch which pages, and the human visitors assistants refer.
 - Site analytics: sessions, conversions and landing pages, so lift ties to business outcomes.
 - Your surfaces: crawls of your own site — structured data, freshness, what actually shipped.

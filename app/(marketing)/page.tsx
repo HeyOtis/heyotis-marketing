@@ -118,7 +118,7 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* Coverage — animated beam */}
+      {/* Coverage — answer reel */}
       <Section surface="card">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
