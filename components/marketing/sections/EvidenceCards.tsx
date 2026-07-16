@@ -154,7 +154,7 @@ export function EvidenceCards() {
   const playing = !reduced && inView;
 
   return (
-    <Section surface="cream" className="pt-0">
+    <Section surface="cream" className="pt-0 md:pt-0">
       <div ref={ref} className="grid gap-5 md:grid-cols-2">
         <div className="rounded-3xl border border-border bg-card p-6 sm:p-8">
           <Eyebrow>Findings, not guesses</Eyebrow>

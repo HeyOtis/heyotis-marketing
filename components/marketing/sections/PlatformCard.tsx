@@ -28,7 +28,7 @@ const TILES = [
           </span>
           <Chip tone="lime">▲ 12.4 pts</Chip>
         </div>
-        <Bars heights={[30, 38, 42, 47, 58, 66, 84]} />
+        <Bars heights={[30, 38, 42, 47, 58, 66, 84]} live={live} />
       </>
     ),
   },
@@ -85,22 +85,33 @@ const TILES = [
   },
 ] as const;
 
-function Bars({ heights }: { heights: number[] }) {
+function Bars({ heights, live }: { heights: number[]; live: boolean }) {
   return (
     <div aria-hidden className="mt-2 flex h-9 items-end gap-1">
-      {heights.map((h, i) => (
-        <motion.span
-          key={i}
-          initial={{ scaleY: 0 }}
-          animate={{ scaleY: 1 }}
-          transition={{ duration: 0.5, delay: 0.15 + i * 0.06, ease: EASE }}
-          style={{ height: `${h}%` }}
-          className={cn(
-            "w-2.5 origin-bottom rounded-t",
-            i === heights.length - 1 ? "bg-brand" : "bg-periwinkle/60",
-          )}
-        />
-      ))}
+      {heights.map((h, i) =>
+        live ? (
+          <motion.span
+            key={i}
+            initial={{ scaleY: 0 }}
+            animate={{ scaleY: 1 }}
+            transition={{ duration: 0.5, delay: 0.15 + i * 0.06, ease: EASE }}
+            style={{ height: `${h}%` }}
+            className={cn(
+              "w-2.5 origin-bottom rounded-t",
+              i === heights.length - 1 ? "bg-brand" : "bg-periwinkle/60",
+            )}
+          />
+        ) : (
+          <span
+            key={i}
+            style={{ height: `${h}%` }}
+            className={cn(
+              "w-2.5 origin-bottom rounded-t",
+              i === heights.length - 1 ? "bg-brand" : "bg-periwinkle/60",
+            )}
+          />
+        ),
+      )}
     </div>
   );
 }
@@ -162,7 +173,7 @@ export function PlatformCard() {
         </div>
 
         <div aria-hidden>
-          <Stage className="relative">
+          <Stage>
             <BannerTile icon={Crosshair} label="Everyday range · NZ" right="Sample" />
             {reduced ? (
               <div className="mt-3 flex flex-col gap-3">

@@ -54,7 +54,7 @@ function MeasureScene({ live }: { live: boolean }) {
   );
 }
 
-function DiagnoseScene(_props: { live: boolean }) {
+function DiagnoseScene() {
   const rows = [
     { text: "Schema missing", warn: true, meta: "2 pages" },
     { text: "Pricing stale", warn: true, meta: "1 page" },
@@ -135,7 +135,7 @@ const barFill = {
   },
 };
 
-function ProveScene(_props: { live: boolean }) {
+function ProveScene() {
   return (
     <motion.div variants={scene} className="flex h-full flex-col justify-center gap-2.5">
       {[
@@ -245,6 +245,9 @@ export function LoopBento({
           </motion.article>
         );
       })}
+      <p className="label-mono mt-4 text-[0.6rem] text-muted-foreground sm:col-span-2">
+        Illustrative — sample campaign data
+      </p>
     </div>
   );
 }
