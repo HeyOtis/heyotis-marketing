@@ -66,17 +66,18 @@ export function Hero() {
           <p className="label-mono text-[0.65rem] text-muted-foreground">
             Monitored across:
           </p>
-          {/* Reduced motion: the CSS pauses the track, leaving a static row. */}
+          {/* Nory-style logo carousel: each assistant on its own white card.
+              Reduced motion: the CSS pauses the track, leaving a static row. */}
           <Marquee
             pauseOnHover
-            className="max-w-2xl [--duration:32s] [--gap:2.5rem] [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]"
+            className="w-full max-w-5xl [--duration:36s] [--gap:1.25rem] [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]"
           >
             {AI_SOURCES.map(({ key, name, Icon }) => (
               <span
                 key={key}
-                className="flex items-center gap-2 text-foreground/75"
+                className="flex h-24 w-44 flex-col items-center justify-center gap-2.5 rounded-lg bg-card text-foreground/80"
               >
-                <Icon size={24} />
+                <Icon size={28} />
                 <span className="text-sm font-medium tracking-tight">
                   {name}
                 </span>
