@@ -2,11 +2,196 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
-import { siteConfig } from "@/lib/site";
+import { NavigationMenu } from "radix-ui";
+import { ChevronDown, Menu, X } from "lucide-react";
+import { NAV, siteConfig, type NavEntry } from "@/lib/site";
 import { Logo } from "@/components/marketing/Logo";
 import { BookCta } from "@/components/marketing/primitives/BookCta";
 import { cn } from "@/lib/utils";
+import { useIsomorphicReducedMotion } from "@/lib/use-reduced-motion";
+
+const triggerClass =
+  "group flex items-center gap-1 rounded-md text-sm font-medium text-foreground/70 outline-none transition-colors hover:text-foreground focus-visible:text-foreground data-[state=open]:text-foreground";
+
+const plainLinkClass =
+  "text-sm font-medium text-foreground/70 transition-colors hover:text-foreground";
+
+function DropdownPanel({
+  entry,
+  reduced,
+}: {
+  entry: Extract<NavEntry, { groups: unknown }>;
+  reduced: boolean;
+}) {
+  const isGrid = entry.groups.length > 1;
+
+  return (
+    <div className={cn(isGrid ? "w-[44rem]" : "w-72")}>
+      <div
+        className={cn(
+          "rounded-xl bg-card p-6 ring-1 ring-border/60",
+          !reduced &&
+            "duration-150 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95",
+        )}
+      >
+        {isGrid ? (
+          <div className="grid grid-cols-4 gap-8">
+            {entry.groups.map((group) => (
+              <div key={group.heading}>
+                <p className="label-mono text-muted-foreground">
+                  {group.heading}
+                </p>
+                <ul className="mt-3 space-y-2.5">
+                  {group.links.map((link) => (
+                    <li key={link.href}>
+                      <NavigationMenu.Link asChild>
+                        <Link
+                          href={link.href}
+                          className="text-sm leading-snug text-foreground/80 transition-colors hover:text-accent"
+                        >
+                          {link.label}
+                        </Link>
+                      </NavigationMenu.Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <ul className="flex flex-col gap-1">
+            {entry.groups[0].links.map((link) => (
+              <li key={link.href}>
+                <NavigationMenu.Link asChild>
+                  <Link
+                    href={link.href}
+                    className="group block rounded-lg px-3 py-2 -mx-3 transition-colors hover:bg-secondary"
+                  >
+                    <span className="block text-sm font-medium text-foreground/90 transition-colors group-hover:text-accent">
+                      {link.label}
+                    </span>
+                    {link.description ? (
+                      <span className="mt-0.5 block text-xs text-muted-foreground">
+                        {link.description}
+                      </span>
+                    ) : null}
+                  </Link>
+                </NavigationMenu.Link>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        {entry.footerLink ? (
+          <div className="mt-6 border-t border-border/60 pt-4">
+            <NavigationMenu.Link asChild>
+              <Link
+                href={entry.footerLink.href}
+                className="text-sm font-medium text-accent transition-colors hover:text-accent/80"
+              >
+                {entry.footerLink.label}
+              </Link>
+            </NavigationMenu.Link>
+          </div>
+        ) : null}
+      </div>
+    </div>
+  );
+}
+
+function DesktopNav() {
+  const reduced = useIsomorphicReducedMotion();
+
+  return (
+    <NavigationMenu.Root
+      aria-label="Primary"
+      className="hidden lg:flex"
+      delayDuration={100}
+    >
+      <NavigationMenu.List className="flex items-center gap-8">
+        {NAV.map((item) =>
+          "href" in item ? (
+            <NavigationMenu.Item key={item.href}>
+              <NavigationMenu.Link asChild>
+                <Link href={item.href} className={plainLinkClass}>
+                  {item.label}
+                </Link>
+              </NavigationMenu.Link>
+            </NavigationMenu.Item>
+          ) : (
+            <NavigationMenu.Item key={item.label}>
+              <NavigationMenu.Trigger className={triggerClass}>
+                {item.label}
+                <ChevronDown
+                  aria-hidden
+                  className="size-3.5 transition-transform duration-200 group-data-[state=open]:rotate-180"
+                />
+              </NavigationMenu.Trigger>
+              <NavigationMenu.Content>
+                <DropdownPanel entry={item} reduced={reduced} />
+              </NavigationMenu.Content>
+            </NavigationMenu.Item>
+          ),
+        )}
+      </NavigationMenu.List>
+
+      <div className="absolute inset-x-0 top-full flex justify-center">
+        <NavigationMenu.Viewport
+          className={cn(
+            "relative mt-3 overflow-hidden",
+            "h-[var(--radix-navigation-menu-viewport-height)] w-[var(--radix-navigation-menu-viewport-width)]",
+            !reduced &&
+              "duration-150 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=closed]:animate-out data-[state=closed]:fade-out-0",
+          )}
+        />
+      </div>
+    </NavigationMenu.Root>
+  );
+}
+
+function MobileGroup({
+  item,
+  onNavigate,
+}: {
+  item: Extract<NavEntry, { groups: unknown }>;
+  onNavigate: () => void;
+}) {
+  const flatten = item.groups.length === 1;
+
+  return (
+    <div className="py-2">
+      <p className="label-mono px-3 text-muted-foreground">{item.label}</p>
+      <div className="mt-2 flex flex-col gap-3">
+        {item.groups.map((group) => (
+          <div key={group.heading}>
+            {!flatten ? (
+              <p className="label-mono px-3 text-[0.65rem] text-muted-foreground/60">
+                {group.heading}
+              </p>
+            ) : null}
+            <div className="mt-1 flex flex-col gap-1">
+              {group.links.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={onNavigate}
+                  className="rounded-lg px-3 py-2 text-base font-medium text-foreground/80 transition-colors hover:bg-secondary hover:text-foreground"
+                >
+                  {link.label}
+                  {link.description ? (
+                    <span className="block text-xs font-normal text-muted-foreground">
+                      {link.description}
+                    </span>
+                  ) : null}
+                </Link>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export function Nav() {
   const [scrolled, setScrolled] = React.useState(false);
@@ -52,23 +237,10 @@ export function Nav() {
             : "border-b border-transparent bg-transparent",
         )}
       >
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-8 px-4 sm:px-6 lg:px-8">
+        <div className="relative mx-auto flex h-16 max-w-7xl items-center justify-between gap-8 px-4 sm:px-6 lg:px-8">
           <Logo />
 
-          <nav
-            aria-label="Primary"
-            className="hidden items-center gap-8 lg:flex"
-          >
-            {siteConfig.nav.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="text-sm font-medium text-foreground/70 transition-colors hover:text-foreground"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
+          <DesktopNav />
 
           <div className="flex items-center gap-3 sm:gap-5">
             <a
@@ -101,9 +273,10 @@ export function Nav() {
         >
           <nav
             aria-label="Mobile"
-            className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4 sm:px-6"
+            className="mx-auto flex max-w-7xl flex-col divide-y divide-border/60 px-4 py-2 sm:px-6"
           >
-              {siteConfig.nav.map((item) => (
+            {NAV.map((item) =>
+              "href" in item ? (
                 <Link
                   key={item.href}
                   href={item.href}
@@ -112,7 +285,15 @@ export function Nav() {
                 >
                   {item.label}
                 </Link>
-              ))}
+              ) : (
+                <MobileGroup
+                  key={item.label}
+                  item={item}
+                  onNavigate={() => setOpen(false)}
+                />
+              ),
+            )}
+            <div className="flex flex-col gap-1 py-2">
               <a
                 href={siteConfig.appUrl}
                 target="_blank"
@@ -124,6 +305,7 @@ export function Nav() {
               <div className="px-3 pt-3">
                 <BookCta className="w-full" />
               </div>
+            </div>
           </nav>
         </div>
       </div>

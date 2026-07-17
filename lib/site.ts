@@ -30,13 +30,6 @@ export const siteConfig = {
     linkedin: "https://www.linkedin.com/company/heyotis",
     github: "https://github.com/heyotis",
   },
-  nav: [
-    { href: "/strategy-engine", label: "Strategy Engine" },
-    { href: "/features", label: "Product" },
-    { href: "/pricing", label: "Pricing" },
-    { href: "/blog", label: "Resources" },
-    { href: "/about", label: "About" },
-  ],
   footerNav: [
     {
       heading: "Product",
@@ -58,6 +51,101 @@ export const siteConfig = {
 } as const;
 
 export type SiteConfig = typeof siteConfig;
-export type NavItem = (typeof siteConfig.nav)[number];
 export type FooterGroup = (typeof siteConfig.footerNav)[number];
 export type FooterLink = FooterGroup["links"][number];
+
+// Primary nav — ordered to trace the loop (Measure → Diagnose → Act → Prove)
+// inside the Platform dropdown, then Resources, then Pricing.
+export type NavLink = { label: string; href: string; description?: string };
+export type NavGroup = { heading: string; links: NavLink[] };
+export type NavEntry =
+  | { label: string; href: string } // plain link
+  | { label: string; groups: NavGroup[]; footerLink?: NavLink }; // dropdown
+
+export const NAV: NavEntry[] = [
+  {
+    label: "Platform",
+    groups: [
+      {
+        heading: "Measure",
+        links: [
+          {
+            label: "AI Visibility & Share of Voice",
+            href: "/features#visibility",
+          },
+          { label: "Answer Sentiment", href: "/features#sentiment" },
+          { label: "Citations & Sources", href: "/features#citations" },
+          { label: "Competitor Head-to-Head", href: "/features#competitors" },
+        ],
+      },
+      {
+        heading: "Diagnose",
+        links: [
+          { label: "The Strategy Engine", href: "/strategy-engine" },
+          { label: "Evidence & Findings", href: "/strategy-engine#evidence" },
+        ],
+      },
+      {
+        heading: "Act",
+        links: [
+          {
+            label: "Prioritised Recommendations",
+            href: "/strategy-engine#plan",
+          },
+          { label: "Campaigns", href: "/features#campaigns" },
+        ],
+      },
+      {
+        heading: "Prove",
+        links: [
+          {
+            label: "Implementation Tracking",
+            href: "/strategy-engine#verify",
+          },
+          { label: "AI Traffic & Attribution", href: "/features#traffic" },
+        ],
+      },
+    ],
+    footerLink: { label: "How the loop works →", href: "/#loop" },
+  },
+  {
+    label: "Resources",
+    groups: [
+      {
+        heading: "Resources",
+        links: [
+          { label: "Free AI Visibility Report", href: "/report" },
+          { label: "Case Studies", href: "/case-studies" },
+          { label: "Blog", href: "/blog" },
+          { label: "Guides & AEO Playbook", href: "/guides" },
+          { label: "About HeyOtis", href: "/about" },
+        ],
+      },
+    ],
+  },
+  {
+    label: "Pricing",
+    groups: [
+      {
+        heading: "Pricing",
+        links: [
+          {
+            label: "Plans",
+            href: "/pricing#plans",
+            description: "Self-serve tiers",
+          },
+          {
+            label: "Managed",
+            href: "/pricing#managed",
+            description: "Strategist-led",
+          },
+          {
+            label: "For Agencies",
+            href: "/pricing#agencies",
+            description: "White-label & multi-brand",
+          },
+        ],
+      },
+    ],
+  },
+];
