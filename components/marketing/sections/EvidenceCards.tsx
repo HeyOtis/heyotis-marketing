@@ -156,7 +156,7 @@ export function EvidenceCards() {
   return (
     <Section surface="cream" className="pt-0 md:pt-0">
       <div ref={ref} className="grid gap-5 md:grid-cols-2">
-        <div className="rounded-3xl border border-border bg-card p-6 sm:p-8">
+        <div className="rounded-2xl bg-card p-6 sm:p-8">
           <Eyebrow>Findings, not guesses</Eyebrow>
           <h3 className="mt-3 text-xl font-semibold tracking-tight text-foreground">
             The engine tells you what changed — with evidence
@@ -169,7 +169,7 @@ export function EvidenceCards() {
             <FindingsPills playing={playing} reduced={reduced} />
           </div>
         </div>
-        <div className="rounded-3xl border border-border bg-card p-6 sm:p-8">
+        <div className="rounded-2xl bg-card p-6 sm:p-8">
           <Eyebrow>Every signal, one model</Eyebrow>
           <h3 className="mt-3 text-xl font-semibold tracking-tight text-foreground">
             Answers, bot logs, analytics and your own pages — together

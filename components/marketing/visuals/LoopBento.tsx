@@ -209,7 +209,7 @@ export function LoopBento({
             initial={reduced ? false : { opacity: 0, y: 18 }}
             animate={{ opacity: live || reduced ? 1 : 0, y: live || reduced ? 0 : 18 }}
             transition={{ duration: 0.55, delay: ci * 0.1, ease: EASE }}
-            className="rounded-3xl border border-border bg-card p-5 sm:p-6"
+            className="rounded-2xl bg-card p-5 sm:p-6"
           >
             <div className="flex flex-wrap items-center gap-2">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-periwinkle/35 px-2.5 py-1 text-[0.65rem] font-bold tracking-wide text-foreground">

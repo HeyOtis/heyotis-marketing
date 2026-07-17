@@ -153,7 +153,7 @@ export function PlatformCard() {
     <Section surface="cream" id="product">
       <div
         ref={ref}
-        className="grid items-center gap-10 rounded-3xl border border-border bg-card p-6 sm:p-10 lg:grid-cols-[1fr_1.05fr] lg:gap-16"
+        className="grid items-center gap-10 rounded-2xl bg-card p-6 sm:p-10 lg:grid-cols-[1fr_1.05fr] lg:gap-16"
       >
         <div>
           <Eyebrow>The platform</Eyebrow>
