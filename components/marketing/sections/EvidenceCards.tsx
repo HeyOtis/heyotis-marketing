@@ -5,7 +5,6 @@ import { CircleCheck, TriangleAlert, TrendingUp } from "lucide-react";
 import { AnimatePresence, motion, useInView } from "motion/react";
 import { useIsomorphicReducedMotion } from "@/lib/use-reduced-motion";
 import { EASE } from "@/lib/ease";
-import { Section } from "@/components/marketing/primitives/Section";
 import { Eyebrow } from "@/components/marketing/primitives/Eyebrow";
 import { Stage, Chip } from "@/components/marketing/primitives/stage";
 import { LogoGlyph } from "@/components/marketing/Logo";
@@ -28,9 +27,9 @@ const PILL_WINDOW = 3;
 /**
  * Findings-as-notifications: a beige stage that fills with pills sliding in
  * as the engine surfaces evidence. Self-contained (own `useInView` + reduced
- * motion check) so it can be reused standalone — inside `EvidenceCards` or on
- * its own, e.g. beside the honesty claims on the homepage. Reduced motion /
- * off-screen: the first three pills, static, no timers.
+ * motion check) so it can be mounted standalone — e.g. beside the honesty
+ * claims on the homepage. Reduced motion / off-screen: the first three
+ * pills, static, no timers.
  */
 export function FindingsPills({ className }: { className?: string }) {
   const reduced = useIsomorphicReducedMotion();
@@ -152,49 +151,34 @@ function SignalCluster({ playing, reduced }: { playing: boolean; reduced: boolea
   );
 }
 
-/* ── Section ────────────────────────────────────────────────────────────── */
+/* ── Standalone card ────────────────────────────────────────────────────── */
 
 /**
- * Nory's half-card row: findings-as-notifications left, the five signal
- * streams clustered around the engine right. Both stages are decorative;
- * the headings and blurbs carry the meaning.
+ * The five signal streams clustered around the engine glyph, in the same
+ * flat `bg-card` shell as the rest of the card system. Self-contained (own
+ * `useInView` + reduced-motion check) so it can be mounted on its own —
+ * e.g. on `/strategy-engine`. The stage is decorative; the heading and
+ * blurb carry the meaning.
  */
-export function EvidenceCards() {
+export function SignalClusterCard({ className }: { className?: string }) {
   const reduced = useIsomorphicReducedMotion();
   const ref = React.useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { margin: "0px" });
   const playing = !reduced && inView;
 
   return (
-    <Section surface="cream" className="pt-0 md:pt-0">
-      <div ref={ref} className="grid gap-5 md:grid-cols-2">
-        <div className="rounded-xl bg-card p-6 sm:p-8">
-          <Eyebrow>Findings, not guesses</Eyebrow>
-          <h3 className="mt-3 text-xl font-semibold tracking-tight text-foreground">
-            The engine tells you what changed — with evidence
-          </h3>
-          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-            Deterministic detectors watch your surfaces and the answers, so
-            every finding arrives verified — not self-reported.
-          </p>
-          <div className="mt-6">
-            <FindingsPills />
-          </div>
-        </div>
-        <div className="rounded-xl bg-card p-6 sm:p-8">
-          <Eyebrow>Every signal, one model</Eyebrow>
-          <h3 className="mt-3 text-xl font-semibold tracking-tight text-foreground">
-            Answers, bot logs, analytics and your own pages — together
-          </h3>
-          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-            The engine is only as good as its evidence, so all five signal
-            streams flow into one model of the gap.
-          </p>
-          <div className="mt-6">
-            <SignalCluster playing={playing} reduced={reduced} />
-          </div>
-        </div>
+    <div ref={ref} className={cn("rounded-xl bg-card p-6 sm:p-8", className)}>
+      <Eyebrow>Every signal, one model</Eyebrow>
+      <h3 className="mt-3 text-xl font-semibold tracking-tight text-foreground">
+        Answers, bot logs, analytics and your own pages — together
+      </h3>
+      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+        The engine is only as good as its evidence, so all five signal
+        streams flow into one model of the gap.
+      </p>
+      <div className="mt-6">
+        <SignalCluster playing={playing} reduced={reduced} />
       </div>
-    </Section>
+    </div>
   );
 }

@@ -8,10 +8,10 @@ import { Reveal } from "@/components/marketing/primitives/Reveal";
 import { AiSourceLogos } from "@/components/marketing/visuals/AiSourceLogos";
 import { LoopBento } from "@/components/marketing/visuals/LoopBento";
 import { OpportunityBoard } from "@/components/marketing/visuals/OpportunityBoard";
-import { SignalIntake } from "@/components/marketing/visuals/SignalIntake";
 import { CompoundingChart } from "@/components/marketing/visuals/CompoundingChart";
 import { MaturityLevels } from "@/components/marketing/sections/MaturityLevels";
 import { EvidenceLadder } from "@/components/marketing/sections/EvidenceLadder";
+import { SignalClusterCard } from "@/components/marketing/sections/EvidenceCards";
 import { ProofHallensteins } from "@/components/marketing/sections/ProofHallensteins";
 import { CtaBand } from "@/components/marketing/sections/CtaBand";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -152,7 +152,7 @@ export default function StrategyEnginePage() {
             </ul>
           </div>
           <Reveal delay={0.08}>
-            <SignalIntake />
+            <SignalClusterCard />
           </Reveal>
         </div>
       </Section>
