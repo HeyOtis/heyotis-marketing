@@ -24,6 +24,14 @@ const item = {
   hidden: { opacity: 0, y: 8 },
   show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: EASE } },
 };
+/* Status-chip reveal for VerifyScene's monitoring→live swap. Same
+   hidden/show keys as `item`/`scene` so it rides the ancestor's variant
+   propagation: under reduced motion the tree mounts straight into "show",
+   so this renders statically instead of fading in. */
+const chipReveal = {
+  hidden: { opacity: 0, scale: 0.85 },
+  show: { opacity: 1, scale: 1, transition: { duration: 0.3, ease: EASE } },
+};
 
 function MeasureScene({ live }: { live: boolean }) {
   return (
@@ -98,7 +106,10 @@ function PrioritizeScene({ live }: { live: boolean }) {
     const id = setTimeout(() => setSorted(true), 1000);
     return () => clearTimeout(id);
   }, [live]);
-  const moves = sorted ? [...MOVES].sort((a, b) => b.impact - a.impact) : MOVES;
+  /* Off the live path (reduced motion), rest on the final ranked frame —
+     same principle as VerifyScene's isLive. */
+  const isSorted = sorted || !live;
+  const moves = isSorted ? [...MOVES].sort((a, b) => b.impact - a.impact) : MOVES;
   return (
     <motion.div variants={scene} className="flex h-full flex-col justify-center gap-2">
       {moves.map((m) => (
@@ -154,12 +165,7 @@ function VerifyScene({ live }: { live: boolean }) {
         </span>
         <AnimatePresence mode="wait" initial={false}>
           {isLive ? (
-            <motion.span
-              key="live"
-              initial={{ opacity: 0, scale: 0.85 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.3, ease: EASE }}
-            >
+            <motion.span key="live" variants={chipReveal}>
               <Chip tone="lime">✓ live</Chip>
             </motion.span>
           ) : (
