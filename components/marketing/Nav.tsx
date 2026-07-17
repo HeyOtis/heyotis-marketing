@@ -18,22 +18,14 @@ const plainLinkClass =
 
 function DropdownPanel({
   entry,
-  reduced,
 }: {
   entry: Extract<NavEntry, { groups: unknown }>;
-  reduced: boolean;
 }) {
   const isGrid = entry.groups.length > 1;
 
   return (
     <div className={cn(isGrid ? "w-[44rem]" : "w-72")}>
-      <div
-        className={cn(
-          "rounded-xl bg-card p-6 ring-1 ring-border/60",
-          !reduced &&
-            "duration-150 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95",
-        )}
-      >
+      <div className="rounded-xl bg-card p-6 ring-1 ring-border/60">
         {isGrid ? (
           <div className="grid grid-cols-4 gap-8">
             {entry.groups.map((group) => (
@@ -128,7 +120,7 @@ function DesktopNav() {
                 />
               </NavigationMenu.Trigger>
               <NavigationMenu.Content>
-                <DropdownPanel entry={item} reduced={reduced} />
+                <DropdownPanel entry={item} />
               </NavigationMenu.Content>
             </NavigationMenu.Item>
           ),
@@ -279,7 +271,7 @@ export function Nav() {
         <div
           id="mobile-menu"
           hidden={!open}
-          className="border-t border-border/60 lg:hidden"
+          className="max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-border/60 lg:hidden"
         >
           <nav
             aria-label="Mobile"

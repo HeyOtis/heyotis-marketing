@@ -66,7 +66,7 @@ const HOW_IT_WORKS: { step: string; icon: LucideIcon; title: string; blurb: stri
     icon: PlayCircle,
     title: "We run the campaign",
     blurb:
-      "Otis runs a live campaign of buyer-intent prompts across all six assistants and captures exactly how each one answers.",
+      "HeyOtis runs a live campaign of buyer-intent prompts across all six assistants and captures exactly how each one answers.",
   },
   {
     step: "03",
@@ -154,7 +154,7 @@ export default function ReportPage() {
         <SectionHeading
           eyebrow="How it works"
           title="Three steps, one 20-minute call"
-          sub="No lengthy onboarding — you're seeing your own AI visibility inside a week."
+          sub="No lengthy onboarding — three steps and a call."
           className="max-w-2xl"
         />
         <div className="mt-12 grid gap-5 sm:grid-cols-3">

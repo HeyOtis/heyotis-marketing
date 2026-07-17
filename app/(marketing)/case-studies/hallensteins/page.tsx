@@ -21,7 +21,7 @@ import { HALLENSTEINS } from "@/lib/strategy-content";
 export const metadata = buildMetadata({
   title: "Hallensteins: from near-zero to 3.7% AI recommendation share",
   description:
-    "How Hallensteins went from near-zero AI recommendation share to 3.7% in Australia — a +300% lift measured across ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral.",
+    "How Hallensteins went from near-zero AI recommendation share to 3.7% in Australia — a +300% lift.",
   path: "/case-studies/hallensteins",
 });
 
@@ -36,7 +36,7 @@ const LOOP_APPLIED: { icon: LucideIcon; title: string; blurb: string }[] = [
     icon: ScanSearch,
     title: "Diagnose",
     blurb:
-      "The evidence showed a brand that was almost never named. Where assistants did answer, they were grounding on retailer and competitor pages instead of Hallensteins' own.",
+      "The evidence showed a brand that was almost never named. Where assistants did answer, they were grounding on competitor pages instead of Hallensteins' own.",
   },
   {
     icon: ListChecks,
@@ -48,7 +48,7 @@ const LOOP_APPLIED: { icon: LucideIcon; title: string; blurb: string }[] = [
     icon: CircleCheck,
     title: "Verify",
     blurb:
-      "As changes shipped, detectors watched the relevant surfaces and confirmed each move actually went live — no self-reporting.",
+      "As changes ship, detectors watch the relevant surfaces and confirm each move the moment it goes live — no self-reporting.",
   },
   {
     icon: TrendingUp,

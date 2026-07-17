@@ -19,6 +19,8 @@ import { AnswerReel } from "@/components/marketing/sections/AnswerReel";
 
 export const metadata = buildMetadata({
   title: "See how AI recommends your brand",
+  description:
+    "HeyOtis measures how ChatGPT, Gemini, Perplexity and Claude recommend your brand, finds the moves that grow your share, watches the work land, and measures the lift. A closed loop — not another dashboard.",
   path: "/",
 });
 
