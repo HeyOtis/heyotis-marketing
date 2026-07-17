@@ -1,7 +1,8 @@
 import { ArrowDown } from "lucide-react";
 import { Container } from "@/components/marketing/Container";
 import { BookCta } from "@/components/marketing/primitives/BookCta";
-import { AiSourceLogos } from "@/components/marketing/visuals/AiSourceLogos";
+import { AI_SOURCES } from "@/components/marketing/visuals/AiSourceLogos";
+import { Marquee } from "@/components/ui/marquee";
 
 export function Hero() {
   return (
@@ -61,11 +62,27 @@ export function Hero() {
           </a>
         </div>
 
-        <div className="mt-14 flex flex-col items-center gap-4">
+        <div className="mt-14 flex w-full flex-col items-center gap-4">
           <p className="label-mono text-[0.65rem] text-muted-foreground">
             Monitored across:
           </p>
-          <AiSourceLogos />
+          {/* Reduced motion: the CSS pauses the track, leaving a static row. */}
+          <Marquee
+            pauseOnHover
+            className="max-w-2xl [--duration:32s] [--gap:2.5rem] [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]"
+          >
+            {AI_SOURCES.map(({ key, name, Icon }) => (
+              <span
+                key={key}
+                className="flex items-center gap-2 text-foreground/75"
+              >
+                <Icon size={24} />
+                <span className="text-sm font-medium tracking-tight">
+                  {name}
+                </span>
+              </span>
+            ))}
+          </Marquee>
         </div>
       </Container>
     </section>
