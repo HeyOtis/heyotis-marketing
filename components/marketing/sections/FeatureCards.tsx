@@ -17,7 +17,7 @@ type FeatureCard = {
 const CARDS: FeatureCard[] = [
   {
     icon: BarChart3,
-    title: "Share of Voice & rankings",
+    title: "Share of voice & rankings",
     body: "Track how often AI recommends you, your Top-1 and Top-3 presence, and how you place against named competitors.",
     points: ["Visibility over time", "Per-query rankings", "Head-to-head"],
   },
@@ -31,13 +31,13 @@ const CARDS: FeatureCard[] = [
     icon: ListChecks,
     title: "A prioritised action plan",
     body: "Turn the signals into opportunities ranked by impact and effort — across onsite, rankings and citations — with the evidence behind each.",
-    points: ["Impact × effort", "Evidence-backed", "Onsite / rankings / citations"],
+    points: ["Impact × effort", "Evidence-backed", "Onsite, rankings, citations"],
   },
   {
     icon: LineChart,
     title: "Proven in real traffic",
     body: "HeyOtis ingests your traffic and AI-bot logs — GPTBot, ClaudeBot, PerplexityBot and friends — and ties AI referral visits and conversions back to the moves that earned them.",
-    points: ["AI bot & crawler logs", "Referrals by assistant", "Conversions by source"],
+    points: ["AI crawler activity", "Referrals by assistant", "Conversions by source"],
   },
 ];
 

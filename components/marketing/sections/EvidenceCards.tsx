@@ -25,7 +25,19 @@ const PILLS = [
 const PILL_TICK_MS = 2200;
 const PILL_WINDOW = 3;
 
-function FindingsPills({ playing, reduced }: { playing: boolean; reduced: boolean }) {
+/**
+ * Findings-as-notifications: a beige stage that fills with pills sliding in
+ * as the engine surfaces evidence. Self-contained (own `useInView` + reduced
+ * motion check) so it can be reused standalone — inside `EvidenceCards` or on
+ * its own, e.g. beside the honesty claims on the homepage. Reduced motion /
+ * off-screen: the first three pills, static, no timers.
+ */
+export function FindingsPills({ className }: { className?: string }) {
+  const reduced = useIsomorphicReducedMotion();
+  const ref = React.useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { margin: "0px" });
+  const playing = !reduced && inView;
+
   const [count, setCount] = React.useState(PILL_WINDOW);
   React.useEffect(() => {
     if (!playing) return;
@@ -39,7 +51,7 @@ function FindingsPills({ playing, reduced }: { playing: boolean; reduced: boolea
   }
 
   return (
-    <>
+    <div ref={ref} className={className}>
       <div aria-hidden>
         <Stage className="flex h-[190px] flex-col justify-end gap-2.5 overflow-hidden">
           <AnimatePresence initial={false}>
@@ -68,7 +80,7 @@ function FindingsPills({ playing, reduced }: { playing: boolean; reduced: boolea
       <p className="label-mono mt-3 text-[0.6rem] text-muted-foreground">
         Illustrative — mirrors the engine&apos;s findings feed
       </p>
-    </>
+    </div>
   );
 }
 
@@ -166,7 +178,7 @@ export function EvidenceCards() {
             every finding arrives verified — not self-reported.
           </p>
           <div className="mt-6">
-            <FindingsPills playing={playing} reduced={reduced} />
+            <FindingsPills />
           </div>
         </div>
         <div className="rounded-xl bg-card p-6 sm:p-8">

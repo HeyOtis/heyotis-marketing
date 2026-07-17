@@ -1,51 +1,41 @@
-import { Quote } from "lucide-react";
+import { StatBand, type Stat } from "@/components/marketing/sections/StatBand";
 import { HALLENSTEINS } from "@/lib/strategy-content";
 import { cn } from "@/lib/utils";
 
-/**
- * Real, named proof. Text-first (logo asset optional/later). The +300% here is
- * an attributed result, not illustrative.
- */
+/* Real, named proof. Stat-only — the +300% / 3.7% here are attributed
+   results, not illustrative. No third stat: HALLENSTEINS carries no stated
+   measurement window, so we don't invent one. */
+const STATS: Stat[] = [
+  {
+    value: 300,
+    prefix: "+",
+    suffix: "%",
+    label: "AI recommendation share lift",
+    customer: `${HALLENSTEINS.brand} · Apparel`,
+  },
+  {
+    value: 3.7,
+    decimals: 1,
+    suffix: "%",
+    label: `Recommendation share in ${HALLENSTEINS.market} — up from near-zero`,
+  },
+];
+
 export function ProofHallensteins({ className }: { className?: string }) {
   return (
-    <figure
-      className={cn(
-        "overflow-hidden rounded-[2rem] border border-brand/20 bg-brand/[0.06] p-8 sm:p-12",
-        className,
-      )}
-    >
-      <Quote aria-hidden className="size-8 text-accent/70" strokeWidth={1.5} />
-      <blockquote
-        className="mt-5 max-w-3xl font-display text-2xl leading-snug tracking-tight text-foreground sm:text-3xl"
-        style={{ fontStretch: "85%" }}
-      >
-        {HALLENSTEINS.lede}
-      </blockquote>
-      <figcaption className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
-        {HALLENSTEINS.detail}
-      </figcaption>
-      <div className="mt-8 flex flex-wrap gap-x-12 gap-y-4 border-t border-brand/15 pt-6">
-        <Stat value={HALLENSTEINS.lift} label="AI recommendation share" />
-        <Stat
-          value={HALLENSTEINS.shareAfter}
-          label={`Recommendation share in ${HALLENSTEINS.market}`}
-        />
-        <Stat value={HALLENSTEINS.brand} label="Apparel brand" />
-      </div>
-    </figure>
-  );
-}
+    <div className={cn("rounded-xl bg-card p-8 sm:p-12", className)}>
+      <StatBand stats={STATS} tone="ink" />
 
-function Stat({ value, label }: { value: string; label: string }) {
-  return (
-    <div>
-      <p
-        className="font-display text-3xl text-foreground sm:text-4xl"
-        style={{ fontStretch: "80%", fontWeight: 800 }}
-      >
-        {value}
-      </p>
-      <p className="mt-1 text-sm text-muted-foreground">{label}</p>
+      {/* QUOTE SLOT: awaiting named Hallensteins quote — do not fabricate */}
+
+      <div className="mt-10 border-t border-border pt-6">
+        <a
+          href="/case-studies/hallensteins"
+          className="group inline-flex items-center gap-1.5 text-sm font-medium text-accent underline-offset-4 hover:underline"
+        >
+          Read the full story →
+        </a>
+      </div>
     </div>
   );
 }
