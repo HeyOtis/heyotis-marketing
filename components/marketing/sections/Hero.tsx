@@ -45,10 +45,10 @@ export function Hero() {
           className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground"
           data-speakable
         >
-          HeyOtis measures how ChatGPT, Gemini, Perplexity and Claude
-          recommend your brand, finds the moves that grow your share, watches
-          the work land, and measures the lift. A closed loop — not another
-          dashboard.
+          HeyOtis measures how ChatGPT, Claude, Gemini, Perplexity and
+          Google AI Overviews recommend your brand, finds the moves that
+          grow your share, watches the work land, and measures the lift. A
+          closed loop — not another dashboard.
         </p>
 
         <div className="mt-9 flex flex-col items-center gap-3 sm:flex-row">
@@ -62,7 +62,7 @@ export function Hero() {
           </a>
         </div>
 
-        <div className="mt-14 flex w-full flex-col items-center gap-4">
+        <div className="mt-20 flex w-full flex-col items-center gap-4">
           <p className="label-mono text-[0.65rem] text-muted-foreground">
             Monitored across:
           </p>
@@ -75,7 +75,7 @@ export function Hero() {
             {AI_SOURCES.map(({ key, name, Icon }) => (
               <span
                 key={key}
-                className="flex h-24 w-44 flex-col items-center justify-center gap-2.5 rounded-lg bg-card text-foreground/80"
+                className="flex h-24 w-44 flex-col items-center justify-center gap-2.5 rounded-md bg-card text-foreground/80"
               >
                 <Icon size={28} />
                 <span className="text-sm font-medium tracking-tight">

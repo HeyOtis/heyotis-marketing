@@ -30,7 +30,7 @@ import { cn } from "@/lib/utils";
 export const metadata = buildMetadata({
   title: "Product features",
   description:
-    "Inside HeyOtis: Share of Voice, citations, competitive benchmarking and GA4 AI referral traffic across ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral.",
+    "Inside HeyOtis: Share of Voice, citations, competitive benchmarking and GA4 AI referral traffic across ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews.",
   path: "/features",
 });
 
@@ -464,7 +464,7 @@ const TABS: FeatureTab[] = [
       "Unbiased query generation",
       "Region & customer voice",
       "Review queue & scheduling",
-      "ChatGPT, Gemini, Perplexity, Claude, Meta AI, Mistral",
+      "ChatGPT, Claude, Gemini, Perplexity, Google AI Overviews",
     ],
     visual: <CampaignPanel />,
   },
@@ -529,7 +529,7 @@ const TABS: FeatureTab[] = [
       "AI referral traffic",
       "AI Traffic Share",
       "Conversions by source",
-      "ChatGPT, Gemini, Perplexity, Claude, Meta AI, Mistral",
+      "ChatGPT, Claude, Gemini, Perplexity, Google AI Overviews",
     ],
     visual: <TrafficPanel />,
   },
@@ -592,8 +592,8 @@ const DETECTORS: Detector[] = [
 
 const STATS = [
   {
-    value: 6,
-    label: "AI assistants monitored — ChatGPT, Gemini, Perplexity, Claude, Meta AI & Mistral",
+    value: 5,
+    label: "AI assistants monitored — ChatGPT, Claude, Gemini, Perplexity & Google AI Overviews",
   },
   {
     value: 6,
@@ -628,7 +628,7 @@ const FAQS: FaqItem[] = [
   },
   {
     q: "Which AI engines are supported?",
-    a: "HeyOtis monitors ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral — the assistants most people use to research and compare brands. Every campaign runs across all six, and we add engines as adoption grows.",
+    a: "HeyOtis monitors ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews — the assistants most people use to research and compare brands. Every campaign runs across all five, and we add engines as adoption grows.",
   },
   {
     q: "What are citations and why do they matter?",
@@ -685,7 +685,7 @@ export default function FeaturesPage() {
             data-speakable
           >
             HeyOtis runs scheduled campaigns of unbiased buyer-intent prompts
-            across ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral, measures your Share of Voice,
+            across ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews, measures your Share of Voice,
             the citations AI trusts and how you rank against named competitors —
             surfaces the opportunities that matter most, and ties it to AI
             referral traffic in GA4.
@@ -698,7 +698,7 @@ export default function FeaturesPage() {
 
       {/* Feature tabs — inside the platform. One nav dropdown links here per
           topic (visibility, sentiment, citations, competitors, campaigns,
-          traffic) — the tour covers all six inside this single section. */}
+          traffic) — the tour covers all five inside this single section. */}
       <Section surface="cream" id="visibility">
         <SectionHeading
           eyebrow="How HeyOtis works"
@@ -767,7 +767,7 @@ export default function FeaturesPage() {
             <SectionHeading
               eyebrow="Coverage"
               title="Across every assistant that matters"
-              sub="Your customers ask ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral what to buy. Every HeyOtis campaign runs across all six — visibility, sentiment, citations and the fan-out queries behind every answer."
+              sub="Your customers ask ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews what to buy. Every HeyOtis campaign runs across all five — visibility, sentiment, citations and the fan-out queries behind every answer."
             />
           </div>
           <AnswerReel />

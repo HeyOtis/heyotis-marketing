@@ -22,7 +22,7 @@ import { AiSourceLogos } from "@/components/marketing/visuals/AiSourceLogos";
 export const metadata = buildMetadata({
   title: "Free AI Visibility Report",
   description:
-    "We run your brand against ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral and send back a report showing where you're recommended, mentioned and missing.",
+    "We run your brand against ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews and send back a report showing where you're recommended, mentioned and missing.",
   path: "/report",
 });
 
@@ -31,7 +31,7 @@ const WHATS_IN_IT: { icon: LucideIcon; title: string; blurb: string }[] = [
     icon: BarChart3,
     title: "Share of voice snapshot",
     blurb:
-      "Where you stand today across ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral, on the prompts that matter to your category.",
+      "Where you stand today across ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews, on the prompts that matter to your category.",
   },
   {
     icon: ScanSearch,
@@ -66,7 +66,7 @@ const HOW_IT_WORKS: { step: string; icon: LucideIcon; title: string; blurb: stri
     icon: PlayCircle,
     title: "We run the campaign",
     blurb:
-      "HeyOtis runs a live campaign of buyer-intent prompts across all six assistants and captures exactly how each one answers.",
+      "HeyOtis runs a live campaign of buyer-intent prompts across all five assistants and captures exactly how each one answers.",
   },
   {
     step: "03",
@@ -112,8 +112,8 @@ export default function ReportPage() {
             className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground"
             data-speakable
           >
-            We run your brand against six AI assistants — ChatGPT, Gemini,
-            Perplexity, Claude, Meta AI and Mistral — and send back a report
+            We run your brand against five AI assistants — ChatGPT, Claude,
+            Gemini, Perplexity and Google AI Overviews — and send back a report
             showing where you&rsquo;re recommended, mentioned and missing.
           </p>
           <div className="mt-8">

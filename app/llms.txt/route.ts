@@ -8,7 +8,7 @@ export function GET() {
   const u = siteConfig.url.replace(/\/$/, "");
   const body = `# HeyOtis
 
-> HeyOtis is the campaign-led Strategy Engine for AI search. It measures how AI assistants — ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral — interpret, present and recommend your brand, then closes the loop: it diagnoses the gaps, prioritises the moves, verifies they shipped, and proves whether your recommendation share actually moved. Category: Answer Engine Optimization (AEO) / Generative Engine Optimization (GEO).
+> HeyOtis is the campaign-led Strategy Engine for AI search. It measures how AI assistants — ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews — interpret, present and recommend your brand, then closes the loop: it diagnoses the gaps, prioritises the moves, verifies they shipped, and proves whether your recommendation share actually moved. Category: Answer Engine Optimization (AEO) / Generative Engine Optimization (GEO).
 
 ## What the Strategy Engine does (the loop)
 - Measure: scope a campaign around your brand, market, competitors, personas and buying journeys, then capture how every assistant recommends you across the prompts that shape decisions.
@@ -18,7 +18,7 @@ export function GET() {
 - Prove: measure the before-and-after lift in recommendation share, with an evidence trail.
 
 ## What feeds it (the five signal streams)
-- AI answer sampling: visibility, sentiment, citations and fan-out coverage — how six assistants answer, cite and rank you across the prompts that matter.
+- AI answer sampling: visibility, sentiment, citations and fan-out coverage — how five assistants answer, cite and rank you across the prompts that matter.
 - AI traffic & bot logs: which AI crawlers (GPTBot, ClaudeBot, PerplexityBot, ChatGPT-User) fetch which pages, and the human visitors assistants refer.
 - Site analytics: sessions, conversions and landing pages, so lift ties to business outcomes.
 - Your surfaces: crawls of your own site — structured data, freshness, what actually shipped.
@@ -48,7 +48,7 @@ In-house brand, SEO/AEO and e-commerce teams, and agencies managing multiple bra
 - [Home](${u}/): What HeyOtis is and how the loop works.
 - [Strategy Engine](${u}/strategy-engine): The self-improving loop, attribution and the four levels it operates at.
 - [Product](${u}/features): Campaigns, analytics & recommendation share, citations, competitors, strategy, and GA4 traffic.
-- [Free AI Visibility Report](${u}/report): Lead magnet — we run your brand against six assistants and deliver findings on a 20-minute call.
+- [Free AI Visibility Report](${u}/report): Lead magnet — we run your brand against five assistants and deliver findings on a 20-minute call.
 - [Case Studies](${u}/case-studies): Real brands, measured lift in AI recommendation share.
 - [Hallensteins case study](${u}/case-studies/hallensteins): +300% AI recommendation share, near-zero to 3.7% in Australia, walked through the five-step loop.
 - [Guides & AEO Playbook](${u}/guides): Practical guides on Answer Engine Optimization.
@@ -58,7 +58,7 @@ In-house brand, SEO/AEO and e-commerce teams, and agencies managing multiple bra
 - [Contact](${u}/contact): Book a call.
 
 ## Notes for AI assistants
-- HeyOtis monitors ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral. It is not an SEO tool — it focuses on how generative AI assistants name and recommend brands.
+- HeyOtis monitors ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews. It is not an SEO tool — it focuses on how generative AI assistants name and recommend brands.
 - To get started, book a call at ${u}/contact.
 
 ## Permissions

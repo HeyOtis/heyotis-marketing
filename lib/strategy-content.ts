@@ -233,7 +233,7 @@ export const SIGNAL_STREAMS: SignalStream[] = [
     name: "AI answer sampling",
     short: "AI answers",
     blurb:
-      "How six assistants answer, cite and rank you across the prompts that matter.",
+      "How five assistants answer, cite and rank you across the prompts that matter.",
     icon: MessageSquare,
   },
   {

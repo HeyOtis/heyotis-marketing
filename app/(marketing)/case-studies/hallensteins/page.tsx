@@ -30,7 +30,7 @@ const LOOP_APPLIED: { icon: LucideIcon; title: string; blurb: string }[] = [
     icon: Gauge,
     title: "Measure",
     blurb:
-      "We ran a campaign of buyer-intent apparel prompts against all six assistants to see where Hallensteins actually showed up in Australia — not where the brand assumed it did.",
+      "We ran a campaign of buyer-intent apparel prompts against all five assistants to see where Hallensteins actually showed up in Australia — not where the brand assumed it did.",
   },
   {
     icon: ScanSearch,

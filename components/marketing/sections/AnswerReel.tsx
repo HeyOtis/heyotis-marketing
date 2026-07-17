@@ -6,8 +6,7 @@ import {
   Claude,
   Gemini,
   Perplexity,
-  MetaAI,
-  Mistral,
+  Google,
 } from "@lobehub/icons";
 import { AnimatePresence, motion, useInView } from "motion/react";
 import { useIsomorphicReducedMotion } from "@/lib/use-reduced-motion";
@@ -78,28 +77,16 @@ const ASSISTANTS: Assistant[] = [
     source: "your comparison page",
   },
   {
-    name: "Meta AI", Icon: MetaAI,
+    name: "Google AI Overviews", Icon: Google,
     verdict: { tone: "salmon", label: "Missing from the answer" },
-    query: "everyday face cream under $50",
+    query: "best everyday moisturiser",
     metrics: {
       visibility: { v: "3.2%", d: "▼ 0.8", up: false },
       sentiment: { v: "+0.08", d: "▼ 0.12", up: false },
       citations: { v: "1", d: "▼ 1", up: false },
       fanout: { v: "4/24", d: "— 0", up: false },
     },
-    source: "competitor blog",
-  },
-  {
-    name: "Mistral", Icon: Mistral,
-    verdict: { tone: "neutral", label: "Mentioned, not recommended" },
-    query: "clean beauty brands oceania",
-    metrics: {
-      visibility: { v: "9.8%", d: "▲ 2.2", up: true },
-      sentiment: { v: "+0.24", d: "▲ 0.02", up: true },
-      citations: { v: "4", d: "▲ 1", up: true },
-      fanout: { v: "7/24", d: "▲ 1", up: true },
-    },
-    source: "press coverage",
+    source: "competitor comparison page",
   },
 ];
 
@@ -112,7 +99,7 @@ const METRIC_LABELS: [keyof Assistant["metrics"], string][] = [
 ];
 
 /**
- * Nory's location reel, reinterpreted: the periwinkle banner cycles the six
+ * Nory's location reel, reinterpreted: the periwinkle banner cycles the five
  * assistants; the tile below shows each one's 30-day AEO record — verdict,
  * the fan-out query behind it, and the four metrics with movement. Decorative
  * (aria-hidden); the adjacent SectionHeading carries the semantics. Reduced

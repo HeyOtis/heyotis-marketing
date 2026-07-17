@@ -98,7 +98,7 @@ export default function GuidesPage() {
           <p className="max-w-xl text-base leading-relaxed text-muted-foreground">
             We&rsquo;re expanding these guides into a complete playbook. In
             the meantime, the fastest way to see where your own brand stands
-            is the free AI Visibility Report — a direct read of how six
+            is the free AI Visibility Report — a direct read of how five
             assistants answer for you today.
           </p>
           <BookCta

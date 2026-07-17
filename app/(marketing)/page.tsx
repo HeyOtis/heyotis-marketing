@@ -20,7 +20,7 @@ import { AnswerReel } from "@/components/marketing/sections/AnswerReel";
 export const metadata = buildMetadata({
   title: "See how AI recommends your brand",
   description:
-    "HeyOtis measures how ChatGPT, Gemini, Perplexity and Claude recommend your brand, finds the moves that grow your share, watches the work land, and measures the lift. A closed loop — not another dashboard.",
+    "HeyOtis measures how ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews recommend your brand, finds the moves that grow your share, watches the work land, and measures the lift. A closed loop — not another dashboard.",
   path: "/",
 });
 
@@ -46,11 +46,11 @@ const HONESTY_CLAIMS: { lead: string; body: string }[] = [
 const FAQS: FaqItem[] = [
   {
     q: "What is HeyOtis?",
-    a: "HeyOtis is an AI brand visibility platform. It measures how AI assistants like ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral recommend your brand — your Share of Voice, the citations they trust, and how you rank against competitors — and shows you where to focus to improve.",
+    a: "HeyOtis is an AI brand visibility platform. It measures how AI assistants like ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews recommend your brand — your Share of Voice, the citations they trust, and how you rank against competitors — and shows you where to focus to improve.",
   },
   {
     q: "How does HeyOtis track AI search visibility?",
-    a: "HeyOtis runs scheduled campaigns of unbiased, buyer-intent prompts against ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral, captures each answer, and measures whether and how your brand appears — including position, sentiment and the sources the AI cited.",
+    a: "HeyOtis runs scheduled campaigns of unbiased, buyer-intent prompts against ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews, captures each answer, and measures whether and how your brand appears — including position, sentiment and the sources the AI cited.",
   },
   {
     q: "How does HeyOtis prove AI actually drove the result?",
@@ -58,7 +58,7 @@ const FAQS: FaqItem[] = [
   },
   {
     q: "Which AI assistants does HeyOtis monitor?",
-    a: "HeyOtis monitors ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral — the assistants most people use to research and compare brands. We add engines as adoption grows.",
+    a: "HeyOtis monitors ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews — the assistants most people use to research and compare brands. We add engines as adoption grows.",
   },
   {
     q: "What is Share of Voice in AI search?",
@@ -140,7 +140,7 @@ export default function HomePage() {
             <SectionHeading
               eyebrow="Coverage"
               title="Measure, live — across every assistant that matters"
-              sub="Your customers ask ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral what to buy. HeyOtis watches all six — visibility, sentiment, citations and the fan-out queries behind every answer."
+              sub="Your customers ask ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews what to buy. HeyOtis watches all five — visibility, sentiment, citations and the fan-out queries behind every answer."
             />
           </div>
           <AnswerReel />
@@ -212,7 +212,7 @@ export default function HomePage() {
       </Section>
 
       <CtaBand
-        sub="Book a 20-minute walkthrough. We'll run your brand against ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral and show you exactly where you're losing the answer."
+        sub="Book a 20-minute walkthrough. We'll run your brand against ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews and show you exactly where you're losing the answer."
         secondary={null}
       />
     </>

@@ -11,17 +11,17 @@ export function GET() {
 > A plain-text overview of HeyOtis for AI assistants without live-crawl access. HeyOtis is the campaign-led Strategy Engine for AI search (Answer Engine Optimization / AEO).
 
 ## What HeyOtis is
-HeyOtis measures how AI assistants recommend your brand — then closes the loop. As buyers increasingly ask ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral what to buy, compare and trust, the AI's answer has become the new shortlist. HeyOtis shows whether your brand is on it, how you compare to named competitors, which sources the AI trusts, what to do about it, and whether your fixes actually moved your recommendation share.
+HeyOtis measures how AI assistants recommend your brand — then closes the loop. As buyers increasingly ask ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews what to buy, compare and trust, the AI's answer has become the new shortlist. HeyOtis shows whether your brand is on it, how you compare to named competitors, which sources the AI trusts, what to do about it, and whether your fixes actually moved your recommendation share.
 
 ## The Strategy Engine loop
-1. Measure: scope a campaign — brand, market, competitors, personas, buying journeys — auto-generate unbiased, buyer-intent prompts you review and approve, then run them across ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral on a schedule and capture how each one recommends you.
+1. Measure: scope a campaign — brand, market, competitors, personas, buying journeys — auto-generate unbiased, buyer-intent prompts you review and approve, then run them across ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews on a schedule and capture how each one recommends you.
 2. Diagnose: deterministic detectors surface the weak or missing signals behind absent or poor recommendations, each grounded in evidence.
 3. Prioritise: turn findings into a ranked action plan — opportunities by impact and effort, backed by the evidence beneath them.
 4. Verify: detectors confirm a recommended move actually shipped — no self-reporting.
 5. Prove: measure the before-and-after lift in recommendation share on the real metric, with an immutable evidence trail — then feed it back in.
 
 ## What feeds the engine (five signal streams)
-- AI answer sampling: visibility, sentiment, citations and fan-out coverage — how ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral answer, cite and rank you.
+- AI answer sampling: visibility, sentiment, citations and fan-out coverage — how ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews answer, cite and rank you.
 - AI traffic & bot logs: HeyOtis ingests your traffic and bot logs — which AI crawlers (GPTBot, ClaudeBot, PerplexityBot, ChatGPT-User) fetch which pages, and the human visitors assistants refer.
 - Site analytics: sessions, conversions and landing pages, so lift ties to business outcomes.
 - Your surfaces: crawls of your own site — structured data, freshness, what actually shipped.
@@ -50,7 +50,7 @@ Confident, wrong advice is the cheapest thing an AI product can make, and the mo
 Hallensteins grew AI recommendation share by 300% in Australia — from near-zero to 3.7% — after benchmarking where the brand stood, diagnosing the gaps and improving the signals that mattered. Read the full walkthrough (measure, diagnose, prioritise, verify, prove) at ${u}/case-studies/hallensteins.
 
 ## Engines monitored
-ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral.
+ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews.
 
 ## Who it's for
 In-house brand marketing, SEO/AEO and e-commerce teams, and agencies managing multiple brands. Strong fit for retail and consumer brands.
@@ -63,7 +63,7 @@ Sold through a sales-led model with plans that scale with your needs — Plans (
 
 ## Getting started
 - Book a 20-minute walkthrough at ${u}/contact — we run your brand, surface the highest-impact moves, and show how the loop proves the lift.
-- Or start with the free AI Visibility Report at ${u}/report: tell us your brand, market and competitors, HeyOtis runs a live campaign of buyer-intent prompts across all six assistants, and we deliver the findings — a share-of-voice snapshot, per-assistant verdicts, top citations won and lost, and three prioritised moves — on a 20-minute call.
+- Or start with the free AI Visibility Report at ${u}/report: tell us your brand, market and competitors, HeyOtis runs a live campaign of buyer-intent prompts across all five assistants, and we deliver the findings — a share-of-voice snapshot, per-assistant verdicts, top citations won and lost, and three prioritised moves — on a 20-minute call.
 
 ## Navigation (loop-ordered)
 - Platform ▾ — the four Platform dropdown groups trace the loop in order: Measure (AI Visibility & Share of Voice, Answer Sentiment, Citations & Sources, Competitor Head-to-Head), Diagnose (The Strategy Engine, Evidence & Findings), Act (Prioritised Recommendations, Campaigns), Prove (Implementation Tracking, AI Traffic & Attribution). A footer link inside the dropdown, "How the loop works", points to ${u}/#loop.
