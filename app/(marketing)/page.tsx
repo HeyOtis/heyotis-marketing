@@ -85,30 +85,16 @@ export default function HomePage() {
 
       <PlatformCard />
 
-      {/* The three pillars — deep-panel product stories */}
-      <PillarSections />
-
-      {/* The stakes */}
-      <Section surface="card">
-        <SectionHeading
-          align="center"
-          eyebrow="The stakes"
-          title="The answer is the new shortlist."
-          sub="When someone asks an assistant what to buy, they don't get ten blue links to weigh up. They get three names. You're on that list or you're invisible — and there's no page two to climb."
-          className="mx-auto max-w-2xl"
-        />
-      </Section>
-
-      {/* The wound */}
-      <Section surface="cream">
+      {/* The wound — breaks up the product sections; title right, body left */}
+      <Section surface="cream" className="pt-0 md:pt-0">
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-16">
           <h2
-            className="display-md text-balance text-foreground"
+            className="display-md text-balance text-foreground lg:order-2"
             style={{ letterSpacing: "-0.02em" }}
           >
             Knowing you&rsquo;re invisible doesn&rsquo;t make you visible.
           </h2>
-          <div className="flex flex-col gap-5 text-lg leading-relaxed text-muted-foreground">
+          <div className="flex flex-col gap-5 text-lg leading-relaxed text-muted-foreground lg:order-1">
             <p>
               Every tool in this category will show you a number of
               &ldquo;opportunities&rdquo; and wish you luck. Nothing checks
@@ -121,6 +107,20 @@ export default function HomePage() {
             </p>
           </div>
         </div>
+      </Section>
+
+      {/* The three pillars — deep-panel product stories */}
+      <PillarSections />
+
+      {/* The stakes */}
+      <Section surface="card">
+        <SectionHeading
+          align="center"
+          eyebrow="The stakes"
+          title="The answer is the new shortlist."
+          sub="When someone asks an assistant what to buy, they don't get ten blue links to weigh up. They get three names. You're on that list or you're invisible — and there's no page two to climb."
+          className="mx-auto max-w-2xl"
+        />
       </Section>
 
       {/* The loop */}
