@@ -85,6 +85,9 @@ export default function HomePage() {
 
       <PlatformCard />
 
+      {/* The three pillars — deep-panel product stories */}
+      <PillarSections />
+
       {/* The stakes */}
       <Section surface="card">
         <SectionHeading
@@ -178,8 +181,6 @@ export default function HomePage() {
 
       <ReportBand />
 
-      {/* The three pillars — deep-panel product stories */}
-      <PillarSections />
 
       {/* What you get — feature cards */}
       <Section surface="cream">
