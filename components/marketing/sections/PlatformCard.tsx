@@ -118,7 +118,7 @@ function Bars({ heights, live }: { heights: number[]; live: boolean }) {
 
 function MetricTile({ tile, live }: { tile: (typeof TILES)[number]; live: boolean }) {
   return (
-    <div className="rounded-xl bg-card p-4">
+    <div className="rounded-lg bg-card p-4">
       <p className="label-mono text-[0.6rem] text-muted-foreground">{tile.cap}</p>
       <div className="mt-1.5">{tile.render(live)}</div>
     </div>
@@ -151,13 +151,16 @@ export function PlatformCard() {
 
   return (
     <Section surface="cream" id="product">
+      {/* Proportions mirror Nory's platform card: a tall white card, the
+          heading vertically centred, and the metric stack floating narrow
+          inside a generous beige stage. */}
       <div
         ref={ref}
-        className="grid items-center gap-10 rounded-xl bg-card p-6 sm:p-10 lg:grid-cols-[1fr_1.05fr] lg:gap-16"
+        className="grid items-center gap-10 rounded-lg bg-card px-6 py-12 sm:px-12 sm:py-16 lg:grid-cols-[1fr_1.1fr] lg:gap-16 lg:px-16 lg:py-24"
       >
         <div>
           <Eyebrow>The platform</Eyebrow>
-          <h2 className="display-md mt-4 max-w-md text-balance text-foreground" style={{ letterSpacing: "-0.02em" }}>
+          <h2 className="mt-4 max-w-md text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
             Your brand&rsquo;s standing in AI search, in one place
           </h2>
           <p className="mt-4 max-w-md text-muted-foreground">
@@ -173,33 +176,35 @@ export function PlatformCard() {
         </div>
 
         <div aria-hidden>
-          <Stage>
-            <BannerTile icon={Crosshair} label="Everyday range · NZ" right="Sample" />
-            {reduced ? (
-              <div className="mt-3 flex flex-col gap-3">
-                <MetricTile tile={TILES[0]} live={false} />
-                <MetricTile tile={TILES[1]} live={false} />
-              </div>
-            ) : (
-              <div className="relative mt-3 h-[264px] overflow-hidden">
-                <AnimatePresence initial={false} mode="popLayout">
-                  {visible.map(({ key, tile }) => (
-                    <motion.div
-                      key={key}
-                      layout
-                      initial={{ opacity: 0, y: 28 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -28 }}
-                      transition={{ duration: 0.6, ease: EASE }}
-                      className="mb-3"
-                    >
-                      <MetricTile tile={tile} live={playing} />
-                    </motion.div>
-                  ))}
-                </AnimatePresence>
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-stage to-transparent" />
-              </div>
-            )}
+          <Stage className="flex items-center justify-center px-6 py-10 sm:px-10 sm:py-14">
+            <div className="w-full max-w-[24rem]">
+              <BannerTile icon={Crosshair} label="Everyday range · NZ" right="Sample" />
+              {reduced ? (
+                <div className="mt-3 flex flex-col gap-3">
+                  <MetricTile tile={TILES[0]} live={false} />
+                  <MetricTile tile={TILES[1]} live={false} />
+                </div>
+              ) : (
+                <div className="relative mt-3 h-[264px] overflow-hidden">
+                  <AnimatePresence initial={false} mode="popLayout">
+                    {visible.map(({ key, tile }) => (
+                      <motion.div
+                        key={key}
+                        layout
+                        initial={{ opacity: 0, y: 28 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -28 }}
+                        transition={{ duration: 0.6, ease: EASE }}
+                        className="mb-3"
+                      >
+                        <MetricTile tile={tile} live={playing} />
+                      </motion.div>
+                    ))}
+                  </AnimatePresence>
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-stage to-transparent" />
+                </div>
+              )}
+            </div>
           </Stage>
         </div>
       </div>

@@ -137,7 +137,7 @@ export function AnswerReel({ className }: { className?: string }) {
   return (
     <div ref={ref} aria-hidden className={className}>
       <Stage>
-        <div className="relative overflow-hidden rounded-xl">
+        <div className="relative overflow-hidden rounded-lg">
           <AnimatePresence initial={false} mode="popLayout">
             <motion.div
               key={a.name}
@@ -146,7 +146,7 @@ export function AnswerReel({ className }: { className?: string }) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -22 }}
               transition={{ duration: 0.5, ease: EASE }}
-              className="flex items-center gap-2.5 rounded-xl bg-periwinkle px-4 py-2.5"
+              className="flex items-center gap-2.5 rounded-lg bg-periwinkle px-4 py-2.5"
             >
               <span className="flex size-6 items-center justify-center rounded-lg bg-card/80">
                 <Icon size={15} />
@@ -170,7 +170,7 @@ export function AnswerReel({ className }: { className?: string }) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.45, ease: EASE }}
-              className="rounded-xl bg-card p-4"
+              className="rounded-lg bg-card p-4"
             >
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <Chip tone={a.verdict.tone}>{a.verdict.label}</Chip>
