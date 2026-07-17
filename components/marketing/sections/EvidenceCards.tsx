@@ -53,7 +53,7 @@ function FindingsPills({ playing, reduced }: { playing: boolean; reduced: boolea
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.4, ease: EASE }}
-                  className="flex w-fit items-center gap-2 rounded-full bg-card py-1.5 pl-2 pr-3.5 shadow-sm"
+                  className="flex w-fit items-center gap-2 rounded-full bg-card py-1.5 pl-2 pr-3.5"
                 >
                   <Chip tone={p.tone} className="rounded-full px-1.5 py-1">
                     <Icon className="size-3.5" strokeWidth={2.25} />
@@ -112,7 +112,7 @@ function SignalCluster({ playing, reduced }: { playing: boolean; reduced: boolea
             />
           ))}
         </svg>
-        <span className="absolute left-1/2 top-[52%] flex size-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-2xl bg-surface-dark shadow-md">
+        <span className="absolute left-1/2 top-[52%] flex size-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-xl bg-surface-dark">
           <LogoGlyph className="h-6 w-6" />
         </span>
         {SIGNAL_STREAMS.map((s, i) => {
@@ -126,8 +126,8 @@ function SignalCluster({ playing, reduced }: { playing: boolean; reduced: boolea
               transition={{ duration: 0.35, delay: i * 0.09, ease: EASE }}
               style={{ left: CLUSTER_POS[i].left, top: CLUSTER_POS[i].top }}
               className={cn(
-                "absolute flex -translate-x-1/2 -translate-y-1/2 items-center gap-1.5 rounded-xl bg-card px-2.5 py-1.5 shadow-sm transition-shadow duration-300",
-                !reduced && hot === i && "shadow-[0_0_0_2px_var(--periwinkle)]",
+                "absolute flex -translate-x-1/2 -translate-y-1/2 items-center gap-1.5 rounded-xl bg-card px-2.5 py-1.5 ring-periwinkle transition-shadow duration-300",
+                !reduced && hot === i && "ring-2",
               )}
             >
               <Icon className="size-3.5 text-accent" strokeWidth={2} />
@@ -156,7 +156,7 @@ export function EvidenceCards() {
   return (
     <Section surface="cream" className="pt-0 md:pt-0">
       <div ref={ref} className="grid gap-5 md:grid-cols-2">
-        <div className="rounded-2xl bg-card p-6 sm:p-8">
+        <div className="rounded-xl bg-card p-6 sm:p-8">
           <Eyebrow>Findings, not guesses</Eyebrow>
           <h3 className="mt-3 text-xl font-semibold tracking-tight text-foreground">
             The engine tells you what changed — with evidence
@@ -169,7 +169,7 @@ export function EvidenceCards() {
             <FindingsPills playing={playing} reduced={reduced} />
           </div>
         </div>
-        <div className="rounded-2xl bg-card p-6 sm:p-8">
+        <div className="rounded-xl bg-card p-6 sm:p-8">
           <Eyebrow>Every signal, one model</Eyebrow>
           <h3 className="mt-3 text-xl font-semibold tracking-tight text-foreground">
             Answers, bot logs, analytics and your own pages — together

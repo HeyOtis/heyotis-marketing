@@ -170,7 +170,7 @@ export function AnswerReel({ className }: { className?: string }) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.45, ease: EASE }}
-              className="rounded-xl bg-card p-4 shadow-sm"
+              className="rounded-xl bg-card p-4"
             >
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <Chip tone={a.verdict.tone}>{a.verdict.label}</Chip>

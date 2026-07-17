@@ -10,7 +10,7 @@ export function Stage({
   children: React.ReactNode;
 }) {
   return (
-    <div className={cn("rounded-2xl bg-stage p-4 sm:p-5", className)}>
+    <div className={cn("rounded-xl bg-stage p-4 sm:p-5", className)}>
       {children}
     </div>
   );

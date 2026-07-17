@@ -66,7 +66,7 @@ function DiagnoseScene() {
         <motion.div
           key={r.text}
           variants={item}
-          className="flex items-center gap-2 rounded-lg bg-card px-3 py-1.5 shadow-sm"
+          className="flex items-center gap-2 rounded-lg bg-card px-3 py-1.5"
         >
           {r.warn ? (
             <TriangleAlert className={cn("size-3.5", AMBER)} />
@@ -107,7 +107,7 @@ function PrioritizeScene({ live }: { live: boolean }) {
           layout={live}
           variants={item}
           transition={{ duration: 0.5, ease: EASE }}
-          className="flex items-center gap-2 rounded-lg bg-card px-3 py-1.5 shadow-sm"
+          className="flex items-center gap-2 rounded-lg bg-card px-3 py-1.5"
         >
           <span className="min-w-0 flex-1 truncate text-xs font-medium text-foreground">
             {m.text}
@@ -144,7 +144,7 @@ function ProveScene() {
       ].map((b) => (
         <motion.div key={b.cap} variants={item} className="flex items-center gap-2">
           <span className="label-mono w-10 text-[0.6rem] text-muted-foreground">{b.cap}</span>
-          <span className="h-2 flex-1 overflow-hidden rounded-full bg-card shadow-sm">
+          <span className="h-2 flex-1 overflow-hidden rounded-full bg-card">
             <motion.span
               variants={barFill}
               style={{ width: b.w }}
@@ -209,7 +209,7 @@ export function LoopBento({
             initial={reduced ? false : { opacity: 0, y: 18 }}
             animate={{ opacity: live || reduced ? 1 : 0, y: live || reduced ? 0 : 18 }}
             transition={{ duration: 0.55, delay: ci * 0.1, ease: EASE }}
-            className="rounded-2xl bg-card p-5 sm:p-6"
+            className="rounded-xl bg-card p-5 sm:p-6"
           >
             <div className="flex flex-wrap items-center gap-2">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-periwinkle/35 px-2.5 py-1 text-[0.65rem] font-bold tracking-wide text-foreground">

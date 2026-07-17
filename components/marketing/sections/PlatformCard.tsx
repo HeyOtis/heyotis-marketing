@@ -118,7 +118,7 @@ function Bars({ heights, live }: { heights: number[]; live: boolean }) {
 
 function MetricTile({ tile, live }: { tile: (typeof TILES)[number]; live: boolean }) {
   return (
-    <div className="rounded-xl bg-card p-4 shadow-sm">
+    <div className="rounded-xl bg-card p-4">
       <p className="label-mono text-[0.6rem] text-muted-foreground">{tile.cap}</p>
       <div className="mt-1.5">{tile.render(live)}</div>
     </div>
@@ -153,7 +153,7 @@ export function PlatformCard() {
     <Section surface="cream" id="product">
       <div
         ref={ref}
-        className="grid items-center gap-10 rounded-2xl bg-card p-6 sm:p-10 lg:grid-cols-[1fr_1.05fr] lg:gap-16"
+        className="grid items-center gap-10 rounded-xl bg-card p-6 sm:p-10 lg:grid-cols-[1fr_1.05fr] lg:gap-16"
       >
         <div>
           <Eyebrow>The platform</Eyebrow>
