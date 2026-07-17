@@ -60,11 +60,11 @@ function AeoVignette({ live }: { live: boolean }) {
 
 const AGENTS = [
   "GPTBot",
-  "ChatGPT-User",
-  "ClaudeBot",
   "PerplexityBot",
-  "Google-Extended",
-  "OAI-SearchBot",
+  "ClaudeBot",
+  "GoogleBot",
+  "GoogleExtended",
+  "OAISearchBot",
 ];
 
 function AgentVignette({ live }: { live: boolean }) {
