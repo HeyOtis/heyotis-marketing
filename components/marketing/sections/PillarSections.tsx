@@ -10,7 +10,13 @@ import { Chip } from "@/components/marketing/primitives/stage";
 import { Marquee } from "@/components/ui/marquee";
 import { cn } from "@/lib/utils";
 
-/* ── Vignette 1: AEO Insights — cream metric tiles on the warm panel ─────── */
+/* ── Vignette 1: Campaigns — the buyer-intent queries themselves ─────────── */
+
+const CAMPAIGN_QUERIES = [
+  "best everyday skincare nz",
+  "gentle moisturiser for sensitive skin",
+  "top skincare brands nz",
+];
 
 function AeoVignette({ live }: { live: boolean }) {
   const tile = {
@@ -24,33 +30,30 @@ function AeoVignette({ live }: { live: boolean }) {
       animate="show"
       className="flex w-full max-w-[19rem] flex-col gap-3"
     >
-      <div className="flex gap-3">
-        <motion.div variants={tile} className="rounded-md bg-background px-4 py-3">
-          <p className="label-mono text-[0.55rem] text-muted-foreground">Visibility</p>
-          <p className="text-xl font-bold tabular-nums tracking-tight text-foreground">34.8%</p>
+      <motion.div
+        variants={tile}
+        className="flex items-baseline justify-between rounded-md bg-background px-4 py-3"
+      >
+        <p className="label-mono text-[0.55rem] text-muted-foreground">
+          Everyday range · NZ
+        </p>
+        <p className="text-sm font-bold tabular-nums tracking-tight text-foreground">
+          24 prompts · 5 assistants
+        </p>
+      </motion.div>
+      {CAMPAIGN_QUERIES.map((q) => (
+        <motion.div
+          key={q}
+          variants={tile}
+          className="rounded-md bg-background px-4 py-3"
+        >
+          <p className="text-sm font-medium tracking-tight text-foreground">
+            &ldquo;{q}&rdquo;
+          </p>
         </motion.div>
-        <motion.div variants={tile} className="flex-1 rounded-md bg-background px-4 py-3">
-          <p className="label-mono text-[0.55rem] text-muted-foreground">ChatGPT verdict</p>
-          <p className="text-xl font-bold tracking-tight text-foreground">Recommended</p>
-        </motion.div>
-      </div>
-      <motion.div variants={tile} className="rounded-md bg-background px-4 py-3">
-        <div className="flex items-baseline justify-between">
-          <p className="label-mono text-[0.55rem] text-muted-foreground">Share of voice · 30 days</p>
-          <Chip tone="lime" className="text-[0.6rem]">▲ 12.4 pts</Chip>
-        </div>
-        <div aria-hidden className="mt-2 flex h-12 items-end gap-1.5">
-          {[30, 38, 42, 47, 58, 66, 84].map((h, i) => (
-            <span
-              key={i}
-              style={{ height: `${h}%` }}
-              className={cn(
-                "flex-1 origin-bottom rounded-t",
-                i >= 5 ? "bg-brand" : "bg-periwinkle/70",
-              )}
-            />
-          ))}
-        </div>
+      ))}
+      <motion.div variants={tile}>
+        <Chip tone="lime">✓ answered weekly, every assistant</Chip>
       </motion.div>
     </motion.div>
   );

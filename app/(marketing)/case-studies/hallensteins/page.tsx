@@ -176,7 +176,7 @@ export default function HallensteinsCaseStudyPage() {
           className="max-w-2xl"
         />
         <Reveal delay={0.1}>
-          <StatBand stats={RESULT_STATS} tone="ink" className="mt-12" />
+          <StatBand stats={RESULT_STATS} tone="ink" cols={2} className="mt-12" />
         </Reveal>
 
         {/* QUOTE SLOT: awaiting named Hallensteins quote — do not fabricate */}

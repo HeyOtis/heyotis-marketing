@@ -23,8 +23,8 @@ const STATS: Stat[] = [
 
 export function ProofHallensteins({ className }: { className?: string }) {
   return (
-    <div className={cn("rounded-xl bg-card p-8 sm:p-12", className)}>
-      <StatBand stats={STATS} tone="ink" />
+    <div className={cn("rounded-lg bg-card p-8 sm:p-12", className)}>
+      <StatBand stats={STATS} tone="ink" cols={2} />
 
       {/* QUOTE SLOT: awaiting named Hallensteins quote — do not fabricate */}
 

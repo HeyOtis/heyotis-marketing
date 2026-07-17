@@ -5,7 +5,6 @@ import { buildMetadata } from "@/lib/seo";
 import { Hero } from "@/components/marketing/sections/Hero";
 import { PlatformCard } from "@/components/marketing/sections/PlatformCard";
 import { FindingsPills } from "@/components/marketing/sections/EvidenceCards";
-import { FeatureCards } from "@/components/marketing/sections/FeatureCards";
 import { LoopBento } from "@/components/marketing/visuals/LoopBento";
 import { CompoundingBand } from "@/components/marketing/sections/CompoundingBand";
 import { ReportBand } from "@/components/marketing/sections/ReportBand";
@@ -83,6 +82,17 @@ export default function HomePage() {
 
       <Hero />
 
+      {/* The stakes */}
+      <Section surface="card">
+        <SectionHeading
+          align="center"
+          eyebrow="The stakes"
+          title="The answer is the new shortlist."
+          sub="When someone asks an assistant what to buy, they don't get ten blue links to weigh up. They get three names. You're on that list or you're invisible — and there's no page two to climb."
+          className="mx-auto max-w-2xl"
+        />
+      </Section>
+
       <PlatformCard />
 
       {/* The wound — breaks up the product sections; title right, body left */}
@@ -112,16 +122,6 @@ export default function HomePage() {
       {/* The three pillars — deep-panel product stories */}
       <PillarSections />
 
-      {/* The stakes */}
-      <Section surface="card">
-        <SectionHeading
-          align="center"
-          eyebrow="The stakes"
-          title="The answer is the new shortlist."
-          sub="When someone asks an assistant what to buy, they don't get ten blue links to weigh up. They get three names. You're on that list or you're invisible — and there's no page two to climb."
-          className="mx-auto max-w-2xl"
-        />
-      </Section>
 
       {/* The loop */}
       <Section surface="card" id="loop">
@@ -182,18 +182,6 @@ export default function HomePage() {
       <ReportBand />
 
 
-      {/* What you get — feature cards */}
-      <Section surface="cream">
-        <SectionHeading
-          eyebrow="What you get"
-          title="Everything you'd expect. Wired to something that acts."
-          sub="The measurement that proves where you stand, and a clear view of where to focus next."
-          className="max-w-2xl"
-        />
-        <div className="mt-12">
-          <FeatureCards />
-        </div>
-      </Section>
 
       {/* Proof */}
       <Section surface="card">
