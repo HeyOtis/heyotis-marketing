@@ -23,7 +23,7 @@ export function Nav() {
   // Close the mobile menu on route hash / resize to desktop.
   React.useEffect(() => {
     const onResize = () => {
-      if (window.innerWidth >= 768) setOpen(false);
+      if (window.innerWidth >= 1024) setOpen(false);
     };
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
@@ -57,7 +57,7 @@ export function Nav() {
 
           <nav
             aria-label="Primary"
-            className="hidden items-center gap-8 md:flex"
+            className="hidden items-center gap-8 lg:flex"
           >
             {siteConfig.nav.map((item) => (
               <Link
@@ -75,7 +75,7 @@ export function Nav() {
               href={siteConfig.appUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden text-sm font-medium text-foreground/70 transition-colors hover:text-foreground md:inline-flex"
+              className="hidden text-sm font-medium text-foreground/70 transition-colors hover:text-foreground lg:inline-flex"
             >
               Log in
             </a>
@@ -87,7 +87,7 @@ export function Nav() {
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
               aria-controls="mobile-menu"
-              className="inline-flex size-9 items-center justify-center rounded-full text-foreground transition-colors hover:bg-secondary md:hidden"
+              className="inline-flex size-9 items-center justify-center rounded-full text-foreground transition-colors hover:bg-secondary lg:hidden"
             >
               {open ? <X className="size-5" /> : <Menu className="size-5" />}
             </button>
@@ -97,7 +97,7 @@ export function Nav() {
         <div
           id="mobile-menu"
           hidden={!open}
-          className="border-t border-border/60 md:hidden"
+          className="border-t border-border/60 lg:hidden"
         >
           <nav
             aria-label="Mobile"

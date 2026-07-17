@@ -2,9 +2,10 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema, faqPageSchema } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
 import { Hero } from "@/components/marketing/sections/Hero";
-import { ProductReveal } from "@/components/marketing/sections/ProductReveal";
+import { PlatformCard } from "@/components/marketing/sections/PlatformCard";
+import { EvidenceCards } from "@/components/marketing/sections/EvidenceCards";
 import { FeatureCards } from "@/components/marketing/sections/FeatureCards";
-import { StrategyLoopOrbit } from "@/components/marketing/visuals/StrategyLoopOrbit";
+import { LoopBento } from "@/components/marketing/visuals/LoopBento";
 import { ProofHalenstein } from "@/components/marketing/sections/ProofHalenstein";
 import { Reveal } from "@/components/marketing/primitives/Reveal";
 import { StatBand } from "@/components/marketing/sections/StatBand";
@@ -12,7 +13,7 @@ import { CtaBand } from "@/components/marketing/sections/CtaBand";
 import { Faq, faqItemsToSchema, type FaqItem } from "@/components/marketing/sections/Faq";
 import { Section } from "@/components/marketing/primitives/Section";
 import { SectionHeading } from "@/components/marketing/primitives/SectionHeading";
-import { AiSourceBeam } from "@/components/marketing/visuals/AiSourceBeam";
+import { AnswerReel } from "@/components/marketing/sections/AnswerReel";
 
 export const metadata = buildMetadata({
   title: "See how AI recommends your brand",
@@ -21,10 +22,6 @@ export const metadata = buildMetadata({
 
 const STATS = [
   {
-    value: 6,
-    label: "AI assistants monitored — ChatGPT, Gemini, Perplexity, Claude, Meta AI & Mistral",
-  },
-  {
     value: 300,
     prefix: "+",
     suffix: "%",
@@ -32,14 +29,14 @@ const STATS = [
     customer: "Halenstein",
   },
   {
+    value: 6,
+    label:
+      "AI assistants monitored — ChatGPT, Gemini, Perplexity, Claude, Meta AI & Mistral",
+  },
+  {
     value: 24,
     suffix: "/7",
     label: "Always-on tracking of how AI answers about you",
-  },
-  {
-    value: 100,
-    suffix: "%",
-    label: "Of your named competitor set, benchmarked head-to-head",
   },
 ];
 
@@ -82,7 +79,9 @@ export default function HomePage() {
 
       <Hero />
 
-      <ProductReveal />
+      <PlatformCard />
+
+      <EvidenceCards />
 
       {/* Why it matters + illustrative outcomes */}
       <Section surface="card">
@@ -94,7 +93,7 @@ export default function HomePage() {
           className="mx-auto max-w-3xl"
         />
         <div className="mt-14">
-          <StatBand stats={STATS} />
+          <StatBand stats={STATS} className="lg:grid-cols-3" />
         </div>
       </Section>
 
@@ -107,7 +106,7 @@ export default function HomePage() {
           className="max-w-2xl"
         />
         <div className="mt-12">
-          <StrategyLoopOrbit compact />
+          <LoopBento compact />
         </div>
         <div className="mt-10">
           <a
@@ -119,17 +118,17 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* Coverage — animated beam */}
+      {/* Coverage — answer reel */}
       <Section surface="card">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
             <SectionHeading
               eyebrow="Coverage"
               title="Across every assistant that matters"
-              sub="Your customers ask ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral what to buy, compare and trust. HeyOtis watches all six — capturing how each one answers, who it recommends, and which sources it leans on."
+              sub="Your customers ask ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral what to buy. HeyOtis watches all six — visibility, sentiment, citations and the fan-out queries behind every answer."
             />
           </div>
-          <AiSourceBeam />
+          <AnswerReel />
         </div>
       </Section>
 

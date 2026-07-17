@@ -48,6 +48,11 @@
   --soft-orange: oklch(0.85 0.1 70);
   --sky: oklch(0.85 0.1 230);
 
+  /* Nory-grammar card system (2026-07 visual rebuild) */
+  --stage: oklch(0.945 0.012 85);        /* warm beige inset panels   */
+  --periwinkle: oklch(0.75 0.1 285);     /* banner tiles, dark text   */
+  --lime: oklch(0.9 0.17 125);           /* positive delta/status     */
+
   /* chart tokens (mock product visuals — reused from the platform) */
   --chart-1: oklch(0.68 0.1 280);
   --chart-2: oklch(0.65 0.18 230);
@@ -98,6 +103,10 @@
   --color-coral: var(--coral);
   --color-soft-orange: var(--soft-orange);
   --color-sky: var(--sky);
+
+  --color-stage: var(--stage);
+  --color-periwinkle: var(--periwinkle);
+  --color-lime: var(--lime);
 
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);

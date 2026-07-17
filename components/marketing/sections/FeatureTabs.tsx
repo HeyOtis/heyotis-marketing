@@ -126,8 +126,10 @@ export function FeatureTabs({
           setKeyboardFocus(false);
       }}
     >
-      {/* Tab list + pause control */}
-      <div className="lg:col-span-5">
+      {/* Tab list + pause control. min-w-0: without it the grid track
+          inherits the tab rail's scroll-content width (sum of shrink-0
+          buttons) as min-content and the whole section overflows on mobile. */}
+      <div className="min-w-0 lg:col-span-5">
         <div
           role="tablist"
           aria-label="Features"
@@ -198,7 +200,7 @@ export function FeatureTabs({
       {/* Active panel — hovering/focusing here pauses the tour so content
           isn't yanked while the visitor is reading it. */}
       <div
-        className="lg:col-span-7"
+        className="min-w-0 lg:col-span-7"
         role="tabpanel"
         id="feature-tabpanel"
         aria-labelledby={`feattab-${current.id}`}

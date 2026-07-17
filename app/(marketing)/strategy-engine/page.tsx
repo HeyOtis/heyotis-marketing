@@ -6,7 +6,7 @@ import { Eyebrow } from "@/components/marketing/primitives/Eyebrow";
 import { BookCta } from "@/components/marketing/primitives/BookCta";
 import { Reveal } from "@/components/marketing/primitives/Reveal";
 import { AiSourceLogos } from "@/components/marketing/visuals/AiSourceLogos";
-import { StrategyLoopOrbit } from "@/components/marketing/visuals/StrategyLoopOrbit";
+import { LoopBento } from "@/components/marketing/visuals/LoopBento";
 import { OpportunityBoard } from "@/components/marketing/visuals/OpportunityBoard";
 import { SignalIntake } from "@/components/marketing/visuals/SignalIntake";
 import { CompoundingChart } from "@/components/marketing/visuals/CompoundingChart";
@@ -166,7 +166,7 @@ export default function StrategyEnginePage() {
           className="max-w-2xl"
         />
         <div className="mt-12">
-          <StrategyLoopOrbit />
+          <LoopBento />
         </div>
       </Section>
 

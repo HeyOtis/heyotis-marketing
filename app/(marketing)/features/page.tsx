@@ -24,7 +24,7 @@ import { StatBand } from "@/components/marketing/sections/StatBand";
 import { CtaBand } from "@/components/marketing/sections/CtaBand";
 import { Faq, faqItemsToSchema, type FaqItem } from "@/components/marketing/sections/Faq";
 import { MockDashboard } from "@/components/marketing/visuals/MockDashboard";
-import { AiSourceBeam } from "@/components/marketing/visuals/AiSourceBeam";
+import { AnswerReel } from "@/components/marketing/sections/AnswerReel";
 import { cn } from "@/lib/utils";
 
 export const metadata = buildMetadata({
@@ -753,17 +753,17 @@ export default function FeaturesPage() {
         </div>
       </Section>
 
-      {/* Coverage — animated beam */}
+      {/* Coverage — answer reel */}
       <Section surface="cream">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
             <SectionHeading
               eyebrow="Coverage"
               title="Across every assistant that matters"
-              sub="Your customers ask ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral what to buy, compare and trust. Every HeyOtis campaign runs across all six — capturing how each one answers, who it recommends, and which sources it leans on."
+              sub="Your customers ask ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral what to buy. Every HeyOtis campaign runs across all six — visibility, sentiment, citations and the fan-out queries behind every answer."
             />
           </div>
-          <AiSourceBeam />
+          <AnswerReel />
         </div>
       </Section>
 
