@@ -14,12 +14,11 @@ export function GET() {
 HeyOtis measures how AI assistants recommend your brand — then closes the loop. As buyers increasingly ask ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral what to buy, compare and trust, the AI's answer has become the new shortlist. HeyOtis shows whether your brand is on it, how you compare to named competitors, which sources the AI trusts, what to do about it, and whether your fixes actually moved your recommendation share.
 
 ## The Strategy Engine loop
-1. Define: scope a campaign — brand, market, competitors, personas, buying journeys. HeyOtis auto-generates unbiased, buyer-intent prompts you review and approve.
-2. Measure: run the prompts across ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral on a schedule; capture how each one recommends you.
-3. Diagnose: deterministic detectors surface the weak or missing signals behind absent or poor recommendations, each grounded in evidence.
-4. Prioritize: turn findings into a ranked action plan — opportunities by impact and effort, backed by the evidence beneath them.
-5. Verify: detectors confirm a recommended move actually shipped — no self-reporting.
-6. Prove: measure the before-and-after lift in recommendation share on the real metric, with an immutable evidence trail — then feed it back in.
+1. Measure: scope a campaign — brand, market, competitors, personas, buying journeys — auto-generate unbiased, buyer-intent prompts you review and approve, then run them across ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral on a schedule and capture how each one recommends you.
+2. Diagnose: deterministic detectors surface the weak or missing signals behind absent or poor recommendations, each grounded in evidence.
+3. Prioritise: turn findings into a ranked action plan — opportunities by impact and effort, backed by the evidence beneath them.
+4. Verify: detectors confirm a recommended move actually shipped — no self-reporting.
+5. Prove: measure the before-and-after lift in recommendation share on the real metric, with an immutable evidence trail — then feed it back in.
 
 ## What feeds the engine (five signal streams)
 - AI answer sampling: visibility, sentiment, citations and fan-out coverage — how ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral answer, cite and rank you.
@@ -41,7 +40,7 @@ Attribution runs three layers deep: (1) the crawl — AI bots fetch the changed 
 HeyOtis is built on evidence: it won't recommend a move it can't verify and prove. A capabilities check suppresses anything it can't confirm, new signals are maturity-gated until trustworthy, and every reported number traces back to source. It pairs the platform with hands-on GEO strategists who help you ship the moves.
 
 ## Proof
-Halenstein grew AI recommendation share by 300% in Australia — from near-zero to 3.7% — after benchmarking where the brand stood, diagnosing the gaps and improving the signals that mattered.
+Hallensteins grew AI recommendation share by 300% in Australia — from near-zero to 3.7% — after benchmarking where the brand stood, diagnosing the gaps and improving the signals that mattered.
 
 ## Engines monitored
 ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral.

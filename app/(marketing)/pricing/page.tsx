@@ -387,7 +387,7 @@ export default function PricingPage() {
       </section>
 
       {/* Tier cards */}
-      <Section surface="cream" className="pt-4 md:pt-6">
+      <Section surface="cream" className="pt-4 md:pt-6" id="plans">
         <SectionHeading
           eyebrow="Tiers"
           title="Four tiers, one tailored quote"
@@ -480,6 +480,32 @@ export default function PricingPage() {
         </div>
         <div className="mt-8">
           <BookCta label="Talk to us" variant="secondary" withArrow />
+        </div>
+      </Section>
+
+      {/* Managed */}
+      <Section surface="cream" id="managed" className="py-14 md:py-20">
+        <SectionHeading
+          eyebrow="Pricing"
+          title="Managed"
+          sub="Prefer strategist-led? We run the loop with you — campaigns, priorities and reviews handled by a HeyOtis strategist, so the platform's recommendations turn into shipped work without you having to run the process yourself."
+          className="max-w-2xl"
+        />
+        <div className="mt-8">
+          <BookCta label="Talk to us" withArrow />
+        </div>
+      </Section>
+
+      {/* For Agencies */}
+      <Section surface="card" id="agencies" className="py-14 md:py-20">
+        <SectionHeading
+          eyebrow="Pricing"
+          title="For Agencies"
+          sub="Multi-brand workspaces, white-label reporting and per-client campaigns — built for agencies running AI visibility across a whole portfolio of brands, not just one."
+          className="max-w-2xl"
+        />
+        <div className="mt-8">
+          <BookCta label="Talk to us about agencies" withArrow />
         </div>
       </Section>
 

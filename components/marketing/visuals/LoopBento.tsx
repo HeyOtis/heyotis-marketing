@@ -166,17 +166,17 @@ function ProveScene() {
   );
 }
 
-/* The six loop stages compressed into four analytics moments. */
+/* The five loop stages compressed into four analytics moments. */
 const CARDS: {
   chip: string;
   stages: (typeof LOOP_STAGES)[number][];
   scene: React.ComponentType<{ live: boolean }>;
   differentiator?: boolean;
 }[] = [
-  { chip: "01–02", stages: [stageById.define, stageById.measure], scene: MeasureScene },
-  { chip: "03", stages: [stageById.diagnose], scene: DiagnoseScene },
-  { chip: "04", stages: [stageById.prioritize], scene: PrioritizeScene },
-  { chip: "05–06", stages: [stageById.verify, stageById.prove], scene: ProveScene, differentiator: true },
+  { chip: "01", stages: [stageById.measure], scene: MeasureScene },
+  { chip: "02", stages: [stageById.diagnose], scene: DiagnoseScene },
+  { chip: "03", stages: [stageById.prioritise], scene: PrioritizeScene },
+  { chip: "04–05", stages: [stageById.verify, stageById.prove], scene: ProveScene, differentiator: true },
 ];
 
 /**

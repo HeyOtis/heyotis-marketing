@@ -1,12 +1,12 @@
 import { Quote } from "lucide-react";
-import { HALENSTEIN } from "@/lib/strategy-content";
+import { HALLENSTEINS } from "@/lib/strategy-content";
 import { cn } from "@/lib/utils";
 
 /**
  * Real, named proof. Text-first (logo asset optional/later). The +300% here is
  * an attributed result, not illustrative.
  */
-export function ProofHalenstein({ className }: { className?: string }) {
+export function ProofHallensteins({ className }: { className?: string }) {
   return (
     <figure
       className={cn(
@@ -19,18 +19,18 @@ export function ProofHalenstein({ className }: { className?: string }) {
         className="mt-5 max-w-3xl font-display text-2xl leading-snug tracking-tight text-foreground sm:text-3xl"
         style={{ fontStretch: "85%" }}
       >
-        {HALENSTEIN.lede}
+        {HALLENSTEINS.lede}
       </blockquote>
       <figcaption className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
-        {HALENSTEIN.detail}
+        {HALLENSTEINS.detail}
       </figcaption>
       <div className="mt-8 flex flex-wrap gap-x-12 gap-y-4 border-t border-brand/15 pt-6">
-        <Stat value={HALENSTEIN.lift} label="AI recommendation share" />
+        <Stat value={HALLENSTEINS.lift} label="AI recommendation share" />
         <Stat
-          value={HALENSTEIN.shareAfter}
-          label={`Recommendation share in ${HALENSTEIN.market}`}
+          value={HALLENSTEINS.shareAfter}
+          label={`Recommendation share in ${HALLENSTEINS.market}`}
         />
-        <Stat value={HALENSTEIN.brand} label="Apparel brand" />
+        <Stat value={HALLENSTEINS.brand} label="Apparel brand" />
       </div>
     </figure>
   );

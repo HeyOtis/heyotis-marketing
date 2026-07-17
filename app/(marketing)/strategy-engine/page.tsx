@@ -12,7 +12,7 @@ import { SignalIntake } from "@/components/marketing/visuals/SignalIntake";
 import { CompoundingChart } from "@/components/marketing/visuals/CompoundingChart";
 import { MaturityLevels } from "@/components/marketing/sections/MaturityLevels";
 import { EvidenceLadder } from "@/components/marketing/sections/EvidenceLadder";
-import { ProofHalenstein } from "@/components/marketing/sections/ProofHalenstein";
+import { ProofHallensteins } from "@/components/marketing/sections/ProofHallensteins";
 import { CtaBand } from "@/components/marketing/sections/CtaBand";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
@@ -165,7 +165,9 @@ export default function StrategyEnginePage() {
           sub="Most tools stop at Measure. The Strategy Engine closes the loop — verifying the move shipped and proving it changed how AI recommends you."
           className="max-w-2xl"
         />
-        <div className="mt-12">
+        {/* Implementation Tracking (nav: Prove → Implementation Tracking)
+            anchors here — the Verify stage lives inside this same loop. */}
+        <div className="mt-12" id="verify">
           <LoopBento />
         </div>
       </Section>
@@ -184,7 +186,7 @@ export default function StrategyEnginePage() {
       </Section>
 
       {/* 6 — The action plan */}
-      <Section surface="card">
+      <Section surface="card" id="plan">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
             <SectionHeading
@@ -216,7 +218,7 @@ export default function StrategyEnginePage() {
       </Section>
 
       {/* 7 — Real attribution, three layers deep */}
-      <Section surface="cream">
+      <Section surface="cream" id="evidence">
         <SectionHeading
           eyebrow="Real attribution"
           title="Three layers of proof"
@@ -242,7 +244,7 @@ export default function StrategyEnginePage() {
             <ul className="mt-8 flex flex-col gap-4">
               {[
                 "Proven moves raise the weighting of moves like them",
-                "Disproven moves get deprioritized — honestly",
+                "Disproven moves get deprioritised — honestly",
                 "Every cycle starts smarter than the last",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3">
@@ -294,7 +296,7 @@ export default function StrategyEnginePage() {
           className="max-w-2xl"
         />
         <Reveal className="mt-10">
-          <ProofHalenstein />
+          <ProofHallensteins />
         </Reveal>
       </Section>
 

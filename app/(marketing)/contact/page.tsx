@@ -21,7 +21,7 @@ const EXPECT: string[] = [
   "We run a live campaign of buyer-intent prompts against ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral for your brand.",
   "You see your Share of Voice and how you rank against the competitors you name.",
   "We show the citations and sources the assistants are leaning on to build their answers.",
-  "You leave with a sample report and a prioritized view of where to act first.",
+  "You leave with a sample report and a prioritised view of where to act first.",
 ];
 
 export default function ContactPage() {

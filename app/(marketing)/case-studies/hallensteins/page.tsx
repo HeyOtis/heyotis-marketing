@@ -16,7 +16,7 @@ import { Eyebrow } from "@/components/marketing/primitives/Eyebrow";
 import { Reveal } from "@/components/marketing/primitives/Reveal";
 import { StatBand, type Stat } from "@/components/marketing/sections/StatBand";
 import { CtaBand } from "@/components/marketing/sections/CtaBand";
-import { HALENSTEIN } from "@/lib/strategy-content";
+import { HALLENSTEINS } from "@/lib/strategy-content";
 
 export const metadata = buildMetadata({
   title: "Hallensteins: from near-zero to 3.7% AI recommendation share",
@@ -64,7 +64,7 @@ const RESULT_STATS: Stat[] = [
     value: 3.7,
     decimals: 1,
     suffix: "%",
-    label: `Recommendation share in ${HALENSTEIN.market} — up from near-zero`,
+    label: `Recommendation share in ${HALLENSTEINS.market} — up from near-zero`,
   },
 ];
 
@@ -107,8 +107,8 @@ export default function HallensteinsCaseStudyPage() {
             Hallensteins started from near-zero presence in Australian AI
             recommendations. After benchmarking where the brand stood,
             diagnosing the gaps and improving the signals that mattered,
-            recommendation share grew {HALENSTEIN.lift} — to{" "}
-            {HALENSTEIN.shareAfter} in {HALENSTEIN.market}. The result
+            recommendation share grew {HALLENSTEINS.lift} — to{" "}
+            {HALLENSTEINS.shareAfter} in {HALLENSTEINS.market}. The result
             wasn&rsquo;t just more mentions — it was a clear view of where
             competitors were chosen instead, and what to do about it.
           </p>

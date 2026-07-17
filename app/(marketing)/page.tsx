@@ -6,7 +6,7 @@ import { PlatformCard } from "@/components/marketing/sections/PlatformCard";
 import { EvidenceCards } from "@/components/marketing/sections/EvidenceCards";
 import { FeatureCards } from "@/components/marketing/sections/FeatureCards";
 import { LoopBento } from "@/components/marketing/visuals/LoopBento";
-import { ProofHalenstein } from "@/components/marketing/sections/ProofHalenstein";
+import { ProofHallensteins } from "@/components/marketing/sections/ProofHallensteins";
 import { Reveal } from "@/components/marketing/primitives/Reveal";
 import { StatBand } from "@/components/marketing/sections/StatBand";
 import { CtaBand } from "@/components/marketing/sections/CtaBand";
@@ -25,8 +25,8 @@ const STATS = [
     value: 300,
     prefix: "+",
     suffix: "%",
-    label: "AI recommendation share lift — Halenstein, Australia",
-    customer: "Halenstein",
+    label: "AI recommendation share lift — Hallensteins, Australia",
+    customer: "Hallensteins",
   },
   {
     value: 6,
@@ -102,7 +102,7 @@ export default function HomePage() {
         <SectionHeading
           eyebrow="How it works"
           title="A campaign-led loop that closes itself"
-          sub="Measure where you stand, diagnose the gaps, prioritize the moves — then verify they shipped and prove your recommendation share moved."
+          sub="Measure where you stand, diagnose the gaps, prioritise the moves — then verify they shipped and prove your recommendation share moved."
           className="max-w-2xl"
         />
         <div className="mt-12">
@@ -154,7 +154,7 @@ export default function HomePage() {
           className="mx-auto max-w-2xl"
         />
         <Reveal className="mt-10">
-          <ProofHalenstein />
+          <ProofHallensteins />
         </Reveal>
       </Section>
 

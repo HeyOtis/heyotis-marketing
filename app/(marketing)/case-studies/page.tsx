@@ -8,7 +8,7 @@ import { Section } from "@/components/marketing/primitives/Section";
 import { Eyebrow } from "@/components/marketing/primitives/Eyebrow";
 import { Reveal } from "@/components/marketing/primitives/Reveal";
 import { CtaBand } from "@/components/marketing/sections/CtaBand";
-import { HALENSTEIN } from "@/lib/strategy-content";
+import { HALLENSTEINS } from "@/lib/strategy-content";
 
 export const metadata = buildMetadata({
   title: "Case Studies",
@@ -62,8 +62,8 @@ export default function CaseStudiesPage() {
                   Hallensteins
                 </h2>
                 <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
-                  {HALENSTEIN.lift} AI recommendation share — from near-zero
-                  to {HALENSTEIN.shareAfter} in {HALENSTEIN.market}.
+                  {HALLENSTEINS.lift} AI recommendation share — from near-zero
+                  to {HALLENSTEINS.shareAfter} in {HALLENSTEINS.market}.
                 </p>
                 <div className="mt-6 flex items-center gap-1.5 text-sm font-medium text-foreground">
                   Read the full story

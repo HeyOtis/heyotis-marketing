@@ -29,7 +29,7 @@ const CARDS: FeatureCard[] = [
   },
   {
     icon: ListChecks,
-    title: "A prioritized action plan",
+    title: "A prioritised action plan",
     body: "Turn the signals into opportunities ranked by impact and effort — across onsite, rankings and citations — with the evidence behind each.",
     points: ["Impact × effort", "Evidence-backed", "Onsite / rankings / citations"],
   },

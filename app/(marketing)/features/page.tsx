@@ -443,7 +443,7 @@ const TABS: FeatureTab[] = [
   {
     id: "strategy",
     label: "Strategy Engine",
-    title: "From signals to a prioritized plan that proves itself",
+    title: "From signals to a prioritised plan that proves itself",
     blurb:
       "The campaign-led loop: opportunities ranked by impact and effort, each backed by evidence — then verified live and measured for lift.",
     bullets: [
@@ -603,8 +603,8 @@ const STATS = [
     value: 300,
     prefix: "+",
     suffix: "%",
-    label: "AI recommendation share lift — Halenstein, Australia",
-    customer: "Halenstein",
+    label: "AI recommendation share lift — Hallensteins, Australia",
+    customer: "Hallensteins",
   },
   {
     value: 24,
@@ -696,8 +696,10 @@ export default function FeaturesPage() {
         </Container>
       </section>
 
-      {/* Feature tabs — inside the platform */}
-      <Section surface="cream">
+      {/* Feature tabs — inside the platform. One nav dropdown links here per
+          topic (visibility, sentiment, citations, competitors, campaigns,
+          traffic) — the tour covers all six inside this single section. */}
+      <Section surface="cream" id="visibility">
         <SectionHeading
           eyebrow="How HeyOtis works"
           title="Inside the platform"
@@ -705,6 +707,11 @@ export default function FeaturesPage() {
           className="max-w-2xl"
         />
         <div className="mt-12">
+          <span id="sentiment" aria-hidden />
+          <span id="citations" aria-hidden />
+          <span id="competitors" aria-hidden />
+          <span id="campaigns" aria-hidden />
+          <span id="traffic" aria-hidden />
           <FeatureTabs tabs={TABS} />
         </div>
       </Section>

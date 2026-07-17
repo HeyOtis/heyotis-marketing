@@ -1,5 +1,4 @@
 import {
-  Crosshair,
   Gauge,
   ScanSearch,
   ListChecks,
@@ -25,64 +24,55 @@ export type LoopStage = {
   title: string;
   blurb: string;
   icon: LucideIcon;
-  /** Stages 5–6 are the differentiator nobody else closes. */
+  /** Stages 4–5 are the differentiator nobody else closes. */
   differentiator?: boolean;
 };
 
 export const LOOP_STAGES: LoopStage[] = [
   {
-    id: "define",
-    n: 1,
-    verb: "Define",
-    title: "Scope the campaign",
-    blurb:
-      "Set the brand, market, competitors, personas and buying journeys that matter — the engine measures the questions real customers ask.",
-    icon: Crosshair,
-  },
-  {
     id: "measure",
-    n: 2,
+    n: 1,
     verb: "Measure",
-    title: "See how AI answers",
+    title: "See exactly how you show up",
     blurb:
-      "Capture how every assistant interprets, compares and recommends you across the prompts that shape decisions.",
+      "Every assistant, every query in your campaign. Where you appear in the answer, how you're described, and who gets cited instead of you.",
     icon: Gauge,
   },
   {
     id: "diagnose",
-    n: 3,
+    n: 2,
     verb: "Diagnose",
-    title: "Find the weak signals",
+    title: "Find the reason, with evidence",
     blurb:
-      "Deterministic detectors surface why you're absent, misrepresented or losing — each finding grounded in evidence.",
+      "Detectors read your surfaces and the answers, and every finding traces to a fact you can click: the answer, the citation, the page, the date.",
     icon: ScanSearch,
   },
   {
-    id: "prioritize",
-    n: 4,
-    verb: "Prioritize",
-    title: "Rank the moves",
+    id: "prioritise",
+    n: 3,
+    verb: "Prioritise",
+    title: "Get the short list that matters",
     blurb:
-      "Findings become a focused action plan — opportunities ranked by impact and effort, each backed by the evidence behind it.",
+      "Ranked by impact and effort, scoped to a campaign, sized to get done. If we can't verify it, we don't recommend it.",
     icon: ListChecks,
   },
   {
     id: "verify",
-    n: 5,
+    n: 4,
     verb: "Verify",
-    title: "Confirm it shipped",
+    title: "We watch the work land",
     blurb:
-      "Detectors watch your surfaces and mark a move done the moment the change goes live — no self-reporting required.",
+      "The engine re-checks your site until the change is live. Nobody has to tell us. If it slips later, you'll know that too.",
     icon: CircleCheck,
     differentiator: true,
   },
   {
     id: "prove",
-    n: 6,
+    n: 5,
     verb: "Prove",
     title: "Measure the lift",
     blurb:
-      "Track whether recommendation share actually moved on the real metric, with an immutable evidence trail — then feed it back in.",
+      "Visibility, referrals and conversions, tied back to the move that earned them.",
     icon: TrendingUp,
     differentiator: true,
   },
@@ -215,14 +205,14 @@ export const ATTRIBUTION: Attribution = {
 };
 
 /* ── Real proof (cleared — appears in the cofounder's website copy) ───────── */
-export const HALENSTEIN = {
-  brand: "Halenstein",
+export const HALLENSTEINS = {
+  brand: "Hallensteins",
   market: "Australia",
   shareAfter: "3.7%",
   lift: "+300%",
   lede: "From near-zero to 3.7% AI recommendation share in Australia.",
   detail:
-    "Halenstein started from near-zero presence in Australian AI recommendations. After benchmarking where the brand stood, diagnosing the gaps and improving the signals that mattered, recommendation share grew 300%. The result wasn't just more mentions — it was a clear view of where competitors were chosen instead, and what to do about it.",
+    "Hallensteins started from near-zero presence in Australian AI recommendations. After benchmarking where the brand stood, diagnosing the gaps and improving the signals that mattered, recommendation share grew 300%. The result wasn't just more mentions — it was a clear view of where competitors were chosen instead, and what to do about it.",
 } as const;
 
 /* ── The five signal streams the engine ingests ──────────────────────────── */
@@ -310,5 +300,5 @@ export const COMPOUNDING_POINTS: CompoundingPoint[] = [
   { cycle: "Cycle 1", share: 1.2, note: "Baseline measured" },
   { cycle: "Cycle 2", share: 2.1, note: "Comparison page proven" },
   { cycle: "Cycle 3", share: 3.4, note: "Citation moves reweighted" },
-  { cycle: "Cycle 4", share: 4.9, note: "Schema moves prioritized" },
+  { cycle: "Cycle 4", share: 4.9, note: "Schema moves prioritised" },
 ];

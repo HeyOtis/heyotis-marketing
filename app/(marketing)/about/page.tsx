@@ -55,7 +55,7 @@ const METHOD_STEPS: { step: string; icon: LucideIcon; title: string; blurb: stri
     icon: ListChecks,
     title: "Turn signal into action",
     blurb:
-      "Findings roll up into a prioritized view of where to focus — ranked by impact and effort, with the evidence behind each opportunity one click away.",
+      "Findings roll up into a prioritised view of where to focus — ranked by impact and effort, with the evidence behind each opportunity one click away.",
   },
 ];
 
