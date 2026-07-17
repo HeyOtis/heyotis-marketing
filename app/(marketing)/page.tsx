@@ -9,6 +9,7 @@ import { FeatureCards } from "@/components/marketing/sections/FeatureCards";
 import { LoopBento } from "@/components/marketing/visuals/LoopBento";
 import { CompoundingBand } from "@/components/marketing/sections/CompoundingBand";
 import { ReportBand } from "@/components/marketing/sections/ReportBand";
+import { PillarSections } from "@/components/marketing/sections/PillarSections";
 import { ProofHallensteins } from "@/components/marketing/sections/ProofHallensteins";
 import { Reveal } from "@/components/marketing/primitives/Reveal";
 import { CtaBand } from "@/components/marketing/sections/CtaBand";
@@ -176,6 +177,9 @@ export default function HomePage() {
       </Section>
 
       <ReportBand />
+
+      {/* The three pillars — deep-panel product stories */}
+      <PillarSections />
 
       {/* What you get — feature cards */}
       <Section surface="cream">
