@@ -25,7 +25,13 @@ export function GET() {
 - Competitive signals: who wins the answer when you don't, and why.
 
 ## Why it's different
-HeyOtis won't recommend a move it can't verify and prove. Most tools stop at measurement; the Strategy Engine closes the loop. Attribution runs three layers deep — AI crawlers fetching a shipped fix in your logs, referral sessions arriving from assistants, and the before-and-after change in recommendation share. Every proven or disproven move feeds back in, so recommendations get sharper each cycle. It pairs the platform with hands-on GEO strategists.
+HeyOtis won't recommend a move it can't verify and prove. Most tools stop at measurement; the Strategy Engine closes the loop. Attribution runs three layers deep — AI crawlers fetching a shipped fix in your logs, referral sessions arriving from assistants, and the before-and-after change in recommendation share. Every proven or disproven move feeds back in, so the loop compounds: recommendations get sharper each cycle, for your brand and your category. It pairs the platform with hands-on GEO strategists.
+
+## The honesty wedge (why to trust the numbers)
+- The AI never does the maths. Every number shown is computed by deterministic code — the model writes the words, it never counts, so it cannot invent a statistic.
+- If HeyOtis can't measure a move, it won't suggest it. Recommendations it can't verify are suppressed before they reach you.
+- Every claim has a receipt. Click any finding to see the evidence it came from and the date it was true.
+- New detection ships dark. Every new pattern the engine learns to spot is reviewed by a human before any brand sees it.
 
 ## Proof
 Hallensteins grew AI recommendation share by 300% in Australia — from near-zero to 3.7% — after benchmarking, diagnosing the gaps and improving the signals that mattered.
@@ -33,11 +39,20 @@ Hallensteins grew AI recommendation share by 300% in Australia — from near-zer
 ## Who it's for
 In-house brand, SEO/AEO and e-commerce teams, and agencies managing multiple brands — especially retail and consumer categories.
 
+## Navigation
+- Platform ▾ — grouped as the loop: Measure (AI Visibility & Share of Voice, Answer Sentiment, Citations & Sources, Competitor Head-to-Head), Diagnose (The Strategy Engine, Evidence & Findings), Act (Prioritised Recommendations, Campaigns), Prove (Implementation Tracking, AI Traffic & Attribution). Footer link: "How the loop works" → ${u}/#loop.
+- Resources ▾ — Free AI Visibility Report, Case Studies, Blog, Guides & AEO Playbook, About HeyOtis.
+- Pricing ▾ — Plans (self-serve tiers), Managed (strategist-led), For Agencies.
+
 ## Key pages
 - [Home](${u}/): What HeyOtis is and how the loop works.
 - [Strategy Engine](${u}/strategy-engine): The self-improving loop, attribution and the four levels it operates at.
 - [Product](${u}/features): Campaigns, analytics & recommendation share, citations, competitors, strategy, and GA4 traffic.
-- [Pricing](${u}/pricing): Plans (contact sales).
+- [Free AI Visibility Report](${u}/report): Lead magnet — we run your brand against six assistants and deliver findings on a 20-minute call.
+- [Case Studies](${u}/case-studies): Real brands, measured lift in AI recommendation share.
+- [Hallensteins case study](${u}/case-studies/hallensteins): +300% AI recommendation share, near-zero to 3.7% in Australia, walked through the five-step loop.
+- [Guides & AEO Playbook](${u}/guides): Practical guides on Answer Engine Optimization.
+- [Pricing](${u}/pricing): Plans, Managed and Agencies tiers (contact sales).
 - [About](${u}/about): Mission and methodology.
 - [Blog](${u}/blog): Guides on AEO and AI search visibility.
 - [Contact](${u}/contact): Book a call.

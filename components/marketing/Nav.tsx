@@ -189,6 +189,16 @@ function MobileGroup({
           </div>
         ))}
       </div>
+
+      {item.footerLink ? (
+        <Link
+          href={item.footerLink.href}
+          onClick={onNavigate}
+          className="mt-2 block rounded-lg px-3 py-2 text-sm font-medium text-accent transition-colors hover:bg-secondary"
+        >
+          {item.footerLink.label}
+        </Link>
+      ) : null}
     </div>
   );
 }
