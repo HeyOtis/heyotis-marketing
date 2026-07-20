@@ -10,7 +10,7 @@ export function Stage({
   children: React.ReactNode;
 }) {
   return (
-    <div className={cn("rounded-xl bg-stage p-4 sm:p-5", className)}>
+    <div className={cn("rounded-lg bg-stage p-4 sm:p-5", className)}>
       {children}
     </div>
   );
@@ -31,7 +31,7 @@ export function BannerTile({
   return (
     <div
       className={cn(
-        "flex items-center gap-2 rounded-xl bg-periwinkle px-4 py-2.5",
+        "flex items-center gap-2 rounded-lg bg-periwinkle px-4 py-2.5",
         className,
       )}
     >

@@ -1,14 +1,16 @@
+import { Check } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema, faqPageSchema } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
 import { Hero } from "@/components/marketing/sections/Hero";
 import { PlatformCard } from "@/components/marketing/sections/PlatformCard";
-import { EvidenceCards } from "@/components/marketing/sections/EvidenceCards";
-import { FeatureCards } from "@/components/marketing/sections/FeatureCards";
+import { FindingsPills } from "@/components/marketing/sections/EvidenceCards";
 import { LoopBento } from "@/components/marketing/visuals/LoopBento";
-import { ProofHalenstein } from "@/components/marketing/sections/ProofHalenstein";
+import { CompoundingBand } from "@/components/marketing/sections/CompoundingBand";
+import { ReportBand } from "@/components/marketing/sections/ReportBand";
+import { PillarSections } from "@/components/marketing/sections/PillarSections";
+import { ProofHallensteins } from "@/components/marketing/sections/ProofHallensteins";
 import { Reveal } from "@/components/marketing/primitives/Reveal";
-import { StatBand } from "@/components/marketing/sections/StatBand";
 import { CtaBand } from "@/components/marketing/sections/CtaBand";
 import { Faq, faqItemsToSchema, type FaqItem } from "@/components/marketing/sections/Faq";
 import { Section } from "@/components/marketing/primitives/Section";
@@ -17,37 +19,38 @@ import { AnswerReel } from "@/components/marketing/sections/AnswerReel";
 
 export const metadata = buildMetadata({
   title: "See how AI recommends your brand",
+  description:
+    "HeyOtis measures how ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews recommend your brand, finds the moves that grow your share, watches the work land, and measures the lift. A closed loop — not another dashboard.",
   path: "/",
 });
 
-const STATS = [
+const HONESTY_CLAIMS: { lead: string; body: string }[] = [
   {
-    value: 300,
-    prefix: "+",
-    suffix: "%",
-    label: "AI recommendation share lift — Halenstein, Australia",
-    customer: "Halenstein",
+    lead: "The AI never does the maths.",
+    body: "Every number you see is computed by deterministic code. The model writes the words; it never counts. It cannot invent a statistic, because it is never asked to produce one.",
   },
   {
-    value: 6,
-    label:
-      "AI assistants monitored — ChatGPT, Gemini, Perplexity, Claude, Meta AI & Mistral",
+    lead: "If we can't measure it, we won't suggest it.",
+    body: "A recommendation we can't verify is just a polite opinion. Those get suppressed before they reach you.",
   },
   {
-    value: 24,
-    suffix: "/7",
-    label: "Always-on tracking of how AI answers about you",
+    lead: "Every claim has a receipt.",
+    body: "Click any finding and see the evidence it came from, and the date it was true.",
+  },
+  {
+    lead: "New detection ships dark.",
+    body: "Every new pattern the engine learns to spot is reviewed by a human before a single brand sees it.",
   },
 ];
 
 const FAQS: FaqItem[] = [
   {
     q: "What is HeyOtis?",
-    a: "HeyOtis is an AI brand visibility platform. It measures how AI assistants like ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral recommend your brand — your Share of Voice, the citations they trust, and how you rank against competitors — and shows you where to focus to improve.",
+    a: "HeyOtis is an AI brand visibility platform. It measures how AI assistants like ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews recommend your brand — your Share of Voice, the citations they trust, and how you rank against competitors — and shows you where to focus to improve.",
   },
   {
     q: "How does HeyOtis track AI search visibility?",
-    a: "HeyOtis runs scheduled campaigns of unbiased, buyer-intent prompts against ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral, captures each answer, and measures whether and how your brand appears — including position, sentiment and the sources the AI cited.",
+    a: "HeyOtis runs scheduled campaigns of unbiased, buyer-intent prompts against ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews, captures each answer, and measures whether and how your brand appears — including position, sentiment and the sources the AI cited.",
   },
   {
     q: "How does HeyOtis prove AI actually drove the result?",
@@ -55,7 +58,7 @@ const FAQS: FaqItem[] = [
   },
   {
     q: "Which AI assistants does HeyOtis monitor?",
-    a: "HeyOtis monitors ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral — the assistants most people use to research and compare brands. We add engines as adoption grows.",
+    a: "HeyOtis monitors ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews — the assistants most people use to research and compare brands. We add engines as adoption grows.",
   },
   {
     q: "What is Share of Voice in AI search?",
@@ -79,44 +82,60 @@ export default function HomePage() {
 
       <Hero />
 
-      <PlatformCard />
-
-      <EvidenceCards />
-
-      {/* Why it matters + illustrative outcomes */}
+      {/* The stakes */}
       <Section surface="card">
         <SectionHeading
           align="center"
-          eyebrow="Why it matters"
-          title="AI is becoming the front door to your brand"
-          sub="When a buyer asks an assistant what to choose, the answer is the shortlist. HeyOtis makes sure you're on it — and shows you exactly how to get there."
-          className="mx-auto max-w-3xl"
+          eyebrow="The stakes"
+          title="The answer is the new shortlist."
+          sub="When someone asks an assistant what to buy, they don't get ten blue links to weigh up. They get three names. You're on that list or you're invisible — and there's no page two to climb."
+          className="mx-auto max-w-2xl"
         />
-        <div className="mt-14">
-          <StatBand stats={STATS} className="lg:grid-cols-3" />
+      </Section>
+
+      <PlatformCard />
+
+      {/* The wound — breaks up the product sections; title right, body left */}
+      <Section surface="cream" className="pt-0 md:pt-0">
+        <div className="grid gap-8 lg:grid-cols-2 lg:gap-16">
+          <h2
+            className="display-md text-balance text-foreground lg:order-2"
+            style={{ letterSpacing: "-0.02em" }}
+          >
+            Knowing you&rsquo;re invisible doesn&rsquo;t make you visible.
+          </h2>
+          <div className="flex flex-col gap-5 text-lg leading-relaxed text-muted-foreground lg:order-1">
+            <p>
+              Every tool in this category will show you a number of
+              &ldquo;opportunities&rdquo; and wish you luck. Nothing checks
+              whether you did the work. Nothing tells you whether it worked.
+              Ninety days later the dashboard is a tab nobody opens.
+            </p>
+            <p>
+              HeyOtis is built the other way round. The measurement exists to
+              serve the loop — not the other way round.
+            </p>
+          </div>
         </div>
       </Section>
 
-      {/* How it works — the loop */}
-      <Section surface="cream">
+      {/* The three pillars — deep-panel product stories */}
+      <PillarSections />
+
+
+      {/* The loop */}
+      <Section surface="card" id="loop">
         <SectionHeading
-          eyebrow="How it works"
-          title="A campaign-led loop that closes itself"
-          sub="Measure where you stand, diagnose the gaps, prioritize the moves — then verify they shipped and prove your recommendation share moved."
+          eyebrow="The loop"
+          title="A loop that closes itself."
           className="max-w-2xl"
         />
         <div className="mt-12">
-          <LoopBento compact />
-        </div>
-        <div className="mt-10">
-          <a
-            href="/strategy-engine"
-            className="group inline-flex items-center gap-1.5 text-sm font-medium text-accent underline-offset-4 hover:underline"
-          >
-            Go deeper on the Strategy Engine →
-          </a>
+          <LoopBento withCompoundsTease />
         </div>
       </Section>
+
+      <CompoundingBand />
 
       {/* Coverage — answer reel */}
       <Section surface="card">
@@ -124,26 +143,45 @@ export default function HomePage() {
           <div>
             <SectionHeading
               eyebrow="Coverage"
-              title="Across every assistant that matters"
-              sub="Your customers ask ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral what to buy. HeyOtis watches all six — visibility, sentiment, citations and the fan-out queries behind every answer."
+              title="Measure, live — across every assistant that matters"
+              sub="Your customers ask ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews what to buy. HeyOtis watches all five — visibility, sentiment, citations and the fan-out queries behind every answer."
             />
           </div>
           <AnswerReel />
         </div>
       </Section>
 
-      {/* What you get — feature cards */}
-      <Section surface="cream">
+      {/* The honesty wedge */}
+      <Section surface="card">
         <SectionHeading
-          eyebrow="What you get"
-          title="Everything you need to win the answer"
-          sub="The measurement that proves where you stand, and a clear view of where to focus next."
+          eyebrow="The honesty wedge"
+          title="We'd rather tell you nothing than tell you wrong."
+          sub="Confident, wrong advice is the cheapest thing an AI product can make — and the most expensive thing you can act on. So we made it hard to produce."
           className="max-w-2xl"
         />
-        <div className="mt-12">
-          <FeatureCards />
+        <div className="mt-12 grid gap-10 lg:grid-cols-2 lg:gap-16">
+          <ul className="flex flex-col gap-6">
+            {HONESTY_CLAIMS.map((c) => (
+              <li key={c.lead} className="flex items-start gap-3">
+                <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-brand/10 text-accent">
+                  <Check className="size-3.5" aria-hidden />
+                </span>
+                <p className="text-base leading-relaxed text-muted-foreground">
+                  <span className="font-semibold text-foreground">{c.lead}</span>{" "}
+                  {c.body}
+                </p>
+              </li>
+            ))}
+          </ul>
+          <div className="rounded-xl bg-card p-6 sm:p-8">
+            <FindingsPills />
+          </div>
         </div>
       </Section>
+
+      <ReportBand />
+
+
 
       {/* Proof */}
       <Section surface="card">
@@ -154,7 +192,7 @@ export default function HomePage() {
           className="mx-auto max-w-2xl"
         />
         <Reveal className="mt-10">
-          <ProofHalenstein />
+          <ProofHallensteins />
         </Reveal>
       </Section>
 
@@ -166,7 +204,10 @@ export default function HomePage() {
         />
       </Section>
 
-      <CtaBand />
+      <CtaBand
+        sub="Book a 20-minute walkthrough. We'll run your brand against ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews and show you exactly where you're losing the answer."
+        secondary={null}
+      />
     </>
   );
 }

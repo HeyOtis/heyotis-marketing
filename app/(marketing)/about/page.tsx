@@ -41,7 +41,7 @@ const METHOD_STEPS: { step: string; icon: LucideIcon; title: string; blurb: stri
     icon: Radar,
     title: "Capture the real answers",
     blurb:
-      "Each campaign runs against ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral on a schedule, recording exactly how every assistant responds, which brands it names, and which sources it cites.",
+      "Each campaign runs against ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews on a schedule, recording exactly how every assistant responds, which brands it names, and which sources it cites.",
   },
   {
     step: "03",
@@ -55,7 +55,7 @@ const METHOD_STEPS: { step: string; icon: LucideIcon; title: string; blurb: stri
     icon: ListChecks,
     title: "Turn signal into action",
     blurb:
-      "Findings roll up into a prioritized view of where to focus — ranked by impact and effort, with the evidence behind each opportunity one click away.",
+      "Findings roll up into a prioritised view of where to focus — ranked by impact and effort, with the evidence behind each opportunity one click away.",
   },
 ];
 
@@ -161,7 +161,7 @@ export default function AboutPage() {
               behavior is changing fast.
             </p>
             <p>
-              Now buyers ask ChatGPT, Gemini, Perplexity, Claude, Meta AI and Mistral directly —
+              Now buyers ask ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews directly —
               &ldquo;what&rsquo;s the best option for me?&rdquo; — and act on a
               single, synthesized answer. The assistant does the shortlisting.
               If your brand isn&rsquo;t in that answer, you&rsquo;re not in the

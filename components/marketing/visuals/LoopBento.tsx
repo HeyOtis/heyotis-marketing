@@ -1,13 +1,13 @@
 "use client";
 
 import * as React from "react";
-import { Check, TriangleAlert } from "lucide-react";
-import { motion, useInView } from "motion/react";
+import { Check, TriangleAlert, Repeat } from "lucide-react";
+import { AnimatePresence, motion, useInView } from "motion/react";
 import { useIsomorphicReducedMotion } from "@/lib/use-reduced-motion";
 import { EASE } from "@/lib/ease";
 import { Stage, Chip } from "@/components/marketing/primitives/stage";
 import { NumberTicker } from "@/components/ui/number-ticker";
-import { LOOP_STAGES } from "@/lib/strategy-content";
+import { LOOP_STAGES, type LoopStage } from "@/lib/strategy-content";
 import { cn } from "@/lib/utils";
 
 /* Decorative status colors on card surfaces (same pattern as BotLogFeed). */
@@ -23,6 +23,14 @@ const scene = {
 const item = {
   hidden: { opacity: 0, y: 8 },
   show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: EASE } },
+};
+/* Status-chip reveal for VerifyScene's monitoring→live swap. Same
+   hidden/show keys as `item`/`scene` so it rides the ancestor's variant
+   propagation: under reduced motion the tree mounts straight into "show",
+   so this renders statically instead of fading in. */
+const chipReveal = {
+  hidden: { opacity: 0, scale: 0.85 },
+  show: { opacity: 1, scale: 1, transition: { duration: 0.3, ease: EASE } },
 };
 
 function MeasureScene({ live }: { live: boolean }) {
@@ -98,7 +106,10 @@ function PrioritizeScene({ live }: { live: boolean }) {
     const id = setTimeout(() => setSorted(true), 1000);
     return () => clearTimeout(id);
   }, [live]);
-  const moves = sorted ? [...MOVES].sort((a, b) => b.impact - a.impact) : MOVES;
+  /* Off the live path (reduced motion), rest on the final ranked frame —
+     same principle as VerifyScene's isLive. */
+  const isSorted = sorted || !live;
+  const moves = isSorted ? [...MOVES].sort((a, b) => b.impact - a.impact) : MOVES;
   return (
     <motion.div variants={scene} className="flex h-full flex-col justify-center gap-2">
       {moves.map((m) => (
@@ -123,6 +134,56 @@ function PrioritizeScene({ live }: { live: boolean }) {
           </span>
         </motion.div>
       ))}
+    </motion.div>
+  );
+}
+
+/* Verify — the detector watches the top-priority move from Prioritise until it
+   ships, then flips the status live. Nobody has to tell the engine; it
+   re-checks the site itself. Static (not playing): rests on the "live" frame
+   so the claim reads instantly without a mid-animation snapshot. */
+function VerifyScene({ live }: { live: boolean }) {
+  const [ticked, setTicked] = React.useState(false);
+  React.useEffect(() => {
+    if (!live) return;
+    const id = setTimeout(() => setTicked(true), 1400);
+    return () => clearTimeout(id);
+  }, [live]);
+  const isLive = ticked || !live;
+
+  return (
+    <motion.div variants={scene} className="flex h-full flex-col justify-center gap-2.5">
+      <motion.p variants={item} className="label-mono text-[0.6rem] text-muted-foreground">
+        detector · your surfaces
+      </motion.p>
+      <motion.div
+        variants={item}
+        className="flex items-center gap-2 rounded-lg bg-card px-3 py-1.5"
+      >
+        <span className="min-w-0 flex-1 truncate text-xs font-medium text-foreground">
+          Add product schema
+        </span>
+        <AnimatePresence mode="wait" initial={false}>
+          {isLive ? (
+            <motion.span key="live" variants={chipReveal}>
+              <Chip tone="lime">✓ live</Chip>
+            </motion.span>
+          ) : (
+            <motion.span
+              key="watching"
+              exit={{ opacity: 0 }}
+              animate={{ opacity: [0.45, 1, 0.45] }}
+              transition={{ duration: 1.2, repeat: Infinity }}
+              className="label-mono text-[0.65rem] text-muted-foreground"
+            >
+              monitoring…
+            </motion.span>
+          )}
+        </AnimatePresence>
+      </motion.div>
+      <motion.p variants={item} className="label-mono text-[0.55rem] text-muted-foreground">
+        nobody told us — the engine caught it
+      </motion.p>
     </motion.div>
   );
 }
@@ -166,32 +227,34 @@ function ProveScene() {
   );
 }
 
-/* The six loop stages compressed into four analytics moments. */
+/* The five loop stages, each its own analytics moment. */
 const CARDS: {
-  chip: string;
-  stages: (typeof LOOP_STAGES)[number][];
+  stage: LoopStage;
   scene: React.ComponentType<{ live: boolean }>;
-  differentiator?: boolean;
 }[] = [
-  { chip: "01–02", stages: [stageById.define, stageById.measure], scene: MeasureScene },
-  { chip: "03", stages: [stageById.diagnose], scene: DiagnoseScene },
-  { chip: "04", stages: [stageById.prioritize], scene: PrioritizeScene },
-  { chip: "05–06", stages: [stageById.verify, stageById.prove], scene: ProveScene, differentiator: true },
+  { stage: stageById.measure, scene: MeasureScene },
+  { stage: stageById.diagnose, scene: DiagnoseScene },
+  { stage: stageById.prioritise, scene: PrioritizeScene },
+  { stage: stageById.verify, scene: VerifyScene },
+  { stage: stageById.prove, scene: ProveScene },
 ];
 
 /**
- * The campaign loop as a bento of four analytics moments. Each card plays its
- * scene once when scrolled into view, then holds. Stage numbers ride the
- * periwinkle chips so the loop order stays legible without any geometry.
- * `compact` (home) drops the blurbs; the full variant (strategy-engine)
- * shows them. Reduced motion: composed static frames, no timers.
+ * The campaign loop as a bento of five analytics moments — Measure, Diagnose,
+ * Prioritise, Verify, Prove. Each card plays its scene once when scrolled
+ * into view, then holds. Stage numbers ride the periwinkle chips so the loop
+ * order stays legible without any geometry. When `withCompoundsTease` is on,
+ * a sixth cell teases the compounding payoff and links to `#compounds`,
+ * filling out the `lg:grid-cols-3` grid — opt in only on pages that actually
+ * have a `#compounds` section to land on. Reduced motion: composed static
+ * frames, no timers.
  */
 export function LoopBento({
-  compact = false,
   className,
+  withCompoundsTease = false,
 }: {
-  compact?: boolean;
   className?: string;
+  withCompoundsTease?: boolean;
 }) {
   const reduced = useIsomorphicReducedMotion();
   const ref = React.useRef<HTMLDivElement>(null);
@@ -199,39 +262,37 @@ export function LoopBento({
   const live = !reduced && inView;
 
   return (
-    <div ref={ref} className={cn("grid gap-5 sm:grid-cols-2", className)}>
+    <div ref={ref} className={cn("grid gap-5 sm:grid-cols-2 lg:grid-cols-3", className)}>
       {CARDS.map((card, ci) => {
         const Scene = card.scene;
-        const titleStage = card.stages[card.stages.length - 1];
+        const { stage } = card;
         return (
           <motion.article
-            key={card.chip}
+            key={stage.id}
             initial={reduced ? false : { opacity: 0, y: 18 }}
             animate={{ opacity: live || reduced ? 1 : 0, y: live || reduced ? 0 : 18 }}
             transition={{ duration: 0.55, delay: ci * 0.1, ease: EASE }}
-            className="rounded-xl bg-card p-5 sm:p-6"
+            className="rounded-lg bg-card p-5 sm:p-6"
           >
             <div className="flex flex-wrap items-center gap-2">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-periwinkle/35 px-2.5 py-1 text-[0.65rem] font-bold tracking-wide text-foreground">
                 <span className="size-1.5 rounded-full bg-brand" />
-                {card.chip} · {card.stages.map((s) => s.verb).join(" & ")}
+                {String(stage.n).padStart(2, "0")} · {stage.verb}
               </span>
-              {card.differentiator ? (
+              {stage.differentiator ? (
                 <span className="label-mono rounded-full bg-brand/10 px-2 py-0.5 text-[0.55rem] text-accent">
                   what others skip
                 </span>
               ) : null}
             </div>
             <h3 className="mt-3 text-base font-semibold tracking-tight text-foreground">
-              {titleStage.title}
+              {stage.title}
             </h3>
-            {!compact ? (
-              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                {titleStage.blurb}
-              </p>
-            ) : null}
+            <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+              {stage.blurb}
+            </p>
             <div aria-hidden className="mt-4">
-              <Stage className={cn(compact ? "h-[150px]" : "h-[170px]", "px-4 py-3")}>
+              <Stage className="h-[170px] px-4 py-3">
                 <motion.div
                   variants={scene}
                   initial={reduced ? "show" : "hidden"}
@@ -245,7 +306,38 @@ export function LoopBento({
           </motion.article>
         );
       })}
-      <p className="label-mono mt-4 text-[0.6rem] text-muted-foreground sm:col-span-2">
+
+      {withCompoundsTease ? (
+        <motion.a
+          href="#compounds"
+          initial={reduced ? false : { opacity: 0, y: 18 }}
+          animate={{ opacity: live || reduced ? 1 : 0, y: live || reduced ? 0 : 18 }}
+          transition={{ duration: 0.55, delay: CARDS.length * 0.1, ease: EASE }}
+          className="group flex flex-col justify-between rounded-lg bg-periwinkle/30 p-5 transition-colors hover:bg-periwinkle/45 sm:p-6"
+        >
+          <div>
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-card/70 px-2.5 py-1 text-[0.65rem] font-bold tracking-wide text-foreground">
+              <Repeat className="size-3" strokeWidth={2.5} />
+              Then
+            </span>
+            <h3 className="mt-3 text-base font-semibold tracking-tight text-foreground">
+              And then it compounds.
+            </h3>
+            <p className="mt-1.5 text-sm leading-relaxed text-foreground/70">
+              Every move proven — or disproven — teaches the engine what to
+              recommend next.
+            </p>
+          </div>
+          <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-foreground">
+            See how it compounds
+            <span aria-hidden className="transition-transform duration-200 group-hover:translate-x-0.5">
+              →
+            </span>
+          </span>
+        </motion.a>
+      ) : null}
+
+      <p className="label-mono mt-2 text-[0.6rem] text-muted-foreground sm:col-span-2 lg:col-span-3">
         Illustrative — sample campaign data
       </p>
     </div>

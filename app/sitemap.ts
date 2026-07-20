@@ -14,11 +14,15 @@ const STATIC_ROUTES: Array<{
   { path: "/about", changeFrequency: "monthly", priority: 0.7 },
   { path: "/contact", changeFrequency: "yearly", priority: 0.5 },
   { path: "/blog", changeFrequency: "weekly", priority: 0.8 },
+  { path: "/report", changeFrequency: "weekly", priority: 0.85 },
+  { path: "/case-studies", changeFrequency: "monthly", priority: 0.6 },
+  { path: "/case-studies/hallensteins", changeFrequency: "monthly", priority: 0.6 },
+  { path: "/guides", changeFrequency: "monthly", priority: 0.6 },
 ];
 
 // Stable date for static routes so the sitemap doesn't churn on every deploy.
 // Bump when the marketing pages get a substantive content update.
-const STATIC_LAST_MODIFIED = "2026-06-30";
+const STATIC_LAST_MODIFIED = "2026-07-17";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticEntries = STATIC_ROUTES.map((route) => ({

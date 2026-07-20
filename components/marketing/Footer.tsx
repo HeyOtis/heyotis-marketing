@@ -30,7 +30,7 @@ export function Footer() {
             </Link>
             <p className="mt-6 max-w-sm text-base text-surface-dark-foreground/70">
               Brand visibility for the age of AI search. Measure how ChatGPT,
-              Gemini, Perplexity, Claude, Meta AI and Mistral recommend you — then win the answer.
+              Claude, Gemini, Perplexity and Google AI Overviews recommend you — then win the answer.
             </p>
             <div className="mt-8">
               <BookCta variant="inverse" />

@@ -1,8 +1,8 @@
 import { ArrowDown } from "lucide-react";
 import { Container } from "@/components/marketing/Container";
 import { BookCta } from "@/components/marketing/primitives/BookCta";
-import { RotatingWord } from "@/components/marketing/primitives/RotatingWord";
-import { AiSourceLogos } from "@/components/marketing/visuals/AiSourceLogos";
+import { AI_SOURCES } from "@/components/marketing/visuals/AiSourceLogos";
+import { Marquee } from "@/components/ui/marquee";
 
 export function Hero() {
   return (
@@ -37,43 +37,53 @@ export function Hero() {
           className="mt-6 max-w-4xl font-display text-[clamp(2.5rem,6vw,5rem)] leading-[0.98] tracking-[-0.03em] text-foreground"
           style={{ fontStretch: "75%", fontWeight: 800 }}
         >
-          See how AI recommends your brand —{" "}
-          <span className="text-accent">then prove you changed it.</span>
+          See how AI recommends you. Fix what doesn&rsquo;t.{" "}
+          <span className="text-accent">Prove it moved.</span>
         </h1>
-
-        <p className="mt-6 flex items-center justify-center gap-2 text-sm text-muted-foreground">
-          <span className="label-mono text-muted-foreground">Live across</span>
-          <RotatingWord
-            words={["ChatGPT", "Gemini", "Perplexity", "Claude", "Meta AI", "Mistral"]}
-            className="min-w-[6rem] justify-items-start font-semibold text-foreground"
-          />
-        </p>
 
         <p
           className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground"
           data-speakable
         >
-          HeyOtis measures how AI assistants recommend you, finds the moves that
-          grow your recommendation share, and proves the lift — a campaign-led
-          Strategy Engine, not another dashboard.
+          HeyOtis measures how ChatGPT, Claude, Gemini, Perplexity and
+          Google AI Overviews recommend your brand, finds the moves that
+          grow your share, watches the work land, and measures the lift. A
+          closed loop — not another dashboard.
         </p>
 
         <div className="mt-9 flex flex-col items-center gap-3 sm:flex-row">
           <BookCta nudge withArrow />
           <a
-            href="#product"
+            href="#loop"
             className="group inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-foreground/70 transition-colors hover:text-foreground"
           >
-            See the platform
+            See how the loop works
             <ArrowDown className="size-4 transition-transform duration-200 group-hover:translate-y-0.5" />
           </a>
         </div>
 
-        <div className="mt-14 flex flex-col items-center gap-4">
+        <div className="mt-20 flex w-full flex-col items-center gap-4">
           <p className="label-mono text-[0.65rem] text-muted-foreground">
-            Benchmarked across
+            Monitored across:
           </p>
-          <AiSourceLogos />
+          {/* Nory-style logo carousel: each assistant on its own white card.
+              Reduced motion: the CSS pauses the track, leaving a static row. */}
+          <Marquee
+            pauseOnHover
+            className="w-full max-w-5xl [--duration:36s] [--gap:1.25rem] [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]"
+          >
+            {AI_SOURCES.map(({ key, name, Icon }) => (
+              <span
+                key={key}
+                className="flex h-24 w-44 flex-col items-center justify-center gap-2.5 rounded-md bg-card text-foreground/80"
+              >
+                <Icon size={28} />
+                <span className="text-sm font-medium tracking-tight">
+                  {name}
+                </span>
+              </span>
+            ))}
+          </Marquee>
         </div>
       </Container>
     </section>

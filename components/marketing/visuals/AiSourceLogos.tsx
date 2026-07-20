@@ -1,4 +1,4 @@
-import { OpenAI, Claude, Gemini, Perplexity, MetaAI, Mistral } from "@lobehub/icons";
+import { OpenAI, Claude, Gemini, Perplexity, Google } from "@lobehub/icons";
 import { cn } from "@/lib/utils";
 
 type LobeIcon = React.ComponentType<{ size?: number }>;
@@ -10,11 +10,10 @@ export const AI_SOURCES: Array<{
   Icon: LobeIcon;
 }> = [
   { key: "chatgpt", name: "ChatGPT", Icon: OpenAI },
+  { key: "claude", name: "Claude", Icon: Claude },
   { key: "gemini", name: "Gemini", Icon: Gemini },
   { key: "perplexity", name: "Perplexity", Icon: Perplexity },
-  { key: "claude", name: "Claude", Icon: Claude },
-  { key: "metaai", name: "Meta AI", Icon: MetaAI },
-  { key: "mistral", name: "Mistral", Icon: Mistral },
+  { key: "aioverviews", name: "Google AI Overviews", Icon: Google },
 ];
 
 export function AiSourceLogos({

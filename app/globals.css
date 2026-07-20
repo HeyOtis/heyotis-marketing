@@ -52,6 +52,7 @@
   --stage: oklch(0.945 0.012 85);        /* warm beige inset panels   */
   --periwinkle: oklch(0.75 0.1 285);     /* banner tiles, dark text   */
   --lime: oklch(0.9 0.17 125);           /* positive delta/status     */
+  --panel-warm: oklch(0.32 0.07 45);     /* deep terracotta — the salmon hue taken dark, for pillar panels */
 
   /* chart tokens (mock product visuals — reused from the platform) */
   --chart-1: oklch(0.68 0.1 280);
@@ -107,6 +108,7 @@
   --color-stage: var(--stage);
   --color-periwinkle: var(--periwinkle);
   --color-lime: var(--lime);
+  --color-panel-warm: var(--panel-warm);
 
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
@@ -297,5 +299,33 @@
 @keyframes orbit-dash {
   to {
     stroke-dashoffset: -12;
+  }
+}
+
+/* Magic UI marquee (components/ui/marquee.tsx) — the hero logo carousel. */
+@theme inline {
+  --animate-marquee: marquee var(--duration) linear infinite;
+  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+}
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+  }
+}
+@keyframes marquee-vertical {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(calc(-100% - var(--gap)));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-marquee-vertical {
+    animation: none;
   }
 }

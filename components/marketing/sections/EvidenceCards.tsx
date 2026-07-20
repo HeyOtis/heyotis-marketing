@@ -5,7 +5,6 @@ import { CircleCheck, TriangleAlert, TrendingUp } from "lucide-react";
 import { AnimatePresence, motion, useInView } from "motion/react";
 import { useIsomorphicReducedMotion } from "@/lib/use-reduced-motion";
 import { EASE } from "@/lib/ease";
-import { Section } from "@/components/marketing/primitives/Section";
 import { Eyebrow } from "@/components/marketing/primitives/Eyebrow";
 import { Stage, Chip } from "@/components/marketing/primitives/stage";
 import { LogoGlyph } from "@/components/marketing/Logo";
@@ -25,7 +24,19 @@ const PILLS = [
 const PILL_TICK_MS = 2200;
 const PILL_WINDOW = 3;
 
-function FindingsPills({ playing, reduced }: { playing: boolean; reduced: boolean }) {
+/**
+ * Findings-as-notifications: a beige stage that fills with pills sliding in
+ * as the engine surfaces evidence. Self-contained (own `useInView` + reduced
+ * motion check) so it can be mounted standalone — e.g. beside the honesty
+ * claims on the homepage. Reduced motion / off-screen: the first three
+ * pills, static, no timers.
+ */
+export function FindingsPills({ className }: { className?: string }) {
+  const reduced = useIsomorphicReducedMotion();
+  const ref = React.useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { margin: "0px" });
+  const playing = !reduced && inView;
+
   const [count, setCount] = React.useState(PILL_WINDOW);
   React.useEffect(() => {
     if (!playing) return;
@@ -39,7 +50,7 @@ function FindingsPills({ playing, reduced }: { playing: boolean; reduced: boolea
   }
 
   return (
-    <>
+    <div ref={ref} className={className}>
       <div aria-hidden>
         <Stage className="flex h-[190px] flex-col justify-end gap-2.5 overflow-hidden">
           <AnimatePresence initial={false}>
@@ -68,7 +79,7 @@ function FindingsPills({ playing, reduced }: { playing: boolean; reduced: boolea
       <p className="label-mono mt-3 text-[0.6rem] text-muted-foreground">
         Illustrative — mirrors the engine&apos;s findings feed
       </p>
-    </>
+    </div>
   );
 }
 
@@ -112,7 +123,7 @@ function SignalCluster({ playing, reduced }: { playing: boolean; reduced: boolea
             />
           ))}
         </svg>
-        <span className="absolute left-1/2 top-[52%] flex size-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-xl bg-surface-dark">
+        <span className="absolute left-1/2 top-[52%] flex size-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-lg bg-surface-dark">
           <LogoGlyph className="h-6 w-6" />
         </span>
         {SIGNAL_STREAMS.map((s, i) => {
@@ -126,7 +137,7 @@ function SignalCluster({ playing, reduced }: { playing: boolean; reduced: boolea
               transition={{ duration: 0.35, delay: i * 0.09, ease: EASE }}
               style={{ left: CLUSTER_POS[i].left, top: CLUSTER_POS[i].top }}
               className={cn(
-                "absolute flex -translate-x-1/2 -translate-y-1/2 items-center gap-1.5 rounded-xl bg-card px-2.5 py-1.5 ring-periwinkle transition-shadow duration-300",
+                "absolute flex -translate-x-1/2 -translate-y-1/2 items-center gap-1.5 rounded-lg bg-card px-2.5 py-1.5 ring-periwinkle transition-shadow duration-300",
                 !reduced && hot === i && "ring-2",
               )}
             >
@@ -140,49 +151,34 @@ function SignalCluster({ playing, reduced }: { playing: boolean; reduced: boolea
   );
 }
 
-/* ── Section ────────────────────────────────────────────────────────────── */
+/* ── Standalone card ────────────────────────────────────────────────────── */
 
 /**
- * Nory's half-card row: findings-as-notifications left, the five signal
- * streams clustered around the engine right. Both stages are decorative;
- * the headings and blurbs carry the meaning.
+ * The five signal streams clustered around the engine glyph, in the same
+ * flat `bg-card` shell as the rest of the card system. Self-contained (own
+ * `useInView` + reduced-motion check) so it can be mounted on its own —
+ * e.g. on `/strategy-engine`. The stage is decorative; the heading and
+ * blurb carry the meaning.
  */
-export function EvidenceCards() {
+export function SignalClusterCard({ className }: { className?: string }) {
   const reduced = useIsomorphicReducedMotion();
   const ref = React.useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { margin: "0px" });
   const playing = !reduced && inView;
 
   return (
-    <Section surface="cream" className="pt-0 md:pt-0">
-      <div ref={ref} className="grid gap-5 md:grid-cols-2">
-        <div className="rounded-xl bg-card p-6 sm:p-8">
-          <Eyebrow>Findings, not guesses</Eyebrow>
-          <h3 className="mt-3 text-xl font-semibold tracking-tight text-foreground">
-            The engine tells you what changed — with evidence
-          </h3>
-          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-            Deterministic detectors watch your surfaces and the answers, so
-            every finding arrives verified — not self-reported.
-          </p>
-          <div className="mt-6">
-            <FindingsPills playing={playing} reduced={reduced} />
-          </div>
-        </div>
-        <div className="rounded-xl bg-card p-6 sm:p-8">
-          <Eyebrow>Every signal, one model</Eyebrow>
-          <h3 className="mt-3 text-xl font-semibold tracking-tight text-foreground">
-            Answers, bot logs, analytics and your own pages — together
-          </h3>
-          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-            The engine is only as good as its evidence, so all five signal
-            streams flow into one model of the gap.
-          </p>
-          <div className="mt-6">
-            <SignalCluster playing={playing} reduced={reduced} />
-          </div>
-        </div>
+    <div ref={ref} className={cn("rounded-lg bg-card p-6 sm:p-8", className)}>
+      <Eyebrow>Every signal, one model</Eyebrow>
+      <h3 className="mt-3 text-xl font-semibold tracking-tight text-foreground">
+        Answers, bot logs, analytics and your own pages — together
+      </h3>
+      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+        The engine is only as good as its evidence, so all five signal
+        streams flow into one model of the gap.
+      </p>
+      <div className="mt-6">
+        <SignalCluster playing={playing} reduced={reduced} />
       </div>
-    </Section>
+    </div>
   );
 }

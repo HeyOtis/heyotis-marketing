@@ -14,10 +14,13 @@ export function StatBand({
   stats,
   className,
   tone = "ink",
+  cols = 4,
 }: {
   stats: Stat[];
   className?: string;
   tone?: "ink" | "cream";
+  /** Desktop column count — match the number of stats so short bands fill the row. */
+  cols?: 2 | 3 | 4;
 }) {
   const numberTone = tone === "cream" ? "text-surface-dark-foreground" : "text-foreground";
   const labelTone =
@@ -30,7 +33,10 @@ export function StatBand({
   return (
     <dl
       className={cn(
-        "grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 lg:divide-x",
+        "grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:divide-x",
+        cols === 2 && "lg:grid-cols-2",
+        cols === 3 && "lg:grid-cols-3",
+        cols === 4 && "lg:grid-cols-4",
         divider,
         className,
       )}

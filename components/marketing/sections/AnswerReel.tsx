@@ -6,8 +6,7 @@ import {
   Claude,
   Gemini,
   Perplexity,
-  MetaAI,
-  Mistral,
+  Google,
 } from "@lobehub/icons";
 import { AnimatePresence, motion, useInView } from "motion/react";
 import { useIsomorphicReducedMotion } from "@/lib/use-reduced-motion";
@@ -78,28 +77,16 @@ const ASSISTANTS: Assistant[] = [
     source: "your comparison page",
   },
   {
-    name: "Meta AI", Icon: MetaAI,
+    name: "Google AI Overviews", Icon: Google,
     verdict: { tone: "salmon", label: "Missing from the answer" },
-    query: "everyday face cream under $50",
+    query: "best everyday moisturiser",
     metrics: {
       visibility: { v: "3.2%", d: "▼ 0.8", up: false },
       sentiment: { v: "+0.08", d: "▼ 0.12", up: false },
       citations: { v: "1", d: "▼ 1", up: false },
       fanout: { v: "4/24", d: "— 0", up: false },
     },
-    source: "competitor blog",
-  },
-  {
-    name: "Mistral", Icon: Mistral,
-    verdict: { tone: "neutral", label: "Mentioned, not recommended" },
-    query: "clean beauty brands oceania",
-    metrics: {
-      visibility: { v: "9.8%", d: "▲ 2.2", up: true },
-      sentiment: { v: "+0.24", d: "▲ 0.02", up: true },
-      citations: { v: "4", d: "▲ 1", up: true },
-      fanout: { v: "7/24", d: "▲ 1", up: true },
-    },
-    source: "press coverage",
+    source: "competitor comparison page",
   },
 ];
 
@@ -112,7 +99,7 @@ const METRIC_LABELS: [keyof Assistant["metrics"], string][] = [
 ];
 
 /**
- * Nory's location reel, reinterpreted: the periwinkle banner cycles the six
+ * Nory's location reel, reinterpreted: the periwinkle banner cycles the five
  * assistants; the tile below shows each one's 30-day AEO record — verdict,
  * the fan-out query behind it, and the four metrics with movement. Decorative
  * (aria-hidden); the adjacent SectionHeading carries the semantics. Reduced
@@ -137,7 +124,7 @@ export function AnswerReel({ className }: { className?: string }) {
   return (
     <div ref={ref} aria-hidden className={className}>
       <Stage>
-        <div className="relative overflow-hidden rounded-xl">
+        <div className="relative overflow-hidden rounded-lg">
           <AnimatePresence initial={false} mode="popLayout">
             <motion.div
               key={a.name}
@@ -146,7 +133,7 @@ export function AnswerReel({ className }: { className?: string }) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -22 }}
               transition={{ duration: 0.5, ease: EASE }}
-              className="flex items-center gap-2.5 rounded-xl bg-periwinkle px-4 py-2.5"
+              className="flex items-center gap-2.5 rounded-lg bg-periwinkle px-4 py-2.5"
             >
               <span className="flex size-6 items-center justify-center rounded-lg bg-card/80">
                 <Icon size={15} />
@@ -170,7 +157,7 @@ export function AnswerReel({ className }: { className?: string }) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.45, ease: EASE }}
-              className="rounded-xl bg-card p-4"
+              className="rounded-lg bg-card p-4"
             >
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <Chip tone={a.verdict.tone}>{a.verdict.label}</Chip>
