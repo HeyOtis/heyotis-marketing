@@ -678,7 +678,7 @@ export default function FeaturesPage() {
             style={{ fontStretch: "80%", fontWeight: 800 }}
           >
             Everything you need to win the answer in{" "}
-            <span className="text-accent">AI search</span>
+            <span className="text-periwinkle">AI search</span>
           </h1>
           <p
             className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground"
@@ -691,7 +691,7 @@ export default function FeaturesPage() {
             referral traffic in GA4.
           </p>
           <div className="mt-8">
-            <BookCta nudge withArrow />
+            <BookCta variant="lavender" nudge withArrow />
           </div>
         </Container>
       </section>
