@@ -106,7 +106,7 @@ export const NAV: NavEntry[] = [
         ],
       },
     ],
-    footerLink: { label: "How the loop works →", href: "/#loop" },
+    footerLink: { label: "How the loop works →", href: "/strategy-engine" },
   },
   {
     label: "Resources",

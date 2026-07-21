@@ -11,8 +11,8 @@ import { useIsomorphicReducedMotion } from "@/lib/use-reduced-motion";
    opposite directions (up, down, up…) at slightly different speeds, so the
    line reads like tumblers settling rather than a single clean sweep. */
 
-const LEAD = "See how AI recommends you. Fix what doesn’t. ";
-const ROLL = "Prove it moved.";
+const LEAD = "AI search has an opinion about your brand. ";
+const ROLL = "Here’s how to shape it.";
 
 /* Per-glyph cascade offset, and a short cycle of durations so no two adjacent
    letters roll at exactly the same speed. */

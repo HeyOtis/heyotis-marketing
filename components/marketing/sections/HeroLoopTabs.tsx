@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion, useScroll, useTransform } from "motion/react";
 import { useIsomorphicReducedMotion } from "@/lib/use-reduced-motion";
 import { EASE } from "@/lib/ease";
 import { Container } from "@/components/marketing/Container";
@@ -46,10 +46,21 @@ const TABS = [
    their build (three adjacent panels: quarter-disc, ellipse, right half-disc),
    all in the brand lavender. One canvas scaled to viewport width, resting
    on the fold's bottom edge. */
+/* Fine film grain, inline SVG turbulence — kills gradient banding and gives
+   the shapes a printed feel. */
+const GRAIN =
+  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";
+
 function Backdrop() {
+  const reduced = useIsomorphicReducedMotion();
+  const { scrollY } = useScroll();
+  // Shapes recede a touch slower than the page scrolls.
+  const y = useTransform(scrollY, [0, 900], [0, 70]);
+
   return (
     <div aria-hidden className="absolute inset-0 -z-10 overflow-hidden">
-      <svg
+      <motion.svg
+        style={reduced ? undefined : { y }}
         className="absolute bottom-0 left-0 aspect-[1920/770] w-full"
         viewBox="0 0 1920 770"
         fill="none"
@@ -104,7 +115,12 @@ function Backdrop() {
             <stop offset="1" stopColor="#F7F4ED" />
           </linearGradient>
         </defs>
-      </svg>
+      </motion.svg>
+      {/* film grain over the whole fold */}
+      <div
+        className="absolute inset-0 opacity-[0.05]"
+        style={{ backgroundImage: GRAIN }}
+      />
     </div>
   );
 }

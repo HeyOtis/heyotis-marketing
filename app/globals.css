@@ -125,8 +125,9 @@
 
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  /* Blueprint voice: display shares the grotesk; weight/tracking differentiate. */
-  --font-display: var(--font-geist-sans);
+  /* Display voice: Bricolage Grotesque, worn lightly (medium weight, no
+     condensation — not the old ultra-bold). */
+  --font-display: var(--font-bricolage);
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -210,13 +211,13 @@
   }
 
   /* ── type ────────────────────────────────────────────────────────────── */
-  /* Blueprint voice: plain grotesk at medium weight — the technical-drawing
-     register — instead of the old condensed ultra-bold. */
+  /* Display voice: Bricolage at medium weight, normal width — character
+     without the old condensed ultra-bold shout. */
   .font-display {
     font-family: var(--font-display), var(--font-sans), system-ui, sans-serif;
     font-weight: 600;
-    letter-spacing: -0.035em;
-    line-height: 1.04;
+    letter-spacing: -0.02em;
+    line-height: 1.06;
   }
   .display-xl { @apply font-display text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem]; }
   .display-lg { @apply font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl; }

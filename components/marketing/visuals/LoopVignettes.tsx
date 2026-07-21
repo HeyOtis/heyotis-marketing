@@ -1,3 +1,9 @@
+"use client";
+
+import * as React from "react";
+import { animate, motion, useMotionValue, useTransform } from "motion/react";
+import { useIsomorphicReducedMotion } from "@/lib/use-reduced-motion";
+import { EASE } from "@/lib/ease";
 import { cn } from "@/lib/utils";
 
 /**
@@ -5,7 +11,33 @@ import { cn } from "@/lib/utils";
  * dotted-grid ground, ghosted ink (~30%) everywhere except ONE focal element
  * per panel, mono micro-labels, dashed dividers. No window chrome, no dark
  * panels — these sit behind the fold and must not shout.
+ *
+ * Motion: cells rest on their finished frame. Entering a cell replays its
+ * animation from zero (via a replay counter that remounts the visual);
+ * leaving settles it back to the finished frame. Hovering also darkens the
+ * cell's text slightly. Reduced motion never animates.
  */
+
+/* Hover-replay wrapper: each mouse-enter bumps `runId`, remounting the
+   visual so its animation runs again. runId 0 = untouched resting state. */
+function HoverCell({
+  className,
+  children,
+}: {
+  className?: string;
+  children: (runId: number) => React.ReactNode;
+}) {
+  const reduced = useIsomorphicReducedMotion();
+  const [runId, setRunId] = React.useState(0);
+  return (
+    <div
+      className={cn("group", className)}
+      onMouseEnter={reduced ? undefined : () => setRunId((n) => n + 1)}
+    >
+      {children(runId)}
+    </div>
+  );
+}
 
 /* ── shared frame ── */
 
@@ -38,7 +70,7 @@ function Frame({
         }}
       />
       <div className="relative px-6 pt-5 sm:px-8">
-        <span className="label-mono text-[0.6rem] text-muted-foreground">
+        <span className="label-mono text-[0.7rem] text-muted-foreground">
           {label}
         </span>
       </div>
@@ -68,7 +100,7 @@ function TileCaption({ title, sub }: { title: string; sub: string }) {
       <Halo />
       <div className="relative">
         <p className="text-base font-semibold text-foreground">{title}</p>
-        <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground sm:text-sm">
+        <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground transition-colors group-hover:text-foreground/80 sm:text-sm">
           {sub}
         </p>
       </div>
@@ -87,11 +119,11 @@ function EditorialCell({
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative flex flex-col justify-center sm:col-span-2 sm:pl-6">
+    <div className="group relative flex flex-col justify-center sm:col-span-2 sm:pl-6">
       <Halo />
       <div className="relative">
         <p className="text-base font-semibold text-foreground">{title}</p>
-        <p className="mt-2 max-w-xl text-xs leading-relaxed text-muted-foreground sm:text-sm">
+        <p className="mt-2 max-w-xl text-xs leading-relaxed text-muted-foreground transition-colors group-hover:text-foreground/80 sm:text-sm">
           {children}
         </p>
         <a
@@ -107,14 +139,32 @@ function EditorialCell({
 
 /* ── Measure: the data-rich surface, as a quiet bento ── */
 
-function VisibilityLine() {
+const VIS_LINE =
+  "M4 72C24 70 36 66 56 62C76 58 88 52 108 48C128 44 140 40 160 32C180 24 196 20 216 14";
+const VIS_POINTS = [
+  { x: 56, y: 62 },
+  { x: 108, y: 48 },
+  { x: 160, y: 32 },
+  { x: 216, y: 14 },
+];
+
+function VisibilityLine({ runId }: { runId: number }) {
   return (
-    <svg
+    <motion.svg
+      key={runId}
       viewBox="0 0 220 90"
       preserveAspectRatio="none"
       className="h-[90px] w-full"
       aria-hidden
+      initial={runId === 0 ? false : "hidden"}
+      animate="show"
     >
+      <defs>
+        <linearGradient id="vis-fill" x1="0" y1="0" x2="0" y2="1">
+          <stop stopColor="var(--periwinkle)" stopOpacity="0.25" />
+          <stop offset="1" stopColor="var(--periwinkle)" stopOpacity="0" />
+        </linearGradient>
+      </defs>
       {[20, 45, 70].map((y) => (
         <line
           key={y}
@@ -125,40 +175,130 @@ function VisibilityLine() {
           stroke="oklch(0.24 0.02 285 / 0.08)"
         />
       ))}
-      <path
-        d="M4 72C24 70 36 66 56 62C76 58 88 52 108 48C128 44 140 40 160 32C180 24 196 20 216 14"
+      {/* the gradient pools in beneath once the line has drawn */}
+      <motion.path
+        d={`${VIS_LINE}L216 90L4 90Z`}
+        fill="url(#vis-fill)"
+        variants={{
+          hidden: { opacity: 0 },
+          show: {
+            opacity: 1,
+            transition: { delay: 1.05, duration: 0.6, ease: "easeOut" },
+          },
+        }}
+      />
+      {/* the line draws itself */}
+      <motion.path
+        d={VIS_LINE}
         fill="none"
         stroke="var(--periwinkle)"
         strokeWidth="2"
         strokeLinecap="round"
+        variants={{
+          hidden: { pathLength: 0 },
+          show: {
+            pathLength: 1,
+            transition: { duration: 1.2, ease: "easeInOut" },
+          },
+        }}
       />
-      <circle cx="216" cy="14" r="3" fill="var(--periwinkle)" />
-    </svg>
+      {/* the points plot as the line passes them */}
+      {VIS_POINTS.map(({ x, y }) => (
+        <motion.circle
+          key={x}
+          cx={x}
+          cy={y}
+          r={x === 216 ? 3 : 2.5}
+          fill="var(--periwinkle)"
+          variants={{
+            hidden: { opacity: 0 },
+            show: {
+              opacity: 1,
+              transition: { delay: 0.15 + (x / 216) * 1.05, duration: 0.2 },
+            },
+          }}
+        />
+      ))}
+    </motion.svg>
   );
 }
 
-function GhostAnswer() {
+function GhostAnswer({ runId }: { runId: number }) {
   return (
-    <div className="flex h-[90px] flex-col justify-between">
+    <motion.div
+      key={runId}
+      className="flex h-[90px] flex-col justify-between"
+      initial={runId === 0 ? false : "hidden"}
+      animate="show"
+    >
+      {/* the answer writes itself out, line by line */}
       <div className="space-y-1.5">
         {["w-full", "w-[92%]", "w-[74%]"].map((w, i) => (
-          <div
+          <motion.div
             key={i}
-            className={cn("h-2 rounded-full bg-foreground/10", w)}
+            className={cn(
+              "h-2 origin-left rounded-full bg-foreground/10 transition-colors group-hover:bg-foreground/20",
+              w,
+            )}
+            variants={{
+              hidden: { scaleX: 0 },
+              show: {
+                scaleX: 1,
+                transition: { delay: i * 0.16, duration: 0.5, ease: EASE },
+              },
+            }}
           />
         ))}
       </div>
-      <span className="label-mono inline-flex w-fit items-center gap-1 rounded-full bg-brand-soft px-2 py-1 text-[0.55rem] text-accent">
+      {/* ...then the citation lands */}
+      <motion.span
+        className="label-mono inline-flex w-fit items-center gap-1 rounded-full bg-brand-soft px-2 py-1 text-[0.55rem] text-accent"
+        variants={{
+          hidden: { opacity: 0, y: 6 },
+          show: {
+            opacity: 1,
+            y: 0,
+            transition: { delay: 0.6, duration: 0.35, ease: EASE },
+          },
+        }}
+      >
         yourbrand.com +2
-      </span>
-    </div>
+      </motion.span>
+    </motion.div>
   );
 }
 
-function SentimentGauge() {
+function GaugeNumber({ runId }: { runId: number }) {
+  const count = useMotionValue(runId === 0 ? 72 : 0);
+  const rounded = useTransform(count, (v) => Math.round(v));
+  React.useEffect(() => {
+    if (runId === 0) return;
+    count.set(0);
+    const controls = animate(count, 72, {
+      delay: 0.1,
+      duration: 1.1,
+      ease: "easeOut",
+    });
+    return () => controls.stop();
+  }, [runId, count]);
+  return (
+    <motion.span className="text-xl font-semibold tracking-tight tabular-nums text-foreground">
+      {rounded}
+    </motion.span>
+  );
+}
+
+function SentimentGauge({ runId }: { runId: number }) {
   return (
     <div className="relative flex h-[90px] items-end justify-center">
-      <svg viewBox="0 0 120 64" className="h-full" aria-hidden>
+      <motion.svg
+        key={runId}
+        viewBox="0 0 120 64"
+        className="h-full"
+        aria-hidden
+        initial={runId === 0 ? false : "hidden"}
+        animate="show"
+      >
         <path
           d="M12 60A48 48 0 0 1 108 60"
           fill="none"
@@ -166,41 +306,93 @@ function SentimentGauge() {
           strokeWidth="7"
           strokeLinecap="round"
         />
-        <path
+        {/* the arc sweeps from 0 to 72 */}
+        <motion.path
           d="M12 60A48 48 0 0 1 108 60"
           fill="none"
           stroke="var(--periwinkle)"
           strokeWidth="7"
           strokeLinecap="round"
-          pathLength={100}
-          strokeDasharray="72 100"
+          variants={{
+            hidden: { pathLength: 0 },
+            show: {
+              pathLength: 0.72,
+              transition: { delay: 0.1, duration: 1.1, ease: "easeOut" },
+            },
+          }}
         />
-      </svg>
+      </motion.svg>
       <div className="absolute inset-x-0 bottom-0 text-center">
-        <span className="text-xl font-semibold tabular-nums text-foreground">
-          72
+        <GaugeNumber runId={runId} />
+        <span className="text-xs text-muted-foreground transition-colors group-hover:text-foreground/70">
+          {" "}
+          / 100
         </span>
-        <span className="text-xs text-muted-foreground"> / 100</span>
       </div>
     </div>
   );
 }
 
-function FanoutPeek() {
+function FanoutPeek({ runId }: { runId: number }) {
   return (
-    <div className="flex h-[90px] flex-col justify-center gap-2">
-      <span className="ml-auto w-fit rounded-full bg-secondary px-3 py-1.5 text-[0.7rem] text-foreground/60">
+    <motion.div
+      key={runId}
+      className="flex h-[90px] flex-col justify-center gap-2"
+      initial={runId === 0 ? false : "hidden"}
+      animate="show"
+    >
+      {/* the question arrives... */}
+      <motion.span
+        className="ml-auto w-fit rounded-full bg-secondary px-3 py-1.5 text-[0.7rem] text-foreground/60 transition-colors group-hover:text-foreground/80"
+        variants={{
+          hidden: { opacity: 0, x: 14 },
+          show: {
+            opacity: 1,
+            x: 0,
+            transition: { duration: 0.45, ease: EASE },
+          },
+        }}
+      >
         &ldquo;best everyday skincare nz&rdquo;
-      </span>
-      <span className="text-[0.7rem] text-foreground/40">
+      </motion.span>
+      {/* ...the assistant searches... */}
+      <motion.span
+        className="text-[0.7rem] text-foreground/40 transition-colors group-hover:text-foreground/60"
+        variants={{
+          hidden: { opacity: 0, y: 4 },
+          show: {
+            opacity: 1,
+            y: 0,
+            transition: { delay: 0.35, duration: 0.35, ease: EASE },
+          },
+        }}
+      >
         ✓ Searched the web · 5 searches
-      </span>
+      </motion.span>
+      {/* ...and fans out into follow-up queries */}
       <div className="flex gap-1.5">
         {["w-[30%]", "w-[24%]", "w-[34%]"].map((w, i) => (
-          <div key={i} className={cn("h-2 rounded-full bg-foreground/10", w)} />
+          <motion.div
+            key={i}
+            className={cn(
+              "h-2 origin-left rounded-full bg-foreground/10 transition-colors group-hover:bg-foreground/20",
+              w,
+            )}
+            variants={{
+              hidden: { scaleX: 0 },
+              show: {
+                scaleX: 1,
+                transition: {
+                  delay: 0.55 + i * 0.12,
+                  duration: 0.4,
+                  ease: EASE,
+                },
+              },
+            }}
+          />
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 }
 
@@ -210,37 +402,53 @@ export function MeasureVignette() {
       <div className="grid h-full grid-rows-[auto_1fr] gap-0">
         {/* top row: the three measurement surfaces */}
         <div className="grid gap-6 pb-6 sm:grid-cols-3 sm:gap-0 sm:divide-x sm:divide-dashed sm:divide-border">
-          <div className="sm:pr-6">
-            <VisibilityLine />
-            <TileCaption
-              title="Visibility"
-              sub="Rankings, share of voice and average position across AI platforms."
-            />
-          </div>
-          <div className="sm:px-6">
-            <SentimentGauge />
-            <TileCaption
-              title="Sentiment"
-              sub="How assistants frame you, measured across every model."
-            />
-          </div>
-          <div className="sm:pl-6">
-            <GhostAnswer />
-            <TileCaption
-              title="Citations"
-              sub="Every response, mention trend and the sources AI leans on."
-            />
-          </div>
+          <HoverCell className="sm:pr-6">
+            {(runId) => (
+              <>
+                <VisibilityLine runId={runId} />
+                <TileCaption
+                  title="Visibility"
+                  sub="Rankings, share of voice and average position across AI platforms."
+                />
+              </>
+            )}
+          </HoverCell>
+          <HoverCell className="sm:px-6">
+            {(runId) => (
+              <>
+                <SentimentGauge runId={runId} />
+                <TileCaption
+                  title="Sentiment"
+                  sub="How assistants frame you, measured across every model."
+                />
+              </>
+            )}
+          </HoverCell>
+          <HoverCell className="sm:pl-6">
+            {(runId) => (
+              <>
+                <GhostAnswer runId={runId} />
+                <TileCaption
+                  title="Citations"
+                  sub="Every response, mention trend and the sources AI leans on."
+                />
+              </>
+            )}
+          </HoverCell>
         </div>
         {/* bottom row: fanouts + the AEO insights editorial cell */}
         <div className="grid gap-6 border-t border-dashed border-border pt-6 sm:grid-cols-3 sm:gap-0 sm:divide-x sm:divide-dashed sm:divide-border">
-          <div className="sm:pr-6">
-            <FanoutPeek />
-            <TileCaption
-              title="Fanouts"
-              sub="The follow-up queries assistants run behind every answer."
-            />
-          </div>
+          <HoverCell className="sm:pr-6">
+            {(runId) => (
+              <>
+                <FanoutPeek runId={runId} />
+                <TileCaption
+                  title="Fanouts"
+                  sub="The follow-up queries assistants run behind every answer."
+                />
+              </>
+            )}
+          </HoverCell>
           <EditorialCell title="AEO Insights" href="/features">
             Understand what&rsquo;s actually driving your visibility. Every
             answer is scored, every citation traced, and every shift
@@ -703,15 +911,13 @@ function StepChart() {
 function LiftStat() {
   return (
     <div className="flex h-[104px] flex-col justify-center gap-2.5">
-      <div className="flex items-baseline gap-2.5">
-        <span className="text-lg font-semibold tabular-nums text-foreground/30 line-through decoration-1">
-          1.4%
-        </span>
+      <div className="flex items-center gap-2.5">
         <span className="text-3xl font-semibold tabular-nums tracking-tight text-foreground">
           4.9%
         </span>
-        <span className="label-mono rounded-full bg-salmon px-2 py-0.5 text-[0.5rem] leading-none text-foreground">
-          ▲ 3.5 pts
+        <span className="inline-flex items-center gap-1 rounded-full bg-salmon px-2.5 py-1 text-[0.7rem] font-semibold leading-none tracking-tight text-foreground">
+          <span aria-hidden className="text-[0.55rem]">▲</span>
+          3.5 pts
         </span>
       </div>
       <StepChart />
