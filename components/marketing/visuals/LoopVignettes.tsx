@@ -452,7 +452,7 @@ export function MeasureVignette() {
               </>
             )}
           </HoverCell>
-          <EditorialCell title="AEO Insights" href="/features">
+          <EditorialCell title="AEO Insights" href="/platform#measure">
             Understand what&rsquo;s actually driving your visibility. Every
             answer is scored, every citation traced, and every shift
             explained — so you can see which pages, sources and topics move
@@ -1071,7 +1071,7 @@ export function AttributeVignette() {
               sub="The lift, decomposed into the moves that caused it."
             />
           </div>
-          <EditorialCell title="Deterministic attribution" href="/features#traffic">
+          <EditorialCell title="Deterministic attribution" href="/platform#attribute">
             No modelled guesswork. Web analytics and agent analytics are
             joined into one deterministic record, so every lift is
             attributed to the move that caused it — and what worked feeds

@@ -9,7 +9,7 @@ const STATIC_ROUTES: Array<{
 }> = [
   { path: "/", changeFrequency: "weekly", priority: 1 },
   { path: "/strategy-engine", changeFrequency: "monthly", priority: 0.95 },
-  { path: "/features", changeFrequency: "monthly", priority: 0.9 },
+  { path: "/platform", changeFrequency: "monthly", priority: 0.9 },
   { path: "/pricing", changeFrequency: "monthly", priority: 0.9 },
   { path: "/about", changeFrequency: "monthly", priority: 0.7 },
   { path: "/contact", changeFrequency: "yearly", priority: 0.5 },

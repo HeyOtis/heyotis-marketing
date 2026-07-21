@@ -2,6 +2,12 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   pageExtensions: ["ts", "tsx"],
+  async redirects() {
+    return [
+      // /features was rebuilt as /platform (loop-stage IA), July 2026.
+      { source: "/features", destination: "/platform", permanent: true },
+    ];
+  },
   images: {
     formats: ["image/avif", "image/webp"],
   },
