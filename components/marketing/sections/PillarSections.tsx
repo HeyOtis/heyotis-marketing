@@ -193,7 +193,7 @@ export function PillarSections() {
           return (
             <article
               key={p.id}
-              className="grid items-center gap-10 rounded-lg bg-card px-6 py-10 sm:px-12 sm:py-14 lg:grid-cols-2 lg:gap-16 lg:px-16"
+              className="grid items-center gap-10 rounded-lg border border-border bg-card px-6 py-10 sm:px-12 sm:py-14 lg:grid-cols-2 lg:gap-16 lg:px-16"
             >
               <div>
                 <span className="inline-flex items-center gap-2 rounded-full bg-secondary px-3 py-1.5 text-xs font-semibold text-foreground">

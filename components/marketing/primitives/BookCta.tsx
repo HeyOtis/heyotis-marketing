@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
 type BookCtaProps = {
-  variant?: "primary" | "inverse" | "secondary";
+  variant?: "primary" | "inverse" | "secondary" | "ink" | "salmon";
   label?: string;
   href?: string;
   className?: string;
@@ -18,6 +18,13 @@ const variantClass = {
   inverse: "bg-background text-foreground hover:bg-background/90",
   secondary:
     "border border-border bg-transparent text-foreground hover:bg-secondary",
+  // Quiet ink pill for chrome (nav) — the light-surface inverse of DOSS's
+  // cream-on-dark demo button.
+  ink: "bg-surface-dark text-surface-dark-foreground hover:bg-surface-dark/90",
+  // Salmon pill, ink text — the site's standing warm accent, chosen to
+  // contrast the lavender background shapes. Nav and hero share it,
+  // DOSS-style.
+  salmon: "bg-salmon text-foreground hover:bg-salmon/85",
 } as const;
 
 /**

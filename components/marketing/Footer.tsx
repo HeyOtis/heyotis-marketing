@@ -11,10 +11,12 @@ export function Footer() {
     <footer className="surface-dark relative overflow-hidden">
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-60"
+        className="blueprint-grid-dark pointer-events-none absolute inset-0"
         style={{
-          background:
-            "radial-gradient(48rem 22rem at 50% 120%, oklch(0.68 0.1 280 / 0.30), transparent 70%)",
+          maskImage:
+            "radial-gradient(ellipse 100% 90% at 50% 100%, black 30%, transparent 90%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse 100% 90% at 50% 100%, black 30%, transparent 90%)",
         }}
       />
       <Container className="relative py-20">

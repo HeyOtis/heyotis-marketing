@@ -1,91 +1,38 @@
-import { ArrowDown } from "lucide-react";
-import { Container } from "@/components/marketing/Container";
 import { BookCta } from "@/components/marketing/primitives/BookCta";
-import { AI_SOURCES } from "@/components/marketing/visuals/AiSourceLogos";
-import { Marquee } from "@/components/ui/marquee";
+import { HeroFold } from "@/components/marketing/sections/HeroLoopTabs";
+import { RollingHeadline } from "@/components/marketing/sections/RollingHeadline";
 
 export function Hero() {
   return (
     <section className="relative overflow-hidden">
-      {/* Background: faded grid + soft purple glow (pure CSS — LCP-safe). */}
-      <div aria-hidden className="absolute inset-0 -z-10">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              "linear-gradient(to right, oklch(0.24 0.02 285 / 0.045) 1px, transparent 1px), linear-gradient(to bottom, oklch(0.24 0.02 285 / 0.045) 1px, transparent 1px)",
-            backgroundSize: "64px 64px",
-            maskImage:
-              "radial-gradient(ellipse 95% 65% at 50% 0%, black 40%, transparent 82%)",
-            WebkitMaskImage:
-              "radial-gradient(ellipse 95% 65% at 50% 0%, black 40%, transparent 82%)",
-          }}
-        />
-        <div
-          className="absolute left-1/2 top-[-12%] h-[460px] w-[min(760px,90vw)] -translate-x-1/2 rounded-full"
-          style={{
-            background:
-              "radial-gradient(closest-side, oklch(0.68 0.1 280 / 0.20), transparent)",
-          }}
-        />
-      </div>
+      <HeroFold
+        intro={
+          <div>
+            <RollingHeadline className="max-w-2xl font-display text-[clamp(2.2rem,4vw,3.4rem)] leading-[1.12] tracking-[-0.03em] text-balance text-foreground" />
 
-      <Container className="relative flex flex-col items-center pb-16 pt-20 text-center sm:pt-28 lg:pb-24 lg:pt-32">
-        <p className="label-mono text-accent">The Strategy Engine for AI search</p>
-
-        <h1
-          className="mt-6 max-w-4xl font-display text-[clamp(2.5rem,6vw,5rem)] leading-[0.98] tracking-[-0.03em] text-foreground"
-          style={{ fontStretch: "75%", fontWeight: 800 }}
-        >
-          See how AI recommends you. Fix what doesn&rsquo;t.{" "}
-          <span className="text-accent">Prove it moved.</span>
-        </h1>
-
-        <p
-          className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground"
-          data-speakable
-        >
-          HeyOtis measures how ChatGPT, Claude, Gemini, Perplexity and
-          Google AI Overviews recommend your brand, finds the moves that
-          grow your share, watches the work land, and measures the lift. A
-          closed loop — not another dashboard.
-        </p>
-
-        <div className="mt-9 flex flex-col items-center gap-3 sm:flex-row">
-          <BookCta nudge withArrow />
-          <a
-            href="#loop"
-            className="group inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-foreground/70 transition-colors hover:text-foreground"
-          >
-            See how the loop works
-            <ArrowDown className="size-4 transition-transform duration-200 group-hover:translate-y-0.5" />
-          </a>
-        </div>
-
-        <div className="mt-20 flex w-full flex-col items-center gap-4">
-          <p className="label-mono text-[0.65rem] text-muted-foreground">
-            Monitored across:
-          </p>
-          {/* Nory-style logo carousel: each assistant on its own white card.
-              Reduced motion: the CSS pauses the track, leaving a static row. */}
-          <Marquee
-            pauseOnHover
-            className="w-full max-w-5xl [--duration:36s] [--gap:1.25rem] [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]"
-          >
-            {AI_SOURCES.map(({ key, name, Icon }) => (
-              <span
-                key={key}
-                className="flex h-24 w-44 flex-col items-center justify-center gap-2.5 rounded-md bg-card text-foreground/80"
-              >
-                <Icon size={28} />
-                <span className="text-sm font-medium tracking-tight">
-                  {name}
-                </span>
+            <p
+              className="mt-8 max-w-xl text-xl leading-relaxed text-muted-foreground sm:mt-10"
+              data-speakable
+            >
+              AI search feels unpredictable — and for most brands, it is.
+              Otis monitors exactly how each AI platform behaves in your
+              category, then turns that intelligence into clear strategy, so
+              your team always knows what to do next.{" "}
+              <span className="font-medium text-foreground">
+                Less uncertainty. More control.
               </span>
-            ))}
-          </Marquee>
-        </div>
-      </Container>
+            </p>
+
+            <div className="mt-10">
+              <BookCta variant="salmon" className="h-13 px-9 text-base" />
+              {/* coverage microline — the five assistants, whispered */}
+              <p className="label-mono mt-6 text-[0.6rem] text-foreground/35">
+                ChatGPT · Claude · Gemini · Perplexity · AI Overviews
+              </p>
+            </div>
+          </div>
+        }
+      />
     </section>
   );
 }

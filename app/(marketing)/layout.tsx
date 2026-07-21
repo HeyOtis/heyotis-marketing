@@ -22,6 +22,18 @@ export default function MarketingLayout({
           {children}
         </main>
         <Footer />
+        {/* Blueprint column rules, DOSS-style: a solid hairline pair at the
+            content edges plus a fainter dashed pair in the outer margin.
+            Painted last so they sit over section backgrounds; inert to
+            pointers and screen readers. */}
+        <div
+          aria-hidden
+          className="pointer-events-none fixed inset-y-0 left-1/2 hidden w-full max-w-6xl -translate-x-1/2 border-x border-border/70 xl:block"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none fixed inset-y-0 left-1/2 hidden w-full max-w-7xl -translate-x-1/2 border-x border-dashed border-border/50 xl:block"
+        />
       </SmoothScroll>
     </MotionProvider>
   );

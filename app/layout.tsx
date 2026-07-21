@@ -20,10 +20,9 @@ const geistMono = Geist_Mono({
 });
 
 const bricolage = Bricolage_Grotesque({
-  variable: "--font-display",
+  variable: "--font-bricolage",
   subsets: ["latin"],
   display: "swap",
-  axes: ["wdth"],
 });
 
 export const metadata: Metadata = {

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote-client/rsc";
+import remarkGfm from "remark-gfm";
 import { Container } from "@/components/marketing/Container";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { articleSchema, breadcrumbSchema } from "@/lib/schema";
@@ -129,6 +130,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           <MDXRemote
             source={post.content}
             components={mdxComponents}
+            options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
             onError={MdxError}
           />
         </div>
