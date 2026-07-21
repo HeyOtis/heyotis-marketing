@@ -11,10 +11,10 @@ import { cn } from "@/lib/utils";
 import { useIsomorphicReducedMotion } from "@/lib/use-reduced-motion";
 
 const triggerClass =
-  "group flex items-center gap-1 rounded-md text-sm font-medium text-foreground/70 outline-none transition-colors hover:text-foreground focus-visible:text-foreground data-[state=open]:text-foreground";
+  "group flex items-center gap-1.5 rounded-md text-[0.9375rem] font-medium text-foreground outline-none transition-colors hover:text-foreground/70 focus-visible:text-foreground/70 data-[state=open]:text-foreground/70";
 
 const plainLinkClass =
-  "text-sm font-medium text-foreground/70 transition-colors hover:text-foreground";
+  "text-[0.9375rem] font-medium text-foreground transition-colors hover:text-foreground/70";
 
 function DropdownPanel({
   entry,
@@ -116,7 +116,7 @@ function DesktopNav() {
                 {item.label}
                 <ChevronDown
                   aria-hidden
-                  className="size-3.5 transition-transform duration-200 group-data-[state=open]:rotate-180"
+                  className="size-3 text-muted-foreground transition-transform duration-200 group-data-[state=open]:rotate-180"
                 />
               </NavigationMenu.Trigger>
               <NavigationMenu.Content>
@@ -233,16 +233,18 @@ export function Nav() {
     <header className="sticky top-0 z-50">
       <div
         className={cn(
-          "transition-colors duration-300",
+          "border-b border-border transition-colors duration-300",
           scrolled || open
-            ? "border-b border-border/60 bg-background/80 backdrop-blur-md"
-            : "border-b border-transparent bg-transparent",
+            ? "bg-background/85 backdrop-blur-md"
+            : "bg-background",
         )}
       >
-        <div className="relative mx-auto flex h-16 max-w-7xl items-center justify-between gap-8 px-4 sm:px-6 lg:px-8">
-          <Logo />
-
-          <DesktopNav />
+        <div className="relative mx-auto flex h-16 max-w-6xl items-center justify-between gap-8 px-4 sm:px-6 lg:px-8">
+          {/* DOSS grouping: logo and links cluster left; actions sit right. */}
+          <div className="flex items-center gap-8 lg:gap-12">
+            <Logo />
+            <DesktopNav />
+          </div>
 
           <div className="flex items-center gap-3 sm:gap-5">
             <a
@@ -253,7 +255,7 @@ export function Nav() {
             >
               Log in
             </a>
-            <BookCta size="default" className="inline-flex" />
+            <BookCta variant="salmon" size="default" className="inline-flex" />
             <button
               ref={toggleRef}
               type="button"
@@ -275,7 +277,7 @@ export function Nav() {
         >
           <nav
             aria-label="Mobile"
-            className="mx-auto flex max-w-7xl flex-col divide-y divide-border/60 px-4 py-2 sm:px-6"
+            className="mx-auto flex max-w-6xl flex-col divide-y divide-border/60 px-4 py-2 sm:px-6"
           >
             {NAV.map((item) =>
               "href" in item ? (

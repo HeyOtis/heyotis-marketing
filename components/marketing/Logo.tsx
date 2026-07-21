@@ -1,6 +1,8 @@
 import Link from "next/link";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/lib/site";
+import wordmarkImage from "@/public/brand/heyotis-wordmark-trim.png";
 
 /** The rising-bars brand glyph (shared with the platform app). */
 export function LogoGlyph({ className }: { className?: string }) {
@@ -41,28 +43,39 @@ export function Wordmark({
   );
 }
 
-/** Glyph + wordmark, linked home. */
+/** The brand wordmark image (transparent ground, dark ink — light surfaces
+    only). `priority`: the logo is above the fold on every page. `unoptimized`:
+    a 40KB logo doesn't need the /_next/image pipeline, and the dev optimizer
+    has been seen hanging on this asset's webp variant. */
+export function WordmarkImage({ className }: { className?: string }) {
+  return (
+    <Image
+      src={wordmarkImage}
+      alt=""
+      priority
+      unoptimized
+      className={cn("h-8 w-auto", className)}
+    />
+  );
+}
+
+/** The wordmark, linked home. */
 export function Logo({
   className,
-  glyphClassName,
   wordmarkClassName,
-  tone = "ink",
   href = "/",
 }: {
   className?: string;
-  glyphClassName?: string;
   wordmarkClassName?: string;
-  tone?: "ink" | "cream";
   href?: string;
 }) {
   return (
     <Link
       href={href}
       aria-label={`${siteConfig.name} home`}
-      className={cn("inline-flex items-center gap-2", className)}
+      className={cn("inline-flex items-center", className)}
     >
-      <LogoGlyph className={cn("h-6 w-6", glyphClassName)} />
-      <Wordmark tone={tone} className={cn("text-2xl", wordmarkClassName)} />
+      <WordmarkImage className={wordmarkClassName} />
     </Link>
   );
 }

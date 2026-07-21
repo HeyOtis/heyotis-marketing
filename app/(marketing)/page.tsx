@@ -173,7 +173,7 @@ export default function HomePage() {
               </li>
             ))}
           </ul>
-          <div className="rounded-xl bg-card p-6 sm:p-8">
+          <div className="rounded-xl border border-border bg-card p-6 sm:p-8">
             <FindingsPills />
           </div>
         </div>
@@ -184,7 +184,7 @@ export default function HomePage() {
 
 
       {/* Proof */}
-      <Section surface="card">
+      <Section surface="card" id="proof">
         <SectionHeading
           align="center"
           eyebrow="Proof"

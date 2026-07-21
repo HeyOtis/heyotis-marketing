@@ -118,7 +118,7 @@ function Bars({ heights, live }: { heights: number[]; live: boolean }) {
 
 function MetricTile({ tile, live }: { tile: (typeof TILES)[number]; live: boolean }) {
   return (
-    <div className="rounded-lg bg-card p-4">
+    <div className="rounded-lg border border-border/60 bg-card p-4">
       <p className="label-mono text-[0.6rem] text-muted-foreground">{tile.cap}</p>
       <div className="mt-1.5">{tile.render(live)}</div>
     </div>
@@ -156,7 +156,7 @@ export function PlatformCard() {
           inside a generous beige stage. */}
       <div
         ref={ref}
-        className="grid items-center gap-10 rounded-lg bg-card px-6 py-12 sm:px-12 sm:py-16 lg:grid-cols-[1fr_1.1fr] lg:gap-16 lg:px-16 lg:py-24"
+        className="grid items-center gap-10 rounded-lg border border-border bg-card px-6 py-12 sm:px-12 sm:py-16 lg:grid-cols-[1fr_1.1fr] lg:gap-16 lg:px-16 lg:py-24"
       >
         <div>
           <Eyebrow>The platform</Eyebrow>

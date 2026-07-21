@@ -16,17 +16,18 @@
   --surface-dark: oklch(0.21 0.02 285);        /* charcoal-ink */
   --surface-dark-foreground: oklch(0.97 0.004 85);
 
-  /* ── brand purple (hue 280) ─────────────────────────────────────────── */
-  /* `--brand` is the platform's light primary: DECORATIVE only (glows,
-     beams, charts, the mark) — never carries text. Interactive/text purples
+  /* ── brand electric violet (hue 275) ────────────────────────────────── */
+  /* Blueprint palette: `--brand` is the electric fill — the slot DOSS gives
+     to its electric blue. DECORATIVE only (illustration slabs, glows,
+     charts, the mark) — never carries text. Interactive/text violets
      below are darkened to pass WCAG contrast on cream / with white text. */
-  --brand: oklch(0.68 0.1 280);
-  --brand-soft: oklch(0.93 0.03 280);          /* lavender wash / hover */
-  --brand-strong: oklch(0.5 0.16 280);         /* accessible fill */
+  --brand: oklch(0.54 0.23 275);
+  --brand-soft: oklch(0.93 0.03 278);          /* lavender wash / hover */
+  --brand-strong: oklch(0.47 0.2 275);         /* accessible fill */
 
-  --primary: oklch(0.5 0.16 280);              /* buttons — white text passes */
+  --primary: oklch(0.47 0.2 275);              /* buttons — white text passes */
   --primary-foreground: oklch(0.99 0 0);
-  --accent: oklch(0.5 0.16 280);               /* emphasis, links, heading accent */
+  --accent: oklch(0.47 0.2 275);               /* emphasis, links, heading accent */
   --accent-foreground: oklch(0.99 0 0);
 
   --secondary: oklch(0.95 0.008 85);
@@ -67,7 +68,8 @@
   --ai-gemini: oklch(0.68 0.15 30);
   --ai-perplexity: oklch(0.65 0.14 230);
 
-  --radius: 0.875rem;
+  /* Blueprint geometry: near-square cards; buttons stay pill via rounded-full. */
+  --radius: 0.375rem;
 }
 
 @theme inline {
@@ -123,7 +125,8 @@
 
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-display: var(--font-display);
+  /* Blueprint voice: display shares the grotesk; weight/tracking differentiate. */
+  --font-display: var(--font-geist-sans);
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -207,12 +210,13 @@
   }
 
   /* ── type ────────────────────────────────────────────────────────────── */
+  /* Blueprint voice: plain grotesk at medium weight — the technical-drawing
+     register — instead of the old condensed ultra-bold. */
   .font-display {
     font-family: var(--font-display), var(--font-sans), system-ui, sans-serif;
-    font-weight: 800;
-    font-stretch: 75%;
-    letter-spacing: -0.025em;
-    line-height: 0.95;
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1.04;
   }
   .display-xl { @apply font-display text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem]; }
   .display-lg { @apply font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl; }
@@ -223,6 +227,22 @@
   .label-mono {
     font-family: var(--font-mono), ui-monospace, monospace;
     @apply text-xs font-medium uppercase tracking-[0.18em];
+  }
+
+  /* ── blueprint scaffolding ───────────────────────────────────────────── */
+  /* Fine graph-paper grid — the light inversion of DOSS's dark hero grid. */
+  .blueprint-grid {
+    background-image:
+      linear-gradient(to right, oklch(0.24 0.02 285 / 0.055) 1px, transparent 1px),
+      linear-gradient(to bottom, oklch(0.24 0.02 285 / 0.055) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  /* Same grid, faint cream lines, for dark panels (footer). */
+  .blueprint-grid-dark {
+    background-image:
+      linear-gradient(to right, oklch(0.97 0.004 85 / 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, oklch(0.97 0.004 85 / 0.06) 1px, transparent 1px);
+    background-size: 48px 48px;
   }
 
   .orbit-dash {

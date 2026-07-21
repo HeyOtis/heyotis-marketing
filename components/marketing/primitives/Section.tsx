@@ -11,9 +11,12 @@ type SectionProps = {
   children: React.ReactNode;
 };
 
+/* Blueprint canvas: light sections all sit on the one paper surface and are
+   separated by hairline rules instead of alternating band colors. `card`
+   is kept as an accepted value so callers don't churn. */
 const surfaceClass = {
-  cream: "surface-cream",
-  card: "surface-card",
+  cream: "surface-cream border-t border-border",
+  card: "surface-cream border-t border-border",
   dark: "surface-dark",
 } as const;
 
