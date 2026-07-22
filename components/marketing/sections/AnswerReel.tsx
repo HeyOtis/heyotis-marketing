@@ -84,7 +84,7 @@ const ASSISTANTS: Assistant[] = [
       visibility: { v: "3.2%", d: "▼ 0.8", up: false },
       sentiment: { v: "+0.08", d: "▼ 0.12", up: false },
       citations: { v: "1", d: "▼ 1", up: false },
-      fanout: { v: "4/24", d: "— 0", up: false },
+      fanout: { v: "4/24", d: "- 0", up: false },
     },
     source: "competitor comparison page",
   },
@@ -100,7 +100,7 @@ const METRIC_LABELS: [keyof Assistant["metrics"], string][] = [
 
 /**
  * Nory's location reel, reinterpreted: the periwinkle banner cycles the five
- * assistants; the tile below shows each one's 30-day AEO record — verdict,
+ * assistants; the tile below shows each one's 30-day AEO record - verdict,
  * the fan-out query behind it, and the four metrics with movement. Decorative
  * (aria-hidden); the adjacent SectionHeading carries the semantics. Reduced
  * motion: static ChatGPT frame, no timers.

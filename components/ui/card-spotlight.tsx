@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 /**
  * Lightweight mouse-follow spotlight card. A soft radial glow tracks the cursor
- * and fades in on hover. No WebGL/three.js dependency — pure Motion + CSS, so it
+ * and fades in on hover. No WebGL/three.js dependency - pure Motion + CSS, so it
  * stays cheap on the bundle and respects the site's light/cream theme.
  */
 export const CardSpotlight = ({

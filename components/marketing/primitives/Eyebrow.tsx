@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-/** Geist Mono uppercase label — the "engineered / measured" signal. */
+/** Geist Mono uppercase label - the "engineered / measured" signal. */
 export function Eyebrow({
   children,
   className,

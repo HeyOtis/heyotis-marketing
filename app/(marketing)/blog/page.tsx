@@ -36,12 +36,12 @@ export default function BlogIndexPage() {
         ])}
       />
 
-      {/* Hero — sits under the sticky nav, so it gets generous top padding. */}
+      {/* Hero - sits under the sticky nav, so it gets generous top padding. */}
       <section className="surface-cream pb-12 pt-28 sm:pt-32 md:pb-16 lg:pt-36">
         <Container>
           <Eyebrow>Resources</Eyebrow>
           <h1
-            className="mt-5 display-lg max-w-3xl text-balance"
+            className="mt-5 display-hero max-w-3xl text-balance"
             style={{ fontStretch: "80%", letterSpacing: "-0.02em" }}
           >
             The answer engine playbook
@@ -50,7 +50,7 @@ export default function BlogIndexPage() {
             className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground"
             data-speakable
           >
-            Practical guides on AI brand visibility — how ChatGPT, Claude, Gemini and
+            Practical guides on AI brand visibility - how ChatGPT, Claude, Gemini and
             Perplexity decide which brands to recommend, and how to measure,
             benchmark and grow your Share of Voice in their answers.
           </p>

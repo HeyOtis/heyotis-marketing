@@ -24,7 +24,7 @@ export type LoopStage = {
   title: string;
   blurb: string;
   icon: LucideIcon;
-  /** Stages 4–5 are the differentiator nobody else closes. */
+  /** Stages 4-5 are the differentiator nobody else closes. */
   differentiator?: boolean;
 };
 
@@ -101,7 +101,7 @@ export const MATURITY_LEVELS: MaturityLevel[] = [
     level: "Prescriptive",
     tagline: "Here's what to do about it",
     blurb:
-      "A ranked, evidence-backed action plan — the moves with the best return first.",
+      "A ranked, evidence-backed action plan - the moves with the best return first.",
     icon: ClipboardList,
   },
   {
@@ -122,7 +122,7 @@ export const MATURITY_LEVELS: MaturityLevel[] = [
   },
 ];
 
-/* ── Sample action plan (illustrative — mirrors the product's shape) ──────── */
+/* ── Sample action plan (illustrative - mirrors the product's shape) ──────── */
 export type Opportunity = {
   rank: number;
   title: string;
@@ -143,7 +143,7 @@ export const OPPORTUNITIES: Opportunity[] = [
     effort: "Medium",
     measure: "ChatGPT recommendation share",
     signals: 4,
-    why: "You're named in the answer but rarely first, and never as the cited source — assistants lean on a retailer page instead of yours.",
+    why: "You're named in the answer but rarely first, and never as the cited source - assistants lean on a retailer page instead of yours.",
     doThis: [
       'Publish a comparison page targeting the “best everyday” buying question.',
       "Add Product and FAQ structured data so assistants can ground on you.",
@@ -204,7 +204,7 @@ export const ATTRIBUTION: Attribution = {
   evidence: "Illustrative · 30-day window across tracked prompts, evidence trail attached",
 };
 
-/* ── Real proof (cleared — appears in the cofounder's website copy) ───────── */
+/* ── Real proof (cleared - appears in the cofounder's website copy) ───────── */
 export const HALLENSTEINS = {
   brand: "Hallensteins",
   market: "Australia",
@@ -212,7 +212,7 @@ export const HALLENSTEINS = {
   lift: "+300%",
   lede: "From near-zero to 3.7% AI recommendation share in Australia.",
   detail:
-    "Hallensteins started from near-zero presence in Australian AI recommendations. After benchmarking where the brand stood, diagnosing the gaps and improving the signals that mattered, recommendation share grew 300%. The result wasn't just more mentions — it was a clear view of where competitors were chosen instead, and what to do about it.",
+    "Hallensteins started from near-zero presence in Australian AI recommendations. After benchmarking where the brand stood, diagnosing the gaps and improving the signals that mattered, recommendation share grew 300%. The result wasn't just more mentions - it was a clear view of where competitors were chosen instead, and what to do about it.",
 } as const;
 
 /* ── The five signal streams the engine ingests ──────────────────────────── */
@@ -223,7 +223,7 @@ export type SignalStream = {
   short: string;
   blurb: string;
   icon: LucideIcon;
-  /** The stream that powers log-level attribution — visually emphasized. */
+  /** The stream that powers log-level attribution - visually emphasized. */
   differentiator?: boolean;
 };
 
@@ -241,7 +241,7 @@ export const SIGNAL_STREAMS: SignalStream[] = [
     name: "AI traffic & bot logs",
     short: "Bot logs",
     blurb:
-      "GPTBot, ClaudeBot, PerplexityBot, ChatGPT-User — which pages they fetch, and the humans assistants send you.",
+      "GPTBot, ClaudeBot, PerplexityBot, ChatGPT-User - which pages they fetch, and the humans assistants send you.",
     icon: Terminal,
     differentiator: true,
   },
@@ -258,7 +258,7 @@ export const SIGNAL_STREAMS: SignalStream[] = [
     name: "Your surfaces",
     short: "Your site",
     blurb:
-      "Crawls of your own site — structured data, freshness, what actually shipped.",
+      "Crawls of your own site - structured data, freshness, what actually shipped.",
     icon: Globe,
   },
   {
@@ -270,7 +270,7 @@ export const SIGNAL_STREAMS: SignalStream[] = [
   },
 ];
 
-/* ── Sample ingest feed (illustrative — mirrors the product's log ingestion) ─ */
+/* ── Sample ingest feed (illustrative - mirrors the product's log ingestion) ─ */
 export type LogLine = {
   tag: string;
   text: string;

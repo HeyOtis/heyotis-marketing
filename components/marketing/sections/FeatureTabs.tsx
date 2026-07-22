@@ -26,7 +26,7 @@ export function FeatureTabs({
   const [active, setActive] = React.useState(0);
   const [userPaused, setUserPaused] = React.useState(false);
   // Pause on MOUSE hover only while the visitor is over the *content* panel
-  // (reading the showcased feature) — NOT when merely mousing over the tab rail,
+  // (reading the showcased feature) - NOT when merely mousing over the tab rail,
   // which previously made the bar look frozen.
   const [panelHovered, setPanelHovered] = React.useState(false);
   // Pause when KEYBOARD focus is anywhere inside the widget (WAI-ARIA carousel
@@ -37,7 +37,7 @@ export function FeatureTabs({
   // The tab list is a horizontal scroller on mobile, a vertical column at lg+.
   const isLgUp = useMediaQuery("(min-width: 1024px)");
 
-  // Only auto-rotate while the section is actually on screen — no point burning
+  // Only auto-rotate while the section is actually on screen - no point burning
   // frames (or advancing tabs nobody can see) when it's scrolled out of view.
   const containerRef = React.useRef<HTMLDivElement | null>(null);
   const inView = useInView(containerRef, { margin: "0px" });
@@ -57,7 +57,7 @@ export function FeatureTabs({
   // progress bar by mutating its transform directly (no per-frame re-render),
   // and advance to the next tab once it fills. This is fully self-contained JS:
   // it never depends on a CSS @keyframes surviving the production build, nor on
-  // `animationend` firing — the two things that made earlier versions flaky.
+  // `animationend` firing - the two things that made earlier versions flaky.
   const barRef = React.useRef<HTMLSpanElement | null>(null);
   React.useEffect(() => {
     const bar = barRef.current;
@@ -197,7 +197,7 @@ export function FeatureTabs({
         ) : null}
       </div>
 
-      {/* Active panel — hovering/focusing here pauses the tour so content
+      {/* Active panel - hovering/focusing here pauses the tour so content
           isn't yanked while the visitor is reading it. */}
       <div
         className="min-w-0 lg:col-span-7"

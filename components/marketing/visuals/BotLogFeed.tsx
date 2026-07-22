@@ -10,7 +10,7 @@ const VISIBLE = 6;
 const TICK_MS = 2200;
 
 /* Monotonic clock: the feed loops through LOG_LINES, so stored times would
-   rewind on wrap — derive each line's time from its position instead. */
+   rewind on wrap - derive each line's time from its position instead. */
 const BASE_SECONDS = 9 * 3600 + 41 * 60 + 7; // 09:41:07
 function timeAt(i: number) {
   const t = BASE_SECONDS + i * 47;
@@ -93,7 +93,7 @@ export function BotLogFeed({ className }: { className?: string }) {
         </div>
       </div>
       <p className="label-mono mt-3 text-[0.6rem] text-muted-foreground">
-        Illustrative — mirrors the product&apos;s log ingestion
+        Illustrative - mirrors the product&apos;s log ingestion
       </p>
     </div>
   );

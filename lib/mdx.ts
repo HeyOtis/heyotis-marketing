@@ -89,7 +89,7 @@ export function getAllPostSlugs(): string[] {
 }
 
 // Case studies share the blog's MDX machinery but live under content/case-studies
-// and render at /case-studies/<slug> — customer results stories, not editorial.
+// and render at /case-studies/<slug> - customer results stories, not editorial.
 export function getAllCaseStudies(): Post[] {
   return readMdxDir("case-studies");
 }

@@ -9,13 +9,13 @@ const LAYERS = [
     n: "01",
     name: "The crawl",
     lede: "AI bots fetch the fix.",
-    body: "Within days of a move shipping, GPTBot, ClaudeBot and PerplexityBot fetch the changed pages — visible straight from your traffic and bot logs, because HeyOtis ingests them.",
+    body: "Within days of a move shipping, GPTBot, ClaudeBot and PerplexityBot fetch the changed pages - visible straight from your traffic and bot logs, because HeyOtis ingests them.",
   },
   {
     n: "02",
     name: "The visit",
     lede: "Assistants send the humans.",
-    body: "Referral sessions arrive from chatgpt.com and perplexity.ai onto the pages the move touched — real buyers, from real answers.",
+    body: "Referral sessions arrive from chatgpt.com and perplexity.ai onto the pages the move touched - real buyers, from real answers.",
   },
   {
     n: "03",
@@ -26,8 +26,8 @@ const LAYERS = [
 ] as const;
 
 /**
- * The attribution story as a ladder of evidence — raw log line → human visit →
- * business metric — connected by a spine. Layer visuals: BotLogFeed,
+ * The attribution story as a ladder of evidence - raw log line → human visit →
+ * business metric - connected by a spine. Layer visuals: BotLogFeed,
  * ReferralStat, AttributionPanel.
  */
 export function EvidenceLadder({ className }: { className?: string }) {
@@ -84,7 +84,7 @@ function ReferralStat() {
           +96%
         </span>
       </div>
-      {/* Stack below sm — three columns truncate the longer source domains. */}
+      {/* Stack below sm - three columns truncate the longer source domains. */}
       <dl className="mt-6 grid gap-3 sm:grid-cols-3">
         {[
           { source: "chatgpt.com", value: "+128%" },

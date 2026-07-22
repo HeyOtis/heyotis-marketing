@@ -29,7 +29,7 @@ import { cn } from "@/lib/utils";
 export const metadata = buildMetadata({
   title: "Pricing",
   description:
-    "HeyOtis pricing is contact-sales across four tiers — scaled to your tracked brands, prompt volume, AI responses and competitors. Talk to us for a quote.",
+    "HeyOtis pricing scales across four tiers, from $150/mo - by tracked brands, campaigns, AI responses, competitors and seats. Book a demo for a scoped quote.",
   path: "/pricing",
 });
 
@@ -47,12 +47,13 @@ const TIERS: Tier[] = [
   {
     name: "Basic",
     who: "For brands taking their first look at AI search visibility.",
-    priceLabel: "Custom",
-    priceSub: "Scoped to your brand — let's talk",
+    priceLabel: "From $150",
+    priceSub: "per month · scoped to your brand",
     features: [
       "1 tracked brand",
+      "3 campaigns",
       "Up to 3 active prompts per campaign",
-      "1,000 AI responses / month",
+      "500 AI responses / month",
       "Up to 3 competitors benchmarked",
       "ChatGPT, Claude, Gemini, Perplexity & Google AI Overviews",
       "2 team seats",
@@ -62,12 +63,13 @@ const TIERS: Tier[] = [
   {
     name: "Plus",
     who: "For growing teams defending share of voice.",
-    priceLabel: "Custom",
-    priceSub: "Scoped to your volume — let's talk",
+    priceLabel: "From $625",
+    priceSub: "per month · scoped to your volume",
     features: [
       "Up to 3 tracked brands",
+      "5 campaigns",
       "Up to 10 active prompts per campaign",
-      "5,000 AI responses / month",
+      "2,500 AI responses / month",
       "Up to 6 competitors benchmarked",
       "ChatGPT, Claude, Gemini, Perplexity & Google AI Overviews",
       "5 team seats",
@@ -78,12 +80,13 @@ const TIERS: Tier[] = [
   {
     name: "Premium",
     who: "For brands competing hard across categories.",
-    priceLabel: "Custom",
-    priceSub: "Scoped to your portfolio — let's talk",
+    priceLabel: "From $2,200",
+    priceSub: "per month · scoped to your portfolio",
     features: [
       "Up to 10 tracked brands",
+      "20 campaigns",
       "Up to 25 active prompts per campaign",
-      "20,000 AI responses / month",
+      "10,000 AI responses / month",
       "Up to 12 competitors benchmarked",
       "ChatGPT, Claude, Gemini, Perplexity & Google AI Overviews",
       "10 team seats",
@@ -99,12 +102,13 @@ const TIERS: Tier[] = [
     priceLabel: "Let's talk",
     priceSub: "Tailored to your scope & governance",
     features: [
-      "Unlimited tracked brands",
+      "25 tracked brands",
+      "250 campaigns",
       "Custom active prompts per campaign",
-      "Custom AI response volume",
+      "50,000 AI responses / month",
       "Custom competitor sets",
       "ChatGPT, Claude, Gemini, Perplexity & Google AI Overviews",
-      "Custom seats with SSO",
+      "100 seats with SSO",
       "GA4 AI referral traffic",
       "Strategy Engine access",
       "Dedicated onboarding & support",
@@ -116,19 +120,21 @@ const TIERS: Tier[] = [
 function TierCard({ tier }: { tier: Tier }) {
   const body = (
     <div className="flex flex-1 flex-col p-6 sm:p-7">
-      <div className="flex items-center justify-between gap-3">
-        <h3
-          className="font-display text-2xl text-foreground"
-          style={{ fontStretch: "85%", letterSpacing: "-0.01em" }}
-        >
-          {tier.name}
-        </h3>
+      {/* Reserved badge row on every card so the four plan names stay aligned;
+          only the recommended tier fills it. */}
+      <div className="mb-3 flex min-h-[1.5rem] items-center">
         {tier.recommended ? (
-          <span className="label-mono shrink-0 whitespace-nowrap rounded-full bg-periwinkle px-3 py-1 text-[0.625rem] text-foreground">
+          <span className="label-mono inline-flex items-center rounded-full bg-periwinkle px-2.5 py-1 text-[0.625rem] leading-none tracking-[0.12em] text-foreground">
             Most popular
           </span>
         ) : null}
       </div>
+      <h3
+        className="font-display text-2xl text-foreground"
+        style={{ fontStretch: "85%", letterSpacing: "-0.01em" }}
+      >
+        {tier.name}
+      </h3>
 
       <p className="mt-3 min-h-[2.75rem] text-sm leading-relaxed text-muted-foreground">
         {tier.who}
@@ -199,7 +205,14 @@ const COMPARE_GROUPS: { heading: string; rows: CompareRow[] }[] = [
         basic: "1",
         plus: "3",
         premium: "10",
-        enterprise: "Unlimited",
+        enterprise: "25",
+      },
+      {
+        label: "Campaigns",
+        basic: "3",
+        plus: "5",
+        premium: "20",
+        enterprise: "250",
       },
       {
         label: "Active prompts per campaign",
@@ -210,10 +223,10 @@ const COMPARE_GROUPS: { heading: string; rows: CompareRow[] }[] = [
       },
       {
         label: "AI responses / month",
-        basic: "1,000",
-        plus: "5,000",
-        premium: "20,000",
-        enterprise: "Custom",
+        basic: "500",
+        plus: "2,500",
+        premium: "10,000",
+        enterprise: "50,000",
       },
       {
         label: "Competitor set size",
@@ -227,7 +240,7 @@ const COMPARE_GROUPS: { heading: string; rows: CompareRow[] }[] = [
         basic: "2",
         plus: "5",
         premium: "10",
-        enterprise: "Custom + SSO",
+        enterprise: "100 + SSO",
       },
     ],
   },
@@ -326,11 +339,11 @@ function CompareCell({ value }: { value: Cell }) {
 const FAQS: FaqItem[] = [
   {
     q: "How is HeyOtis pricing structured?",
-    a: "HeyOtis is contact-sales across four tiers — Basic, Plus, Premium and Enterprise. Each plan is scoped to your number of tracked brands, active prompts, monthly AI responses and competitor set size, all monitored across ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews. Book a chat and we'll size a plan to your category and goals.",
+    a: "HeyOtis has four tiers - Basic, Plus, Premium and Enterprise - starting at $150/mo. Each plan is scoped to your number of tracked brands, campaigns, active prompts, monthly AI responses and competitor set size, all monitored across ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews. Prices are starting points; book a chat and we'll size a plan to your category and goals.",
   },
   {
     q: "Is there a free trial or self-serve sign-up?",
-    a: "No. HeyOtis is demo-led rather than self-serve. We book a short call, run your brand against ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews, walk you through a sample report, and then tailor a plan — so campaigns reflect your real competitors and category from day one.",
+    a: "No. HeyOtis is demo-led rather than self-serve. We book a short call, run your brand against ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews, walk you through a sample report, and then tailor a plan - so campaigns reflect your real competitors and category from day one.",
   },
   {
     q: "What counts as an AI response?",
@@ -338,11 +351,11 @@ const FAQS: FaqItem[] = [
   },
   {
     q: "Can agencies manage multiple brands?",
-    a: "Yes. HeyOtis is multi-tenant — Organization → Brand → Campaign — so you can run several brands from one account. Plus and Premium cover small portfolios, while Enterprise is built for agencies with unlimited tracked brands, custom seats and SSO.",
+    a: "Yes. HeyOtis is multi-tenant - Organization → Brand → Campaign - so you can run several brands from one account. Plus and Premium cover small portfolios, while Enterprise scales to 25 tracked brands, 100 seats and SSO. For larger agency portfolios we have a dedicated Agencies track - talk to us.",
   },
   {
     q: "Can I change plans as I grow?",
-    a: "Yes. You can move between tiers as your needs change — just talk to us and we'll adjust your tracked brands, prompt volume, AI response allowance, seats and engines to match.",
+    a: "Yes. You can move between tiers as your needs change - just talk to us and we'll adjust your tracked brands, prompt volume, AI response allowance, seats and engines to match.",
   },
 ];
 
@@ -363,23 +376,25 @@ export default function PricingPage() {
           <div className="max-w-3xl">
             <Eyebrow>Pricing</Eyebrow>
             <h1
-              className="display-lg mt-5 text-balance"
+              className="display-hero mt-5 text-balance"
               style={{ fontStretch: "80%", letterSpacing: "-0.02em" }}
             >
-              Plans that scale with your AI visibility strategy
+              Plans that scale with your{" "}
+              <span className="text-accent">AI visibility strategy</span>
             </h1>
             <p
               className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground"
               data-speakable
             >
-              HeyOtis pricing is tailored, not off-the-shelf. There&apos;s no
-              self-serve sign-up — every plan is contact-sales and scoped to your
-              tracked brands, prompt volume and competitor sets across ChatGPT,
-              Claude, Gemini, Perplexity and Google AI Overviews. Pick the tier that fits and
-              we&apos;ll size the rest with you.
+              Plans start at $150/mo and scale by tracked brands, campaigns,
+              prompt volume and competitor sets across ChatGPT, Claude, Gemini,
+              Perplexity and Google AI Overviews. There&apos;s no self-serve
+              sign-up - onboarding is demo-led, so we scope each plan with you
+              on a short call. Pick the tier that fits and we&apos;ll size the
+              rest.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <BookCta label="Talk to us" nudge withArrow />
+              <BookCta label="Talk to us" variant="salmon" nudge withArrow />
               <span className="text-sm text-muted-foreground">
                 Demo-led onboarding · no credit card
               </span>
@@ -393,7 +408,7 @@ export default function PricingPage() {
         <SectionHeading
           eyebrow="Tiers"
           title="Four tiers, one tailored quote"
-          sub="Every tier monitors ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews. The difference is scale — how many brands, prompts, AI responses and competitors you track, plus the depth of strategy and support."
+          sub="Every tier monitors ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews. The difference is scale - how many brands, prompts, AI responses and competitors you track, plus the depth of strategy and support."
           className="max-w-2xl"
         />
         <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -402,8 +417,9 @@ export default function PricingPage() {
           ))}
         </div>
         <p className="mt-8 text-sm text-muted-foreground">
-          Limits shown are illustrative starting points — we&apos;ll confirm the
-          right allowances for your brands on a quick call.
+          Prices are starting points and limits scale with your scope -
+          we&apos;ll confirm the right plan and allowances for your brands on a
+          quick call.
         </p>
       </Section>
 
@@ -490,7 +506,7 @@ export default function PricingPage() {
         <SectionHeading
           eyebrow="Pricing"
           title="Managed"
-          sub="Prefer strategist-led? We run the loop with you — campaigns, priorities and reviews handled by a HeyOtis strategist, so the platform's recommendations turn into shipped work without you having to run the process yourself."
+          sub="Prefer strategist-led? We run the loop with you - campaigns, priorities and reviews handled by a HeyOtis strategist, so the platform's recommendations turn into shipped work without you having to run the process yourself."
           className="max-w-2xl"
         />
         <div className="mt-8">
@@ -503,7 +519,7 @@ export default function PricingPage() {
         <SectionHeading
           eyebrow="Pricing"
           title="For Agencies"
-          sub="Multi-brand workspaces, white-label reporting and per-client campaigns — built for agencies running AI visibility across a whole portfolio of brands, not just one."
+          sub="Multi-brand workspaces, white-label reporting and per-client campaigns - built for agencies running AI visibility across a whole portfolio of brands, not just one."
           className="max-w-2xl"
         />
         <div className="mt-8">

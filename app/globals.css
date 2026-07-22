@@ -12,20 +12,20 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.24 0.02 285);
 
-  /* The ONE dark surface — nav / footer / CTA bands. */
+  /* The ONE dark surface - nav / footer / CTA bands. */
   --surface-dark: oklch(0.21 0.02 285);        /* charcoal-ink */
   --surface-dark-foreground: oklch(0.97 0.004 85);
 
   /* ── brand electric violet (hue 275) ────────────────────────────────── */
-  /* Blueprint palette: `--brand` is the electric fill — the slot DOSS gives
+  /* Blueprint palette: `--brand` is the electric fill - the slot DOSS gives
      to its electric blue. DECORATIVE only (illustration slabs, glows,
-     charts, the mark) — never carries text. Interactive/text violets
+     charts, the mark) - never carries text. Interactive/text violets
      below are darkened to pass WCAG contrast on cream / with white text. */
   --brand: oklch(0.54 0.23 275);
   --brand-soft: oklch(0.93 0.03 278);          /* lavender wash / hover */
   --brand-strong: oklch(0.47 0.2 275);         /* accessible fill */
 
-  --primary: oklch(0.47 0.2 275);              /* buttons — white text passes */
+  --primary: oklch(0.47 0.2 275);              /* buttons - white text passes */
   --primary-foreground: oklch(0.99 0 0);
   --accent: oklch(0.47 0.2 275);               /* emphasis, links, heading accent */
   --accent-foreground: oklch(0.99 0 0);
@@ -53,9 +53,9 @@
   --stage: oklch(0.945 0.012 85);        /* warm beige inset panels   */
   --periwinkle: oklch(0.75 0.1 285);     /* banner tiles, dark text   */
   --lime: oklch(0.9 0.17 125);           /* positive delta/status     */
-  --panel-warm: oklch(0.32 0.07 45);     /* deep terracotta — the salmon hue taken dark, for pillar panels */
+  --panel-warm: oklch(0.32 0.07 45);     /* deep terracotta - the salmon hue taken dark, for pillar panels */
 
-  /* chart tokens (mock product visuals — reused from the platform) */
+  /* chart tokens (mock product visuals - reused from the platform) */
   --chart-1: oklch(0.68 0.1 280);
   --chart-2: oklch(0.65 0.18 230);
   --chart-3: oklch(0.7 0.16 55);
@@ -126,7 +126,7 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   /* Display voice: Bricolage Grotesque, worn lightly (medium weight, no
-     condensation — not the old ultra-bold). */
+     condensation - not the old ultra-bold). */
   --font-display: var(--font-bricolage);
 
   --radius-sm: calc(var(--radius) - 4px);
@@ -211,13 +211,22 @@
   }
 
   /* ── type ────────────────────────────────────────────────────────────── */
-  /* Display voice: Bricolage at medium weight, normal width — character
+  /* Display voice: Bricolage at medium weight, normal width - character
      without the old condensed ultra-bold shout. */
   .font-display {
     font-family: var(--font-display), var(--font-sans), system-ui, sans-serif;
     font-weight: 600;
     letter-spacing: -0.02em;
     line-height: 1.06;
+  }
+  /* Page hero heading - the h1 voice shared by the home hero and every
+     top-of-page hero, so they stay in lockstep on size and weight. */
+  .display-hero {
+    font-family: var(--font-display), var(--font-sans), system-ui, sans-serif;
+    font-weight: 700;
+    font-size: clamp(2.2rem, 4vw, 3.4rem);
+    line-height: 1.12;
+    letter-spacing: -0.03em;
   }
   .display-xl { @apply font-display text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem]; }
   .display-lg { @apply font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl; }
@@ -231,7 +240,7 @@
   }
 
   /* ── blueprint scaffolding ───────────────────────────────────────────── */
-  /* Fine graph-paper grid — the light inversion of DOSS's dark hero grid. */
+  /* Fine graph-paper grid - the light inversion of DOSS's dark hero grid. */
   .blueprint-grid {
     background-image:
       linear-gradient(to right, oklch(0.24 0.02 285 / 0.055) 1px, transparent 1px),
@@ -255,7 +264,7 @@
     }
   }
 
-  /* CTA micro-nudge — a single hop, classier than a pulse. */
+  /* CTA micro-nudge - a single hop, classier than a pulse. */
   @keyframes cta-nudge {
     0%, 86%, 100% { transform: translateY(0); }
     91% { transform: translateY(-3px); }
@@ -323,7 +332,7 @@
   }
 }
 
-/* Magic UI marquee (components/ui/marquee.tsx) — the hero logo carousel. */
+/* Magic UI marquee (components/ui/marquee.tsx) - the hero logo carousel. */
 @theme inline {
   --animate-marquee: marquee var(--duration) linear infinite;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;

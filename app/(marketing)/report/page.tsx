@@ -37,7 +37,7 @@ const WHATS_IN_IT: { icon: LucideIcon; title: string; blurb: string }[] = [
     icon: ScanSearch,
     title: "Per-assistant verdicts",
     blurb:
-      "Recommended, mentioned or missing — engine by engine, so you know exactly where the gaps are.",
+      "Recommended, mentioned or missing - engine by engine, so you know exactly where the gaps are.",
   },
   {
     icon: Link2,
@@ -49,7 +49,7 @@ const WHATS_IN_IT: { icon: LucideIcon; title: string; blurb: string }[] = [
     icon: ListChecks,
     title: "Three prioritised moves",
     blurb:
-      "The highest-impact places to focus first, ranked by impact and effort — not a generic checklist.",
+      "The highest-impact places to focus first, ranked by impact and effort - not a generic checklist.",
   },
 ];
 
@@ -73,7 +73,7 @@ const HOW_IT_WORKS: { step: string; icon: LucideIcon; title: string; blurb: stri
     icon: CalendarCheck,
     title: "20-minute walkthrough",
     blurb:
-      "We deliver the report live in a 20-minute call — walking you through the findings and answering questions as they come up.",
+      "We deliver the report live in a 20-minute call - walking you through the findings and answering questions as they come up.",
   },
 ];
 
@@ -102,7 +102,7 @@ export default function ReportPage() {
         <Container className="relative pb-12 pt-28 sm:pt-32 md:pb-16 lg:pt-36">
           <Eyebrow>Free AI Visibility Report</Eyebrow>
           <h1
-            className="display-lg mt-5 max-w-3xl text-balance"
+            className="display-hero mt-5 max-w-3xl text-balance"
             style={{ fontStretch: "80%", letterSpacing: "-0.02em" }}
           >
             See exactly how AI answers{" "}
@@ -112,8 +112,8 @@ export default function ReportPage() {
             className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground"
             data-speakable
           >
-            We run your brand against five AI assistants — ChatGPT, Claude,
-            Gemini, Perplexity and Google AI Overviews — and send back a report
+            We run your brand against five AI assistants - ChatGPT, Claude,
+            Gemini, Perplexity and Google AI Overviews - and send back a report
             showing where you&rsquo;re recommended, mentioned and missing.
           </p>
           <div className="mt-8">
@@ -127,7 +127,7 @@ export default function ReportPage() {
         <SectionHeading
           eyebrow="What's in it"
           title="Four things you'll walk away with"
-          sub="Not a vanity score — a grounded read of where you stand, and what to do about it."
+          sub="Not a vanity score - a grounded read of where you stand, and what to do about it."
           className="max-w-2xl"
         />
         <div className="mt-12 grid gap-5 sm:grid-cols-2">
@@ -154,7 +154,7 @@ export default function ReportPage() {
         <SectionHeading
           eyebrow="How it works"
           title="Three steps, one 20-minute call"
-          sub="No lengthy onboarding — three steps and a call."
+          sub="No lengthy onboarding - three steps and a call."
           className="max-w-2xl"
         />
         <div className="mt-12 grid gap-5 sm:grid-cols-3">
@@ -185,7 +185,7 @@ export default function ReportPage() {
       <Section surface="card">
         <div className="mx-auto flex max-w-2xl flex-col items-center gap-6 text-center">
           <p className="text-balance text-xl font-medium leading-relaxed text-foreground sm:text-2xl">
-            Delivered live in a 20-minute walkthrough — today, that&rsquo;s how
+            Delivered live in a 20-minute walkthrough - today, that&rsquo;s how
             we get the report in front of you.
           </p>
           <AiSourceLogos withText className="justify-center" />

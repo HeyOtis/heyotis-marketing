@@ -59,7 +59,7 @@ export function Marquee({
         .map((_, i) => (
           <div
             key={i}
-            /* Repeats beyond the first are visual filler — hide them from
+            /* Repeats beyond the first are visual filler - hide them from
                screen readers so content isn't announced four times. */
             aria-hidden={i > 0 || undefined}
             className={cn("flex shrink-0 justify-around gap-(--gap)", {

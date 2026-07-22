@@ -13,7 +13,7 @@ import { getAllPosts } from "@/lib/mdx";
 export const metadata = buildMetadata({
   title: "Guides & AEO Playbook",
   description:
-    "The start of HeyOtis' Answer Engine Optimization playbook — practical guides on how AI assistants choose which brands to recommend, and how to grow your Share of Voice.",
+    "The start of HeyOtis' Answer Engine Optimization playbook - practical guides on how AI assistants choose which brands to recommend, and how to grow your Share of Voice.",
   path: "/guides",
 });
 
@@ -34,7 +34,7 @@ export default function GuidesPage() {
         <Container>
           <Eyebrow>Guides & AEO Playbook</Eyebrow>
           <h1
-            className="mt-5 display-lg max-w-3xl text-balance"
+            className="mt-5 display-hero max-w-3xl text-balance"
             style={{ fontStretch: "80%", letterSpacing: "-0.02em" }}
           >
             The start of the AEO playbook.
@@ -45,7 +45,7 @@ export default function GuidesPage() {
           >
             Answer Engine Optimization is a new discipline, and we&rsquo;re
             writing the playbook as we run it for real brands. These guides
-            are where it starts — how AI assistants choose which brands to
+            are where it starts - how AI assistants choose which brands to
             recommend, and what you can actually influence.
           </p>
         </Container>
@@ -98,7 +98,7 @@ export default function GuidesPage() {
           <p className="max-w-xl text-base leading-relaxed text-muted-foreground">
             We&rsquo;re expanding these guides into a complete playbook. In
             the meantime, the fastest way to see where your own brand stands
-            is the free AI Visibility Report — a direct read of how five
+            is the free AI Visibility Report - a direct read of how five
             assistants answer for you today.
           </p>
           <BookCta

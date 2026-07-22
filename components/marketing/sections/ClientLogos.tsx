@@ -9,7 +9,7 @@ import motorhub from "@/public/clients/motorhub.png";
 
 /* Client wordmarks, rendered as ink silhouettes (brightness-0 + opacity)
    so mixed source files sit quietly in the blueprint palette. Heights are
-   tuned per mark so wordmarks and emblems carry even visual weight —
+   tuned per mark so wordmarks and emblems carry even visual weight -
    don't normalize them to one value. To add a client: drop the file in
    public/clients/ and add a row. */
 const CLIENTS: { name: string; src: typeof hallensteins; height: number }[] = [

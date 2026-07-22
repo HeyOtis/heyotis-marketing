@@ -2,6 +2,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema, faqPageSchema } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
 import { Hero } from "@/components/marketing/sections/Hero";
+import { LoopStages } from "@/components/marketing/sections/HeroLoopTabs";
 import { ClientLogos } from "@/components/marketing/sections/ClientLogos";
 import { CaseStudyDaylyte } from "@/components/marketing/sections/CaseStudyDaylyte";
 import { ReportBand } from "@/components/marketing/sections/ReportBand";
@@ -17,26 +18,26 @@ export const metadata = buildMetadata({
   // Kept as the punchy, benefit-led title on shared social/OG cards.
   title: "See how AI recommends your brand",
   description:
-    "HeyOtis measures how ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews recommend your brand, finds the moves that grow your share, watches the work land, and measures the lift. A closed loop — not another dashboard.",
+    "HeyOtis measures how ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews recommend your brand, finds the moves that grow your share, watches the work land, and measures the lift. A closed loop - not another dashboard.",
   path: "/",
 });
 
 const FAQS: FaqItem[] = [
   {
     q: "What is HeyOtis?",
-    a: "HeyOtis is an AI brand visibility platform. It measures how AI assistants like ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews recommend your brand — your Share of Voice, the citations they trust, and how you rank against competitors — and shows you where to focus to improve.",
+    a: "HeyOtis is an AI brand visibility platform. It measures how AI assistants like ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews recommend your brand - your Share of Voice, the citations they trust, and how you rank against competitors - and shows you where to focus to improve.",
   },
   {
     q: "How does HeyOtis track AI search visibility?",
-    a: "HeyOtis runs scheduled campaigns of unbiased, buyer-intent prompts against ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews, captures each answer, and measures whether and how your brand appears — including position, sentiment and the sources the AI cited.",
+    a: "HeyOtis runs scheduled campaigns of unbiased, buyer-intent prompts against ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews, captures each answer, and measures whether and how your brand appears - including position, sentiment and the sources the AI cited.",
   },
   {
     q: "How does HeyOtis prove AI actually drove the result?",
-    a: "HeyOtis ingests your traffic and AI-bot logs. When a recommended move ships, you can watch AI crawlers like GPTBot and PerplexityBot fetch the changed pages, see referral sessions arrive from assistants like ChatGPT and Perplexity, and measure the before-and-after change in your AI recommendation share — three layers of evidence, from raw log line to business metric.",
+    a: "HeyOtis ingests your traffic and AI-bot logs. When a recommended move ships, you can watch AI crawlers like GPTBot and PerplexityBot fetch the changed pages, see referral sessions arrive from assistants like ChatGPT and Perplexity, and measure the before-and-after change in your AI recommendation share - three layers of evidence, from raw log line to business metric.",
   },
   {
     q: "Which AI assistants does HeyOtis monitor?",
-    a: "HeyOtis monitors ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews — the assistants most people use to research and compare brands. We add engines as adoption grows.",
+    a: "HeyOtis monitors ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews - the assistants most people use to research and compare brands. We add engines as adoption grows.",
   },
   {
     q: "What is Share of Voice in AI search?",
@@ -44,7 +45,7 @@ const FAQS: FaqItem[] = [
   },
   {
     q: "Is HeyOtis the same as SEO?",
-    a: "No. SEO optimizes for ranked links on search engines. HeyOtis focuses on Answer Engine Optimization (AEO/GEO) — being the brand AI assistants name and recommend in their generated answers.",
+    a: "No. SEO optimizes for ranked links on search engines. HeyOtis focuses on Answer Engine Optimization (AEO/GEO) - being the brand AI assistants name and recommend in their generated answers.",
   },
   {
     q: "Do I need to talk to sales to get started?",
@@ -60,6 +61,9 @@ export default function HomePage() {
 
       <Hero />
 
+      {/* The loop, stage by stage */}
+      <LoopStages />
+
       <ClientLogos />
 
       {/* The stakes */}
@@ -68,14 +72,14 @@ export default function HomePage() {
           align="center"
           eyebrow="The stakes"
           title="The answer is the new shortlist."
-          sub="When someone asks an assistant what to buy, they don't get ten blue links to weigh up. They get three names. You're on that list or you're invisible — and there's no page two to climb."
+          sub="When someone asks an assistant what to buy, they don't get ten blue links to weigh up. They get three names. You're on that list or you're invisible - and there's no page two to climb."
           className="mx-auto max-w-2xl"
         />
       </Section>
 
       <CaseStudyDaylyte />
 
-      {/* The three pillars — deep-panel product stories */}
+      {/* The three pillars - deep-panel product stories */}
       <PillarSections />
 
       <ReportBand />

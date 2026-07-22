@@ -13,7 +13,7 @@ import {
 import { cn } from "@/lib/utils";
 
 export const metadata = buildMetadata({
-  title: "The Platform — one loop from measurement to proof",
+  title: "The Platform - one loop from measurement to proof",
   description:
     "Otis runs the loop in four stages: Measure how every AI platform talks about your category (AEO Insights), turn it into a ranked Strategy, Act with verified implementation, and Attribute the lift with deterministic analytics.",
   path: "/platform",
@@ -32,10 +32,10 @@ const STAGES: Array<{
 }> = [
   {
     id: "measure",
-    kicker: "01 · Measure — powered by AEO Insights",
+    kicker: "01 · Measure - powered by AEO Insights",
     title: "All of your AI visibility in one data-rich surface",
     blurb:
-      "Otis runs your category's real buyer questions across every assistant and scores what comes back — so you always know exactly where you stand, and why.",
+      "Otis runs your category's real buyer questions across every assistant and scores what comes back - so you always know exactly where you stand, and why.",
     capabilities: [
       {
         id: "visibility",
@@ -45,7 +45,7 @@ const STAGES: Array<{
       {
         id: "sentiment",
         name: "Sentiment",
-        desc: "How assistants frame you — praise, hedges and objections — measured across every model.",
+        desc: "How assistants frame you - praise, hedges and objections - measured across every model.",
       },
       {
         id: "fanouts",
@@ -62,14 +62,14 @@ const STAGES: Array<{
   },
   {
     id: "strategy",
-    kicker: "02 · Strategy — the Strategy Engine",
+    kicker: "02 · Strategy - the Strategy Engine",
     title: "From evidence to a ranked plan",
     blurb:
-      "The Strategy Engine reads the measurement and writes the plan: moves scored on impact and effort, ranked, and sequenced into a quarter — each step carrying the evidence it came from.",
+      "The Strategy Engine reads the measurement and writes the plan: moves scored on impact and effort, ranked, and sequenced into a quarter - each step carrying the evidence it came from.",
     capabilities: [
       {
         name: "Insights",
-        desc: "What the measurement surfaced — where you're cited, missing, or slipping.",
+        desc: "What the measurement surfaced - where you're cited, missing, or slipping.",
       },
       {
         name: "Recommendations",
@@ -85,7 +85,7 @@ const STAGES: Array<{
   },
   {
     id: "act",
-    kicker: "03 · Act — implementation, tracked",
+    kicker: "03 · Act - implementation, tracked",
     title: "Ship it, watch it land",
     blurb:
       "A plan only counts once it ships. Each move becomes tracked work: Otis watches the crawlers pick up the change, verifies it's live in production, and confirms the answer actually moved.",
@@ -96,7 +96,7 @@ const STAGES: Array<{
       },
       {
         name: "Watch it land",
-        desc: "From ship, to crawl, to a changed answer — within days.",
+        desc: "From ship, to crawl, to a changed answer - within days.",
       },
       {
         name: "Verified live",
@@ -107,10 +107,10 @@ const STAGES: Array<{
   },
   {
     id: "attribute",
-    kicker: "04 · Attribute — powered by AEO Analytics",
+    kicker: "04 · Attribute - powered by AEO Analytics",
     title: "Deterministic attribution, receipts attached",
     blurb:
-      "Website analytics and AI bot analytics, joined into one deterministic record. Every lift is attributed to the move that caused it — and what worked feeds straight back into the next plan.",
+      "Website analytics and AI bot analytics, joined into one deterministic record. Every lift is attributed to the move that caused it - and what worked feeds straight back into the next plan.",
     capabilities: [
       {
         name: "Website analytics",
@@ -122,7 +122,7 @@ const STAGES: Array<{
       },
       {
         name: "The receipts",
-        desc: "Every number traces back to a logged event — crawl, session, order.",
+        desc: "Every number traces back to a logged event - crawl, session, order.",
       },
     ],
     Vignette: AttributeVignette,
@@ -142,7 +142,10 @@ export default function PlatformPage() {
       {/* Intro */}
       <Section surface="card" className="pb-4 md:pb-8">
         <p className="label-mono text-accent">/ The Platform</p>
-        <h1 className="mt-5 max-w-3xl font-display text-[clamp(2.2rem,4.4vw,3.6rem)] leading-[1.08] tracking-[-0.025em] text-foreground">
+        <h1
+          className="display-hero mt-5 max-w-3xl text-balance text-foreground"
+          style={{ fontStretch: "80%", letterSpacing: "-0.02em" }}
+        >
           One loop from measurement to proof
         </h1>
         <p
@@ -208,7 +211,7 @@ export default function PlatformPage() {
       ))}
 
       <CtaBand
-        sub="Book a 20-minute walkthrough. We'll run your brand through the loop and show you exactly where you're losing the answer — and what to do about it."
+        sub="Book a 20-minute walkthrough. We'll run your brand through the loop and show you exactly where you're losing the answer - and what to do about it."
         secondary={null}
       />
     </>

@@ -18,14 +18,14 @@ const variantClass = {
   inverse: "bg-background text-foreground hover:bg-background/90",
   secondary:
     "border border-border bg-transparent text-foreground hover:bg-secondary",
-  // Quiet ink pill for chrome (nav) — the light-surface inverse of DOSS's
+  // Quiet ink pill for chrome (nav) - the light-surface inverse of DOSS's
   // cream-on-dark demo button.
   ink: "bg-surface-dark text-surface-dark-foreground hover:bg-surface-dark/90",
-  // Salmon pill, ink text — the site's standing warm accent, chosen to
+  // Salmon pill, ink text - the site's standing warm accent, chosen to
   // contrast the lavender background shapes. Nav and hero share it,
   // DOSS-style.
   salmon: "bg-salmon text-foreground hover:bg-salmon/85",
-  // Periwinkle pill, ink text — the brand lavender.
+  // Periwinkle pill, ink text - the brand lavender.
   lavender: "bg-periwinkle text-foreground hover:bg-periwinkle/85",
 } as const;
 
@@ -37,7 +37,7 @@ const variantClass = {
 export function BookCta({
   variant = "primary",
   label = "Book a chat",
-  // On-site booking section (HubSpot widget is embedded there) — keeps visitors
+  // On-site booking section (HubSpot widget is embedded there) - keeps visitors
   // on our site rather than sending them to hubspot.com.
   href = "/contact#book",
   className,

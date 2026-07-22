@@ -44,7 +44,7 @@ export function Wordmark({
 }
 
 /** The brand wordmark image (transparent ground, dark ink). On dark
-    surfaces pass tone="white" — a brightness-0/invert filter renders the
+    surfaces pass tone="white" - a brightness-0/invert filter renders the
     ink pure white with the alpha intact. `priority`: the logo is above the
     fold on every page. `unoptimized`: a 40KB logo doesn't need the
     /_next/image pipeline, and the dev optimizer has been seen hanging on

@@ -7,7 +7,7 @@ type CtaBandProps = {
   eyebrow?: string;
   title?: React.ReactNode;
   sub?: string;
-  /** Secondary action — defaults to a "See a sample report" link. */
+  /** Secondary action - defaults to a "See a sample report" link. */
   secondary?: { label: string; href: string } | null;
   className?: string;
 };

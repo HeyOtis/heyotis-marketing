@@ -24,7 +24,7 @@ import { AiSourceLogos } from "@/components/marketing/visuals/AiSourceLogos";
 export const metadata = buildMetadata({
   title: "About",
   description:
-    "Why HeyOtis exists: AI assistants are becoming how buyers discover brands. We measure how your brand shows up in their answers — and how to show up better.",
+    "Why HeyOtis exists: AI assistants are becoming how buyers discover brands. We measure how your brand shows up in their answers - and how to show up better.",
   path: "/about",
 });
 
@@ -34,7 +34,7 @@ const METHOD_STEPS: { step: string; icon: LucideIcon; title: string; blurb: stri
     icon: Sparkles,
     title: "Campaigns of unbiased queries",
     blurb:
-      "Otis auto-generates buyer-intent prompts for your category, then you review, edit and approve them — so what's measured reflects how real customers ask, not how you'd phrase it.",
+      "Otis auto-generates buyer-intent prompts for your category, then you review, edit and approve them - so what's measured reflects how real customers ask, not how you'd phrase it.",
   },
   {
     step: "02",
@@ -48,14 +48,14 @@ const METHOD_STEPS: { step: string; icon: LucideIcon; title: string; blurb: stri
     icon: BarChart3,
     title: "Measure the evidence",
     blurb:
-      "Share of Voice, position against your named competitors, sentiment, and the citations the AI grounded on — every metric is read from the actual responses, not estimated.",
+      "Share of Voice, position against your named competitors, sentiment, and the citations the AI grounded on - every metric is read from the actual responses, not estimated.",
   },
   {
     step: "04",
     icon: ListChecks,
     title: "Turn signal into action",
     blurb:
-      "Findings roll up into a prioritised view of where to focus — ranked by impact and effort, with the evidence behind each opportunity one click away.",
+      "Findings roll up into a prioritised view of where to focus - ranked by impact and effort, with the evidence behind each opportunity one click away.",
   },
 ];
 
@@ -70,13 +70,13 @@ const VALUES: { icon: LucideIcon; title: string; blurb: string }[] = [
     icon: ScanSearch,
     title: "Measure what buyers ask",
     blurb:
-      "Unbiased, auto-generated queries keep the picture honest — no cherry-picked prompts that flatter the brand. The goal is a true read, not a vanity score.",
+      "Unbiased, auto-generated queries keep the picture honest - no cherry-picked prompts that flatter the brand. The goal is a true read, not a vanity score.",
   },
   {
     icon: Compass,
     title: "Built for the answer era",
     blurb:
-      "This isn't SEO with a new label. We're focused on how generative assistants choose and recommend — and on the work it takes to earn that recommendation.",
+      "This isn't SEO with a new label. We're focused on how generative assistants choose and recommend - and on the work it takes to earn that recommendation.",
   },
 ];
 
@@ -90,7 +90,7 @@ export default function AboutPage() {
         ])}
       />
 
-      {/* 1 — Mission hero */}
+      {/* 1 - Mission hero */}
       <section className="surface-cream relative overflow-hidden">
         <div aria-hidden className="absolute inset-0 -z-10">
           <div
@@ -117,8 +117,8 @@ export default function AboutPage() {
         <Container className="relative pb-12 pt-28 sm:pt-32 md:pb-16 lg:pt-36">
           <Eyebrow>About HeyOtis</Eyebrow>
           <h1
-            className="mt-6 max-w-3xl font-display text-[clamp(2.25rem,5.5vw,4.25rem)] leading-[1.0] tracking-[-0.03em] text-foreground"
-            style={{ fontStretch: "80%", fontWeight: 800 }}
+            className="display-hero mt-6 max-w-3xl text-balance text-foreground"
+            style={{ fontStretch: "80%", letterSpacing: "-0.02em" }}
           >
             AI search is rewriting how brands get{" "}
             <span className="text-periwinkle">discovered.</span>
@@ -127,7 +127,7 @@ export default function AboutPage() {
             className="mt-7 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground"
             data-speakable
           >
-            Buyers increasingly ask AI assistants what to choose — and the
+            Buyers increasingly ask AI assistants what to choose - and the
             assistant&rsquo;s answer is the new shortlist. HeyOtis exists to measure
             how your brand shows up in those answers, and to give you the plan
             to show up better.
@@ -144,14 +144,14 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      {/* 2 — The shift / why now */}
+      {/* 2 - The shift / why now */}
       <Section surface="card">
         <div className="grid gap-12 lg:grid-cols-[0.85fr_1fr] lg:gap-16">
           <Reveal>
             <SectionHeading
               eyebrow="Why now"
               title="The web is moving from links to answers."
-              sub="A new discipline — Answer Engine Optimization (AEO/GEO) — and the reason we built HeyOtis."
+              sub="A new discipline - Answer Engine Optimization (AEO/GEO) - and the reason we built HeyOtis."
             />
           </Reveal>
           <Reveal delay={0.08} className="flex flex-col gap-5 text-lg leading-relaxed text-muted-foreground">
@@ -161,8 +161,8 @@ export default function AboutPage() {
               behavior is changing fast.
             </p>
             <p>
-              Now buyers ask ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews directly —
-              &ldquo;what&rsquo;s the best option for me?&rdquo; — and act on a
+              Now buyers ask ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews directly -
+              &ldquo;what&rsquo;s the best option for me?&rdquo; - and act on a
               single, synthesized answer. The assistant does the shortlisting.
               If your brand isn&rsquo;t in that answer, you&rsquo;re not in the
               consideration set.
@@ -170,7 +170,7 @@ export default function AboutPage() {
             <p>
               This is its own discipline: Answer Engine Optimization, sometimes
               called generative engine optimization. It isn&rsquo;t SEO with a
-              new coat of paint — the surface, the signals, and the way to win
+              new coat of paint - the surface, the signals, and the way to win
               are
               different.{" "}
               <span className="font-medium text-foreground">
@@ -183,14 +183,14 @@ export default function AboutPage() {
         <Reveal delay={0.12}>
           <div className="mt-14 flex flex-col gap-5 border-t border-border pt-10 sm:flex-row sm:items-center sm:justify-between">
             <p className="label-mono text-[0.7rem] text-muted-foreground">
-              Monitored today — more engines as adoption grows
+              Monitored today - more engines as adoption grows
             </p>
             <AiSourceLogos />
           </div>
         </Reveal>
       </Section>
 
-      {/* 3 — How Otis works / methodology */}
+      {/* 3 - How Otis works / methodology */}
       <Section surface="cream" id="methodology">
         <SectionHeading
           eyebrow="How Otis works"
@@ -215,8 +215,8 @@ export default function AboutPage() {
             </blockquote>
             <figcaption className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
               Query phrasing is auto-generated to stay unbiased and reflect how
-              real buyers ask. But every metric — Share of Voice, rankings,
-              citations, sentiment — is grounded in the assistants&rsquo; actual
+              real buyers ask. But every metric - Share of Voice, rankings,
+              citations, sentiment - is grounded in the assistants&rsquo; actual
               responses. Nothing is inferred or modeled.
             </figcaption>
           </figure>
@@ -247,7 +247,7 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      {/* 4 — Values / approach */}
+      {/* 4 - Values / approach */}
       <Section surface="card">
         <SectionHeading
           eyebrow="What we believe"
