@@ -2,6 +2,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema, faqPageSchema } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
 import { Hero } from "@/components/marketing/sections/Hero";
+import { ClientLogos } from "@/components/marketing/sections/ClientLogos";
 import { CaseStudyDaylyte } from "@/components/marketing/sections/CaseStudyDaylyte";
 import { ReportBand } from "@/components/marketing/sections/ReportBand";
 import { PillarSections } from "@/components/marketing/sections/PillarSections";
@@ -55,6 +56,8 @@ export default function HomePage() {
       <JsonLd data={faqPageSchema(faqItemsToSchema(FAQS))} />
 
       <Hero />
+
+      <ClientLogos />
 
       {/* The stakes */}
       <Section surface="card">
