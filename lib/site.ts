@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "HeyOtis",
   shortName: "HeyOtis",
-  // Canonical marketing URL. NOTE: the platform app lives at heyotis.ai —
+  // Canonical marketing URL. NOTE: the platform app lives at heyotis.ai -
   // confirm which domain is canonical for marketing. Overridable via env.
   // Trailing slash stripped at the source so every consumer (schema @id
   // builders, OG URLs, sitemap) concatenates against a clean origin.
@@ -11,7 +11,7 @@ export const siteConfig = {
   ),
   // Product app (login / signup) destination.
   appUrl: "https://app.heyotis.ai",
-  // Primary CTA destination ("Book a chat") — HubSpot Meetings scheduling page.
+  // Primary CTA destination ("Book a chat") - HubSpot Meetings scheduling page.
   // Booking creates/updates a HubSpot contact and books the rep's connected
   // Google Calendar (with a Google Meet link). Env-overridable so the rep or a
   // round-robin/team link can change without a code change.
@@ -19,7 +19,7 @@ export const siteConfig = {
     process.env.NEXT_PUBLIC_BOOKING_URL ??
     "https://meetings-eu1.hubspot.com/george-bowes",
   description:
-    "See how ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews recommend your brand — and what to do about it. HeyOtis measures your AI recommendation share, citations and competitive rank.",
+    "See how ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews recommend your brand - and what to do about it. HeyOtis measures your AI recommendation share, citations and competitive rank.",
   locale: "en-US",
   defaultOgImage: "/api/og",
   contactEmail: "hello@heyotis.com",
@@ -52,7 +52,7 @@ export type SiteConfig = typeof siteConfig;
 export type FooterGroup = (typeof siteConfig.footerNav)[number];
 export type FooterLink = FooterGroup["links"][number];
 
-// Primary nav — ordered to trace the loop (Measure → Diagnose → Act → Prove)
+// Primary nav - ordered to trace the loop (Measure → Diagnose → Act → Prove)
 // inside the Platform dropdown, then Resources, then Pricing.
 export type NavLink = { label: string; href: string; description?: string };
 export type NavGroup = { heading: string; links: NavLink[] };

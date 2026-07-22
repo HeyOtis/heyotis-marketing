@@ -6,7 +6,7 @@ import { useIsomorphicReducedMotion } from "@/lib/use-reduced-motion";
 import { COMPOUNDING_POINTS } from "@/lib/strategy-content";
 import { cn } from "@/lib/utils";
 
-/* Geometry: viewBox 560×240, y-scale 0–6% */
+/* Geometry: viewBox 560×240, y-scale 0-6% */
 const W = 560;
 const H = 240;
 const PL = 44;
@@ -19,7 +19,7 @@ const px = (i: number) =>
 const py = (share: number) => PT + (H - PT - PB) * (1 - share / Y_MAX);
 
 /**
- * Recommendation share stepping up across campaign cycles — the visible shape
+ * Recommendation share stepping up across campaign cycles - the visible shape
  * of the feedback loop. Stepped single-series line per the dataviz specs;
  * illustrative numbers, real mechanism. The SVG is decorative; the sr-only
  * list carries the values.
@@ -178,12 +178,12 @@ export function CompoundingChart({ className }: { className?: string }) {
       <ul className="sr-only">
         {pts.map((p) => (
           <li key={p.cycle}>
-            {p.cycle}: {p.share}% recommendation share — {p.note}
+            {p.cycle}: {p.share}% recommendation share - {p.note}
           </li>
         ))}
       </ul>
       <p className="label-mono mt-3 border-t border-border pt-3 text-[0.6rem] text-muted-foreground">
-        Illustrative — the compounding mechanism is real
+        Illustrative - the compounding mechanism is real
       </p>
     </div>
   );

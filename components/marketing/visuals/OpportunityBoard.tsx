@@ -9,7 +9,7 @@ const IMPACT_DOT: Record<Opportunity["impact"], string> = {
 };
 
 /**
- * Illustrative "Your action plan" board — mirrors the product's Strategy Engine:
+ * Illustrative "Your action plan" board - mirrors the product's Strategy Engine:
  * ranked opportunities with impact × effort, the metric each is measured by, and
  * the underlying signal count. The top opportunity is shown expanded with the
  * product's drawer sections (Why this / What to do / What you'll see).

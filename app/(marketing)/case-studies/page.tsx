@@ -13,7 +13,7 @@ import { getAllCaseStudies } from "@/lib/mdx";
 export const metadata = buildMetadata({
   title: "Case Studies",
   description:
-    "Real brands, measured lift in AI recommendation share. Starting with Daylyte: from 0% to 65% AI visibility — the #1 brand in its category in two weeks.",
+    "Real brands, measured lift in AI recommendation share. Starting with Daylyte: from 0% to 65% AI visibility - the #1 brand in its category in two weeks.",
   path: "/case-studies",
 });
 
@@ -43,7 +43,7 @@ export default function CaseStudiesPage() {
             className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground"
             data-speakable
           >
-            No composite logos, no invented testimonials — just the brands
+            No composite logos, no invented testimonials - just the brands
             we&rsquo;ve run through the loop, and what changed in the
             assistants&rsquo; actual answers.
           </p>
@@ -84,7 +84,7 @@ export default function CaseStudiesPage() {
         <Reveal delay={0.08}>
           <p className="mt-10 max-w-2xl text-sm leading-relaxed text-muted-foreground">
             We&rsquo;re writing up more of these as campaigns complete and
-            results are confirmed — this list will grow. If you want to see
+            results are confirmed - this list will grow. If you want to see
             what your own brand&rsquo;s numbers look like in the meantime,
             start with the{" "}
             <Link

@@ -33,7 +33,7 @@ export function buildMetadata({
   noindex = false,
 }: BuildMetadataInput = {}): Metadata {
   const url = new URL(path, siteConfig.url).toString();
-  // OG/Twitter card title — the bare page title (brand for the default). No
+  // OG/Twitter card title - the bare page title (brand for the default). No
   // brand suffix here; the "- HeyOtis" suffix lives only in the <title> tag,
   // added once by the root layout's title template.
   const resolvedTitle = title ?? siteConfig.name;

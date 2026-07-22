@@ -10,7 +10,7 @@ import { Chip } from "@/components/marketing/primitives/stage";
 import { Marquee } from "@/components/ui/marquee";
 import { cn } from "@/lib/utils";
 
-/* ── Vignette 1: Campaigns — the buyer-intent queries themselves ─────────── */
+/* ── Vignette 1: Campaigns - the buyer-intent queries themselves ─────────── */
 
 const CAMPAIGN_QUERIES = [
   "best everyday skincare nz",
@@ -59,7 +59,7 @@ function AeoVignette({ live }: { live: boolean }) {
   );
 }
 
-/* ── Vignette 2: Agent Analytics — the crawler roll (vertical reel) ──────── */
+/* ── Vignette 2: Agent Analytics - the crawler roll (vertical reel) ──────── */
 
 const AGENTS = [
   "GPTBot",
@@ -91,13 +91,13 @@ function AgentVignette({ live }: { live: boolean }) {
           </span>
         ))}
       </Marquee>
-      {/* Glass pill the names scroll beneath — Nory's centre-item treatment. */}
+      {/* Glass pill the names scroll beneath - Nory's centre-item treatment. */}
       <span className="pointer-events-none absolute left-1/2 top-1/2 h-14 w-[17rem] -translate-x-1/2 -translate-y-1/2 rounded-md bg-white/10 backdrop-blur-[3px]" />
     </div>
   );
 }
 
-/* ── Vignette 3: Strategy — the cursor clicks, the plan ranks ────────────── */
+/* ── Vignette 3: Strategy - the cursor clicks, the plan ranks ────────────── */
 
 function StrategyVignette({ live }: { live: boolean }) {
   const [clicked, setClicked] = React.useState(false);
@@ -145,7 +145,7 @@ const PILLARS = [
     chipDot: "bg-salmon",
     name: "AEO Insights",
     heading: "Campaigns",
-    body: "Campaigns of the buyer-intent queries that decide purchases — see how every assistant answers about you: visibility, sentiment, citations and share of voice.",
+    body: "Campaigns of the buyer-intent queries that decide purchases - see how every assistant answers about you: visibility, sentiment, citations and share of voice.",
     href: "/platform#measure",
     panel: "bg-panel-warm",
     vignette: AeoVignette,
@@ -165,7 +165,7 @@ const PILLARS = [
     chipDot: "bg-lime",
     name: "Strategy",
     heading: "Strategy",
-    body: "The engine turns findings into a ranked plan, watches the work land, and proves the lift — the loop that closes itself.",
+    body: "The engine turns findings into a ranked plan, watches the work land, and proves the lift - the loop that closes itself.",
     href: "/strategy-engine",
     panel: "bg-panel-warm",
     vignette: StrategyVignette,

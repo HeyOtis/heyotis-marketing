@@ -13,7 +13,7 @@ import { siteConfig } from "@/lib/site";
 export const metadata = buildMetadata({
   title: "Book a chat",
   description:
-    "Book a 20-minute HeyOtis walkthrough — see your Share of Voice and competitive rank across ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews, plus a sample report.",
+    "Book a 20-minute HeyOtis walkthrough - see your Share of Voice and competitive rank across ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews, plus a sample report.",
   path: "/contact",
 });
 
@@ -54,7 +54,7 @@ export default function ContactPage() {
             className="display-lg mt-5 max-w-3xl text-balance"
             style={{ fontStretch: "80%", letterSpacing: "-0.02em" }}
           >
-            Book a chat — and watch{" "}
+            Book a chat - and watch{" "}
             <span className="text-periwinkle">AI answer for your brand.</span>
           </h1>
           <p
@@ -63,7 +63,7 @@ export default function ContactPage() {
           >
             Spend 20 minutes with us. We&apos;ll run your brand against ChatGPT,
             Claude, Gemini, Perplexity and Google AI Overviews live, show you where you stand against
-            your competitors, and walk you through a sample report — no prep
+            your competitors, and walk you through a sample report - no prep
             required.
           </p>
           <div className="mt-8">
@@ -75,7 +75,7 @@ export default function ContactPage() {
       {/* Two-column: what to expect + booking embed */}
       <Section surface="card" id="book">
         <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
-          {/* Left — supporting copy */}
+          {/* Left - supporting copy */}
           <div>
             <Eyebrow>What to expect</Eyebrow>
             <h2
@@ -121,7 +121,7 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Right — booking embed */}
+          {/* Right - booking embed */}
           <div>
             <div className="flex items-center gap-2.5 pb-4">
               <CalendarCheck className="size-4 text-accent" aria-hidden />
@@ -153,7 +153,7 @@ export default function ContactPage() {
       <Section surface="cream">
         <div className="mx-auto flex max-w-2xl flex-col items-center gap-6 text-center">
           <p className="text-balance text-xl font-medium leading-relaxed text-foreground sm:text-2xl">
-            No hard sell — just a clear picture of how AI sees your brand today.
+            No hard sell - just a clear picture of how AI sees your brand today.
           </p>
           <AiSourceLogos withText className="justify-center" />
         </div>

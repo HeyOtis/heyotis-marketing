@@ -27,7 +27,7 @@ const PILL_WINDOW = 3;
 /**
  * Findings-as-notifications: a beige stage that fills with pills sliding in
  * as the engine surfaces evidence. Self-contained (own `useInView` + reduced
- * motion check) so it can be mounted standalone — e.g. beside the honesty
+ * motion check) so it can be mounted standalone - e.g. beside the honesty
  * claims on the homepage. Reduced motion / off-screen: the first three
  * pills, static, no timers.
  */
@@ -77,7 +77,7 @@ export function FindingsPills({ className }: { className?: string }) {
         </Stage>
       </div>
       <p className="label-mono mt-3 text-[0.6rem] text-muted-foreground">
-        Illustrative — mirrors the engine&apos;s findings feed
+        Illustrative - mirrors the engine&apos;s findings feed
       </p>
     </div>
   );
@@ -156,7 +156,7 @@ function SignalCluster({ playing, reduced }: { playing: boolean; reduced: boolea
 /**
  * The five signal streams clustered around the engine glyph, in the same
  * flat `bg-card` shell as the rest of the card system. Self-contained (own
- * `useInView` + reduced-motion check) so it can be mounted on its own —
+ * `useInView` + reduced-motion check) so it can be mounted on its own -
  * e.g. on `/strategy-engine`. The stage is decorative; the heading and
  * blurb carry the meaning.
  */
@@ -170,7 +170,7 @@ export function SignalClusterCard({ className }: { className?: string }) {
     <div ref={ref} className={cn("rounded-lg bg-card p-6 sm:p-8", className)}>
       <Eyebrow>Every signal, one model</Eyebrow>
       <h3 className="mt-3 text-xl font-semibold tracking-tight text-foreground">
-        Answers, bot logs, analytics and your own pages — together
+        Answers, bot logs, analytics and your own pages - together
       </h3>
       <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
         The engine is only as good as its evidence, so all five signal

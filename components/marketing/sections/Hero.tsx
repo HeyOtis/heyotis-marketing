@@ -14,7 +14,7 @@ export function Hero() {
               className="mt-8 max-w-xl text-xl leading-relaxed text-muted-foreground sm:mt-10"
               data-speakable
             >
-              AI search feels unpredictable — and for most brands, it is.
+              AI search feels unpredictable - and for most brands, it is.
               Otis monitors exactly how each AI platform behaves in your
               category, then turns that intelligence into clear strategy, so
               your team always knows what to do next.{" "}
@@ -25,7 +25,7 @@ export function Hero() {
 
             <div className="mt-10">
               <BookCta variant="salmon" className="h-13 px-9 text-base" />
-              {/* coverage microline — the five assistants, whispered */}
+              {/* coverage microline - the five assistants, whispered */}
               <p className="label-mono mt-6 text-[0.6rem] text-foreground/35">
                 ChatGPT · Claude · Gemini · Perplexity · AI Overviews
               </p>

@@ -19,7 +19,7 @@ export function StatBand({
   stats: Stat[];
   className?: string;
   tone?: "ink" | "cream";
-  /** Desktop column count — match the number of stats so short bands fill the row. */
+  /** Desktop column count - match the number of stats so short bands fill the row. */
   cols?: 2 | 3 | 4;
 }) {
   const numberTone = tone === "cream" ? "text-surface-dark-foreground" : "text-foreground";

@@ -5,6 +5,7 @@ import { AnimatePresence, motion, useScroll, useTransform } from "motion/react";
 import { useIsomorphicReducedMotion } from "@/lib/use-reduced-motion";
 import { EASE } from "@/lib/ease";
 import { Container } from "@/components/marketing/Container";
+import { SectionHeading } from "@/components/marketing/primitives/SectionHeading";
 import {
   MeasureVignette,
   StrategyVignette,
@@ -14,7 +15,7 @@ import {
 import { cn } from "@/lib/utils";
 
 /* DOSS-style stage tabs: the four loop stages; the active stage's product
-   vignette slides into the panel below the fold. */
+   vignette slides into the panel below. */
 const TABS = [
   {
     key: "measure",
@@ -42,11 +43,11 @@ const TABS = [
   },
 ] as const;
 
-/* Studio Modular's hero shapes (studiomodular.be) — the exact geometry from
+/* Studio Modular's hero shapes (studiomodular.be) - the exact geometry from
    their build (three adjacent panels: quarter-disc, ellipse, right half-disc),
    all in the brand lavender. One canvas scaled to viewport width, resting
    on the fold's bottom edge. */
-/* Fine film grain, inline SVG turbulence — kills gradient banding and gives
+/* Fine film grain, inline SVG turbulence - kills gradient banding and gives
    the shapes a printed feel. */
 const GRAIN =
   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";
@@ -126,20 +127,54 @@ function Backdrop() {
 }
 
 /**
- * The hero fold: intro copy up top, the stage tabs pinned to the bottom of
- * the first viewport (DOSS-style — the tabs are the last thing you see
- * before scrolling), and the active stage's panel below the fold.
+ * The hero fold: intro copy over the lavender shapes, filling the first
+ * viewport (minus the 4rem nav). The loop stages that used to live pinned
+ * to the fold now sit in their own `LoopStages` section further down.
  */
 export function HeroFold({ intro }: { intro: React.ReactNode }) {
+  return (
+    <div className="relative flex min-h-[calc(100dvh-4rem)] flex-col">
+      <Backdrop />
+      {/* Solid rule along the shapes' bottom edge, closing the fold. */}
+      <div
+        aria-hidden
+        className="absolute inset-x-0 bottom-0 border-t border-border/70"
+      />
+      <Container className="flex flex-1 flex-col pb-8 pt-12 sm:pt-16 lg:pt-20">
+        {intro}
+      </Container>
+    </div>
+  );
+}
+
+/**
+ * The loop, as its own section: the four stage tabs across the top and the
+ * active stage's product vignette in the panel below. The tabs auto-advance
+ * on a slow timer (paused while the visitor hovers or keyboard-focuses the
+ * section, and disabled entirely under reduced-motion).
+ */
+export function LoopStages() {
   const reduced = useIsomorphicReducedMotion();
   const [active, setActive] = React.useState(0);
   const [direction, setDirection] = React.useState(1);
+  const [paused, setPaused] = React.useState(false);
   const tabRefs = React.useRef<(HTMLButtonElement | null)[]>([]);
 
   const select = (i: number) => {
     setDirection(i > active ? 1 : -1);
     setActive(i);
   };
+
+  // Auto-rotate through the stages. Keyed on `active`, so every change -
+  // whether from the timer or a manual click - restarts the dwell.
+  React.useEffect(() => {
+    if (reduced || paused) return;
+    const id = window.setTimeout(() => {
+      setDirection(1);
+      setActive((i) => (i + 1) % TABS.length);
+    }, 5000);
+    return () => window.clearTimeout(id);
+  }, [active, paused, reduced]);
 
   const onKeyDown = (e: React.KeyboardEvent) => {
     if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
@@ -153,152 +188,131 @@ export function HeroFold({ intro }: { intro: React.ReactNode }) {
   const { Panel } = TABS[active];
 
   return (
-    <>
-      {/* The fold: full first viewport (minus the 4rem nav). */}
-      <div className="relative flex min-h-[calc(100dvh-4rem)] flex-col">
-        <Backdrop />
-        {/* Horizontal rules echoing the vertical pair: dashed through the
-            tab underlines, solid along the shapes' bottom edge, and a
-            mirrored dashed rule the same distance below the fold. On lg+
-            the dashed rule doubles as the track the tab indicator rides;
-            below lg each tab carries its own dashed track instead. */}
-        <div
-          aria-hidden
-          className="absolute inset-x-0 bottom-8 border-t border-dashed border-border/50 max-lg:hidden"
+    <section
+      className="surface-card relative border-t border-border py-20 md:py-28"
+      // Pause the carousel while the section holds attention.
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocus={() => setPaused(true)}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget)) setPaused(false);
+      }}
+    >
+      <Container>
+        <SectionHeading
+          eyebrow="The loop"
+          title="One loop that compounds"
+          sub="Each stage feeds the next - and every turn raises how often AI recommends you."
+          className="max-w-2xl"
         />
-        <div
-          aria-hidden
-          className="absolute inset-x-0 bottom-0 border-t border-border/70"
-        />
-        <Container className="flex flex-1 flex-col pb-8 pt-12 sm:pt-16 lg:pt-20">
-          {intro}
 
-          <div
-            role="tablist"
-            aria-label="The loop, stage by stage"
-            onKeyDown={onKeyDown}
-            className="relative isolate mt-auto grid grid-cols-2 gap-x-8 gap-y-6 pt-8 lg:grid-cols-4"
-          >
-            {/* White feather for legibility over the lavender shapes —
-                same halo grammar as the vignettes, no card chrome. */}
-            <div
-              aria-hidden
-              className="pointer-events-none absolute -inset-x-16 -inset-y-10 -z-10"
-              style={{
-                background:
-                  "radial-gradient(closest-side, white 35%, transparent 100%)",
-              }}
-            />
-            {/* The track: one continuous dashed rule under all four tabs,
-                painted above the halo (the page-wide bottom-8 rule sits
-                beneath it and feathers away under the white). */}
-            <div
-              aria-hidden
-              className="absolute inset-x-0 bottom-0 hidden border-t border-dashed border-border/50 lg:block"
-            />
-            {TABS.map((tab, i) => (
-              <button
-                key={tab.key}
-                ref={(el) => {
-                  tabRefs.current[i] = el;
-                }}
-                type="button"
-                role="tab"
-                id={`loop-tab-${tab.key}`}
-                aria-selected={i === active}
-                aria-controls="loop-panel"
-                tabIndex={i === active ? 0 : -1}
-                onClick={() => select(i)}
-                className="group relative cursor-pointer pb-3.5 text-left max-lg:border-b max-lg:border-dashed max-lg:border-border/50"
-              >
-                {/* Hover: a faint solid segment surfaces over this
-                    column's stretch of the track. */}
-                <span
-                  aria-hidden
-                  className="absolute inset-x-0 -bottom-px h-px bg-transparent transition-colors group-hover:bg-foreground/40"
-                />
-                {i === active && (
-                  <motion.span
-                    layoutId="loop-indicator"
-                    aria-hidden
-                    className="absolute inset-x-0 -bottom-px h-0.5 bg-foreground"
-                    transition={
-                      reduced
-                        ? { duration: 0 }
-                        : { duration: 0.45, ease: EASE }
-                    }
-                  />
-                )}
-                <span
-                  className={cn(
-                    "label-mono block text-[0.6rem] transition-colors",
-                    i === active ? "text-accent" : "text-foreground/35",
-                  )}
-                >
-                  0{i + 1}
-                </span>
-                <span
-                  className={cn(
-                    "mt-1.5 block text-sm font-semibold transition-colors",
-                    i === active
-                      ? "text-foreground"
-                      : "text-foreground/55 group-hover:text-foreground/80",
-                  )}
-                >
-                  {tab.stage}
-                </span>
-                <span
-                  className={cn(
-                    "mt-0.5 block text-sm transition-colors",
-                    i === active
-                      ? "text-muted-foreground"
-                      : "text-foreground/40",
-                  )}
-                >
-                  {tab.rest}
-                </span>
-              </button>
-            ))}
-          </div>
-        </Container>
-      </div>
-
-      {/* Below the fold: the active stage's panel on a full-bleed white
-          band running solid line to solid line. The dashed rule sits
-          exactly at the vignette frame's top edge, so frame and rule read
-          as one continuous line. */}
-      <div className="relative bg-card">
         <div
-          aria-hidden
-          className="absolute inset-x-0 top-8 border-t border-dashed border-border/50"
-        />
-        <Container className="pb-20 pt-8">
-        <div
-          id="loop-panel"
-          role="tabpanel"
-          aria-labelledby={`loop-tab-${TABS[active].key}`}
-          className="relative h-[560px] overflow-hidden sm:h-[540px]"
+          role="tablist"
+          aria-label="The loop, stage by stage"
+          onKeyDown={onKeyDown}
+          className="relative isolate mt-12 grid grid-cols-2 gap-x-8 gap-y-6 lg:grid-cols-4"
         >
-          <AnimatePresence initial={false} custom={direction} mode="popLayout">
-            <motion.div
-              key={TABS[active].key}
-              custom={direction}
-              initial={
-                reduced ? { opacity: 0 } : { opacity: 0, x: 72 * direction }
-              }
-              animate={{ opacity: 1, x: 0 }}
-              exit={
-                reduced ? { opacity: 0 } : { opacity: 0, x: -72 * direction }
-              }
-              transition={{ duration: 0.45, ease: EASE }}
-              className="absolute inset-0"
+          {/* The track: one continuous dashed rule under all four tabs. */}
+          <div
+            aria-hidden
+            className="absolute inset-x-0 bottom-0 hidden border-t border-dashed border-border/50 lg:block"
+          />
+          {TABS.map((tab, i) => (
+            <button
+              key={tab.key}
+              ref={(el) => {
+                tabRefs.current[i] = el;
+              }}
+              type="button"
+              role="tab"
+              id={`loop-tab-${tab.key}`}
+              aria-selected={i === active}
+              aria-controls="loop-panel"
+              tabIndex={i === active ? 0 : -1}
+              onClick={() => select(i)}
+              className="group relative cursor-pointer pb-3.5 text-left max-lg:border-b max-lg:border-dashed max-lg:border-border/50"
             >
-              <Panel />
-            </motion.div>
-          </AnimatePresence>
+              {/* Hover: a faint solid segment surfaces over this column's
+                  stretch of the track. */}
+              <span
+                aria-hidden
+                className="absolute inset-x-0 -bottom-px h-px bg-transparent transition-colors group-hover:bg-foreground/40"
+              />
+              {i === active && (
+                <motion.span
+                  layoutId="loop-indicator"
+                  aria-hidden
+                  className="absolute inset-x-0 -bottom-px h-0.5 bg-foreground"
+                  transition={
+                    reduced ? { duration: 0 } : { duration: 0.45, ease: EASE }
+                  }
+                />
+              )}
+              <span
+                className={cn(
+                  "label-mono block text-[0.6rem] transition-colors",
+                  i === active ? "text-accent" : "text-foreground/35",
+                )}
+              >
+                0{i + 1}
+              </span>
+              <span
+                className={cn(
+                  "mt-1.5 block text-sm font-semibold transition-colors",
+                  i === active
+                    ? "text-foreground"
+                    : "text-foreground/55 group-hover:text-foreground/80",
+                )}
+              >
+                {tab.stage}
+              </span>
+              <span
+                className={cn(
+                  "mt-0.5 block text-sm transition-colors",
+                  i === active
+                    ? "text-muted-foreground"
+                    : "text-foreground/40",
+                )}
+              >
+                {tab.rest}
+              </span>
+            </button>
+          ))}
+        </div>
+
+        {/* The active stage's vignette. The dashed rule sits at the frame's
+            top edge, so frame and rule read as one continuous line. */}
+        <div className="relative mt-12">
+          <div
+            aria-hidden
+            className="absolute inset-x-0 top-0 border-t border-dashed border-border/50"
+          />
+          <div
+            id="loop-panel"
+            role="tabpanel"
+            aria-labelledby={`loop-tab-${TABS[active].key}`}
+            className="relative mt-8 h-[560px] overflow-hidden sm:h-[540px]"
+          >
+            <AnimatePresence initial={false} custom={direction} mode="popLayout">
+              <motion.div
+                key={TABS[active].key}
+                custom={direction}
+                initial={
+                  reduced ? { opacity: 0 } : { opacity: 0, x: 72 * direction }
+                }
+                animate={{ opacity: 1, x: 0 }}
+                exit={
+                  reduced ? { opacity: 0 } : { opacity: 0, x: -72 * direction }
+                }
+                transition={{ duration: 0.45, ease: EASE }}
+                className="absolute inset-0"
+              >
+                <Panel />
+              </motion.div>
+            </AnimatePresence>
           </div>
-        </Container>
-      </div>
-    </>
+        </div>
+      </Container>
+    </section>
   );
 }

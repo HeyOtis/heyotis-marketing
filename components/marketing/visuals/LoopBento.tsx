@@ -106,7 +106,7 @@ function PrioritizeScene({ live }: { live: boolean }) {
     const id = setTimeout(() => setSorted(true), 1000);
     return () => clearTimeout(id);
   }, [live]);
-  /* Off the live path (reduced motion), rest on the final ranked frame —
+  /* Off the live path (reduced motion), rest on the final ranked frame -
      same principle as VerifyScene's isLive. */
   const isSorted = sorted || !live;
   const moves = isSorted ? [...MOVES].sort((a, b) => b.impact - a.impact) : MOVES;
@@ -138,7 +138,7 @@ function PrioritizeScene({ live }: { live: boolean }) {
   );
 }
 
-/* Verify — the detector watches the top-priority move from Prioritise until it
+/* Verify - the detector watches the top-priority move from Prioritise until it
    ships, then flips the status live. Nobody has to tell the engine; it
    re-checks the site itself. Static (not playing): rests on the "live" frame
    so the claim reads instantly without a mid-animation snapshot. */
@@ -182,7 +182,7 @@ function VerifyScene({ live }: { live: boolean }) {
         </AnimatePresence>
       </motion.div>
       <motion.p variants={item} className="label-mono text-[0.55rem] text-muted-foreground">
-        nobody told us — the engine caught it
+        nobody told us - the engine caught it
       </motion.p>
     </motion.div>
   );
@@ -240,12 +240,12 @@ const CARDS: {
 ];
 
 /**
- * The campaign loop as a bento of five analytics moments — Measure, Diagnose,
+ * The campaign loop as a bento of five analytics moments - Measure, Diagnose,
  * Prioritise, Verify, Prove. Each card plays its scene once when scrolled
  * into view, then holds. Stage numbers ride the periwinkle chips so the loop
  * order stays legible without any geometry. When `withCompoundsTease` is on,
  * a sixth cell teases the compounding payoff and links to `#compounds`,
- * filling out the `lg:grid-cols-3` grid — opt in only on pages that actually
+ * filling out the `lg:grid-cols-3` grid - opt in only on pages that actually
  * have a `#compounds` section to land on. Reduced motion: composed static
  * frames, no timers.
  */
@@ -324,7 +324,7 @@ export function LoopBento({
               And then it compounds.
             </h3>
             <p className="mt-1.5 text-sm leading-relaxed text-foreground/70">
-              Every move proven — or disproven — teaches the engine what to
+              Every move proven - or disproven - teaches the engine what to
               recommend next.
             </p>
           </div>
@@ -338,7 +338,7 @@ export function LoopBento({
       ) : null}
 
       <p className="label-mono mt-2 text-[0.6rem] text-muted-foreground sm:col-span-2 lg:col-span-3">
-        Illustrative — sample campaign data
+        Illustrative - sample campaign data
       </p>
     </div>
   );

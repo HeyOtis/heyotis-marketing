@@ -7,7 +7,7 @@ import { useIsomorphicReducedMotion } from "@/lib/use-reduced-motion";
 
 /* Framer-style "text roll" scoped to the payoff line. Each glyph of
    "Prove it moved." sits in a clipped box over an identical twin; hovering
-   the phrase rolls each glyph to its twin — but alternating letters roll in
+   the phrase rolls each glyph to its twin - but alternating letters roll in
    opposite directions (up, down, up…) at slightly different speeds, so the
    line reads like tumblers settling rather than a single clean sweep. */
 
@@ -37,7 +37,7 @@ const charVariants: Variants = {
 export function RollingHeadline({ className }: { className?: string }) {
   const reduced = useIsomorphicReducedMotion();
 
-  // No roll under reduced motion — plain, static headline.
+  // No roll under reduced motion - plain, static headline.
   if (reduced) {
     return <h1 className={className}>{LEAD + ROLL}</h1>;
   }
@@ -50,7 +50,7 @@ export function RollingHeadline({ className }: { className?: string }) {
       {LEAD}
       {/* Only this phrase rolls: it tumbles in once on load (rolled → rest),
           then hover re-triggers it. aria-label gives AT one clean read of the
-          phrase — the split glyphs are decorative twins. */}
+          phrase - the split glyphs are decorative twins. */}
       <motion.span
         aria-label={ROLL}
         initial="rolled"

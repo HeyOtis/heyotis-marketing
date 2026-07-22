@@ -13,16 +13,16 @@ import { cn } from "@/lib/utils";
 
 const TICK_MS = 2800;
 
-/* Daylyte's real, cleared measurement data — figures current as of 3 July 2026.
+/* Daylyte's real, cleared measurement data - figures current as of 3 July 2026.
    Headline figure, blurb, and the four result tiles on the stage live here. */
 const STORY = {
   headline: "From 0% to 65% AI visibility in two weeks",
   blurb:
-    "Daylyte — a UK hydration brand with no agency and no ad budget — went from unmentioned in ChatGPT to the single most-recommended brand in its category, guided by exactly what HeyOtis showed them to fix.",
+    "Daylyte - a UK hydration brand with no agency and no ad budget - went from unmentioned in ChatGPT to the single most-recommended brand in its category, guided by exactly what HeyOtis showed them to fix.",
   storyHref: "/case-studies/daylyte",
 } as const;
 
-/* Quiet product chips — the vignette grammar, not candy. Salmon carries the
+/* Quiet product chips - the vignette grammar, not candy. Salmon carries the
    delta (same treatment as the Attribute lift chip); neutral for labels. */
 function DeltaChip({
   tone = "salmon",
@@ -130,7 +130,7 @@ const TILES = [
   },
 ] as const;
 
-/* A climbing area-line sparkline — the recovery arc, not disconnected bars.
+/* A climbing area-line sparkline - the recovery arc, not disconnected bars.
    Periwinkle stroke over a soft gradient fill, drawn left→right on reveal,
    with a single emphasised endpoint. viewBox stretches to fit; the stroke
    stays a crisp, uniform 1.75px via non-scaling-stroke. */

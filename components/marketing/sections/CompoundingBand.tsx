@@ -21,7 +21,7 @@ export function CompoundingBand() {
           </h2>
           <p className="mt-4 max-w-md text-muted-foreground">
             Most tools reset every month. HeyOtis gets sharper: every move it
-            proves — or disproves — teaches it what to recommend next, for
+            proves - or disproves - teaches it what to recommend next, for
             your brand and your category.
           </p>
         </div>

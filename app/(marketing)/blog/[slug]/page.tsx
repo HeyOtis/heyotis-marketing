@@ -46,7 +46,7 @@ function formatDate(date: string) {
 }
 
 /**
- * Fallback when an MDX body fails to compile — keeps one bad post from
+ * Fallback when an MDX body fails to compile - keeps one bad post from
  * crashing the whole static build, and surfaces the cause in build logs.
  */
 function MdxError({ error }: { error: Error }) {
@@ -139,7 +139,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       <CtaBand
         eyebrow="Try it on your brand"
         title="See how AI recommends you"
-        sub="Book a 20-minute walkthrough — we'll run your brand against ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews and show you where you stand."
+        sub="Book a 20-minute walkthrough - we'll run your brand against ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews and show you where you stand."
       />
     </>
   );

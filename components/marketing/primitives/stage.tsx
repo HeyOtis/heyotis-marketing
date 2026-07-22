@@ -16,7 +16,7 @@ export function Stage({
   );
 }
 
-/** Periwinkle banner row — context label for a stage (Nory's location tile). */
+/** Periwinkle banner row - context label for a stage (Nory's location tile). */
 export function BannerTile({
   icon: Icon,
   label,

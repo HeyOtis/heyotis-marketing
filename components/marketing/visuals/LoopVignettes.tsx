@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
  * The four hero-tab vignettes, all speaking one quiet language: white card,
  * dotted-grid ground, ghosted ink (~30%) everywhere except ONE focal element
  * per panel, mono micro-labels, dashed dividers. No window chrome, no dark
- * panels — these sit behind the fold and must not shout.
+ * panels - these sit behind the fold and must not shout.
  *
  * Motion: cells rest on their finished frame. Entering a cell replays its
  * animation from zero (via a replay counter that remounts the visual);
@@ -203,7 +203,7 @@ function VisibilityLine({ runId }: { runId: number }) {
           },
         }}
       />
-      {/* the points plot as the line passes them — drawn as zero-length
+      {/* the points plot as the line passes them - drawn as zero-length
           round-capped strokes so the stretched viewBox can't oval them */}
       {VIS_POINTS.map(({ x, y }) => (
         <motion.path
@@ -455,7 +455,7 @@ export function MeasureVignette() {
           <EditorialCell title="AEO Insights" href="/platform#measure">
             Understand what&rsquo;s actually driving your visibility. Every
             answer is scored, every citation traced, and every shift
-            explained — so you can see which pages, sources and topics move
+            explained - so you can see which pages, sources and topics move
             your recommendation share, and where the next point of share
             will come from.
           </EditorialCell>
@@ -610,7 +610,7 @@ export function StrategyVignette() {
             <InsightList />
             <TileCaption
               title="Insights"
-              sub="What the measurement surfaced — cited, missing, slipping."
+              sub="What the measurement surfaced - cited, missing, slipping."
             />
           </div>
           <div className="sm:px-6">
@@ -640,7 +640,7 @@ export function StrategyVignette() {
           <EditorialCell title="The Strategy Engine" href="/strategy-engine">
             Every recommendation is written from measured findings. Moves
             are scored on impact and effort, ranked, and sequenced into a
-            plan — each step carrying the evidence it came from, so you
+            plan - each step carrying the evidence it came from, so you
             always know why it&rsquo;s worth doing and what it should move.
           </EditorialCell>
         </div>
@@ -824,7 +824,7 @@ export function ActVignette() {
             <LandingSteps />
             <TileCaption
               title="Watch it land"
-              sub="From ship, to crawl, to a changed answer — within days."
+              sub="From ship, to crawl, to a changed answer - within days."
             />
           </div>
           <div className="sm:pl-6">
@@ -848,7 +848,7 @@ export function ActVignette() {
             A plan only counts once it ships. Each move becomes tracked
             work: HeyOtis watches the crawlers pick up the change, verifies
             it&rsquo;s live in production, and confirms the answer actually
-            moved — so acting is measured, never assumed.
+            moved - so acting is measured, never assumed.
           </EditorialCell>
         </div>
       </div>
@@ -1074,7 +1074,7 @@ export function AttributeVignette() {
           <EditorialCell title="Deterministic attribution" href="/platform#attribute">
             No modelled guesswork. Web analytics and agent analytics are
             joined into one deterministic record, so every lift is
-            attributed to the move that caused it — and what worked feeds
+            attributed to the move that caused it - and what worked feeds
             straight back into the next plan. That&rsquo;s the feedback
             loop, compounding.
           </EditorialCell>

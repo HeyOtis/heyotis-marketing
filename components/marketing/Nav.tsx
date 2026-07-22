@@ -33,7 +33,7 @@ const MENU_INTRO: Record<string, { label: string; title: string }> = {
 };
 
 /* DOSS-style mega-panel: full container width, held by the page's column
-   rules — editorial intro left, ruled link columns, bottom bar with the
+   rules - editorial intro left, ruled link columns, bottom bar with the
    CTA and socials. */
 function DropdownPanel({
   entry,
@@ -167,7 +167,7 @@ function DesktopNav() {
       </NavigationMenu.List>
 
       {/* Scrim: darkens the page beneath the open panel. Anchored below the
-          nav (not `fixed` — the nav's slide-away transform would contain
+          nav (not `fixed` - the nav's slide-away transform would contain
           it); the panel paints after it, so it only tints the exposed page.
           Inert so hover-out still closes the menu. */}
       <div

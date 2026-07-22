@@ -21,7 +21,7 @@ import { SIGNAL_STREAMS } from "@/lib/strategy-content";
 export const metadata = buildMetadata({
   title: "The Strategy Engine",
   description:
-    "The HeyOtis Strategy Engine finds the move, verifies it shipped, and proves it worked — from AI bot-log evidence to recommendation-share lift — then learns from every outcome.",
+    "The HeyOtis Strategy Engine finds the move, verifies it shipped, and proves it worked - from AI bot-log evidence to recommendation-share lift - then learns from every outcome.",
   path: "/strategy-engine",
 });
 
@@ -50,7 +50,7 @@ export default function StrategyEnginePage() {
         ])}
       />
 
-      {/* 1 — Hero */}
+      {/* 1 - Hero */}
       <section className="surface-cream relative overflow-hidden">
         <div aria-hidden className="absolute inset-0 -z-10">
           <div
@@ -64,8 +64,8 @@ export default function StrategyEnginePage() {
         <Container className="relative pb-12 pt-28 sm:pt-32 md:pb-16 lg:pt-36">
           <Eyebrow>The Strategy Engine</Eyebrow>
           <h1
-            className="mt-6 max-w-4xl font-display text-[clamp(2.25rem,5.5vw,4.25rem)] leading-[1.0] tracking-[-0.03em] text-foreground"
-            style={{ fontStretch: "80%", fontWeight: 800 }}
+            className="display-lg mt-6 max-w-4xl text-balance text-foreground"
+            style={{ fontStretch: "80%", letterSpacing: "-0.02em" }}
           >
             Dashboards tell you where you stand.{" "}
             <span className="text-periwinkle">The Strategy Engine changes it.</span>
@@ -76,7 +76,7 @@ export default function StrategyEnginePage() {
           >
             HeyOtis finds the move that grows your AI recommendation share,
             verifies it actually shipped, and proves whether it moved the metric
-            — a campaign-led loop that compounds, not another dashboard.
+            - a campaign-led loop that compounds, not another dashboard.
           </p>
           <div className="mt-9 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
             <BookCta variant="salmon" nudge />
@@ -91,7 +91,7 @@ export default function StrategyEnginePage() {
         </Container>
       </section>
 
-      {/* 2 — The shift */}
+      {/* 2 - The shift */}
       <Section surface="card">
         <div className="grid gap-12 lg:grid-cols-[0.85fr_1fr] lg:gap-16">
           <Reveal>
@@ -107,7 +107,7 @@ export default function StrategyEnginePage() {
           >
             <p>
               For years, discovery meant ranking on a page of links. AI
-              assistants changed the shape of the journey — buyers now ask what
+              assistants changed the shape of the journey - buyers now ask what
               to choose and act on a single recommendation.
             </p>
             <p>
@@ -116,21 +116,21 @@ export default function StrategyEnginePage() {
               outranked when an assistant explains the category. Measuring that
               is table stakes.{" "}
               <span className="font-medium text-foreground">
-                Closing the gap — and proving you did — is the hard part.
+                Closing the gap - and proving you did - is the hard part.
               </span>
             </p>
           </Reveal>
         </div>
       </Section>
 
-      {/* 3 — What flows in */}
+      {/* 3 - What flows in */}
       <Section surface="cream">
         <div className="grid items-center gap-12 lg:grid-cols-[0.95fr_1fr] lg:gap-16">
           <div>
             <SectionHeading
               eyebrow="The inputs"
               title="Five signal streams. One picture of how AI sees you."
-              sub="The engine is only as good as its evidence — so it ingests the evidence. Your answers, your traffic and bot logs, your analytics, your own pages and your competitors' wins all flow into one model of the gap."
+              sub="The engine is only as good as its evidence - so it ingests the evidence. Your answers, your traffic and bot logs, your analytics, your own pages and your competitors' wins all flow into one model of the gap."
             />
             <ul className="mt-8 flex flex-col gap-4">
               {SIGNAL_STREAMS.map((s) => (
@@ -156,22 +156,22 @@ export default function StrategyEnginePage() {
         </div>
       </Section>
 
-      {/* 4 — The loop */}
+      {/* 4 - The loop */}
       <Section surface="card" id="loop">
         <SectionHeading
           eyebrow="The loop"
           title="One campaign-led loop, end to end"
-          sub="Most tools stop at Measure. The Strategy Engine closes the loop — verifying the move shipped and proving it changed how AI recommends you."
+          sub="Most tools stop at Measure. The Strategy Engine closes the loop - verifying the move shipped and proving it changed how AI recommends you."
           className="max-w-2xl"
         />
         {/* Implementation Tracking (nav: Prove → Implementation Tracking)
-            anchors here — the Verify stage lives inside this same loop. */}
+            anchors here - the Verify stage lives inside this same loop. */}
         <div className="mt-12" id="verify">
           <LoopBento />
         </div>
       </Section>
 
-      {/* 5 — Four levels */}
+      {/* 5 - Four levels */}
       <Section surface="cream">
         <SectionHeading
           eyebrow="How deep it goes"
@@ -184,14 +184,14 @@ export default function StrategyEnginePage() {
         </div>
       </Section>
 
-      {/* 6 — The action plan */}
+      {/* 6 - The action plan */}
       <Section surface="card" id="plan">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
             <SectionHeading
               eyebrow="The action plan"
               title="From signals to the moves that matter"
-              sub="Findings become a focused, ranked plan — every opportunity scored by impact and effort, tied to the metric it moves, and backed by the deterministic signals beneath it."
+              sub="Findings become a focused, ranked plan - every opportunity scored by impact and effort, tied to the metric it moves, and backed by the deterministic signals beneath it."
             />
             <ul className="mt-8 flex flex-col gap-4">
               {[
@@ -216,13 +216,13 @@ export default function StrategyEnginePage() {
         </div>
       </Section>
 
-      {/* 7 — Real attribution, three layers deep */}
+      {/* 7 - Real attribution, three layers deep */}
       <Section surface="cream" id="evidence">
         <SectionHeading
           eyebrow="Real attribution"
           title="Three layers of proof"
           sub={
-            "“It worked” isn't a vibe. Because HeyOtis ingests your traffic and AI-bot logs, you can watch the crawlers fetch the fix, the assistants send the visitors, and the share move — with the evidence trail open."
+            "“It worked” isn't a vibe. Because HeyOtis ingests your traffic and AI-bot logs, you can watch the crawlers fetch the fix, the assistants send the visitors, and the share move - with the evidence trail open."
           }
           className="max-w-2xl"
         />
@@ -231,19 +231,19 @@ export default function StrategyEnginePage() {
         </div>
       </Section>
 
-      {/* 8 — It learns */}
+      {/* 8 - It learns */}
       <Section surface="card">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
             <SectionHeading
               eyebrow="The feedback loop"
               title="Every campaign makes the next one sharper"
-              sub="Proof isn't the end of the loop — it's the input to the next one. Every outcome, proven or disproven, reweights what the engine recommends next."
+              sub="Proof isn't the end of the loop - it's the input to the next one. Every outcome, proven or disproven, reweights what the engine recommends next."
             />
             <ul className="mt-8 flex flex-col gap-4">
               {[
                 "Proven moves raise the weighting of moves like them",
-                "Disproven moves get deprioritised — honestly",
+                "Disproven moves get deprioritised - honestly",
                 "Every cycle starts smarter than the last",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3">
@@ -263,7 +263,7 @@ export default function StrategyEnginePage() {
         </div>
       </Section>
 
-      {/* 9 — Honesty architecture */}
+      {/* 9 - Honesty architecture */}
       <Section surface="cream">
         <SectionHeading
           eyebrow="Built on evidence"
@@ -287,7 +287,7 @@ export default function StrategyEnginePage() {
         </div>
       </Section>
 
-      {/* 11 — Platform + strategists */}
+      {/* 11 - Platform + strategists */}
       <Section surface="cream">
         <div className="grid gap-12 lg:grid-cols-[1fr_0.85fr] lg:gap-16">
           <Reveal>
@@ -306,7 +306,7 @@ export default function StrategyEnginePage() {
         </div>
       </Section>
 
-      {/* 12 — Where this is heading (vision) */}
+      {/* 12 - Where this is heading (vision) */}
       <Section surface="card">
         <div className="mx-auto max-w-2xl text-center">
           <Eyebrow>Where this is heading</Eyebrow>
@@ -319,7 +319,7 @@ export default function StrategyEnginePage() {
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
             The loop is the start. As assistants become how brands are
             discovered, served and transacted with, HeyOtis is building toward
-            the full stack — see, serve, test and act on how AI represents you.
+            the full stack - see, serve, test and act on how AI represents you.
           </p>
         </div>
       </Section>

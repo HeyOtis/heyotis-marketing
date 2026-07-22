@@ -2,7 +2,7 @@ import { Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 /**
- * Designed (illustrative) product visuals built in pure SVG/CSS — no real
+ * Designed (illustrative) product visuals built in pure SVG/CSS - no real
  * screenshots, no chart libs. Mirrors real HeyOtis surfaces:
  *  - overview     → KPI tiles + Share-of-Voice trend + competitor rankings + per-engine
  *  - citations    → citation overview tiles, top cited domains, source distribution
@@ -293,7 +293,7 @@ const SOURCE_SEGMENTS = [
   { label: "Other", pct: 8, color: "oklch(0.7 0.02 285)" },
 ];
 
-// Build the conic-gradient stops once (static) — avoids mutating during render.
+// Build the conic-gradient stops once (static) - avoids mutating during render.
 const SOURCE_STOPS = (() => {
   let acc = 0;
   return SOURCE_SEGMENTS.map((s) => {
@@ -442,7 +442,7 @@ function CompetitorsPanel() {
       <div className="flex items-center justify-between">
         <div>
           <p className="label-mono text-[0.6rem] text-muted-foreground">
-            Share of Voice — ranked
+            Share of Voice - ranked
           </p>
           <p className="mt-1 text-sm text-foreground/70">
             How you place against named rivals in AI answers
