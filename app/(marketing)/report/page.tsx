@@ -106,7 +106,7 @@ export default function ReportPage() {
             style={{ fontStretch: "80%", letterSpacing: "-0.02em" }}
           >
             See exactly how AI answers{" "}
-            <span className="text-accent">for your brand.</span>
+            <span className="text-periwinkle">for your brand.</span>
           </h1>
           <p
             className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground"
@@ -117,7 +117,7 @@ export default function ReportPage() {
             showing where you&rsquo;re recommended, mentioned and missing.
           </p>
           <div className="mt-8">
-            <BookCta nudge withArrow />
+            <BookCta variant="salmon" nudge />
           </div>
         </Container>
       </section>
@@ -189,7 +189,7 @@ export default function ReportPage() {
             we get the report in front of you.
           </p>
           <AiSourceLogos withText className="justify-center" />
-          <BookCta nudge withArrow />
+          <BookCta variant="salmon" nudge />
         </div>
       </Section>
     </>

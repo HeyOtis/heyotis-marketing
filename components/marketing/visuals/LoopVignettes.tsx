@@ -194,6 +194,7 @@ function VisibilityLine({ runId }: { runId: number }) {
         stroke="var(--periwinkle)"
         strokeWidth="2"
         strokeLinecap="round"
+        vectorEffect="non-scaling-stroke"
         variants={{
           hidden: { pathLength: 0 },
           show: {
@@ -202,14 +203,16 @@ function VisibilityLine({ runId }: { runId: number }) {
           },
         }}
       />
-      {/* the points plot as the line passes them */}
+      {/* the points plot as the line passes them — drawn as zero-length
+          round-capped strokes so the stretched viewBox can't oval them */}
       {VIS_POINTS.map(({ x, y }) => (
-        <motion.circle
+        <motion.path
           key={x}
-          cx={x}
-          cy={y}
-          r={x === 216 ? 3 : 2.5}
-          fill="var(--periwinkle)"
+          d={`M ${x} ${y} l 0.001 0`}
+          stroke="var(--periwinkle)"
+          strokeWidth={x === 216 ? 7 : 6}
+          strokeLinecap="round"
+          vectorEffect="non-scaling-stroke"
           variants={{
             hidden: { opacity: 0 },
             show: {
@@ -449,7 +452,7 @@ export function MeasureVignette() {
               </>
             )}
           </HoverCell>
-          <EditorialCell title="AEO Insights" href="/features">
+          <EditorialCell title="AEO Insights" href="/platform#measure">
             Understand what&rsquo;s actually driving your visibility. Every
             answer is scored, every citation traced, and every shift
             explained — so you can see which pages, sources and topics move
@@ -1068,7 +1071,7 @@ export function AttributeVignette() {
               sub="The lift, decomposed into the moves that caused it."
             />
           </div>
-          <EditorialCell title="Deterministic attribution" href="/features#traffic">
+          <EditorialCell title="Deterministic attribution" href="/platform#attribute">
             No modelled guesswork. Web analytics and agent analytics are
             joined into one deterministic record, so every lift is
             attributed to the move that caused it — and what worked feeds

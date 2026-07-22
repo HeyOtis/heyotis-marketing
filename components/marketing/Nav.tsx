@@ -119,17 +119,6 @@ function DropdownPanel({
             >
               LinkedIn
             </a>
-            <span aria-hidden className="text-border">
-              |
-            </span>
-            <a
-              href={siteConfig.socials.twitter}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-colors hover:text-foreground"
-            >
-              Twitter / X
-            </a>
           </div>
         )}
       </div>
@@ -412,7 +401,7 @@ export function Nav() {
                 Log in
               </a>
               <div className="px-3 pt-3">
-                <BookCta className="w-full" />
+                <BookCta variant="salmon" className="w-full" />
               </div>
             </div>
           </nav>

@@ -40,7 +40,7 @@ type Tier = {
   priceSub: string;
   features: string[];
   recommended?: boolean;
-  ctaVariant: "primary" | "secondary";
+  ctaVariant: "primary" | "secondary" | "lavender";
 };
 
 const TIERS: Tier[] = [
@@ -91,7 +91,7 @@ const TIERS: Tier[] = [
       "Strategy Engine access",
     ],
     recommended: true,
-    ctaVariant: "primary",
+    ctaVariant: "lavender",
   },
   {
     name: "Enterprise",
@@ -115,7 +115,7 @@ const TIERS: Tier[] = [
 
 function TierCard({ tier }: { tier: Tier }) {
   const body = (
-    <div className="flex flex-col p-6 sm:p-7">
+    <div className="flex flex-1 flex-col p-6 sm:p-7">
       <div className="flex items-center justify-between gap-3">
         <h3
           className="font-display text-2xl text-foreground"
@@ -124,7 +124,7 @@ function TierCard({ tier }: { tier: Tier }) {
           {tier.name}
         </h3>
         {tier.recommended ? (
-          <span className="label-mono rounded-full bg-accent px-2.5 py-1 text-[0.65rem] text-primary-foreground">
+          <span className="label-mono shrink-0 whitespace-nowrap rounded-full bg-periwinkle px-3 py-1 text-[0.625rem] text-foreground">
             Most popular
           </span>
         ) : null}
@@ -136,26 +136,28 @@ function TierCard({ tier }: { tier: Tier }) {
 
       <div className="mt-5 border-t border-border pt-5">
         <div
-          className="font-display text-3xl text-foreground"
-          style={{ fontStretch: "80%", letterSpacing: "-0.02em" }}
+          className="font-display text-2xl text-foreground"
+          style={{ fontStretch: "85%", letterSpacing: "-0.01em" }}
         >
           {tier.priceLabel}
         </div>
-        <div className="mt-1 text-xs text-muted-foreground">
+        <div className="mt-1 min-h-[2rem] text-xs leading-relaxed text-muted-foreground">
           {tier.priceSub}
         </div>
       </div>
 
-      <ul className="mt-6 flex min-h-[15rem] flex-col gap-3">
+      <ul className="mt-6 flex flex-col gap-3.5">
         {tier.features.map((feature) => (
           <li key={feature} className="flex items-start gap-2.5 text-sm">
-            <Check className="mt-0.5 size-4 shrink-0 text-accent" />
-            <span className="text-foreground/80">{feature}</span>
+            <span className="mt-px flex size-[1.125rem] shrink-0 items-center justify-center rounded-full bg-periwinkle/20">
+              <Check className="size-3 text-foreground" strokeWidth={2.5} />
+            </span>
+            <span className="leading-snug text-foreground/80">{feature}</span>
           </li>
         ))}
       </ul>
 
-      <div className="mt-8">
+      <div className="mt-auto pt-8">
         <BookCta
           label="Talk to us"
           variant={tier.ctaVariant}
@@ -169,13 +171,13 @@ function TierCard({ tier }: { tier: Tier }) {
 
   if (tier.recommended) {
     return (
-      <CardSpotlight className="h-full ring-2 ring-accent/50">
+      <CardSpotlight className="h-full ring-2 ring-periwinkle/60 shadow-lg shadow-foreground/[0.06]">
         {body}
       </CardSpotlight>
     );
   }
 
-  return <Card className="h-full">{body}</Card>;
+  return <Card className="flex h-full flex-col">{body}</Card>;
 }
 
 type Cell = boolean | string;
@@ -303,7 +305,7 @@ function CompareCell({ value }: { value: Cell }) {
   if (value === true) {
     return (
       <span className="inline-flex">
-        <Check className="size-4 text-accent" role="img" aria-label="Included" />
+        <Check className="size-4 text-periwinkle" role="img" aria-label="Included" />
       </span>
     );
   }
@@ -427,13 +429,13 @@ export default function PricingPage() {
                       key={col}
                       className={cn(
                         "py-4 text-center text-sm font-semibold text-foreground",
-                        isFeatured && "bg-brand/5",
+                        isFeatured && "bg-periwinkle/12",
                       )}
                     >
                       <span className="inline-flex flex-col items-center gap-1">
                         {col}
                         {isFeatured ? (
-                          <span className="label-mono text-[0.6rem] text-accent">
+                          <span className="label-mono text-[0.6rem] text-periwinkle">
                             Most popular
                           </span>
                         ) : null}
@@ -465,7 +467,7 @@ export default function PricingPage() {
                       <TableCell className="text-center">
                         <CompareCell value={row.plus} />
                       </TableCell>
-                      <TableCell className="bg-brand/5 text-center">
+                      <TableCell className="bg-periwinkle/12 text-center">
                         <CompareCell value={row.premium} />
                       </TableCell>
                       <TableCell className="text-center">

@@ -21,7 +21,7 @@ export function CtaBand({
     </>
   ),
   sub = "Book a 20-minute walkthrough. We'll run your brand against ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews and show you the gaps.",
-  secondary = { label: "Explore the platform", href: "/features" },
+  secondary = { label: "Explore the platform", href: "/platform" },
   className,
 }: CtaBandProps) {
   return (

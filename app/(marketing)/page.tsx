@@ -2,6 +2,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema, faqPageSchema } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
 import { Hero } from "@/components/marketing/sections/Hero";
+import { ClientLogos } from "@/components/marketing/sections/ClientLogos";
 import { CaseStudyDaylyte } from "@/components/marketing/sections/CaseStudyDaylyte";
 import { ReportBand } from "@/components/marketing/sections/ReportBand";
 import { PillarSections } from "@/components/marketing/sections/PillarSections";
@@ -11,6 +12,9 @@ import { Section } from "@/components/marketing/primitives/Section";
 import { SectionHeading } from "@/components/marketing/primitives/SectionHeading";
 
 export const metadata = buildMetadata({
+  // Brand-first <title> for the homepage (the one page where that's standard).
+  titleAbsolute: "HeyOtis - AI Search Intelligence",
+  // Kept as the punchy, benefit-led title on shared social/OG cards.
   title: "See how AI recommends your brand",
   description:
     "HeyOtis measures how ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews recommend your brand, finds the moves that grow your share, watches the work land, and measures the lift. A closed loop — not another dashboard.",
@@ -55,6 +59,8 @@ export default function HomePage() {
       <JsonLd data={faqPageSchema(faqItemsToSchema(FAQS))} />
 
       <Hero />
+
+      <ClientLogos />
 
       {/* The stakes */}
       <Section surface="card">

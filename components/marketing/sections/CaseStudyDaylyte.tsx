@@ -19,7 +19,7 @@ const STORY = {
   headline: "From 0% to 65% AI visibility in two weeks",
   blurb:
     "Daylyte — a UK hydration brand with no agency and no ad budget — went from unmentioned in ChatGPT to the single most-recommended brand in its category, guided by exactly what HeyOtis showed them to fix.",
-  storyHref: "/blog/daylyte",
+  storyHref: "/case-studies/daylyte",
 } as const;
 
 /* Quiet product chips — the vignette grammar, not candy. Salmon carries the

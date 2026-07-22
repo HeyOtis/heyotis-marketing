@@ -3,6 +3,11 @@ import { siteConfig } from "@/lib/site";
 
 type BuildMetadataInput = {
   title?: string;
+  // Exact <title> text, bypassing the root layout's "%s - HeyOtis" template.
+  // Used by the homepage for a brand-first title (e.g. "HeyOtis - AI Search
+  // Intelligence"); interior pages should use `title` and let the template
+  // append the brand.
+  titleAbsolute?: string;
   description?: string;
   path?: string;
   image?: string;
@@ -16,6 +21,7 @@ type BuildMetadataInput = {
 
 export function buildMetadata({
   title,
+  titleAbsolute,
   description = siteConfig.description,
   path = "/",
   image = siteConfig.defaultOgImage,
@@ -27,8 +33,10 @@ export function buildMetadata({
   noindex = false,
 }: BuildMetadataInput = {}): Metadata {
   const url = new URL(path, siteConfig.url).toString();
+  // OG/Twitter card title — the bare page title (brand for the default). No
+  // brand suffix here; the "- HeyOtis" suffix lives only in the <title> tag,
+  // added once by the root layout's title template.
   const resolvedTitle = title ?? siteConfig.name;
-  const fullTitle = title ? `${title} — ${siteConfig.name}` : siteConfig.name;
   // Per-route OG card: when using the default generator, bake the page's title
   // and description into it so each shared link gets a distinct, titled image.
   const ogImage =
@@ -38,7 +46,10 @@ export function buildMetadata({
   const imageUrl = new URL(ogImage, siteConfig.url).toString();
 
   return {
-    title: fullTitle,
+    // <title> tag. Interior pages pass `title`; the root layout's
+    // `%s - HeyOtis` template appends the brand once (page-first). The homepage
+    // passes `titleAbsolute` for a brand-first title that skips the template.
+    title: titleAbsolute ? { absolute: titleAbsolute } : title,
     description,
     metadataBase: new URL(siteConfig.url),
     alternates: { canonical: url },
@@ -65,7 +76,6 @@ export function buildMetadata({
       title: resolvedTitle,
       description,
       images: [imageUrl],
-      creator: siteConfig.twitterHandle,
     },
   };
 }

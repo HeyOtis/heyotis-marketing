@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { siteConfig } from "@/lib/site";
 import { Container } from "@/components/marketing/Container";
-import { LogoGlyph, Wordmark } from "@/components/marketing/Logo";
+import { WordmarkImage } from "@/components/marketing/Logo";
 import { BookCta } from "@/components/marketing/primitives/BookCta";
 
 const currentYear = new Date().getFullYear();
@@ -25,10 +25,9 @@ export function Footer() {
             <Link
               href="/"
               aria-label={`${siteConfig.name} home`}
-              className="inline-flex items-center gap-2.5"
+              className="inline-flex items-center"
             >
-              <LogoGlyph className="h-7 w-7" />
-              <Wordmark tone="cream" className="text-3xl" />
+              <WordmarkImage tone="white" className="h-10" />
             </Link>
             <p className="mt-6 max-w-sm text-base text-surface-dark-foreground/70">
               Brand visibility for the age of AI search. Measure how ChatGPT,
@@ -74,14 +73,6 @@ export function Footer() {
               className="transition-colors hover:text-surface-dark-foreground"
             >
               LinkedIn
-            </a>
-            <a
-              href={siteConfig.socials.twitter}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-colors hover:text-surface-dark-foreground"
-            >
-              X / Twitter
             </a>
             <a
               href={`mailto:${siteConfig.contactEmail}`}

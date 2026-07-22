@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
 type BookCtaProps = {
-  variant?: "primary" | "inverse" | "secondary" | "ink" | "salmon";
+  variant?: "primary" | "inverse" | "secondary" | "ink" | "salmon" | "lavender";
   label?: string;
   href?: string;
   className?: string;
@@ -25,6 +25,8 @@ const variantClass = {
   // contrast the lavender background shapes. Nav and hero share it,
   // DOSS-style.
   salmon: "bg-salmon text-foreground hover:bg-salmon/85",
+  // Periwinkle pill, ink text — the brand lavender.
+  lavender: "bg-periwinkle text-foreground hover:bg-periwinkle/85",
 } as const;
 
 /**

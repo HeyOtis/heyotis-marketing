@@ -8,16 +8,18 @@ import { Section } from "@/components/marketing/primitives/Section";
 import { Eyebrow } from "@/components/marketing/primitives/Eyebrow";
 import { Reveal } from "@/components/marketing/primitives/Reveal";
 import { CtaBand } from "@/components/marketing/sections/CtaBand";
-import { HALLENSTEINS } from "@/lib/strategy-content";
+import { getAllCaseStudies } from "@/lib/mdx";
 
 export const metadata = buildMetadata({
   title: "Case Studies",
   description:
-    "Real brands, measured lift in AI recommendation share. Starting with Hallensteins: from near-zero to 3.7% AI recommendation share in Australia.",
+    "Real brands, measured lift in AI recommendation share. Starting with Daylyte: from 0% to 65% AI visibility — the #1 brand in its category in two weeks.",
   path: "/case-studies",
 });
 
 export default function CaseStudiesPage() {
+  const studies = getAllCaseStudies();
+
   return (
     <>
       <JsonLd
@@ -51,27 +53,32 @@ export default function CaseStudiesPage() {
       {/* Case study grid */}
       <Section surface="cream" className="pt-0">
         <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          <li>
-            <Reveal className="h-full">
-              <Link
-                href="/case-studies/hallensteins"
-                className="group flex h-full flex-col rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent/30 hover:shadow-lg hover:shadow-foreground/5"
-              >
-                <span className="label-mono text-accent">Apparel</span>
-                <h2 className="mt-3 font-display text-2xl leading-tight text-foreground transition-colors group-hover:text-accent">
-                  Hallensteins
-                </h2>
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
-                  {HALLENSTEINS.lift} AI recommendation share — from near-zero
-                  to {HALLENSTEINS.shareAfter} in {HALLENSTEINS.market}.
-                </p>
-                <div className="mt-6 flex items-center gap-1.5 text-sm font-medium text-foreground">
-                  Read the full story
-                  <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-                </div>
-              </Link>
-            </Reveal>
-          </li>
+          {studies.map((study) => (
+            <li key={study.slug}>
+              <Reveal className="h-full">
+                <Link
+                  href={`/case-studies/${study.slug}`}
+                  className="group flex h-full flex-col rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent/30 hover:shadow-lg hover:shadow-foreground/5"
+                >
+                  {study.frontmatter.tags?.[0] ? (
+                    <span className="label-mono text-accent">
+                      {study.frontmatter.tags[0]}
+                    </span>
+                  ) : null}
+                  <h2 className="mt-3 font-display text-2xl leading-tight text-foreground transition-colors group-hover:text-accent">
+                    {study.frontmatter.title}
+                  </h2>
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
+                    {study.frontmatter.description}
+                  </p>
+                  <div className="mt-6 flex items-center gap-1.5 text-sm font-medium text-foreground">
+                    Read the full story
+                    <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+                  </div>
+                </Link>
+              </Reveal>
+            </li>
+          ))}
         </ul>
 
         <Reveal delay={0.08}>

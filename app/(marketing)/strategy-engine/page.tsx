@@ -12,7 +12,6 @@ import { CompoundingChart } from "@/components/marketing/visuals/CompoundingChar
 import { MaturityLevels } from "@/components/marketing/sections/MaturityLevels";
 import { EvidenceLadder } from "@/components/marketing/sections/EvidenceLadder";
 import { SignalClusterCard } from "@/components/marketing/sections/EvidenceCards";
-import { ProofHallensteins } from "@/components/marketing/sections/ProofHallensteins";
 import { CtaBand } from "@/components/marketing/sections/CtaBand";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
@@ -69,7 +68,7 @@ export default function StrategyEnginePage() {
             style={{ fontStretch: "80%", fontWeight: 800 }}
           >
             Dashboards tell you where you stand.{" "}
-            <span className="text-accent">The Strategy Engine changes it.</span>
+            <span className="text-periwinkle">The Strategy Engine changes it.</span>
           </h1>
           <p
             className="mt-7 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground"
@@ -80,7 +79,7 @@ export default function StrategyEnginePage() {
             — a campaign-led loop that compounds, not another dashboard.
           </p>
           <div className="mt-9 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-            <BookCta nudge withArrow />
+            <BookCta variant="salmon" nudge />
             <a
               href="#loop"
               className="group inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-foreground/70 transition-colors hover:text-foreground"
@@ -286,18 +285,6 @@ export default function StrategyEnginePage() {
             </Reveal>
           ))}
         </div>
-      </Section>
-
-      {/* 10 — Proof */}
-      <Section surface="card">
-        <SectionHeading
-          eyebrow="Proof"
-          title="It works"
-          className="max-w-2xl"
-        />
-        <Reveal className="mt-10">
-          <ProofHallensteins />
-        </Reveal>
       </Section>
 
       {/* 11 — Platform + strategists */}

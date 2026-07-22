@@ -22,11 +22,9 @@ export const siteConfig = {
     "See how ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews recommend your brand — and what to do about it. HeyOtis measures your AI recommendation share, citations and competitive rank.",
   locale: "en-US",
   defaultOgImage: "/api/og",
-  twitterHandle: "@heyotis",
   contactEmail: "hello@heyotis.com",
   founders: ["HeyOtis Team"],
   socials: {
-    twitter: "https://twitter.com/heyotis",
     linkedin: "https://www.linkedin.com/company/heyotis",
     github: "https://github.com/heyotis",
   },
@@ -34,7 +32,7 @@ export const siteConfig = {
     {
       heading: "Product",
       links: [
-        { label: "Overview", href: "/features" },
+        { label: "Platform", href: "/platform" },
         { label: "Pricing", href: "/pricing" },
         { label: "Book a demo", href: "/contact" },
       ],
@@ -69,44 +67,35 @@ export const NAV: NavEntry[] = [
       {
         heading: "Measure",
         links: [
-          {
-            label: "AI Visibility & Share of Voice",
-            href: "/features#visibility",
-          },
-          { label: "Answer Sentiment", href: "/features#sentiment" },
-          { label: "Citations & Sources", href: "/features#citations" },
-          { label: "Competitor Head-to-Head", href: "/features#competitors" },
+          { label: "Visibility & Share of Voice", href: "/platform#visibility" },
+          { label: "Answer Sentiment", href: "/platform#sentiment" },
+          { label: "Fanout Queries", href: "/platform#fanouts" },
+          { label: "Citations & Sources", href: "/platform#citations" },
         ],
       },
       {
-        heading: "Diagnose",
+        heading: "Strategy",
         links: [
           { label: "The Strategy Engine", href: "/strategy-engine" },
           { label: "Evidence & Findings", href: "/strategy-engine#evidence" },
-        ],
-      },
-      {
-        heading: "Act",
-        links: [
           {
             label: "Prioritised Recommendations",
             href: "/strategy-engine#plan",
           },
-          { label: "Campaigns", href: "/features#campaigns" },
         ],
       },
       {
-        heading: "Prove",
+        heading: "Act",
+        links: [{ label: "Implementation Tracking", href: "/platform#act" }],
+      },
+      {
+        heading: "Attribute",
         links: [
-          {
-            label: "Implementation Tracking",
-            href: "/strategy-engine#verify",
-          },
-          { label: "AI Traffic & Attribution", href: "/features#traffic" },
+          { label: "Web & AI Bot Analytics", href: "/platform#attribute" },
         ],
       },
     ],
-    footerLink: { label: "How the loop works →", href: "/strategy-engine" },
+    footerLink: { label: "How the loop works →", href: "/platform" },
   },
   {
     label: "Resources",
@@ -117,7 +106,6 @@ export const NAV: NavEntry[] = [
           { label: "Free AI Visibility Report", href: "/report" },
           { label: "Case Studies", href: "/case-studies" },
           { label: "Blog", href: "/blog" },
-          { label: "Guides & AEO Playbook", href: "/guides" },
           { label: "About HeyOtis", href: "/about" },
         ],
       },

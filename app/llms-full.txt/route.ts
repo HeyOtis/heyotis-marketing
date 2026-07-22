@@ -47,7 +47,7 @@ Confident, wrong advice is the cheapest thing an AI product can make, and the mo
 - New detection ships dark. Every new pattern the engine learns to spot is reviewed by a human before a single brand sees it.
 
 ## Proof
-Hallensteins grew AI recommendation share by 300% in Australia — from near-zero to 3.7% — after benchmarking where the brand stood, diagnosing the gaps and improving the signals that mattered. Read the full walkthrough (measure, diagnose, prioritise, verify, prove) at ${u}/case-studies/hallensteins.
+Daylyte — a two-founder UK hydration brand with no agency and no ad budget — went from 0% AI visibility (unmentioned in ChatGPT) to the single most-recommended brand in its category in two weeks: 65% ChatGPT visibility, #1 rank, 88% positive sentiment. HeyOtis diagnosed that their entire AI presence balanced on a single citable page; the fix was publishing nine question-shaped pages and getting them indexed. Read the full walkthrough at ${u}/case-studies/daylyte.
 
 ## Engines monitored
 ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews.
@@ -71,12 +71,12 @@ Sold through a sales-led model with plans that scale with your needs — Plans (
 - Pricing ▾ — Plans (self-serve tiers), Managed (strategist-led), For Agencies (white-label & multi-brand).
 
 ## Key pages
-- Home: ${u}/ — the eight-section loop story: hero, the stakes (the answer is the new shortlist), the wound (knowing you're invisible doesn't make you visible), the five-step loop, the honesty wedge, the feature grid, proof (Hallensteins), final CTA.
+- Home: ${u}/ — the eight-section loop story: hero, the stakes (the answer is the new shortlist), the wound (knowing you're invisible doesn't make you visible), the five-step loop, the honesty wedge, the feature grid, proof (Daylyte), final CTA.
 - Strategy Engine: ${u}/strategy-engine — the self-improving loop, attribution and the four levels it operates at.
 - Product / features: ${u}/features
 - Free AI Visibility Report: ${u}/report — the lead magnet: what's in it, how it works, book the walkthrough.
 - Case Studies: ${u}/case-studies — real brands, measured lift, no invented testimonials.
-- Hallensteins case study: ${u}/case-studies/hallensteins — the loop applied end to end, +300% AI recommendation share (near-zero to 3.7% in Australia).
+- Daylyte case study: ${u}/case-studies/daylyte — the loop applied end to end: a UK hydration brand went from 0% to 65% ChatGPT visibility and #1 in its category in two weeks.
 - Guides & AEO Playbook: ${u}/guides — the start of the AEO playbook, practical guides on how assistants choose which brands to recommend.
 - Pricing: ${u}/pricing
 - About: ${u}/about

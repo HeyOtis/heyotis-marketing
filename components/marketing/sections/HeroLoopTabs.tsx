@@ -159,10 +159,12 @@ export function HeroFold({ intro }: { intro: React.ReactNode }) {
         <Backdrop />
         {/* Horizontal rules echoing the vertical pair: dashed through the
             tab underlines, solid along the shapes' bottom edge, and a
-            mirrored dashed rule the same distance below the fold. */}
+            mirrored dashed rule the same distance below the fold. On lg+
+            the dashed rule doubles as the track the tab indicator rides;
+            below lg each tab carries its own dashed track instead. */}
         <div
           aria-hidden
-          className="absolute inset-x-0 bottom-8 border-t border-dashed border-border/50"
+          className="absolute inset-x-0 bottom-8 border-t border-dashed border-border/50 max-lg:hidden"
         />
         <div
           aria-hidden
@@ -175,8 +177,25 @@ export function HeroFold({ intro }: { intro: React.ReactNode }) {
             role="tablist"
             aria-label="The loop, stage by stage"
             onKeyDown={onKeyDown}
-            className="mt-auto grid grid-cols-2 gap-x-8 gap-y-6 rounded-2xl bg-white/50 p-5 ring-1 ring-white/60 backdrop-blur-md sm:p-6 lg:grid-cols-4"
+            className="relative isolate mt-auto grid grid-cols-2 gap-x-8 gap-y-6 pt-8 lg:grid-cols-4"
           >
+            {/* White feather for legibility over the lavender shapes —
+                same halo grammar as the vignettes, no card chrome. */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute -inset-x-16 -inset-y-10 -z-10"
+              style={{
+                background:
+                  "radial-gradient(closest-side, white 35%, transparent 100%)",
+              }}
+            />
+            {/* The track: one continuous dashed rule under all four tabs,
+                painted above the halo (the page-wide bottom-8 rule sits
+                beneath it and feathers away under the white). */}
+            <div
+              aria-hidden
+              className="absolute inset-x-0 bottom-0 hidden border-t border-dashed border-border/50 lg:block"
+            />
             {TABS.map((tab, i) => (
               <button
                 key={tab.key}
@@ -190,13 +209,26 @@ export function HeroFold({ intro }: { intro: React.ReactNode }) {
                 aria-controls="loop-panel"
                 tabIndex={i === active ? 0 : -1}
                 onClick={() => select(i)}
-                className={cn(
-                  "group cursor-pointer border-b-2 pb-3.5 text-left transition-colors",
-                  i === active
-                    ? "border-foreground"
-                    : "border-foreground/15 hover:border-foreground/40",
-                )}
+                className="group relative cursor-pointer pb-3.5 text-left max-lg:border-b max-lg:border-dashed max-lg:border-border/50"
               >
+                {/* Hover: a faint solid segment surfaces over this
+                    column's stretch of the track. */}
+                <span
+                  aria-hidden
+                  className="absolute inset-x-0 -bottom-px h-px bg-transparent transition-colors group-hover:bg-foreground/40"
+                />
+                {i === active && (
+                  <motion.span
+                    layoutId="loop-indicator"
+                    aria-hidden
+                    className="absolute inset-x-0 -bottom-px h-0.5 bg-foreground"
+                    transition={
+                      reduced
+                        ? { duration: 0 }
+                        : { duration: 0.45, ease: EASE }
+                    }
+                  />
+                )}
                 <span
                   className={cn(
                     "label-mono block text-[0.6rem] transition-colors",
