@@ -26,22 +26,20 @@ export function ClientLogos() {
   return (
     <section className="surface-cream border-t border-border py-10 md:py-12">
       <Container>
-        <div className="flex flex-col items-center gap-7 lg:flex-row lg:gap-12">
-          <p className="label-mono shrink-0 text-[0.65rem] text-muted-foreground">
-            Trusted by
-          </p>
-          <div className="flex flex-1 flex-wrap items-center justify-center gap-x-12 gap-y-7 lg:justify-between">
-            {CLIENTS.map((client) => (
-              <Image
-                key={client.name}
-                src={client.src}
-                alt={client.name}
-                unoptimized
-                className="w-auto brightness-0 opacity-45"
-                style={{ height: client.height }}
-              />
-            ))}
-          </div>
+        <p className="label-mono text-center text-[0.65rem] text-muted-foreground">
+          Trusted by
+        </p>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-x-12 gap-y-7 lg:justify-between">
+          {CLIENTS.map((client) => (
+            <Image
+              key={client.name}
+              src={client.src}
+              alt={client.name}
+              unoptimized
+              className="w-auto brightness-0 opacity-45"
+              style={{ height: client.height }}
+            />
+          ))}
         </div>
       </Container>
     </section>
