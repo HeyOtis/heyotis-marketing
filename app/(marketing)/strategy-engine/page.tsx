@@ -79,7 +79,7 @@ export default function StrategyEnginePage() {
             — a campaign-led loop that compounds, not another dashboard.
           </p>
           <div className="mt-9 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-            <BookCta nudge withArrow />
+            <BookCta variant="salmon" nudge />
             <a
               href="#loop"
               className="group inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-foreground/70 transition-colors hover:text-foreground"

@@ -12,6 +12,9 @@ import { Section } from "@/components/marketing/primitives/Section";
 import { SectionHeading } from "@/components/marketing/primitives/SectionHeading";
 
 export const metadata = buildMetadata({
+  // Brand-first <title> for the homepage (the one page where that's standard).
+  titleAbsolute: "HeyOtis - AI Search Intelligence",
+  // Kept as the punchy, benefit-led title on shared social/OG cards.
   title: "See how AI recommends your brand",
   description:
     "HeyOtis measures how ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews recommend your brand, finds the moves that grow your share, watches the work land, and measures the lift. A closed loop — not another dashboard.",

@@ -401,7 +401,7 @@ export function Nav() {
                 Log in
               </a>
               <div className="px-3 pt-3">
-                <BookCta className="w-full" />
+                <BookCta variant="salmon" className="w-full" />
               </div>
             </div>
           </nav>

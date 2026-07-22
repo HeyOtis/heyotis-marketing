@@ -117,7 +117,7 @@ export default function ReportPage() {
             showing where you&rsquo;re recommended, mentioned and missing.
           </p>
           <div className="mt-8">
-            <BookCta nudge withArrow />
+            <BookCta variant="salmon" nudge />
           </div>
         </Container>
       </section>
@@ -189,7 +189,7 @@ export default function ReportPage() {
             we get the report in front of you.
           </p>
           <AiSourceLogos withText className="justify-center" />
-          <BookCta nudge withArrow />
+          <BookCta variant="salmon" nudge />
         </div>
       </Section>
     </>

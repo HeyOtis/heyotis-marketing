@@ -67,7 +67,7 @@ export default function ContactPage() {
             required.
           </p>
           <div className="mt-8">
-            <BookCta nudge withArrow />
+            <BookCta variant="salmon" nudge />
           </div>
         </Container>
       </section>

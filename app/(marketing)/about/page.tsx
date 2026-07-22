@@ -133,7 +133,7 @@ export default function AboutPage() {
             to show up better.
           </p>
           <div className="mt-9 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-            <BookCta nudge withArrow />
+            <BookCta variant="salmon" nudge />
             <a
               href="#methodology"
               className="px-4 py-2 text-sm font-medium text-foreground/70 underline-offset-4 transition-colors hover:text-foreground hover:underline"
