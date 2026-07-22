@@ -219,6 +219,15 @@
     letter-spacing: -0.02em;
     line-height: 1.06;
   }
+  /* Page hero heading - the h1 voice shared by the home hero and every
+     top-of-page hero, so they stay in lockstep on size and weight. */
+  .display-hero {
+    font-family: var(--font-display), var(--font-sans), system-ui, sans-serif;
+    font-weight: 700;
+    font-size: clamp(2.2rem, 4vw, 3.4rem);
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+  }
   .display-xl { @apply font-display text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem]; }
   .display-lg { @apply font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl; }
   .display-md { @apply font-display text-3xl sm:text-4xl md:text-5xl; }

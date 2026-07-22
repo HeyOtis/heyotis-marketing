@@ -64,7 +64,7 @@ export default function StrategyEnginePage() {
         <Container className="relative pb-12 pt-28 sm:pt-32 md:pb-16 lg:pt-36">
           <Eyebrow>The Strategy Engine</Eyebrow>
           <h1
-            className="display-lg mt-6 max-w-4xl text-balance text-foreground"
+            className="display-hero mt-6 max-w-4xl text-balance text-foreground"
             style={{ fontStretch: "80%", letterSpacing: "-0.02em" }}
           >
             Dashboards tell you where you stand.{" "}
@@ -236,7 +236,7 @@ export default function StrategyEnginePage() {
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
             <SectionHeading
-              eyebrow="The feedback loop"
+              eyebrow="The compounding advantage"
               title="Every campaign makes the next one sharper"
               sub="Proof isn't the end of the loop - it's the input to the next one. Every outcome, proven or disproven, reweights what the engine recommends next."
             />
@@ -314,7 +314,7 @@ export default function StrategyEnginePage() {
             className="mt-5 display-sm text-balance"
             style={{ fontStretch: "80%", letterSpacing: "-0.02em" }}
           >
-            The operating system for brands on the agent-native web
+            The operating system for brands in the age of AI search
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
             The loop is the start. As assistants become how brands are

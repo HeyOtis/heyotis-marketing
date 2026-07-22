@@ -117,7 +117,7 @@ export default function AboutPage() {
         <Container className="relative pb-12 pt-28 sm:pt-32 md:pb-16 lg:pt-36">
           <Eyebrow>About HeyOtis</Eyebrow>
           <h1
-            className="display-lg mt-6 max-w-3xl text-balance text-foreground"
+            className="display-hero mt-6 max-w-3xl text-balance text-foreground"
             style={{ fontStretch: "80%", letterSpacing: "-0.02em" }}
           >
             AI search is rewriting how brands get{" "}

@@ -91,8 +91,6 @@ function AgentVignette({ live }: { live: boolean }) {
           </span>
         ))}
       </Marquee>
-      {/* Glass pill the names scroll beneath - Nory's centre-item treatment. */}
-      <span className="pointer-events-none absolute left-1/2 top-1/2 h-14 w-[17rem] -translate-x-1/2 -translate-y-1/2 rounded-md bg-white/10 backdrop-blur-[3px]" />
     </div>
   );
 }
@@ -141,41 +139,41 @@ function StrategyVignette({ live }: { live: boolean }) {
 
 const PILLARS = [
   {
-    id: "aeo-insights",
+    id: "measure",
     chipDot: "bg-salmon",
-    name: "AEO Insights",
-    heading: "Campaigns",
-    body: "Campaigns of the buyer-intent queries that decide purchases - see how every assistant answers about you: visibility, sentiment, citations and share of voice.",
+    name: "Measure",
+    heading: "See how AI answers about you",
+    body: "We run campaigns of the buyer-intent queries that decide purchases across every assistant - and score what comes back: visibility, sentiment, citations and share of voice.",
     href: "/platform#measure",
     panel: "bg-panel-warm",
     vignette: AeoVignette,
   },
   {
-    id: "agent-analytics",
+    id: "strategy",
+    chipDot: "bg-lime",
+    name: "Strategy",
+    heading: "The moves with the biggest return",
+    body: "The Strategy Engine turns findings into a ranked plan - moves scored on impact and effort - and watches the work land.",
+    href: "/strategy-engine",
+    panel: "bg-panel-warm",
+    vignette: StrategyVignette,
+  },
+  {
+    id: "attribute",
     chipDot: "bg-periwinkle",
-    name: "Agent Analytics",
-    heading: "Traffic",
+    name: "Attribute",
+    heading: "The lift, with receipts",
     body: "The crawlers are the new audience. Watch GPTBot, ClaudeBot and PerplexityBot fetch your pages, and tie assistant referrals to sessions and conversions.",
     href: "/platform#attribute",
     panel: "bg-surface-dark",
     vignette: AgentVignette,
   },
-  {
-    id: "strategy",
-    chipDot: "bg-lime",
-    name: "Strategy",
-    heading: "Strategy",
-    body: "The engine turns findings into a ranked plan, watches the work land, and proves the lift - the loop that closes itself.",
-    href: "/strategy-engine",
-    panel: "bg-panel-warm",
-    vignette: StrategyVignette,
-  },
 ] as const;
 
 /**
  * Nory's deep-panel feature rows: white card, editorial text left, one
- * focused vignette on a dark panel right. Panels alternate the warm
- * terracotta (the salmon hue taken dark) with the site ink. Decorative
+ * focused vignette on a dark panel right. Panels use the warm terracotta
+ * (the salmon hue taken dark) and the site ink, in loop order. Decorative
  * panels are aria-hidden; the text carries the meaning. Reduced motion:
  * vignettes rest on their final frames, the crawler reel pauses.
  */
@@ -186,15 +184,27 @@ export function PillarSections() {
   const live = !reduced && inView;
 
   return (
-    <Section surface="cream" className="pt-0 md:pt-0">
+    <Section surface="cream" className="overflow-x-clip">
       <div ref={ref} className="flex flex-col gap-6">
         {PILLARS.map((p) => {
           const Vignette = p.vignette;
           return (
-            <article
-              key={p.id}
-              className="grid items-center gap-10 rounded-lg border border-border bg-card px-6 py-10 sm:px-12 sm:py-14 lg:grid-cols-2 lg:gap-16 lg:px-16"
-            >
+            <div key={p.id} className="relative">
+              {/* Blueprint rules: dashed horizontals that run the full page
+                  width, aligned to the card's top and bottom edges. The card's
+                  opaque background masks them across its own width, so they
+                  read as guide lines the card sits on. */}
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-x-[-50vw] top-0 border-t border-dashed border-border/60"
+              />
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-x-[-50vw] bottom-0 border-t border-dashed border-border/60"
+              />
+              <article
+                className="relative grid items-center gap-10 rounded-lg border border-border bg-card px-6 py-10 sm:px-12 sm:py-14 lg:grid-cols-2 lg:gap-16 lg:px-16"
+              >
               <div>
                 <span className="inline-flex items-center gap-2 rounded-full bg-secondary px-3 py-1.5 text-xs font-semibold text-foreground">
                   <span className={cn("size-1.5 rounded-full", p.chipDot)} />
@@ -222,7 +232,8 @@ export function PillarSections() {
               >
                 <Vignette live={live} />
               </div>
-            </article>
+              </article>
+            </div>
           );
         })}
       </div>

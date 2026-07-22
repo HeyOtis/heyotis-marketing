@@ -55,7 +55,10 @@ function Frame({
   return (
     <div
       className={cn(
-        "relative mx-auto flex h-full w-full flex-col overflow-hidden border border-dashed border-border bg-card",
+        // Only the horizontal (top/bottom) dashed rules - the vertical edges
+        // stay open so the panel reads as bands running to the column rule,
+        // DOSS-style.
+        "relative mx-auto flex h-full w-full flex-col overflow-hidden border-y border-dashed border-border bg-card",
         className,
       )}
     >

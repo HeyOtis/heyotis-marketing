@@ -34,7 +34,7 @@ export default function GuidesPage() {
         <Container>
           <Eyebrow>Guides & AEO Playbook</Eyebrow>
           <h1
-            className="mt-5 display-lg max-w-3xl text-balance"
+            className="mt-5 display-hero max-w-3xl text-balance"
             style={{ fontStretch: "80%", letterSpacing: "-0.02em" }}
           >
             The start of the AEO playbook.

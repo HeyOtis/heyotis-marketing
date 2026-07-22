@@ -231,11 +231,22 @@ export function CaseStudyDaylyte() {
   }));
 
   return (
-    <Section surface="cream" id="product">
-      <div
-        ref={ref}
-        className="grid items-center gap-10 rounded-lg border border-border bg-card px-6 py-12 sm:px-12 sm:py-16 lg:grid-cols-[1fr_1.1fr] lg:gap-16 lg:px-16 lg:py-24"
-      >
+    <Section surface="cream" id="product" className="overflow-x-clip">
+      <div className="relative">
+        {/* Blueprint rules: full-width dashed horizontals aligned to the card's
+            top and bottom edges (matches the pillar cards). */}
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-x-[-50vw] top-0 border-t border-dashed border-border/60"
+        />
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-x-[-50vw] bottom-0 border-t border-dashed border-border/60"
+        />
+        <div
+          ref={ref}
+          className="relative grid items-center gap-10 rounded-lg border border-border bg-card px-6 py-12 sm:px-12 sm:py-16 lg:grid-cols-[1fr_1.1fr] lg:gap-16 lg:px-16 lg:py-24"
+        >
         <div>
           <Eyebrow>Case study</Eyebrow>
           <h2 className="mt-4 max-w-md text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
@@ -281,6 +292,7 @@ export function CaseStudyDaylyte() {
               )}
             </div>
           </Stage>
+        </div>
         </div>
       </div>
     </Section>

@@ -8,7 +8,7 @@ export function Hero() {
       <HeroFold
         intro={
           <div>
-            <RollingHeadline className="max-w-2xl font-display text-[clamp(2.2rem,4vw,3.4rem)] leading-[1.12] tracking-[-0.03em] text-balance text-foreground" />
+            <RollingHeadline className="max-w-2xl display-hero text-balance text-foreground" />
 
             <p
               className="mt-8 max-w-xl text-xl leading-relaxed text-muted-foreground sm:mt-10"

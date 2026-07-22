@@ -143,7 +143,7 @@ export default function PlatformPage() {
       <Section surface="card" className="pb-4 md:pb-8">
         <p className="label-mono text-accent">/ The Platform</p>
         <h1
-          className="display-lg mt-5 max-w-3xl text-balance text-foreground"
+          className="display-hero mt-5 max-w-3xl text-balance text-foreground"
           style={{ fontStretch: "80%", letterSpacing: "-0.02em" }}
         >
           One loop from measurement to proof

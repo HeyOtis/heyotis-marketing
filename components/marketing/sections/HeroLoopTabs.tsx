@@ -1,8 +1,15 @@
 "use client";
 
 import * as React from "react";
-import { AnimatePresence, motion, useScroll, useTransform } from "motion/react";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValueEvent,
+  useScroll,
+  useTransform,
+} from "motion/react";
 import { useIsomorphicReducedMotion } from "@/lib/use-reduced-motion";
+import { useMediaQuery } from "@/lib/use-media-query";
 import { EASE } from "@/lib/ease";
 import { Container } from "@/components/marketing/Container";
 import { SectionHeading } from "@/components/marketing/primitives/SectionHeading";
@@ -147,172 +154,240 @@ export function HeroFold({ intro }: { intro: React.ReactNode }) {
   );
 }
 
+/* One viewport of scroll per stage: the pinned wrapper is this many screens
+   tall, so its scrollable distance (height − one pinned viewport) is
+   (WRAPPER_SCREENS − 1) screens ≈ one per stage. */
+const WRAPPER_SCREENS = TABS.length + 1;
+
 /**
- * The loop, as its own section: the four stage tabs across the top and the
- * active stage's product vignette in the panel below. The tabs auto-advance
- * on a slow timer (paused while the visitor hovers or keyboard-focuses the
- * section, and disabled entirely under reduced-motion).
+ * The loop, as its own section. On large screens (and when motion is allowed)
+ * it renders a scroll-driven pinned stepper: the frame pins to the viewport
+ * while the visitor's scroll advances the stages one at a time; past the last
+ * stage the frame unpins and the page scrolls on. On small screens or under
+ * reduced-motion it falls back to the four stages stacked as ordinary content.
  */
 export function LoopStages() {
   const reduced = useIsomorphicReducedMotion();
+  const isLgUp = useMediaQuery("(min-width: 1024px)");
+  // `useMediaQuery`/reduced-motion both report `false` on the server and first
+  // client render, so the stacked path is the hydration-safe default; desktop
+  // swaps to the pinned stepper once mounted.
+  const pinned = isLgUp && !reduced;
+
+  return (
+    <section className="surface-card border-t border-border">
+      {pinned ? <PinnedStepper /> : <StackedStages />}
+    </section>
+  );
+}
+
+/* The compact heading carried at the top of the pinned frame (and reused,
+   larger, by the stacked fallback). */
+function LoopHeading({ compact = false }: { compact?: boolean }) {
+  return (
+    <SectionHeading
+      eyebrow="The loop"
+      title="One loop that compounds"
+      sub="Each stage feeds the next - and every turn raises how often AI recommends you."
+      className={cn("max-w-2xl", compact && "gap-2")}
+      titleClassName={compact ? "display-sm" : undefined}
+      subClassName={compact ? "text-sm sm:text-base" : undefined}
+    />
+  );
+}
+
+/**
+ * Scroll-driven pinned stepper. A tall wrapper provides the scroll distance; a
+ * `sticky` inner frame stays pinned to the viewport. `scrollYProgress` (0→1
+ * across the wrapper) drives both the active stage and the rail's fill line,
+ * so the whole thing rides native scroll - no wheel interception.
+ */
+function PinnedStepper() {
+  const wrapperRef = React.useRef<HTMLDivElement | null>(null);
+  const tabRefs = React.useRef<(HTMLButtonElement | null)[]>([]);
+  const activeRef = React.useRef(0);
   const [active, setActive] = React.useState(0);
   const [direction, setDirection] = React.useState(1);
-  const [paused, setPaused] = React.useState(false);
-  const tabRefs = React.useRef<(HTMLButtonElement | null)[]>([]);
 
-  const select = (i: number) => {
-    setDirection(i > active ? 1 : -1);
-    setActive(i);
+  const { scrollYProgress } = useScroll({
+    target: wrapperRef,
+    offset: ["start start", "end end"],
+  });
+
+  // Map progress into an equal band per stage. Tracking the current index in a
+  // ref keeps the direction (up vs down) correct without re-subscribing.
+  useMotionValueEvent(scrollYProgress, "change", (p) => {
+    const next = Math.min(TABS.length - 1, Math.max(0, Math.floor(p * TABS.length)));
+    if (next === activeRef.current) return;
+    setDirection(next > activeRef.current ? 1 : -1);
+    activeRef.current = next;
+    setActive(next);
+  });
+
+  // Scroll the page to the middle of stage `i`'s band so the pinned state and
+  // the scroll position stay in sync when the rail is clicked or arrowed.
+  const goToStage = (i: number) => {
+    const el = wrapperRef.current;
+    if (!el) return;
+    const distance = el.offsetHeight - window.innerHeight;
+    const top = window.scrollY + el.getBoundingClientRect().top;
+    window.scrollTo({
+      top: top + ((i + 0.5) / TABS.length) * distance,
+      behavior: "smooth",
+    });
   };
-
-  // Auto-rotate through the stages. Keyed on `active`, so every change -
-  // whether from the timer or a manual click - restarts the dwell.
-  React.useEffect(() => {
-    if (reduced || paused) return;
-    const id = window.setTimeout(() => {
-      setDirection(1);
-      setActive((i) => (i + 1) % TABS.length);
-    }, 5000);
-    return () => window.clearTimeout(id);
-  }, [active, paused, reduced]);
 
   const onKeyDown = (e: React.KeyboardEvent) => {
     if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
     e.preventDefault();
     const next =
       (active + (e.key === "ArrowRight" ? 1 : TABS.length - 1)) % TABS.length;
-    select(next);
+    goToStage(next);
     tabRefs.current[next]?.focus();
   };
 
   const { Panel } = TABS[active];
 
   return (
-    <section
-      className="surface-card relative border-t border-border py-20 md:py-28"
-      // Pause the carousel while the section holds attention.
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocus={() => setPaused(true)}
-      onBlur={(e) => {
-        if (!e.currentTarget.contains(e.relatedTarget)) setPaused(false);
-      }}
+    <div
+      ref={wrapperRef}
+      style={{ height: `${WRAPPER_SCREENS * 100}vh` }}
+      className="relative"
     >
-      <Container>
-        <SectionHeading
-          eyebrow="The loop"
-          title="One loop that compounds"
-          sub="Each stage feeds the next - and every turn raises how often AI recommends you."
-          className="max-w-2xl"
-        />
+      <div className="sticky top-0 flex h-[100dvh] flex-col overflow-hidden">
+        <Container className="flex flex-1 flex-col justify-center py-10">
+          <LoopHeading compact />
 
-        <div
-          role="tablist"
-          aria-label="The loop, stage by stage"
-          onKeyDown={onKeyDown}
-          className="relative isolate mt-12 grid grid-cols-2 gap-x-8 gap-y-6 lg:grid-cols-4"
-        >
-          {/* The track: one continuous dashed rule under all four tabs. */}
-          <div
-            aria-hidden
-            className="absolute inset-x-0 bottom-0 hidden border-t border-dashed border-border/50 lg:block"
-          />
-          {TABS.map((tab, i) => (
-            <button
-              key={tab.key}
-              ref={(el) => {
-                tabRefs.current[i] = el;
-              }}
-              type="button"
-              role="tab"
-              id={`loop-tab-${tab.key}`}
-              aria-selected={i === active}
-              aria-controls="loop-panel"
-              tabIndex={i === active ? 0 : -1}
-              onClick={() => select(i)}
-              className="group relative cursor-pointer pb-3.5 text-left max-lg:border-b max-lg:border-dashed max-lg:border-border/50"
+          <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-[15rem_minmax(0,1fr)] lg:items-stretch lg:gap-0">
+            {/* Stage rail: boxed items stacked against a left rule, the active
+                one shaded (DOSS-style). No progress bar. The rule runs the full
+                panel height, so it extends past the last item. */}
+            <div
+              role="tablist"
+              aria-label="The loop, stage by stage"
+              aria-orientation="vertical"
+              onKeyDown={onKeyDown}
+              // Bleed left to the column rule so the rule is the rail's left
+              // edge and the active box fills to it (DOSS-style). A right rule
+              // divides the rail from the content, which butts right up to it.
+              className="relative -ml-4 border-l border-border/70 sm:-ml-6 lg:-ml-8 lg:border-r"
             >
-              {/* Hover: a faint solid segment surfaces over this column's
-                  stretch of the track. */}
-              <span
-                aria-hidden
-                className="absolute inset-x-0 -bottom-px h-px bg-transparent transition-colors group-hover:bg-foreground/40"
-              />
-              {i === active && (
-                <motion.span
-                  layoutId="loop-indicator"
-                  aria-hidden
-                  className="absolute inset-x-0 -bottom-px h-0.5 bg-foreground"
-                  transition={
-                    reduced ? { duration: 0 } : { duration: 0.45, ease: EASE }
-                  }
-                />
-              )}
-              <span
-                className={cn(
-                  "label-mono block text-[0.6rem] transition-colors",
-                  i === active ? "text-accent" : "text-foreground/35",
-                )}
-              >
-                0{i + 1}
-              </span>
-              <span
-                className={cn(
-                  "mt-1.5 block text-sm font-semibold transition-colors",
-                  i === active
-                    ? "text-foreground"
-                    : "text-foreground/55 group-hover:text-foreground/80",
-                )}
-              >
-                {tab.stage}
-              </span>
-              <span
-                className={cn(
-                  "mt-0.5 block text-sm transition-colors",
-                  i === active
-                    ? "text-muted-foreground"
-                    : "text-foreground/40",
-                )}
-              >
-                {tab.rest}
-              </span>
-            </button>
-          ))}
-        </div>
+              {TABS.map((tab, i) => (
+                <button
+                  key={tab.key}
+                  ref={(el) => {
+                    tabRefs.current[i] = el;
+                  }}
+                  type="button"
+                  role="tab"
+                  id={`loop-tab-${tab.key}`}
+                  aria-selected={i === active}
+                  aria-controls="loop-panel"
+                  tabIndex={i === active ? 0 : -1}
+                  onClick={() => goToStage(i)}
+                  className={cn(
+                    // Text sits at the content edge (aligned with the heading);
+                    // the box background still fills back to the rule.
+                    "group block w-full cursor-pointer border-b border-border/40 py-5 pl-4 pr-6 text-left transition-colors last:border-b-0 sm:pl-6 lg:pl-8",
+                    i === active
+                      ? "bg-foreground/[0.045]"
+                      : "hover:bg-foreground/[0.02]",
+                  )}
+                >
+                  <span
+                    className={cn(
+                      "label-mono block text-[0.6rem] transition-colors",
+                      i === active ? "text-accent" : "text-foreground/35",
+                    )}
+                  >
+                    0{i + 1}
+                  </span>
+                  <span
+                    className={cn(
+                      "mt-1.5 block text-base font-semibold transition-colors",
+                      i === active
+                        ? "text-foreground"
+                        : "text-foreground/55 group-hover:text-foreground/80",
+                    )}
+                  >
+                    {tab.stage}
+                  </span>
+                  <span
+                    className={cn(
+                      "mt-0.5 block text-sm transition-colors",
+                      i === active
+                        ? "text-muted-foreground"
+                        : "text-foreground/40",
+                    )}
+                  >
+                    {tab.rest}
+                  </span>
+                </button>
+              ))}
+            </div>
 
-        {/* The active stage's vignette. The dashed rule sits at the frame's
-            top edge, so frame and rule read as one continuous line. */}
-        <div className="relative mt-12">
-          <div
-            aria-hidden
-            className="absolute inset-x-0 top-0 border-t border-dashed border-border/50"
-          />
-          <div
-            id="loop-panel"
-            role="tabpanel"
-            aria-labelledby={`loop-tab-${TABS[active].key}`}
-            className="relative mt-8 h-[560px] overflow-hidden sm:h-[540px]"
-          >
-            <AnimatePresence initial={false} custom={direction} mode="popLayout">
-              <motion.div
-                key={TABS[active].key}
-                custom={direction}
-                initial={
-                  reduced ? { opacity: 0 } : { opacity: 0, x: 72 * direction }
-                }
-                animate={{ opacity: 1, x: 0 }}
-                exit={
-                  reduced ? { opacity: 0 } : { opacity: 0, x: -72 * direction }
-                }
-                transition={{ duration: 0.45, ease: EASE }}
-                className="absolute inset-0"
-              >
-                <Panel />
-              </motion.div>
-            </AnimatePresence>
+            {/* The active stage's vignette, sliding vertically with scroll. The
+                negative right margin bleeds the panel out to the column rule so
+                the dashed bands run to the page's right edge. */}
+            <div
+              id="loop-panel"
+              role="tabpanel"
+              aria-labelledby={`loop-tab-${TABS[active].key}`}
+              className="relative -mr-4 h-[clamp(440px,70vh,700px)] overflow-hidden sm:-mr-6 lg:-mr-8"
+            >
+              <AnimatePresence initial={false} custom={direction} mode="popLayout">
+                <motion.div
+                  key={TABS[active].key}
+                  custom={direction}
+                  initial={{ opacity: 0, y: 48 * direction }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -48 * direction }}
+                  transition={{ duration: 0.45, ease: EASE }}
+                  className="absolute inset-0"
+                >
+                  <Panel />
+                </motion.div>
+              </AnimatePresence>
+            </div>
           </div>
-        </div>
-      </Container>
-    </section>
+        </Container>
+      </div>
+    </div>
+  );
+}
+
+/**
+ * Mobile / reduced-motion fallback: every stage rendered in order as ordinary
+ * flowing content - number, stage, subline, then its vignette - with normal
+ * scroll and no pin or timer.
+ */
+function StackedStages() {
+  return (
+    <Container className="py-20 md:py-28">
+      <LoopHeading />
+      <div className="mt-12 flex flex-col gap-16">
+        {TABS.map((tab, i) => {
+          const { Panel } = tab;
+          return (
+            <div key={tab.key}>
+              <div className="border-l border-border/60 pl-5">
+                <span className="label-mono block text-[0.6rem] text-accent">
+                  0{i + 1}
+                </span>
+                <span className="mt-1.5 block text-base font-semibold text-foreground">
+                  {tab.stage}
+                </span>
+                <span className="mt-0.5 block text-sm text-muted-foreground">
+                  {tab.rest}
+                </span>
+              </div>
+              <div className="mt-6 h-[520px] overflow-hidden">
+                <Panel />
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </Container>
   );
 }

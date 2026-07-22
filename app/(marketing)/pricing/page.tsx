@@ -376,10 +376,11 @@ export default function PricingPage() {
           <div className="max-w-3xl">
             <Eyebrow>Pricing</Eyebrow>
             <h1
-              className="display-lg mt-5 text-balance"
+              className="display-hero mt-5 text-balance"
               style={{ fontStretch: "80%", letterSpacing: "-0.02em" }}
             >
-              Plans that scale with your AI visibility strategy
+              Plans that scale with your{" "}
+              <span className="text-accent">AI visibility strategy</span>
             </h1>
             <p
               className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground"
@@ -393,7 +394,7 @@ export default function PricingPage() {
               rest.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <BookCta label="Talk to us" nudge withArrow />
+              <BookCta label="Talk to us" variant="salmon" nudge withArrow />
               <span className="text-sm text-muted-foreground">
                 Demo-led onboarding · no credit card
               </span>
