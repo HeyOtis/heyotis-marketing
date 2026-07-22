@@ -34,7 +34,7 @@ HeyOtis won't recommend a move it can't verify and prove. Most tools stop at mea
 - New detection ships dark. Every new pattern the engine learns to spot is reviewed by a human before any brand sees it.
 
 ## Proof
-Hallensteins grew AI recommendation share by 300% in Australia — from near-zero to 3.7% — after benchmarking, diagnosing the gaps and improving the signals that mattered.
+Daylyte — a two-founder UK hydration brand with no agency or ad budget — went from 0% to 65% ChatGPT visibility and #1 in its category in two weeks, after HeyOtis showed them their AI presence balanced on a single citable page and what to publish to fix it.
 
 ## Who it's for
 In-house brand, SEO/AEO and e-commerce teams, and agencies managing multiple brands — especially retail and consumer categories.
@@ -50,7 +50,7 @@ In-house brand, SEO/AEO and e-commerce teams, and agencies managing multiple bra
 - [Product](${u}/features): Campaigns, analytics & recommendation share, citations, competitors, strategy, and GA4 traffic.
 - [Free AI Visibility Report](${u}/report): Lead magnet — we run your brand against five assistants and deliver findings on a 20-minute call.
 - [Case Studies](${u}/case-studies): Real brands, measured lift in AI recommendation share.
-- [Hallensteins case study](${u}/case-studies/hallensteins): +300% AI recommendation share, near-zero to 3.7% in Australia, walked through the five-step loop.
+- [Daylyte case study](${u}/case-studies/daylyte): from 0% to 65% AI visibility in two weeks — a two-founder UK hydration brand became the #1 brand in its category with free, founder-led content, guided by what HeyOtis showed them to fix.
 - [Guides & AEO Playbook](${u}/guides): Practical guides on Answer Engine Optimization.
 - [Pricing](${u}/pricing): Plans, Managed and Agencies tiers (contact sales).
 - [About](${u}/about): Mission and methodology.

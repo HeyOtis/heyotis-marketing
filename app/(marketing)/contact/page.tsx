@@ -55,7 +55,7 @@ export default function ContactPage() {
             style={{ fontStretch: "80%", letterSpacing: "-0.02em" }}
           >
             Book a chat — and watch{" "}
-            <span className="text-accent">AI answer for your brand.</span>
+            <span className="text-periwinkle">AI answer for your brand.</span>
           </h1>
           <p
             className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground"

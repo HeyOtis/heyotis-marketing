@@ -6,6 +6,13 @@ const nextConfig: NextConfig = {
     return [
       // /features was rebuilt as /platform (loop-stage IA), July 2026.
       { source: "/features", destination: "/platform", permanent: true },
+      // Daylyte moved from the blog to Case Studies (it's a customer results
+      // story, not editorial), July 2026.
+      {
+        source: "/blog/daylyte",
+        destination: "/case-studies/daylyte",
+        permanent: true,
+      },
     ];
   },
   images: {

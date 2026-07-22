@@ -119,17 +119,6 @@ function DropdownPanel({
             >
               LinkedIn
             </a>
-            <span aria-hidden className="text-border">
-              |
-            </span>
-            <a
-              href={siteConfig.socials.twitter}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-colors hover:text-foreground"
-            >
-              Twitter / X
-            </a>
           </div>
         )}
       </div>

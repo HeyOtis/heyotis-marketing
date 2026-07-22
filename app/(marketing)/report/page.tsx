@@ -106,7 +106,7 @@ export default function ReportPage() {
             style={{ fontStretch: "80%", letterSpacing: "-0.02em" }}
           >
             See exactly how AI answers{" "}
-            <span className="text-accent">for your brand.</span>
+            <span className="text-periwinkle">for your brand.</span>
           </h1>
           <p
             className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground"

@@ -29,17 +29,21 @@ export type Post = {
  * fails loudly in CI rather than shipping a broken page (NaN dates, empty
  * <title>, etc.).
  */
-function validateFrontmatter(file: string, data: Record<string, unknown>): void {
+function validateFrontmatter(
+  subdir: string,
+  file: string,
+  data: Record<string, unknown>,
+): void {
   for (const field of ["title", "description", "date"] as const) {
     if (typeof data[field] !== "string" || (data[field] as string).trim() === "") {
       throw new Error(
-        `Invalid frontmatter in content/blog/${file}: "${field}" is required and must be a non-empty string.`,
+        `Invalid frontmatter in content/${subdir}/${file}: "${field}" is required and must be a non-empty string.`,
       );
     }
   }
   if (Number.isNaN(new Date(data.date as string).getTime())) {
     throw new Error(
-      `Invalid frontmatter in content/blog/${file}: "date" (${String(data.date)}) is not a parseable date. Use ISO format, e.g. 2026-06-29.`,
+      `Invalid frontmatter in content/${subdir}/${file}: "date" (${String(data.date)}) is not a parseable date. Use ISO format, e.g. 2026-06-29.`,
     );
   }
 }
@@ -55,7 +59,7 @@ function readMdxDir(subdir: string): Post[] {
       const filePath = path.join(dir, file);
       const raw = fs.readFileSync(filePath, "utf8");
       const { data, content } = matter(raw);
-      validateFrontmatter(file, data);
+      validateFrontmatter(subdir, file, data);
       const slug = file.replace(/\.(mdx|md)$/, "");
       return {
         slug,
@@ -82,4 +86,18 @@ export function getPostBySlug(slug: string): Post | undefined {
 
 export function getAllPostSlugs(): string[] {
   return getAllPosts().map((p) => p.slug);
+}
+
+// Case studies share the blog's MDX machinery but live under content/case-studies
+// and render at /case-studies/<slug> — customer results stories, not editorial.
+export function getAllCaseStudies(): Post[] {
+  return readMdxDir("case-studies");
+}
+
+export function getCaseStudyBySlug(slug: string): Post | undefined {
+  return getAllCaseStudies().find((p) => p.slug === slug);
+}
+
+export function getAllCaseStudySlugs(): string[] {
+  return getAllCaseStudies().map((p) => p.slug);
 }

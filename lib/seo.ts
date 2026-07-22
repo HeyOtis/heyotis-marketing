@@ -65,7 +65,6 @@ export function buildMetadata({
       title: resolvedTitle,
       description,
       images: [imageUrl],
-      creator: siteConfig.twitterHandle,
     },
   };
 }

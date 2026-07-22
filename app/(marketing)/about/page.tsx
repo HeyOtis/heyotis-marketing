@@ -121,7 +121,7 @@ export default function AboutPage() {
             style={{ fontStretch: "80%", fontWeight: 800 }}
           >
             AI search is rewriting how brands get{" "}
-            <span className="text-accent">discovered.</span>
+            <span className="text-periwinkle">discovered.</span>
           </h1>
           <p
             className="mt-7 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground"

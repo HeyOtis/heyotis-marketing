@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/site";
-import { getAllPosts } from "@/lib/mdx";
+import { getAllCaseStudies, getAllPosts } from "@/lib/mdx";
 
 const STATIC_ROUTES: Array<{
   path: string;
@@ -16,7 +16,6 @@ const STATIC_ROUTES: Array<{
   { path: "/blog", changeFrequency: "weekly", priority: 0.8 },
   { path: "/report", changeFrequency: "weekly", priority: 0.85 },
   { path: "/case-studies", changeFrequency: "monthly", priority: 0.6 },
-  { path: "/case-studies/hallensteins", changeFrequency: "monthly", priority: 0.6 },
   { path: "/guides", changeFrequency: "monthly", priority: 0.6 },
 ];
 
@@ -39,5 +38,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticEntries, ...blogEntries];
+  const caseStudyEntries = getAllCaseStudies().map((study) => ({
+    url: new URL(`/case-studies/${study.slug}`, siteConfig.url).toString(),
+    lastModified: new Date(study.frontmatter.updated ?? study.frontmatter.date),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  return [...staticEntries, ...blogEntries, ...caseStudyEntries];
 }
