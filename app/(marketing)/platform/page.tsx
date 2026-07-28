@@ -76,7 +76,7 @@ const CAMPAIGN_METRICS: Item[] = [
   {
     id: "visibility",
     name: "Visibility",
-    desc: "Rankings, share of voice and average position across AI platforms, tracked over time.",
+    desc: "Your AI share of voice — tracked by platform, query type and category.",
   },
   {
     id: "sentiment",
@@ -91,14 +91,14 @@ const CAMPAIGN_METRICS: Item[] = [
   {
     id: "citations",
     name: "Citations",
-    desc: "Every source AI leans on in your category, and how often that source is you.",
+    desc: "Citations are how AI sends buyers to pages. See which of yours are earning them, which are being overlooked, and which competitor pages and third-party sources are taking them instead.",
   },
 ];
 
 const OBSERVATION_SOURCES: Item[] = [
   {
     name: "Web analytics",
-    desc: "Referral sessions and conversions from every assistant, tied to the pages that earned them.",
+    desc: "Traffic and conversions arriving from AI assistants, tied to the specific pages that earned them.",
   },
   {
     name: "Bot analytics",
@@ -110,22 +110,22 @@ const STRATEGY_PARTS: Item[] = [
   {
     id: "insights",
     name: "Insights",
-    desc: "Deterministically found, not guessed. Otis derives each insight from the measurement itself — a citation you've lost, a query you're missing from, a competitor pulling ahead — traceable to the data that produced it.",
+    desc: "Every insight comes directly from your data, not a guess. A citation you've lost, a query your brand is missing from, a competitor pulling ahead — each one traced back to the campaign data that produced it.",
   },
   {
     id: "recommendations",
     name: "Recommendations",
-    desc: "Every insight generates a recommendation: a specific, ranked move to make, with the insight it answers attached. Never vibes — always the why.",
+    desc: "Every insight generates a specific, ranked recommendation — with the why, how, and who attached. Less guessing, more control.",
   },
   {
     id: "observations",
     name: "Observations",
-    desc: "The real-world changes from AEO Analytics, brought into Strategy so a recommendation can be measured against what actually moved.",
+    desc: "Results from AEO Analytics pulled into Strategy — so every recommendation is measured against what actually changed, not what was assumed.",
   },
   {
     id: "attributions",
     name: "Attributions",
-    desc: "The thread that ties it together — every lift linked back to the recommendation that caused it, the insight that prompted it, and the campaign that surfaced it.",
+    desc: "Every revenue lift linked to the action that caused it — so you always know what worked and why.",
   },
 ];
 
@@ -133,10 +133,10 @@ const ROADMAP_EVENTS: Array<{ lead: string; rest: string }> = [
   { lead: "A campaign", rest: "runs against the assistants." },
   { lead: "An insight", rest: "surfaces from the measurement." },
   { lead: "A recommendation", rest: "is generated from that insight." },
-  { lead: "A recommendation", rest: "is implemented and ships." },
+  { lead: "A recommendation", rest: "is briefed, executed and goes live." },
   {
-    lead: "An observation",
-    rest: "appears — a real-world lift, like a GA4 increase or a jump in bot crawls.",
+    lead: "A real-world result",
+    rest: "appears — a lift in AI-driven traffic, referrals or conversions.",
   },
   {
     lead: "Attribution",
@@ -184,18 +184,19 @@ export default function PlatformPage() {
         <div className="max-w-2xl">
           <Eyebrow dot="bg-salmon">AEO Insights</Eyebrow>
           <h2 className="display-md mt-4 text-balance text-foreground">
-            Understand what’s driving your visibility
+            See what’s driving your brand’s visibility in AI search — and what
+            to do about it
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
-            Otis runs your category’s real buyer questions across every
-            assistant and scores what comes back — so you always know where you
-            stand, and why.
+            Otis runs the questions your customers are actually asking across
+            every AI assistant, then measures how each one answers — so you
+            always know where your brand stands, and why.
           </p>
         </div>
 
         <SubGroup
           label="Campaigns"
-          intro="A campaign is a recurring run of your category's questions across the assistants. Each one measures four things:"
+          intro="A campaign maps the questions your customers ask at each stage of their decision — from early discovery through to buying intent. Each campaign runs across every AI assistant and measures four things:"
         >
           <DefGrid items={CAMPAIGN_METRICS} className="mt-7 lg:grid-cols-2" />
         </SubGroup>
@@ -204,10 +205,11 @@ export default function PlatformPage() {
           label="Insights"
           intro={
             <>
-              Where campaigns tell you <em className="not-italic text-foreground">what’s happening</em>,
-              insights tell you <em className="not-italic text-foreground">what it means</em> — the
-              patterns Otis surfaces from the measurement, like where you’re
-              cited, missing, or slipping. Strategy is where they become action.
+              Campaigns show you <em className="not-italic text-foreground">what’s happening</em>.
+              Insights tell you <em className="not-italic text-foreground">what it means</em> — the
+              patterns across your data that reveal where you’re winning, losing
+              ground, or being overlooked. That intelligence drives your
+              strategy.
             </>
           }
         />
@@ -221,15 +223,15 @@ export default function PlatformPage() {
             The real-world signal behind the rankings
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
-            Beyond what assistants say, AEO Analytics watches what actually
-            happens — the traffic and crawler activity your AI visibility
-            drives.
+            Beyond what AI assistants say about your brand, AEO Analytics shows
+            you what actually happens — the real traffic, referrals and
+            conversions your AI visibility is driving.
           </p>
         </div>
 
         <SubGroup
           label="Observations"
-          intro="An observation is a real-world change Otis records — an actual movement in the world, not something inside the platform — drawn from two sources:"
+          intro="An observation is a real-world result Otis captures — not a platform metric, but an actual change in traffic or behaviour — drawn from two sources:"
         >
           <DefGrid items={OBSERVATION_SOURCES} className="mt-7 lg:grid-cols-2" />
         </SubGroup>
@@ -243,8 +245,8 @@ export default function PlatformPage() {
             From evidence to a plan that proves itself
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
-            Strategy is where everything Otis measures becomes a decision — and
-            where every decision stays tethered to the evidence it came from.
+            Strategy is where everything Otis measures becomes a clear decision
+            — and where every decision traces back to the evidence behind it.
           </p>
         </div>
 
@@ -263,9 +265,9 @@ export default function PlatformPage() {
             <span>campaign</span>
           </p>
           <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-            Read it back to front: the campaign surfaced the insight, the insight
-            prompted the recommendation, the recommendation moved the world — and
-            the observation proves it.
+            Read it back to front: the campaign surfaced the insight, the
+            insight drove the recommendation, the recommendation was executed —
+            and the observation proves it worked.
           </p>
         </div>
       </Section>
@@ -275,12 +277,12 @@ export default function PlatformPage() {
         <div className="max-w-2xl">
           <Eyebrow dot="bg-accent">Roadmap</Eyebrow>
           <h2 className="display-md mt-4 text-balance text-foreground">
-            One timeline for everything
+            Your entire AI strategy, sequenced into one clear plan
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
-            The roadmap is the single view where every moving part lines up in
-            time — Gantt-style, so you can watch the whole loop unfold and see
-            how each piece connects to the last.
+            The roadmap is the single view where every part of your AI strategy
+            lines up in sequence — campaigns, insights, recommendations and
+            results — so you can see how each connects and what’s coming next.
           </p>
         </div>
 
