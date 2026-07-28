@@ -47,7 +47,7 @@ export function EvidenceLadder({ className }: { className?: string }) {
               <p className="label-mono text-[0.65rem] text-muted-foreground">
                 {layer.name}
               </p>
-              <h3 className="mt-1 text-xl font-semibold tracking-tight text-foreground">
+              <h3 className="mt-1 font-display text-xl font-semibold tracking-tight text-foreground">
                 {layer.lede}
               </h3>
               <p className="mt-2 text-base leading-relaxed text-muted-foreground">
@@ -72,7 +72,7 @@ function ReferralStat() {
           <p className="label-mono text-[0.6rem] text-muted-foreground">
             Referrals · 30-day window
           </p>
-          <h3 className="mt-1 text-base font-semibold tracking-tight text-foreground">
+          <h3 className="mt-1 font-display text-base font-semibold tracking-tight text-foreground">
             AI referral sessions
           </h3>
           <span className="rounded-full bg-brand/10 px-1.5 py-0.5 text-[0.55rem] font-semibold uppercase tracking-wide text-accent">

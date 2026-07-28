@@ -59,7 +59,7 @@ const TILES = [
     render: (live: boolean) => (
       <>
         <div className="flex items-center gap-2.5">
-          <span className="text-2xl font-semibold tabular-nums tracking-tight text-foreground">
+          <span className="font-display text-2xl font-semibold tabular-nums tracking-tight text-foreground">
             {live ? <NumberTicker value={65} startValue={0} /> : "65"}%
           </span>
           <DeltaChip>
@@ -77,7 +77,7 @@ const TILES = [
     render: () => (
       <>
         <div className="flex items-center gap-2.5">
-          <span className="text-2xl font-semibold tabular-nums tracking-tight text-foreground">
+          <span className="font-display text-2xl font-semibold tabular-nums tracking-tight text-foreground">
             #1
           </span>
           <DeltaChip>
@@ -97,7 +97,7 @@ const TILES = [
     render: () => (
       <>
         <div className="flex items-center gap-2.5">
-          <span className="text-2xl font-semibold tabular-nums tracking-tight text-foreground">
+          <span className="font-display text-2xl font-semibold tabular-nums tracking-tight text-foreground">
             53
           </span>
           <DeltaChip>
@@ -117,7 +117,7 @@ const TILES = [
     render: () => (
       <>
         <div className="flex items-center gap-2.5">
-          <span className="text-2xl font-semibold tabular-nums tracking-tight text-foreground">
+          <span className="font-display text-2xl font-semibold tabular-nums tracking-tight text-foreground">
             88%
           </span>
           <DeltaChip tone="neutral">positive</DeltaChip>
@@ -249,7 +249,7 @@ export function CaseStudyDaylyte() {
         >
         <div>
           <Eyebrow>Case study</Eyebrow>
-          <h2 className="mt-4 max-w-md text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+          <h2 className="mt-4 max-w-md text-balance font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
             {STORY.headline}
           </h2>
           <p className="mt-4 max-w-md text-muted-foreground">{STORY.blurb}</p>

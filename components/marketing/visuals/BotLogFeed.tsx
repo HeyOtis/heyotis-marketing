@@ -92,9 +92,6 @@ export function BotLogFeed({ className }: { className?: string }) {
           </AnimatePresence>
         </div>
       </div>
-      <p className="label-mono mt-3 text-[0.6rem] text-muted-foreground">
-        Illustrative - mirrors the product&apos;s log ingestion
-      </p>
     </div>
   );
 }

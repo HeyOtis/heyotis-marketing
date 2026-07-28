@@ -36,7 +36,7 @@ export function BannerTile({
       )}
     >
       {Icon ? <Icon className="size-4 text-foreground/70" strokeWidth={2} /> : null}
-      <span className="text-sm font-bold tracking-tight text-foreground">
+      <span className="font-display text-sm font-bold tracking-tight text-foreground">
         {label}
       </span>
       {right ? (

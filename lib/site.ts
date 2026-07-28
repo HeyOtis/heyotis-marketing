@@ -65,33 +65,21 @@ export const NAV: NavEntry[] = [
     label: "Platform",
     groups: [
       {
-        heading: "Measure",
+        heading: "Platform",
         links: [
-          { label: "Visibility & Share of Voice", href: "/platform#visibility" },
-          { label: "Answer Sentiment", href: "/platform#sentiment" },
-          { label: "Fanout Queries", href: "/platform#fanouts" },
-          { label: "Citations & Sources", href: "/platform#citations" },
+          { label: "AEO Insights", href: "/platform#insights-surface" },
+          { label: "AEO Analytics", href: "/platform#analytics-surface" },
+          { label: "Strategy & Attribution", href: "/platform#strategy-surface" },
+          { label: "Roadmap", href: "/platform#roadmap-surface" },
         ],
       },
       {
         heading: "Strategy",
         links: [
-          { label: "The Strategy Engine", href: "/strategy-engine" },
-          { label: "Evidence & Findings", href: "/strategy-engine#evidence" },
-          {
-            label: "Prioritised Recommendations",
-            href: "/strategy-engine#plan",
-          },
-        ],
-      },
-      {
-        heading: "Act",
-        links: [{ label: "Implementation Tracking", href: "/platform#act" }],
-      },
-      {
-        heading: "Attribute",
-        links: [
-          { label: "Web & AI Bot Analytics", href: "/platform#attribute" },
+          { label: "The Strategy Engine", href: "/strategy" },
+          { label: "The Loop, End to End", href: "/strategy#loop" },
+          { label: "The Action Plan", href: "/strategy#plan" },
+          { label: "Built on Evidence", href: "/strategy#evidence" },
         ],
       },
     ],

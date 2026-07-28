@@ -10,10 +10,6 @@ import { NumberTicker } from "@/components/ui/number-ticker";
 import { LOOP_STAGES, type LoopStage } from "@/lib/strategy-content";
 import { cn } from "@/lib/utils";
 
-/* Decorative status colors on card surfaces (same pattern as BotLogFeed). */
-const AMBER = "text-[oklch(0.72_0.13_75)]";
-const GREEN = "text-[oklch(0.55_0.13_160)]";
-
 const stageById = Object.fromEntries(LOOP_STAGES.map((s) => [s.id, s]));
 
 const scene = {
@@ -40,16 +36,23 @@ function MeasureScene({ live }: { live: boolean }) {
         AI recommendation share
       </p>
       <div className="mt-1 flex items-baseline gap-2">
-        <span className="text-2xl font-bold tabular-nums tracking-tight text-foreground">
+        <span className="font-display text-2xl font-bold tabular-nums tracking-tight text-foreground">
           {live ? <NumberTicker value={34.8} startValue={18} decimalPlaces={1} /> : "34.8"}%
         </span>
-        <Chip tone="lime">▲ 12.4 pts</Chip>
+        <Chip tone="salmon">▲ 12.4 pts</Chip>
       </div>
+      {/* the share history grows in, bar by bar, newest emphasised */}
       <div aria-hidden className="mt-2.5 flex h-10 items-end gap-1">
         {[26, 32, 37, 45, 55, 67, 84].map((h, i) => (
           <motion.span
             key={i}
-            variants={item}
+            variants={{
+              hidden: { scaleY: 0 },
+              show: {
+                scaleY: 1,
+                transition: { delay: 0.25 + i * 0.08, duration: 0.45, ease: EASE },
+              },
+            }}
             style={{ height: `${h}%` }}
             className={cn(
               "w-3 origin-bottom rounded-t",
@@ -74,13 +77,18 @@ function DiagnoseScene() {
         <motion.div
           key={r.text}
           variants={item}
-          className="flex items-center gap-2 rounded-lg bg-card px-3 py-1.5"
+          className="flex items-center gap-2 rounded-lg border border-border/60 bg-card py-1.5 pl-2 pr-3"
         >
-          {r.warn ? (
-            <TriangleAlert className={cn("size-3.5", AMBER)} />
-          ) : (
-            <Check className={cn("size-3.5", GREEN)} />
-          )}
+          <Chip
+            tone={r.warn ? "salmon" : "lime"}
+            className="rounded-full px-1 py-1"
+          >
+            {r.warn ? (
+              <TriangleAlert className="size-3" strokeWidth={2.25} />
+            ) : (
+              <Check className="size-3" strokeWidth={2.25} />
+            )}
+          </Chip>
           <span className="text-xs font-medium text-foreground">{r.text}</span>
           <span className="ml-auto text-[0.65rem] tabular-nums text-muted-foreground">
             {r.meta}
@@ -118,14 +126,22 @@ function PrioritizeScene({ live }: { live: boolean }) {
           layout={live}
           variants={item}
           transition={{ duration: 0.5, ease: EASE }}
-          className="flex items-center gap-2 rounded-lg bg-card px-3 py-1.5"
+          className="flex items-center gap-2 rounded-lg border border-border/60 bg-card px-3 py-1.5"
         >
           <span className="min-w-0 flex-1 truncate text-xs font-medium text-foreground">
             {m.text}
           </span>
+          {/* impact scores sweep in before the list re-ranks itself */}
           <span className="h-1.5 w-12 overflow-hidden rounded-full bg-stage">
-            <span
-              className="block h-full rounded-full bg-brand"
+            <motion.span
+              variants={{
+                hidden: { scaleX: 0 },
+                show: {
+                  scaleX: 1,
+                  transition: { delay: 0.35, duration: 0.5, ease: EASE },
+                },
+              }}
+              className="block h-full origin-left rounded-full bg-brand"
               style={{ width: `${m.impact * 10}%` }}
             />
           </span>
@@ -158,7 +174,7 @@ function VerifyScene({ live }: { live: boolean }) {
       </motion.p>
       <motion.div
         variants={item}
-        className="flex items-center gap-2 rounded-lg bg-card px-3 py-1.5"
+        className="flex items-center gap-2 rounded-lg border border-border/60 bg-card px-3 py-1.5"
       >
         <span className="min-w-0 flex-1 truncate text-xs font-medium text-foreground">
           Add product schema
@@ -166,7 +182,9 @@ function VerifyScene({ live }: { live: boolean }) {
         <AnimatePresence mode="wait" initial={false}>
           {isLive ? (
             <motion.span key="live" variants={chipReveal}>
-              <Chip tone="lime">✓ live</Chip>
+              <Chip tone="neutral" className="bg-brand-soft text-accent">
+                ✓ live
+              </Chip>
             </motion.span>
           ) : (
             <motion.span
@@ -221,7 +239,7 @@ function ProveScene() {
         </motion.div>
       ))}
       <motion.div variants={item}>
-        <Chip tone="lime">✓ change detected live · +250%</Chip>
+        <Chip tone="salmon">✓ change detected live · +250%</Chip>
       </motion.div>
     </motion.div>
   );
@@ -285,19 +303,28 @@ export function LoopBento({
                 </span>
               ) : null}
             </div>
-            <h3 className="mt-3 text-base font-semibold tracking-tight text-foreground">
+            <h3 className="mt-3 font-display text-base font-semibold tracking-tight text-foreground">
               {stage.title}
             </h3>
             <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
               {stage.blurb}
             </p>
             <div aria-hidden className="mt-4">
-              <Stage className="h-[170px] px-4 py-3">
+              <Stage className="relative h-[170px] overflow-hidden px-4 py-3">
+                {/* dotted-grid ground, same language as the loop vignettes */}
+                <div
+                  className="pointer-events-none absolute inset-0"
+                  style={{
+                    backgroundImage:
+                      "radial-gradient(oklch(0.24 0.02 285 / 0.08) 1px, transparent 1px)",
+                    backgroundSize: "14px 14px",
+                  }}
+                />
                 <motion.div
                   variants={scene}
                   initial={reduced ? "show" : "hidden"}
                   animate={live || reduced ? "show" : "hidden"}
-                  className="h-full"
+                  className="relative h-full"
                 >
                   <Scene live={live} />
                 </motion.div>
@@ -320,7 +347,7 @@ export function LoopBento({
               <Repeat className="size-3" strokeWidth={2.5} />
               Then
             </span>
-            <h3 className="mt-3 text-base font-semibold tracking-tight text-foreground">
+            <h3 className="mt-3 font-display text-base font-semibold tracking-tight text-foreground">
               And then it compounds.
             </h3>
             <p className="mt-1.5 text-sm leading-relaxed text-foreground/70">
@@ -336,10 +363,6 @@ export function LoopBento({
           </span>
         </motion.a>
       ) : null}
-
-      <p className="label-mono mt-2 text-[0.6rem] text-muted-foreground sm:col-span-2 lg:col-span-3">
-        Illustrative - sample campaign data
-      </p>
     </div>
   );
 }

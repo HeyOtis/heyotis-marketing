@@ -19,8 +19,9 @@ const px = (i: number) =>
 const py = (share: number) => PT + (H - PT - PB) * (1 - share / Y_MAX);
 
 /**
- * Recommendation share stepping up across campaign cycles - the visible shape
- * of the feedback loop. Stepped single-series line per the dataviz specs;
+ * Recommendation share climbing across campaign cycles - the visible shape
+ * of the feedback loop. A smooth monotone curve through the four cycle
+ * datapoints (eased horizontal-midpoint cubics, so it never overshoots);
  * illustrative numbers, real mechanism. The SVG is decorative; the sr-only
  * list carries the values.
  */
@@ -28,36 +29,42 @@ export function CompoundingChart({ className }: { className?: string }) {
   const reduced = useIsomorphicReducedMotion();
   const ref = React.useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+  const uid = React.useId().replace(/:/g, "");
 
   const pts = COMPOUNDING_POINTS;
   const last = pts.length - 1;
-  const stepD = pts
-    .map((p, i) =>
-      i === 0 ? `M ${px(0)} ${py(p.share)}` : `H ${px(i)} V ${py(p.share)}`,
-    )
+  const lineD = pts
+    .map((p, i) => {
+      const x = px(i);
+      const y = py(p.share);
+      if (i === 0) return `M ${x} ${y}`;
+      const mx = (px(i - 1) + x) / 2;
+      return `C ${mx} ${py(pts[i - 1].share)}, ${mx} ${y}, ${x} ${y}`;
+    })
     .join(" ");
-  const areaD = `${stepD} V ${py(0)} H ${px(0)} Z`;
+  const areaD = `${lineD} V ${py(0)} H ${px(0)} Z`;
 
   return (
     <div
       ref={ref}
       className={cn("rounded-2xl border border-border bg-card p-6", className)}
     >
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <p className="label-mono text-[0.6rem] text-muted-foreground">
-            The compounding loop
-          </p>
-          <h3 className="mt-1 text-base font-semibold tracking-tight text-foreground">
-            Recommendation share, by campaign cycle
-          </h3>
-        </div>
-        <span className="rounded-full bg-brand/10 px-1.5 py-0.5 text-[0.55rem] font-semibold uppercase tracking-wide text-accent">
-          Sample
-        </span>
+      <div>
+        <p className="label-mono text-[0.6rem] text-muted-foreground">
+          The compounding loop
+        </p>
+        <h3 className="mt-1 font-display text-base font-semibold tracking-tight text-foreground">
+          Recommendation share, by campaign cycle
+        </h3>
       </div>
 
       <svg viewBox={`0 0 ${W} ${H}`} className="mt-4 w-full" aria-hidden>
+        <defs>
+          <linearGradient id={`compound-fill-${uid}`} x1="0" y1="0" x2="0" y2="1">
+            <stop stopColor="var(--brand-strong)" stopOpacity="0.18" />
+            <stop offset="1" stopColor="var(--brand-strong)" stopOpacity="0" />
+          </linearGradient>
+        </defs>
         {[0, 2, 4, 6].map((v) => (
           <g key={v}>
             <line
@@ -81,10 +88,21 @@ export function CompoundingChart({ className }: { className?: string }) {
           </g>
         ))}
 
-        <path d={areaD} fill="var(--brand-strong)" opacity={0.08} />
+        {/* the fill breathes in once the line has drawn */}
+        {reduced ? (
+          <path d={areaD} fill={`url(#compound-fill-${uid})`} />
+        ) : (
+          <motion.path
+            d={areaD}
+            fill={`url(#compound-fill-${uid})`}
+            initial={{ opacity: 0 }}
+            animate={inView ? { opacity: 1 } : undefined}
+            transition={{ delay: 0.9, duration: 0.6, ease: "easeOut" }}
+          />
+        )}
         {reduced ? (
           <path
-            d={stepD}
+            d={lineD}
             fill="none"
             stroke="var(--brand-strong)"
             strokeWidth="2"
@@ -93,7 +111,7 @@ export function CompoundingChart({ className }: { className?: string }) {
           />
         ) : (
           <motion.path
-            d={stepD}
+            d={lineD}
             fill="none"
             stroke="var(--brand-strong)"
             strokeWidth="2"
@@ -112,14 +130,35 @@ export function CompoundingChart({ className }: { className?: string }) {
           return (
             <g key={p.cycle} className="group">
               <circle cx={cx} cy={cy} r="14" fill="transparent" />
-              <circle
-                cx={cx}
-                cy={cy}
-                r="4.5"
-                fill="var(--brand-strong)"
-                stroke="var(--card)"
-                strokeWidth="2"
-              />
+              {/* each datapoint pops as the line draws past it */}
+              {reduced ? (
+                <circle
+                  cx={cx}
+                  cy={cy}
+                  r="4.5"
+                  fill="var(--brand-strong)"
+                  stroke="var(--card)"
+                  strokeWidth="2"
+                />
+              ) : (
+                <motion.circle
+                  cx={cx}
+                  cy={cy}
+                  r="4.5"
+                  fill="var(--brand-strong)"
+                  stroke="var(--card)"
+                  strokeWidth="2"
+                  style={{ transformBox: "fill-box", originX: 0.5, originY: 0.5 }}
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={inView ? { scale: 1, opacity: 1 } : undefined}
+                  transition={{
+                    delay: (i / last) * 1.1 + 0.1,
+                    type: "spring",
+                    stiffness: 420,
+                    damping: 18,
+                  }}
+                />
+              )}
               <g className="pointer-events-none opacity-0 transition-opacity duration-150 group-hover:opacity-100">
                 <rect
                   x={tx}
@@ -182,9 +221,6 @@ export function CompoundingChart({ className }: { className?: string }) {
           </li>
         ))}
       </ul>
-      <p className="label-mono mt-3 border-t border-border pt-3 text-[0.6rem] text-muted-foreground">
-        Illustrative - the compounding mechanism is real
-      </p>
     </div>
   );
 }

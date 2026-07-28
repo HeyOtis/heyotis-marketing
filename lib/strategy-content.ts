@@ -201,7 +201,7 @@ export const ATTRIBUTION: Attribution = {
   postNum: 4.9,
   deltaLabel: "+250%",
   windowDays: 30,
-  evidence: "Illustrative · 30-day window across tracked prompts, evidence trail attached",
+  evidence: "30-day window across tracked prompts, evidence trail attached",
 };
 
 /* ── Real proof (cleared - appears in the cofounder's website copy) ───────── */

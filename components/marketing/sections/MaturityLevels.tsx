@@ -24,7 +24,7 @@ export function MaturityLevels({ className }: { className?: string }) {
                   {String(i + 1).padStart(2, "0")}
                 </span>
               </div>
-              <h3 className="mt-5 text-base font-semibold tracking-tight text-foreground">
+              <h3 className="mt-5 font-display text-base font-semibold tracking-tight text-foreground">
                 {level.level}
               </h3>
               <p className="mt-1 text-sm font-medium text-accent">
