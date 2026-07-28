@@ -61,10 +61,10 @@ export default function HomePage() {
 
       <Hero />
 
+      <ClientLogos />
+
       {/* The loop, stage by stage */}
       <LoopStages />
-
-      <ClientLogos />
 
       {/* The stakes */}
       <Section surface="card">

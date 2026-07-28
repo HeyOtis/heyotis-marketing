@@ -65,15 +65,15 @@ Four tiers - Basic, Plus, Premium and Enterprise - starting at $150/mo, scaling 
 - Book a 20-minute walkthrough at ${u}/contact - we run your brand, surface the highest-impact moves, and show how the loop proves the lift.
 - Or start with the free AI Visibility Report at ${u}/report: tell us your brand, market and competitors, HeyOtis runs a live campaign of buyer-intent prompts across all five assistants, and we deliver the findings - a share-of-voice snapshot, per-assistant verdicts, top citations won and lost, and three prioritised moves - on a 20-minute call.
 
-## Navigation (loop-ordered)
-- Platform ▾ - the four Platform dropdown groups trace the loop in order: Measure (AI Visibility & Share of Voice, Answer Sentiment, Citations & Sources, Competitor Head-to-Head), Diagnose (The Strategy Engine, Evidence & Findings), Act (Prioritised Recommendations, Campaigns), Prove (Implementation Tracking, AI Traffic & Attribution). A footer link inside the dropdown, "How the loop works", points to ${u}/#loop.
-- Resources ▾ - Free AI Visibility Report (${u}/report), Case Studies (${u}/case-studies), Blog (${u}/blog), Guides & AEO Playbook (${u}/guides), About HeyOtis (${u}/about).
+## Navigation
+- Platform ▾ - two columns for the two product pages. Platform: AEO Insights (${u}/platform#insights-surface), AEO Analytics (${u}/platform#analytics-surface), Strategy & Attribution (${u}/platform#strategy-surface), Roadmap (${u}/platform#roadmap-surface). Strategy: The Strategy Engine (${u}/strategy), The Loop End to End (${u}/strategy#loop), The Action Plan (${u}/strategy#plan), Built on Evidence (${u}/strategy#evidence). A footer link inside the dropdown, "How the loop works", points to ${u}/platform.
+- Resources ▾ - Free AI Visibility Report (${u}/report), Case Studies (${u}/case-studies), Blog (${u}/blog), About HeyOtis (${u}/about).
 - Pricing ▾ - Plans (self-serve tiers), Managed (strategist-led), For Agencies (white-label & multi-brand).
 
 ## Key pages
-- Home: ${u}/ - the eight-section loop story: hero, the stakes (the answer is the new shortlist), the wound (knowing you're invisible doesn't make you visible), the five-step loop, the honesty wedge, the feature grid, proof (Daylyte), final CTA.
-- Strategy Engine: ${u}/strategy-engine - the self-improving loop, attribution and the four levels it operates at.
-- Product / features: ${u}/features
+- Home: ${u}/ - the loop story: hero, trusted-by, the four-stage loop stepper (Measure, Strategy, Act, Attribute), the stakes (the answer is the new shortlist), proof (Daylyte), the three pillars, the report band, FAQ, final CTA.
+- Platform: ${u}/platform - the four product surfaces: AEO Insights (campaigns of real buyer questions, scored), AEO Analytics (observations from web analytics and AI bot logs), Strategy & Attribution (insights → recommendations → observations → attributions), and the Roadmap (one Gantt-style timeline for the whole loop).
+- Strategy: ${u}/strategy - the Strategy Engine: the self-improving loop, attribution and the four levels it operates at.
 - Free AI Visibility Report: ${u}/report - the lead magnet: what's in it, how it works, book the walkthrough.
 - Case Studies: ${u}/case-studies - real brands, measured lift, no invented testimonials.
 - Daylyte case study: ${u}/case-studies/daylyte - the loop applied end to end: a UK hydration brand went from 0% to 65% ChatGPT visibility and #1 in its category in two weeks.

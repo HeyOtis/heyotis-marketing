@@ -6,6 +6,12 @@ const nextConfig: NextConfig = {
     return [
       // /features was rebuilt as /platform (loop-stage IA), July 2026.
       { source: "/features", destination: "/platform", permanent: true },
+      // The Strategy Engine page moved to the shorter /strategy, July 2026.
+      {
+        source: "/strategy-engine",
+        destination: "/strategy",
+        permanent: true,
+      },
       // Daylyte moved from the blog to Case Studies (it's a customer results
       // story, not editorial), July 2026.
       {

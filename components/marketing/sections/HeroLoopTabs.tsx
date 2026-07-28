@@ -270,7 +270,7 @@ function PinnedStepper() {
               // Bleed left to the column rule so the rule is the rail's left
               // edge and the active box fills to it (DOSS-style). A right rule
               // divides the rail from the content, which butts right up to it.
-              className="relative -ml-4 border-l border-border/70 sm:-ml-6 lg:-ml-8 lg:border-r"
+              className="relative -ml-4 border-l border-border/70 sm:-ml-6 lg:-ml-8 lg:flex lg:flex-col lg:border-r"
             >
               {TABS.map((tab, i) => (
                 <button
@@ -288,7 +288,9 @@ function PinnedStepper() {
                   className={cn(
                     // Text sits at the content edge (aligned with the heading);
                     // the box background still fills back to the rule.
-                    "group block w-full cursor-pointer border-b border-border/40 py-5 pl-4 pr-6 text-left transition-colors last:border-b-0 sm:pl-6 lg:pl-8",
+                    // Items divide the rail evenly so it ends flush with the
+                    // vignette panel; the copy centres in each cell.
+                    "group block w-full cursor-pointer border-b border-border/40 py-5 pl-4 pr-6 text-left transition-colors last:border-b-0 sm:pl-6 lg:flex lg:flex-1 lg:flex-col lg:justify-center lg:pl-8",
                     i === active
                       ? "bg-foreground/[0.045]"
                       : "hover:bg-foreground/[0.02]",
@@ -304,7 +306,7 @@ function PinnedStepper() {
                   </span>
                   <span
                     className={cn(
-                      "mt-1.5 block text-base font-semibold transition-colors",
+                      "mt-1.5 block font-display text-base font-semibold transition-colors",
                       i === active
                         ? "text-foreground"
                         : "text-foreground/55 group-hover:text-foreground/80",
@@ -374,7 +376,7 @@ function StackedStages() {
                 <span className="label-mono block text-[0.6rem] text-accent">
                   0{i + 1}
                 </span>
-                <span className="mt-1.5 block text-base font-semibold text-foreground">
+                <span className="mt-1.5 block font-display text-base font-semibold text-foreground">
                   {tab.stage}
                 </span>
                 <span className="mt-0.5 block text-sm text-muted-foreground">

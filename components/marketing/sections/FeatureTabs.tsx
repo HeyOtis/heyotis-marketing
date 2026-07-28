@@ -157,7 +157,7 @@ export function FeatureTabs({
               >
                 <span
                   className={cn(
-                    "block text-sm font-semibold lg:text-base",
+                    "block font-display text-sm font-semibold lg:text-base",
                     isActive ? "text-foreground" : "text-muted-foreground",
                   )}
                 >

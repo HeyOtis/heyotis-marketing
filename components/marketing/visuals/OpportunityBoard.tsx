@@ -30,7 +30,7 @@ export function OpportunityBoard({ className }: { className?: string }) {
           <p className="label-mono text-[0.6rem] text-muted-foreground">
             Strategy Engine
           </p>
-          <h3 className="mt-1 text-lg font-semibold tracking-tight text-foreground">
+          <h3 className="mt-1 font-display text-lg font-semibold tracking-tight text-foreground">
             Your action plan
           </h3>
           <p className="text-sm text-muted-foreground">
@@ -55,7 +55,7 @@ export function OpportunityBoard({ className }: { className?: string }) {
             Highest priority
           </span>
         </div>
-        <h4 className="mt-3 text-sm font-semibold text-foreground">
+        <h4 className="mt-3 font-display text-sm font-semibold text-foreground">
           {top.title}
         </h4>
 

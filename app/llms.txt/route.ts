@@ -40,14 +40,14 @@ Daylyte - a two-founder UK hydration brand with no agency or ad budget - went fr
 In-house brand, SEO/AEO and e-commerce teams, and agencies managing multiple brands - especially retail and consumer categories.
 
 ## Navigation
-- Platform ▾ - grouped as the loop: Measure (AI Visibility & Share of Voice, Answer Sentiment, Citations & Sources, Competitor Head-to-Head), Diagnose (The Strategy Engine, Evidence & Findings), Act (Prioritised Recommendations, Campaigns), Prove (Implementation Tracking, AI Traffic & Attribution). Footer link: "How the loop works" → ${u}/#loop.
-- Resources ▾ - Free AI Visibility Report, Case Studies, Blog, Guides & AEO Playbook, About HeyOtis.
+- Platform ▾ - two columns for the two product pages: Platform (AEO Insights, AEO Analytics, Strategy & Attribution, Roadmap → ${u}/platform) and Strategy (The Strategy Engine, The Loop End to End, The Action Plan, Built on Evidence → ${u}/strategy). Footer link: "How the loop works" → ${u}/platform.
+- Resources ▾ - Free AI Visibility Report, Case Studies, Blog, About HeyOtis.
 - Pricing ▾ - Plans (self-serve tiers), Managed (strategist-led), For Agencies.
 
 ## Key pages
 - [Home](${u}/): What HeyOtis is and how the loop works.
-- [Strategy Engine](${u}/strategy-engine): The self-improving loop, attribution and the four levels it operates at.
-- [Product](${u}/features): Campaigns, analytics & recommendation share, citations, competitors, strategy, and GA4 traffic.
+- [Platform](${u}/platform): The four product surfaces - AEO Insights (campaigns and what's driving visibility), AEO Analytics (observations from web and bot traffic), Strategy & Attribution (evidence to plan, every lift linked to its cause), and the Roadmap (one timeline for everything).
+- [Strategy](${u}/strategy): The Strategy Engine - the self-improving loop, attribution and the four levels it operates at.
 - [Free AI Visibility Report](${u}/report): Lead magnet - we run your brand against five assistants and deliver findings on a 20-minute call.
 - [Case Studies](${u}/case-studies): Real brands, measured lift in AI recommendation share.
 - [Daylyte case study](${u}/case-studies/daylyte): from 0% to 65% AI visibility in two weeks - a two-founder UK hydration brand became the #1 brand in its category with free, founder-led content, guided by what HeyOtis showed them to fix.

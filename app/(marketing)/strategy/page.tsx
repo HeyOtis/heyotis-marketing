@@ -22,7 +22,7 @@ export const metadata = buildMetadata({
   title: "The Strategy Engine",
   description:
     "The HeyOtis Strategy Engine finds the move, verifies it shipped, and proves it worked - from AI bot-log evidence to recommendation-share lift - then learns from every outcome.",
-  path: "/strategy-engine",
+  path: "/strategy",
 });
 
 const HONESTY = [
@@ -46,7 +46,7 @@ export default function StrategyEnginePage() {
       <JsonLd
         data={breadcrumbSchema([
           { name: "Home", href: "/" },
-          { name: "Strategy Engine", href: "/strategy-engine" },
+          { name: "Strategy Engine", href: "/strategy" },
         ])}
       />
 

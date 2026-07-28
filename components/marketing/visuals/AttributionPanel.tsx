@@ -26,7 +26,7 @@ export function AttributionPanel({ className }: { className?: string }) {
           <p className="label-mono text-[0.6rem] text-muted-foreground">
             Attribution · {windowDays}-day window
           </p>
-          <h3 className="mt-1 text-base font-semibold tracking-tight text-foreground">
+          <h3 className="mt-1 font-display text-base font-semibold tracking-tight text-foreground">
             {metric}
           </h3>
           <span className="rounded-full bg-brand/10 px-1.5 py-0.5 text-[0.55rem] font-semibold uppercase tracking-wide text-accent">

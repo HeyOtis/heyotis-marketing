@@ -76,24 +76,24 @@ export function FindingsPills({ className }: { className?: string }) {
           </AnimatePresence>
         </Stage>
       </div>
-      <p className="label-mono mt-3 text-[0.6rem] text-muted-foreground">
-        Illustrative - mirrors the engine&apos;s findings feed
-      </p>
     </div>
   );
 }
 
 /* ── Card B: signal cluster ─────────────────────────────────────────────── */
 
-/* Five sources arranged around the center glyph (percent coordinates). */
+/* Five sources in a balanced ring around the hub (percent coordinates,
+   indexed to SIGNAL_STREAMS order: answers, logs, analytics, surfaces,
+   competitive). The primary stream sits on top. */
 const CLUSTER_POS = [
-  { left: "18%", top: "16%" },
-  { left: "82%", top: "20%" },
-  { left: "14%", top: "78%" },
-  { left: "84%", top: "76%" },
-  { left: "50%", top: "8%" },
+  { left: "50%", top: "13%" }, // AI answers
+  { left: "83%", top: "34%" }, // Bot logs
+  { left: "20%", top: "84%" }, // Analytics
+  { left: "80%", top: "84%" }, // Your site
+  { left: "17%", top: "34%" }, // Competitors
 ] as const;
 
+const HUB = { x: "50%", y: "56%" } as const;
 const HIGHLIGHT_MS = 2000;
 
 function SignalCluster({ playing, reduced }: { playing: boolean; reduced: boolean }) {
@@ -109,23 +109,63 @@ function SignalCluster({ playing, reduced }: { playing: boolean; reduced: boolea
 
   return (
     <div aria-hidden>
-      <Stage className="relative h-[190px]">
+      <Stage className="relative h-[200px] overflow-hidden">
+        {/* dotted-grid ground, same language as the loop vignettes */}
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            backgroundImage:
+              "radial-gradient(oklch(0.24 0.02 285 / 0.08) 1px, transparent 1px)",
+            backgroundSize: "14px 14px",
+          }}
+        />
         <svg className="absolute inset-0 h-full w-full" fill="none" aria-hidden>
+          {/* dashed spokes; the live one warms to periwinkle */}
           {CLUSTER_POS.map((p, i) => (
             <line
               key={i}
               x1={p.left}
               y1={p.top}
-              x2="50%"
-              y2="52%"
-              stroke="var(--border)"
-              strokeWidth="1"
+              x2={HUB.x}
+              y2={HUB.y}
+              stroke={
+                !reduced && hot === i ? "var(--periwinkle)" : "var(--border)"
+              }
+              strokeWidth={!reduced && hot === i ? 1.5 : 1}
+              strokeDasharray="4 4"
+              style={{ transition: "stroke 0.4s, stroke-width 0.4s" }}
             />
           ))}
+          {/* the live signal travels its spoke into the hub */}
+          {playing ? (
+            <motion.circle
+              key={hot}
+              r="3"
+              fill="var(--periwinkle)"
+              initial={{
+                cx: CLUSTER_POS[hot].left,
+                cy: CLUSTER_POS[hot].top,
+                opacity: 0,
+              }}
+              animate={{ cx: HUB.x, cy: HUB.y, opacity: [0, 1, 1, 0] }}
+              transition={{
+                duration: 1.5,
+                ease: EASE,
+                times: [0, 0.2, 0.85, 1],
+              }}
+            />
+          ) : null}
         </svg>
-        <span className="absolute left-1/2 top-[52%] flex size-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-lg bg-surface-dark">
+        {/* the hub takes a quiet beat as each signal lands */}
+        <motion.span
+          key={playing ? `hub-${hot}` : "hub"}
+          style={{ left: HUB.x, top: HUB.y, x: "-50%", y: "-50%" }}
+          animate={playing ? { scale: [1, 1, 1.06, 1] } : { scale: 1 }}
+          transition={{ duration: 1.5, times: [0, 0.85, 0.92, 1], ease: EASE }}
+          className="absolute flex size-14 items-center justify-center rounded-lg bg-surface-dark shadow-[0_2px_10px_rgba(40,30,70,0.18)]"
+        >
           <LogoGlyph className="h-6 w-6" />
-        </span>
+        </motion.span>
         {SIGNAL_STREAMS.map((s, i) => {
           const Icon = s.icon;
           return (
@@ -135,9 +175,14 @@ function SignalCluster({ playing, reduced }: { playing: boolean; reduced: boolea
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.35, delay: i * 0.09, ease: EASE }}
-              style={{ left: CLUSTER_POS[i].left, top: CLUSTER_POS[i].top }}
+              style={{
+                left: CLUSTER_POS[i].left,
+                top: CLUSTER_POS[i].top,
+                x: "-50%",
+                y: "-50%",
+              }}
               className={cn(
-                "absolute flex -translate-x-1/2 -translate-y-1/2 items-center gap-1.5 rounded-lg bg-card px-2.5 py-1.5 ring-periwinkle transition-shadow duration-300",
+                "absolute flex items-center gap-1.5 whitespace-nowrap rounded-lg border border-border/60 bg-card px-2.5 py-1.5 shadow-[0_1px_3px_rgba(40,30,70,0.08)] ring-periwinkle/70 transition-shadow duration-300",
                 !reduced && hot === i && "ring-2",
               )}
             >
@@ -157,7 +202,7 @@ function SignalCluster({ playing, reduced }: { playing: boolean; reduced: boolea
  * The five signal streams clustered around the engine glyph, in the same
  * flat `bg-card` shell as the rest of the card system. Self-contained (own
  * `useInView` + reduced-motion check) so it can be mounted on its own -
- * e.g. on `/strategy-engine`. The stage is decorative; the heading and
+ * e.g. on `/strategy`. The stage is decorative; the heading and
  * blurb carry the meaning.
  */
 export function SignalClusterCard({ className }: { className?: string }) {
@@ -169,7 +214,7 @@ export function SignalClusterCard({ className }: { className?: string }) {
   return (
     <div ref={ref} className={cn("rounded-lg bg-card p-6 sm:p-8", className)}>
       <Eyebrow>Every signal, one model</Eyebrow>
-      <h3 className="mt-3 text-xl font-semibold tracking-tight text-foreground">
+      <h3 className="mt-3 font-display text-xl font-semibold tracking-tight text-foreground">
         Answers, bot logs, analytics and your own pages - together
       </h3>
       <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
