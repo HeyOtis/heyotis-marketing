@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Container } from "@/components/marketing/Container";
+import { Marquee } from "@/components/ui/marquee";
 import hallensteins from "@/public/clients/hallensteins.png";
 import hatch from "@/public/clients/hatch.svg";
 import ziwi from "@/public/clients/ziwi.svg";
@@ -21,26 +22,33 @@ const CLIENTS: { name: string; src: typeof hallensteins; height: number }[] = [
   { name: "Motorhub", src: motorhub, height: 20 },
 ];
 
-/** A quiet "Trusted by" strip: mono label, ink-silhouette client logos. */
+/** A quiet "Trusted by" strip on white: mono label, ink-silhouette client
+    logos drifting past in a slow marquee (paused on hover, and by the
+    prefers-reduced-motion rule in globals.css). */
 export function ClientLogos() {
   return (
-    <section className="surface-cream border-t border-border py-10 md:py-12">
+    <section className="surface-card border-y border-border py-10 md:py-12">
       <Container>
         <p className="label-mono text-center text-[0.65rem] text-muted-foreground">
           Trusted by
         </p>
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-x-12 gap-y-7 lg:justify-between">
+        {/* Held inside the container so marks fade in and out exactly on the
+            content margin line, not at the viewport edge. */}
+        <Marquee
+          pauseOnHover
+          className="mt-8 px-0 py-0 [--duration:60s] [--gap:4rem] [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] [&>div]:items-center md:[--gap:6rem]"
+        >
           {CLIENTS.map((client) => (
             <Image
               key={client.name}
               src={client.src}
               alt={client.name}
               unoptimized
-              className="w-auto brightness-0 opacity-45"
+              className="w-auto max-w-none shrink-0 brightness-0 opacity-45"
               style={{ height: client.height }}
             />
           ))}
-        </div>
+        </Marquee>
       </Container>
     </section>
   );

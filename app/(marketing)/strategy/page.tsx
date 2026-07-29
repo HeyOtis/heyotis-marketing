@@ -40,6 +40,30 @@ const HONESTY = [
   },
 ];
 
+/** The page's two ticked lists. Rows land in order, after their heading. */
+function CheckList({ items }: { items: string[] }) {
+  return (
+    <ul className="mt-8 flex flex-col gap-4">
+      {items.map((item, i) => (
+        <Reveal
+          as="li"
+          key={item}
+          y={10}
+          delay={0.1 + i * 0.08}
+          className="flex items-start gap-3"
+        >
+          <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-brand/10 text-accent">
+            <Check className="size-3.5" aria-hidden />
+          </span>
+          <span className="text-base leading-relaxed text-muted-foreground">
+            {item}
+          </span>
+        </Reveal>
+      ))}
+    </ul>
+  );
+}
+
 export default function StrategyEnginePage() {
   return (
     <>
@@ -50,44 +74,60 @@ export default function StrategyEnginePage() {
         ])}
       />
 
-      {/* 1 - Hero */}
+      {/* 1 - Hero. The fold is already in view on mount, so the Reveals below
+          read as one page-load sequence: glow, eyebrow, headline, lede, CTAs. */}
       <section className="surface-cream relative overflow-hidden">
         <div aria-hidden className="absolute inset-0 -z-10">
-          <div
-            className="absolute left-1/2 top-[-14%] h-[420px] w-[min(760px,90vw)] -translate-x-1/2 rounded-full"
-            style={{
-              background:
-                "radial-gradient(closest-side, oklch(0.68 0.1 280 / 0.18), transparent)",
-            }}
-          />
+          {/* the wrapper carries the area - a zero-size element is not a
+              reliable IntersectionObserver target */}
+          <Reveal y={0} className="absolute inset-0">
+            <div
+              className="absolute left-1/2 top-[-14%] h-[420px] w-[min(760px,90vw)] -translate-x-1/2 rounded-full"
+              style={{
+                background:
+                  "radial-gradient(closest-side, oklch(0.68 0.1 280 / 0.18), transparent)",
+              }}
+            />
+          </Reveal>
         </div>
         <Container className="relative pb-12 pt-28 sm:pt-32 md:pb-16 lg:pt-36">
-          <Eyebrow>The Strategy Engine</Eyebrow>
-          <h1
-            className="display-hero mt-6 max-w-4xl text-balance text-foreground"
-            style={{ fontStretch: "80%", letterSpacing: "-0.02em" }}
-          >
-            Dashboards tell you where you stand.{" "}
-            <span className="text-periwinkle">The Strategy Engine changes it.</span>
-          </h1>
-          <p
-            className="mt-7 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground"
-            data-speakable
-          >
-            HeyOtis finds the move that grows your AI recommendation share,
-            verifies it actually shipped, and proves whether it moved the metric
-            - a campaign-led loop that compounds, not another dashboard.
-          </p>
-          <div className="mt-9 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-            <BookCta variant="salmon" nudge />
-            <a
-              href="#loop"
-              className="group inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-foreground/70 transition-colors hover:text-foreground"
+          <Reveal y={8}>
+            <Eyebrow>The Strategy Engine</Eyebrow>
+          </Reveal>
+          <Reveal delay={0.07}>
+            <h1
+              className="display-hero mt-6 max-w-4xl text-balance text-foreground"
+              style={{ fontStretch: "80%", letterSpacing: "-0.02em" }}
             >
-              See the loop
-              <ArrowDown className="size-4 transition-transform duration-200 group-hover:translate-y-0.5" />
-            </a>
-          </div>
+              Dashboards tell you where you stand.{" "}
+              <span className="text-periwinkle">
+                The Strategy Engine changes it.
+              </span>
+            </h1>
+          </Reveal>
+          <Reveal delay={0.15}>
+            <p
+              className="mt-7 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground"
+              data-speakable
+            >
+              HeyOtis finds the move that grows your AI recommendation share,
+              verifies it actually shipped, and proves whether it moved the
+              metric - a campaign-led loop that compounds, not another
+              dashboard.
+            </p>
+          </Reveal>
+          <Reveal delay={0.23}>
+            <div className="mt-9 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
+              <BookCta variant="salmon" nudge />
+              <a
+                href="#loop"
+                className="group inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-foreground/70 transition-colors hover:text-foreground"
+              >
+                See the loop
+                <ArrowDown className="size-4 transition-transform duration-200 group-hover:translate-y-0.5" />
+              </a>
+            </div>
+          </Reveal>
         </Container>
       </section>
 
@@ -127,14 +167,23 @@ export default function StrategyEnginePage() {
       <Section surface="cream">
         <div className="grid items-center gap-12 lg:grid-cols-[0.95fr_1fr] lg:gap-16">
           <div>
-            <SectionHeading
-              eyebrow="The inputs"
-              title="Five signal streams. One picture of how AI sees you."
-              sub="The engine is only as good as its evidence - so it ingests the evidence. Your answers, your traffic and bot logs, your analytics, your own pages and your competitors' wins all flow into one model of the gap."
-            />
+            <Reveal>
+              <SectionHeading
+                eyebrow="The inputs"
+                title="Five signal streams. One picture of how AI sees you."
+                sub="The engine is only as good as its evidence - so it ingests the evidence. Your answers, your traffic and bot logs, your analytics, your own pages and your competitors' wins all flow into one model of the gap."
+              />
+            </Reveal>
+            {/* The streams arrive one after another - the list is the flow. */}
             <ul className="mt-8 flex flex-col gap-4">
-              {SIGNAL_STREAMS.map((s) => (
-                <li key={s.id} className="flex items-start gap-3">
+              {SIGNAL_STREAMS.map((s, i) => (
+                <Reveal
+                  as="li"
+                  key={s.id}
+                  y={10}
+                  delay={0.1 + i * 0.07}
+                  className="flex items-start gap-3"
+                >
                   <span
                     className={
                       s.differentiator
@@ -146,7 +195,7 @@ export default function StrategyEnginePage() {
                     <span className="font-medium text-foreground">{s.name}.</span>{" "}
                     {s.blurb}
                   </p>
-                </li>
+                </Reveal>
               ))}
             </ul>
           </div>
@@ -158,12 +207,14 @@ export default function StrategyEnginePage() {
 
       {/* 4 - The loop */}
       <Section surface="card" id="loop">
-        <SectionHeading
-          eyebrow="The loop"
-          title="One campaign-led loop, end to end"
-          sub="Most tools stop at Measure. The Strategy Engine closes the loop - verifying the move shipped and proving it changed how AI recommends you."
-          className="max-w-2xl"
-        />
+        <Reveal>
+          <SectionHeading
+            eyebrow="The loop"
+            title="One campaign-led loop, end to end"
+            sub="Most tools stop at Measure. The Strategy Engine closes the loop - verifying the move shipped and proving it changed how AI recommends you."
+            className="max-w-2xl"
+          />
+        </Reveal>
         {/* Implementation Tracking (nav: Prove → Implementation Tracking)
             anchors here - the Verify stage lives inside this same loop. */}
         <div className="mt-12" id="verify">
@@ -173,12 +224,14 @@ export default function StrategyEnginePage() {
 
       {/* 5 - Four levels */}
       <Section surface="cream">
-        <SectionHeading
-          eyebrow="How deep it goes"
-          title="Four levels the engine operates at"
-          sub="From telling you what's happening to doing the work for you."
-          className="max-w-2xl"
-        />
+        <Reveal>
+          <SectionHeading
+            eyebrow="How deep it goes"
+            title="Four levels the engine operates at"
+            sub="From telling you what's happening to doing the work for you."
+            className="max-w-2xl"
+          />
+        </Reveal>
         <div className="mt-12">
           <MaturityLevels />
         </div>
@@ -188,27 +241,20 @@ export default function StrategyEnginePage() {
       <Section surface="card" id="plan">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
-            <SectionHeading
-              eyebrow="The action plan"
-              title="From signals to the moves that matter"
-              sub="Findings become a focused, ranked plan - every opportunity scored by impact and effort, tied to the metric it moves, and backed by the deterministic signals beneath it."
-            />
-            <ul className="mt-8 flex flex-col gap-4">
-              {[
+            <Reveal>
+              <SectionHeading
+                eyebrow="The action plan"
+                title="From signals to the moves that matter"
+                sub="Findings become a focused, ranked plan - every opportunity scored by impact and effort, tied to the metric it moves, and backed by the deterministic signals beneath it."
+              />
+            </Reveal>
+            <CheckList
+              items={[
                 "Opportunities ranked by impact × effort",
                 "Each tied to the metric it's measured by",
                 "Every move backed by the evidence beneath it",
-              ].map((item) => (
-                <li key={item} className="flex items-start gap-3">
-                  <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-brand/10 text-accent">
-                    <Check className="size-3.5" aria-hidden />
-                  </span>
-                  <span className="text-base leading-relaxed text-muted-foreground">
-                    {item}
-                  </span>
-                </li>
-              ))}
-            </ul>
+              ]}
+            />
           </div>
           <Reveal delay={0.08}>
             <OpportunityBoard />
@@ -218,6 +264,7 @@ export default function StrategyEnginePage() {
 
       {/* 7 - Real attribution, three layers deep */}
       <Section surface="cream" id="evidence">
+        <Reveal>
         <SectionHeading
           eyebrow="Real attribution"
           title="Three layers of proof"
@@ -226,6 +273,7 @@ export default function StrategyEnginePage() {
           }
           className="max-w-2xl"
         />
+        </Reveal>
         <div className="mt-12">
           <EvidenceLadder />
         </div>
@@ -235,27 +283,20 @@ export default function StrategyEnginePage() {
       <Section surface="card">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
-            <SectionHeading
-              eyebrow="The compounding advantage"
-              title="Every campaign makes the next one sharper"
-              sub="Proof isn't the end of the loop - it's the input to the next one. Every outcome, proven or disproven, reweights what the engine recommends next."
-            />
-            <ul className="mt-8 flex flex-col gap-4">
-              {[
+            <Reveal>
+              <SectionHeading
+                eyebrow="The compounding advantage"
+                title="Every campaign makes the next one sharper"
+                sub="Proof isn't the end of the loop - it's the input to the next one. Every outcome, proven or disproven, reweights what the engine recommends next."
+              />
+            </Reveal>
+            <CheckList
+              items={[
                 "Proven moves raise the weighting of moves like them",
                 "Disproven moves get deprioritised - honestly",
                 "Every cycle starts smarter than the last",
-              ].map((item) => (
-                <li key={item} className="flex items-start gap-3">
-                  <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-brand/10 text-accent">
-                    <Check className="size-3.5" aria-hidden />
-                  </span>
-                  <span className="text-base leading-relaxed text-muted-foreground">
-                    {item}
-                  </span>
-                </li>
-              ))}
-            </ul>
+              ]}
+            />
           </div>
           <Reveal delay={0.08}>
             <CompoundingChart />
@@ -265,12 +306,14 @@ export default function StrategyEnginePage() {
 
       {/* 9 - Honesty architecture */}
       <Section surface="cream">
-        <SectionHeading
-          eyebrow="Built on evidence"
-          title="It won't recommend what it can't prove"
-          sub="The cheapest thing to ship is a confident-sounding recommendation. The most expensive mistake is a confident-sounding wrong one. So the engine is built to refuse it."
-          className="max-w-2xl"
-        />
+        <Reveal>
+          <SectionHeading
+            eyebrow="Built on evidence"
+            title="It won't recommend what it can't prove"
+            sub="The cheapest thing to ship is a confident-sounding recommendation. The most expensive mistake is a confident-sounding wrong one. So the engine is built to refuse it."
+            className="max-w-2xl"
+          />
+        </Reveal>
         <div className="mt-12 grid gap-5 md:grid-cols-3">
           {HONESTY.map((h, i) => (
             <Reveal key={h.title} delay={i * 0.06}>
@@ -309,18 +352,25 @@ export default function StrategyEnginePage() {
       {/* 12 - Where this is heading (vision) */}
       <Section surface="card">
         <div className="mx-auto max-w-2xl text-center">
-          <Eyebrow>Where this is heading</Eyebrow>
-          <h2
-            className="mt-5 display-sm text-balance"
-            style={{ fontStretch: "80%", letterSpacing: "-0.02em" }}
-          >
-            The operating system for brands in the age of AI search
-          </h2>
-          <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-            The loop is the start. As assistants become how brands are
-            discovered, served and transacted with, HeyOtis is building toward
-            the full stack - see, serve, test and act on how AI represents you.
-          </p>
+          <Reveal y={8}>
+            <Eyebrow>Where this is heading</Eyebrow>
+          </Reveal>
+          <Reveal delay={0.07}>
+            <h2
+              className="mt-5 display-sm text-balance"
+              style={{ fontStretch: "80%", letterSpacing: "-0.02em" }}
+            >
+              The operating system for brands in the age of AI search
+            </h2>
+          </Reveal>
+          <Reveal delay={0.14}>
+            <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
+              The loop is the start. As assistants become how brands are
+              discovered, served and transacted with, HeyOtis is building toward
+              the full stack - see, serve, test and act on how AI represents
+              you.
+            </p>
+          </Reveal>
         </div>
       </Section>
 

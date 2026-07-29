@@ -53,7 +53,21 @@
   --stage: oklch(0.945 0.012 85);        /* warm beige inset panels   */
   --periwinkle: oklch(0.75 0.1 285);     /* banner tiles, dark text   */
   --lime: oklch(0.9 0.17 125);           /* positive delta/status     */
-  --panel-warm: oklch(0.32 0.07 45);     /* deep terracotta - the salmon hue taken dark, for pillar panels */
+  /* Burnt sienna - the salmon hue taken dark. Chroma carries the orange:
+     at 0.07 it desaturates to chocolate, so keep it up near 0.13. Lightness
+     stays in family with the other two panels (violet 0.31, ink 0.21) so the
+     three don't shout over each other. */
+  --panel-warm: oklch(0.42 0.13 45);
+  --panel-violet: oklch(0.31 0.09 285);  /* deep brand violet taken dark - the Strategy panel */
+
+  /* Surface label inks - the four platform surfaces, darkened to carry small
+     text on cream. The light versions above stay decorative (dots, fills).
+     Four distinct hues on purpose: darkened, periwinkle and accent both
+     collapse to the same violet, so Analytics takes the blue. */
+  --ink-insights: oklch(0.52 0.15 45);    /* burnt orange - AEO Insights   */
+  --ink-analytics: oklch(0.48 0.14 235);  /* blue          - AEO Analytics */
+  --ink-strategy: oklch(0.45 0.13 145);   /* deep green    - Strategy      */
+  --ink-roadmap: oklch(0.47 0.2 275);     /* brand violet  - Roadmap       */
 
   /* chart tokens (mock product visuals - reused from the platform) */
   --chart-1: oklch(0.68 0.1 280);
@@ -111,6 +125,12 @@
   --color-periwinkle: var(--periwinkle);
   --color-lime: var(--lime);
   --color-panel-warm: var(--panel-warm);
+  --color-panel-violet: var(--panel-violet);
+
+  --color-ink-insights: var(--ink-insights);
+  --color-ink-analytics: var(--ink-analytics);
+  --color-ink-strategy: var(--ink-strategy);
+  --color-ink-roadmap: var(--ink-roadmap);
 
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);

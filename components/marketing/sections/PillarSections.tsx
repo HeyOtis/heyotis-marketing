@@ -291,39 +291,156 @@ function AgentVignette({ live }: { live: boolean }) {
 
 /* ── Vignette 3: Strategy - the cursor clicks, the plan ranks ────────────── */
 
+/* The moves the click produces. `impact` drives the bar width, and the order
+   IS the ranking - the numeral carries real information, so it earns its
+   place. Keep the copy in the same query language as vignette 1. */
+const MOVES: { title: string; impact: number }[] = [
+  { title: "Answer “best everyday SPF”", impact: 0.92 },
+  { title: "Add ingredient FAQ schema", impact: 0.68 },
+  { title: "Refresh the routine guide", impact: 0.44 },
+];
+
 function StrategyVignette({ live }: { live: boolean }) {
   const [clicked, setClicked] = React.useState(false);
   React.useEffect(() => {
     if (!live) return;
-    const id = setTimeout(() => setClicked(true), 1600);
+    const id = setTimeout(() => setClicked(true), 1500);
     return () => clearTimeout(id);
   }, [live]);
   const isClicked = clicked || !live;
 
   return (
-    <div className="flex flex-col items-center gap-5">
+    <div className="flex w-full max-w-[21rem] flex-col items-center gap-5">
+      {/* The trigger. Cursor glides in, presses, and the press is what the
+          whole vignette is about - so the button reacts (fills, compresses)
+          rather than just sitting there. */}
       <motion.span
-        animate={live && !isClicked ? { scale: [1, 1, 0.96, 1] } : { scale: 1 }}
-        transition={{ duration: 1.6, times: [0, 0.85, 0.92, 1], ease: EASE }}
+        animate={{
+          scale: isClicked && live ? [0.96, 1] : 1,
+          backgroundColor: isClicked
+            ? "rgba(244,241,234,0.14)"
+            : "rgba(244,241,234,0)",
+        }}
+        transition={{ duration: 0.45, ease: EASE }}
         className="relative inline-flex items-center gap-2.5 rounded-md border border-background/40 px-6 py-3.5 text-lg font-bold tracking-tight text-background"
       >
-        <Sparkles className="size-5" strokeWidth={2} />
-        Generate action plan
         <motion.span
-          initial={live ? { opacity: 0, x: 26, y: 26 } : false}
-          animate={{ opacity: 1, x: 0, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5, ease: EASE }}
+          animate={
+            isClicked && live ? { scale: [1, 1.25, 1], rotate: [0, -12, 0] } : {}
+          }
+          transition={{ duration: 0.55, ease: EASE }}
+        >
+          <Sparkles className="size-5" strokeWidth={2} />
+        </motion.span>
+        Generate action plan
+        {/* click ripple, from under the cursor tip */}
+        <motion.span
+          aria-hidden
+          initial={false}
+          animate={
+            isClicked && live
+              ? { scale: [0.3, 1.9], opacity: [0.55, 0] }
+              : { scale: 0.3, opacity: 0 }
+          }
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="pointer-events-none absolute -bottom-1 -right-1 size-10 rounded-full bg-lime"
+        />
+        <motion.span
+          initial={live ? { opacity: 0, x: 34, y: 30 } : false}
+          animate={{
+            opacity: 1,
+            x: isClicked ? 0 : [34, 0],
+            y: isClicked ? 0 : [30, 0],
+          }}
+          transition={{ duration: 0.9, delay: 0.35, ease: EASE }}
           className="absolute -bottom-4 -right-4 text-background"
         >
-          <MousePointer2 className="size-6 fill-background" strokeWidth={1.5} />
+          <motion.span
+            className="block"
+            animate={isClicked && live ? { scale: [1, 0.82, 1] } : { scale: 1 }}
+            transition={{ duration: 0.35, ease: EASE }}
+          >
+            <MousePointer2
+              className="size-6 fill-background"
+              strokeWidth={1.5}
+            />
+          </motion.span>
         </motion.span>
       </motion.span>
+
+      {/* The payoff: the ranked plan itself, dealt out row by row. */}
       <motion.div
-        initial={live ? { opacity: 0, y: 8 } : false}
-        animate={{ opacity: isClicked ? 1 : 0, y: isClicked ? 0 : 8 }}
-        transition={{ duration: 0.4, ease: EASE }}
+        initial={live ? { opacity: 0, y: 12, scale: 0.97 } : false}
+        animate={{
+          opacity: isClicked ? 1 : 0,
+          y: isClicked ? 0 : 12,
+          scale: isClicked ? 1 : 0.97,
+        }}
+        transition={{ duration: 0.45, ease: EASE }}
+        className="w-full rounded-xl bg-background p-4 sm:p-5"
       >
-        <Chip tone="lime">✓ 3 moves ranked · evidence attached</Chip>
+        <div className="flex items-baseline justify-between">
+          <span className="font-display text-sm font-bold tracking-tight text-foreground">
+            Action plan
+          </span>
+          <span className="label-mono text-[0.55rem] text-muted-foreground">
+            Ranked by impact
+          </span>
+        </div>
+
+        <ul className="mt-3 flex flex-col gap-2.5">
+          {MOVES.map((move, i) => (
+            <motion.li
+              key={move.title}
+              initial={live ? { opacity: 0, y: 8 } : false}
+              animate={{ opacity: isClicked ? 1 : 0, y: isClicked ? 0 : 8 }}
+              transition={{
+                duration: 0.35,
+                delay: isClicked && live ? 0.18 + i * 0.12 : 0,
+                ease: EASE,
+              }}
+              className="flex items-center gap-3"
+            >
+              <span className="label-mono w-4 shrink-0 text-[0.6rem] text-muted-foreground">
+                {i + 1}
+              </span>
+              <span className="min-w-0 flex-1 truncate text-xs font-semibold text-foreground">
+                {move.title}
+              </span>
+              <span className="h-1.5 w-14 shrink-0 overflow-hidden rounded-full bg-foreground/10">
+                <motion.span
+                  className="block h-full rounded-full bg-lime"
+                  style={{ originX: 0 }}
+                  initial={live ? { scaleX: 0 } : false}
+                  animate={{ scaleX: isClicked ? move.impact : 0 }}
+                  transition={{
+                    duration: 0.55,
+                    delay: isClicked && live ? 0.32 + i * 0.12 : 0,
+                    ease: EASE,
+                  }}
+                />
+              </span>
+            </motion.li>
+          ))}
+        </ul>
+
+        <motion.div
+          initial={live ? { opacity: 0 } : false}
+          animate={{ opacity: isClicked ? 1 : 0 }}
+          transition={{
+            duration: 0.35,
+            delay: isClicked && live ? 0.7 : 0,
+            ease: EASE,
+          }}
+          className="mt-3.5 flex items-center gap-2 border-t border-border pt-3"
+        >
+          <Chip tone="lime" className="shrink-0 whitespace-nowrap">
+            Evidence attached
+          </Chip>
+          <span className="text-[0.65rem] leading-tight text-muted-foreground">
+            Each move cites the answers it moves
+          </span>
+        </motion.div>
       </motion.div>
     </div>
   );
@@ -349,7 +466,7 @@ const PILLARS = [
     heading: "The moves with the biggest return",
     body: "The Strategy Engine turns findings into a ranked plan - moves scored on impact and effort - and watches the work land.",
     href: "/strategy",
-    panel: "bg-panel-warm",
+    panel: "bg-panel-violet",
     vignette: StrategyVignette,
   },
   {
