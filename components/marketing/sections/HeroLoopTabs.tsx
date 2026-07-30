@@ -4,6 +4,7 @@ import * as React from "react";
 import {
   AnimatePresence,
   motion,
+  useInView,
   useMotionValueEvent,
   useScroll,
   useTransform,
@@ -18,6 +19,7 @@ import {
   StrategyVignette,
   ActVignette,
   AttributeVignette,
+  VignetteAutoPlay,
 } from "@/components/marketing/visuals/LoopVignettes";
 import { cn } from "@/lib/utils";
 
@@ -204,6 +206,12 @@ function LoopHeading({ compact = false }: { compact?: boolean }) {
  */
 function PinnedStepper() {
   const wrapperRef = React.useRef<HTMLDivElement | null>(null);
+  // Arms the vignette scenes. Observed on the pinned frame (exactly one
+  // viewport tall, so a fractional `amount` is always reachable) rather than on
+  // the 500vh wrapper, where 20% of the element is four screens of scrolling.
+  // 0.2 fires while the vignette panel itself is still below the fold.
+  const frameRef = React.useRef<HTMLDivElement | null>(null);
+  const armed = useInView(frameRef, { amount: 0.2, once: true });
   const tabRefs = React.useRef<(HTMLButtonElement | null)[]>([]);
   const activeRef = React.useRef(0);
   const [active, setActive] = React.useState(0);
@@ -254,7 +262,10 @@ function PinnedStepper() {
       style={{ height: `${WRAPPER_SCREENS * 100}vh` }}
       className="relative"
     >
-      <div className="sticky top-0 flex h-[100dvh] flex-col overflow-hidden">
+      <div
+        ref={frameRef}
+        className="sticky top-0 flex h-[100dvh] flex-col overflow-hidden"
+      >
         <Container className="flex flex-1 flex-col justify-center py-10">
           <LoopHeading compact />
 
@@ -350,7 +361,11 @@ function PinnedStepper() {
                   transition={{ duration: 0.45, ease: EASE }}
                   className="absolute inset-0"
                 >
-                  <Panel />
+                  {/* Each stage change remounts the panel, so its scene plays
+                      itself in as it slides in - no hover required. */}
+                  <VignetteAutoPlay active={armed}>
+                    <Panel />
+                  </VignetteAutoPlay>
                 </motion.div>
               </AnimatePresence>
             </div>
