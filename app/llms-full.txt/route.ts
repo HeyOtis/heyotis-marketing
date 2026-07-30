@@ -59,7 +59,7 @@ In-house brand marketing, SEO/AEO and e-commerce teams, and agencies managing mu
 SEO optimizes for ranked links on search engines. HeyOtis focuses on Answer Engine Optimization (AEO) / Generative Engine Optimization (GEO): being the brand AI assistants name and recommend inside their generated answers - and proving you improved it.
 
 ## Pricing
-There are no fixed packages. Every plan gets the whole product - all five assistants monitored, Share of Voice and rankings, citations analysis, competitive benchmarking, GA4 AI referral traffic and the Strategy Engine - and pricing is metered on volume instead: tracked brands, campaigns, active prompts per campaign, monthly AI responses, competitors benchmarked and team seats. Plus a Managed (strategist-led) track and an Agencies track for running multiple brands. Onboarding is demo-led (no self-serve sign-up), so scope is agreed on a short call.
+There are no fixed packages. Every plan gets the whole product - all five assistants monitored, Share of Voice and rankings, citations analysis, competitive benchmarking, GA4 AI referral traffic and the Strategy Engine - and pricing is metered on volume instead: tracked brands, campaigns, monthly AI responses, competitors benchmarked and team seats. Plus a Managed (strategist-led) track and an Agencies track for running multiple brands. Onboarding is demo-led (no self-serve sign-up), so scope is agreed on a short call.
 
 ## Getting started
 - Book a 20-minute walkthrough at ${u}/contact - we run your brand, surface the highest-impact moves, and show how the loop proves the lift.

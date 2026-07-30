@@ -4,20 +4,13 @@ import { Section } from "@/components/marketing/primitives/Section";
 import { SectionHeading } from "@/components/marketing/primitives/SectionHeading";
 import { Eyebrow } from "@/components/marketing/primitives/Eyebrow";
 import { BookCta } from "@/components/marketing/primitives/BookCta";
+import { Reveal } from "@/components/marketing/primitives/Reveal";
 import { CtaBand } from "@/components/marketing/sections/CtaBand";
 import {
   Faq,
   faqItemsToSchema,
   type FaqItem,
 } from "@/components/marketing/sections/Faq";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema, faqPageSchema } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
@@ -25,7 +18,7 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata = buildMetadata({
   title: "Pricing",
   description:
-    "HeyOtis has no fixed packages - every plan is scoped to your brand. We meter by tracked brands, campaigns, prompts, monthly AI responses, competitors and seats.",
+    "HeyOtis has no fixed packages - every plan is scoped to your brand. We meter by tracked brands, campaigns, monthly AI responses, competitors and seats.",
   path: "/pricing",
 });
 
@@ -50,16 +43,11 @@ const LEVERS: Lever[] = [
     moves: "How many of those themes you want tracked apart from each other.",
   },
   {
-    label: "Active prompts per campaign",
-    means:
-      "The questions we actually put to the assistants - the ones your buyers would ask.",
-    moves: "How broad your category is, and how many phrasings genuinely matter.",
-  },
-  {
     label: "AI responses per month",
     means:
       "One prompt sent to one engine, with its answer captured and analyzed. Run a prompt across every engine we monitor and each engine counts once.",
-    moves: "Active prompts × engines tracked × how often campaigns run.",
+    moves:
+      "How many prompts your campaigns carry, the engines they run on, and how often they run.",
   },
   {
     label: "Competitors benchmarked",
@@ -87,7 +75,7 @@ const ALWAYS_INCLUDED: string[] = [
 const FAQS: FaqItem[] = [
   {
     q: "How is HeyOtis pricing structured?",
-    a: "There are no fixed packages. Every plan gets the whole product - all the engines we monitor, Share of Voice, citations, benchmarking and the Strategy Engine - and we price on volume instead: tracked brands, campaigns, active prompts, monthly AI responses, competitors benchmarked and team seats. Book a chat and we'll scope those six numbers to your category and goals.",
+    a: "There are no fixed packages. Every plan gets the whole product - all the engines we monitor, Share of Voice, citations, benchmarking and the Strategy Engine - and we price on volume instead: tracked brands, campaigns, monthly AI responses, competitors benchmarked and team seats. Book a chat and we'll scope those five numbers to your category and goals.",
   },
   {
     q: "Is there a free trial or self-serve sign-up?",
@@ -95,7 +83,7 @@ const FAQS: FaqItem[] = [
   },
   {
     q: "What counts as an AI response?",
-    a: "An AI response is a single prompt sent to one AI engine, with its answer captured and analyzed. The same prompt run across every engine we monitor counts once per engine. So your monthly volume comes down to three things: how many active prompts you have, how many engines you track them on, and how often campaigns run.",
+    a: "An AI response is a single prompt sent to one AI engine, with its answer captured and analyzed. The same prompt run across every engine we monitor counts once per engine. So your monthly volume comes down to three things: how many prompts your campaigns carry, how many engines you track them on, and how often they run.",
   },
   {
     q: "Can agencies manage multiple brands?",
@@ -156,53 +144,69 @@ export default function PricingPage() {
         <SectionHeading
           eyebrow="How pricing works"
           title="What we scope by"
-          sub="Every plan gets the whole product. What varies is how much of it you need - so we price on volume, not features. These are the six numbers we agree on the call."
+          sub="Every plan gets the whole product. What varies is how much of it you need - so we price on volume, not features. These are the five numbers we agree on the call."
           className="max-w-2xl"
         />
 
-        <div className="mt-10 overflow-x-auto rounded-2xl border border-border bg-card">
-          <Table className="min-w-[760px]">
-            <TableHeader>
-              <TableRow className="hover:bg-transparent">
-                <TableHead className="sticky left-0 z-20 w-[24%] border-r border-border/60 bg-card py-4 pl-6 text-sm font-medium text-muted-foreground">
-                  What we meter
-                </TableHead>
-                <TableHead className="w-[42%] py-4 text-sm font-medium text-muted-foreground">
-                  What it means
-                </TableHead>
-                <TableHead className="py-4 text-sm font-medium text-muted-foreground">
-                  What moves it
-                </TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {LEVERS.map((lever) => (
-                <TableRow key={lever.label} className="align-top">
-                  <TableCell className="sticky left-0 z-10 border-r border-border/60 bg-card py-4 pl-6 text-sm font-medium text-foreground">
+        {/* A spec schedule, not a data table: the cells are prose, so they get
+            hairline-ruled rows on the open canvas rather than card chrome. */}
+        <div className="mt-12 border-t border-border">
+          {/* Column headings only where there are real columns to head. */}
+          <div className="hidden grid-cols-12 gap-8 border-b border-border pb-3 lg:grid">
+            <div className="col-span-3 label-mono text-[0.65rem] text-muted-foreground">
+              What we meter
+            </div>
+            <div className="col-span-6 label-mono text-[0.65rem] text-muted-foreground">
+              What it means
+            </div>
+            <div className="col-span-3 label-mono text-[0.65rem] text-muted-foreground">
+              What moves it
+            </div>
+          </div>
+
+          <ul className="divide-y divide-border">
+            {LEVERS.map((lever, i) => (
+              <Reveal as="li" key={lever.label} delay={i * 0.05}>
+                <div className="grid grid-cols-1 gap-x-8 gap-y-3 py-7 lg:grid-cols-12">
+                  <h3
+                    className="font-display text-lg text-foreground lg:col-span-3"
+                    style={{ fontStretch: "85%", letterSpacing: "-0.01em" }}
+                  >
                     {lever.label}
-                  </TableCell>
-                  <TableCell className="py-4 text-sm leading-relaxed text-foreground/80">
+                  </h3>
+                  <p className="text-sm leading-relaxed text-foreground/80 lg:col-span-6">
                     {lever.means}
-                  </TableCell>
-                  <TableCell className="py-4 pr-6 text-sm leading-relaxed text-muted-foreground">
-                    {lever.moves}
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+                  </p>
+                  {/* Set as a margin annotation - own rule, mono label - so it
+                      reads as a note on the row, not a third value. */}
+                  <div className="border-l-2 border-periwinkle/40 pl-4 lg:col-span-3 lg:border-l lg:border-border">
+                    <span className="label-mono block text-[0.6rem] text-periwinkle-ink lg:hidden">
+                      What moves it
+                    </span>
+                    <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground lg:mt-0">
+                      {lever.moves}
+                    </p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </ul>
         </div>
 
-        {/* Deliberately not table rows - a flat list reads as "everyone gets
-            this", where a fourth column would imply another axis to compare. */}
-        <div className="mt-10 rounded-2xl border border-border bg-secondary/30 p-6 sm:p-7">
-          <h3 className="label-mono text-[0.65rem] text-muted-foreground">
+        {/* The visual inverse of the ruled rows above: what varies is open,
+            what's fixed is enclosed. A fourth column would have implied
+            another axis to compare. */}
+        <div className="mt-14 rounded-2xl border border-border bg-card p-7 sm:p-9">
+          <h3 className="label-mono text-[0.65rem] text-accent">
+            <span aria-hidden className="opacity-60">
+              /
+            </span>{" "}
             In every plan, whatever the scope
           </h3>
-          <ul className="mt-5 grid gap-3.5 sm:grid-cols-2">
+          <ul className="mt-6 grid gap-x-8 gap-y-4 sm:grid-cols-2">
             {ALWAYS_INCLUDED.map((item) => (
-              <li key={item} className="flex items-start gap-2.5 text-sm">
-                <span className="mt-px flex size-[1.125rem] shrink-0 items-center justify-center rounded-full bg-periwinkle/20">
+              <li key={item} className="flex items-start gap-3 text-sm">
+                <span className="mt-0.5 flex size-[1.125rem] shrink-0 items-center justify-center rounded-full bg-periwinkle/20">
                   <Check className="size-3 text-foreground" strokeWidth={2.5} />
                 </span>
                 <span className="leading-snug text-foreground/80">{item}</span>
@@ -211,13 +215,18 @@ export default function PricingPage() {
           </ul>
         </div>
 
-        <p className="mt-8 max-w-2xl text-sm text-muted-foreground">
-          Nothing here is locked behind a package - there&apos;s no feature to
-          upgrade to later. We set the six numbers to match your category, and
-          adjust them when your scope changes.
-        </p>
-        <div className="mt-8">
-          <BookCta label="Talk to us" variant="secondary" withArrow />
+        <div className="mt-12 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+          <p className="max-w-xl text-sm leading-relaxed text-muted-foreground">
+            Nothing is locked behind a package - there&apos;s no feature to
+            upgrade to later. We set these numbers to match your category, and
+            move them when your scope changes.
+          </p>
+          <BookCta
+            label="Talk to us"
+            variant="secondary"
+            withArrow
+            className="shrink-0"
+          />
         </div>
       </Section>
 
