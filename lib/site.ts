@@ -128,7 +128,7 @@ export const NAV: NavEntry[] = [
           {
             label: "Plans",
             href: "/pricing#plans",
-            description: "Self-serve tiers",
+            description: "Scoped to your brand",
           },
           {
             label: "Managed",

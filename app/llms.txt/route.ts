@@ -42,7 +42,7 @@ In-house brand, SEO/AEO and e-commerce teams, and agencies managing multiple bra
 ## Navigation
 - Platform ▾ - two columns for the two product pages: Platform (AEO Insights, AEO Analytics, Strategy & Attribution, Roadmap → ${u}/platform) and Strategy (The Strategy Engine, The Loop End to End, The Action Plan, Built on Evidence → ${u}/strategy). Footer link: "How the loop works" → ${u}/platform.
 - Resources ▾ - Free AI Visibility Report, Case Studies, Blog, About HeyOtis.
-- Pricing ▾ - Plans (self-serve tiers), Managed (strategist-led), For Agencies.
+- Pricing ▾ - Plans (scoped to your brand), Managed (strategist-led), For Agencies.
 
 ## Key pages
 - [Home](${u}/): What HeyOtis is and how the loop works.
@@ -52,7 +52,7 @@ In-house brand, SEO/AEO and e-commerce teams, and agencies managing multiple bra
 - [Case Studies](${u}/case-studies): Real brands, measured lift in AI recommendation share.
 - [Daylyte case study](${u}/case-studies/daylyte): from 0% to 65% AI visibility in two weeks - a two-founder UK hydration brand became the #1 brand in its category with free, founder-led content, guided by what HeyOtis showed them to fix.
 - [Guides & AEO Playbook](${u}/guides): Practical guides on Answer Engine Optimization.
-- [Pricing](${u}/pricing): Four tiers from $150/mo (Basic, Plus, Premium, Enterprise), plus Managed and Agencies tracks; demo-led onboarding.
+- [Pricing](${u}/pricing): No fixed packages - every plan gets the whole product and is metered by tracked brands, campaigns, active prompts, monthly AI responses, competitors and seats. Plus Managed and Agencies tracks; demo-led onboarding.
 - [About](${u}/about): Mission and methodology.
 - [Blog](${u}/blog): Guides on AEO and AI search visibility.
 - [Contact](${u}/contact): Book a call.
