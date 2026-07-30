@@ -1,6 +1,18 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/lib/site";
 
+/*
+ * Cache-buster for the generated OG card. Slack, LinkedIn and X cache the
+ * rendered bitmap against its image URL, independently of the page metadata -
+ * so once a link has been shared, changing what /api/og returns is not enough:
+ * they keep serving the old picture from their own proxies. Versioning the
+ * image URL is the only reliable way to force a refetch.
+ *
+ * BUMP THIS whenever the card design in app/api/og/route.tsx changes.
+ * v2 = brand fonts + real wordmark (2026-07-30).
+ */
+const OG_VERSION = "2";
+
 type BuildMetadataInput = {
   title?: string;
   // Exact <title> text, bypassing the root layout's "%s - HeyOtis" template.
@@ -41,7 +53,7 @@ export function buildMetadata({
   // and description into it so each shared link gets a distinct, titled image.
   const ogImage =
     image === siteConfig.defaultOgImage
-      ? `/api/og?title=${encodeURIComponent(resolvedTitle)}&subtitle=${encodeURIComponent(description)}`
+      ? `/api/og?title=${encodeURIComponent(resolvedTitle)}&subtitle=${encodeURIComponent(description)}&v=${OG_VERSION}`
       : image;
   const imageUrl = new URL(ogImage, siteConfig.url).toString();
 
