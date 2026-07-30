@@ -100,7 +100,7 @@ export default function StrategyEnginePage() {
               style={{ fontStretch: "80%", letterSpacing: "-0.02em" }}
             >
               Dashboards tell you where you stand.{" "}
-              <span className="text-periwinkle-ink">
+              <span className="text-periwinkle">
                 The Strategy Engine changes it.
               </span>
             </h1>
