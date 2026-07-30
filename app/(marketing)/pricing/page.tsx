@@ -64,8 +64,8 @@ const LEVERS: Lever[] = [
 
 /** Capabilities every plan gets, regardless of scope. */
 const ALWAYS_INCLUDED: string[] = [
-  "ChatGPT, Claude, Gemini, Perplexity & Google AI Overviews",
-  "Share of Voice & competitive rankings",
+  "ChatGPT, Claude, Gemini, Perplexity & AI Overviews",
+  "Share of Voice & rankings",
   "Citations analysis",
   "Competitive benchmarking",
   "GA4 AI referral traffic",
@@ -144,89 +144,62 @@ export default function PricingPage() {
         <SectionHeading
           eyebrow="How pricing works"
           title="What we scope by"
-          sub="Every plan gets the whole product. What varies is how much of it you need - so we price on volume, not features. These are the five numbers we agree on the call."
+          sub="Every plan gets the whole product - nothing is locked behind a package. What varies is how much of it you need, so we price on volume rather than features. These are the five numbers we agree on the call."
           className="max-w-2xl"
         />
 
-        {/* A spec schedule, not a data table: the cells are prose, so they get
-            hairline-ruled rows on the open canvas rather than card chrome. */}
-        <div className="mt-12 border-t border-border">
-          {/* Column headings only where there are real columns to head. */}
-          <div className="hidden grid-cols-12 gap-8 border-b border-border pb-3 lg:grid">
-            <div className="col-span-3 label-mono text-[0.65rem] text-muted-foreground">
-              What we meter
-            </div>
-            <div className="col-span-6 label-mono text-[0.65rem] text-muted-foreground">
-              What it means
-            </div>
-            <div className="col-span-3 label-mono text-[0.65rem] text-muted-foreground">
-              What moves it
-            </div>
-          </div>
-
-          <ul className="divide-y divide-border">
-            {LEVERS.map((lever, i) => (
-              <Reveal as="li" key={lever.label} delay={i * 0.05}>
-                <div className="grid grid-cols-1 gap-x-8 gap-y-3 py-7 lg:grid-cols-12">
-                  <h3
-                    className="font-display text-lg text-foreground lg:col-span-3"
-                    style={{ fontStretch: "85%", letterSpacing: "-0.01em" }}
-                  >
-                    {lever.label}
-                  </h3>
-                  <p className="text-sm leading-relaxed text-foreground/80 lg:col-span-6">
-                    {lever.means}
+        {/* The site's card grid (as in MaturityLevels / EvidenceCards) rather
+            than a bespoke layout, so the section matches the rest of the site. */}
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {LEVERS.map((lever, i) => (
+            <Reveal key={lever.label} delay={i * 0.06} className="h-full">
+              <div className="flex h-full flex-col rounded-2xl border border-border bg-card p-6">
+                <h3 className="font-display text-base font-semibold tracking-tight text-foreground">
+                  {lever.label}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  {lever.means}
+                </p>
+                <div className="mt-4 border-t border-border pt-4">
+                  <span className="label-mono block text-[0.6rem] text-muted-foreground">
+                    What moves it
+                  </span>
+                  <p className="mt-1.5 text-sm leading-snug text-foreground/80">
+                    {lever.moves}
                   </p>
-                  {/* Set as a margin annotation - own rule, mono label - so it
-                      reads as a note on the row, not a third value. */}
-                  <div className="border-l-2 border-periwinkle/40 pl-4 lg:col-span-3 lg:border-l lg:border-border">
-                    <span className="label-mono block text-[0.6rem] text-periwinkle-ink lg:hidden">
-                      What moves it
-                    </span>
-                    <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground lg:mt-0">
-                      {lever.moves}
-                    </p>
-                  </div>
                 </div>
-              </Reveal>
-            ))}
-          </ul>
+              </div>
+            </Reveal>
+          ))}
         </div>
 
-        {/* The visual inverse of the ruled rows above: what varies is open,
-            what's fixed is enclosed. A fourth column would have implied
-            another axis to compare. */}
-        <div className="mt-14 rounded-2xl border border-border bg-card p-7 sm:p-9">
-          <h3 className="label-mono text-[0.65rem] text-accent">
-            <span aria-hidden className="opacity-60">
-              /
-            </span>{" "}
-            In every plan, whatever the scope
-          </h3>
-          <ul className="mt-6 grid gap-x-8 gap-y-4 sm:grid-cols-2">
-            {ALWAYS_INCLUDED.map((item) => (
-              <li key={item} className="flex items-start gap-3 text-sm">
-                <span className="mt-0.5 flex size-[1.125rem] shrink-0 items-center justify-center rounded-full bg-periwinkle/20">
-                  <Check className="size-3 text-foreground" strokeWidth={2.5} />
-                </span>
-                <span className="leading-snug text-foreground/80">{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+        {/* Full width rather than a sixth cell: as a grid cell its six items
+            made it far taller than the lever cards, stretching that row and
+            leaving holes in the two beside it. */}
+        <Reveal delay={LEVERS.length * 0.06}>
+          <div className="mt-5 rounded-2xl border border-brand/25 bg-brand-soft/40 p-6 sm:p-7">
+            <h3 className="font-display text-base font-semibold tracking-tight text-foreground">
+              In every plan
+            </h3>
+            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+              Whatever the scope, none of this is metered or held back.
+            </p>
+            <ul className="mt-5 grid gap-x-8 gap-y-3 sm:grid-cols-2 lg:grid-cols-3">
+              {ALWAYS_INCLUDED.map((item) => (
+                <li key={item} className="flex items-start gap-2.5 text-sm">
+                  <Check
+                    className="mt-0.5 size-3.5 shrink-0 text-accent"
+                    strokeWidth={2.5}
+                  />
+                  <span className="leading-snug text-foreground/80">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Reveal>
 
-        <div className="mt-12 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="max-w-xl text-sm leading-relaxed text-muted-foreground">
-            Nothing is locked behind a package - there&apos;s no feature to
-            upgrade to later. We set these numbers to match your category, and
-            move them when your scope changes.
-          </p>
-          <BookCta
-            label="Talk to us"
-            variant="secondary"
-            withArrow
-            className="shrink-0"
-          />
+        <div className="mt-8">
+          <BookCta label="Talk to us" withArrow />
         </div>
       </Section>
 
