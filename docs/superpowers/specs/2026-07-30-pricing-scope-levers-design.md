@@ -68,21 +68,33 @@ Not a `<table>`. `components/ui/table.tsx` hard-codes `whitespace-nowrap` on
 breaks prose: nothing wraps, the table exceeds the viewport and the third
 column clips off-screen.
 
-Rows are a CSS grid, hairline-ruled (`divide-y divide-border`) directly on the
-cream canvas — no card chrome, matching the blueprint theme's "hairline rules
-instead of alternating bands". Column headings appear only at `lg`; below that
-each row stacks and "what moves it" gets a periwinkle left rule plus its own
-mono label, reading as a margin annotation rather than a third value.
+Two layouts were tried and rejected before landing here:
+
+1. A three-column `<table>`. Clipped, per above.
+2. A hairline-ruled three-column "spec schedule" on the open canvas. Fixed the
+   clipping, but three columns of variable-length prose read as ragged and
+   spreadsheet-like, and the layout was bespoke to this one section.
+
+**Shipped:** the site's own card grid — the same pattern as
+`components/marketing/sections/MaturityLevels.tsx` and `EvidenceCards.tsx`
+(`rounded-2xl border border-border bg-card p-6`, `sm:grid-cols-2
+lg:grid-cols-3`). One card per lever: name, definition, then a hairline and the
+"what moves it" note under a mono label. Consistency with the rest of the site
+beats a layout invented for one section.
 
 No `01 / 02` numbering: the levers are a set, not a sequence, so numbering
 would be decoration rather than structure.
 
 ### Block: in every plan
 
-Below the schedule, as a check list inside a solid bordered card — the visual
-inverse of the open ruled rows above. What varies is open, what's fixed is
-enclosed. Deliberately *not* another column, which would imply a second axis to
-compare:
+A full-width panel below the grid, tinted `bg-brand-soft/40` with a
+`border-brand/25` edge so it reads as the counterweight to the metered cards.
+
+It is deliberately *not* a sixth grid cell: its six items make it far taller
+than a lever card, which stretched that grid row and left holes in the two
+cards beside it.
+
+Contents, as a check list:
 
 ChatGPT · Claude · Gemini · Perplexity · Google AI Overviews · Share of Voice &
 rankings · Citations analysis · Competitive benchmarking · GA4 AI referral
@@ -94,9 +106,13 @@ Managed, For Agencies, FAQ and CtaBand sections stay as they are, in order.
 
 ## Implementation notes
 
-Plain grid markup plus the existing `Reveal` primitive for the site's standard
-scroll entrance. No new components, and no `components/ui/table.tsx` — see
-Presentation above for why that primitive is unusable here.
+The site's card-grid pattern plus the existing `Reveal` primitive for the
+standard scroll entrance. No new components, and no `components/ui/table.tsx` —
+see Presentation above for why that primitive is unusable here.
+
+The section's CTA is `<BookCta label="Talk to us" withArrow />` in a `mt-8`
+wrapper — byte-identical to the Managed and For Agencies sections below it, so
+all three pricing CTAs match.
 
 Delete: the `Tier` type, `TIERS`, `TierCard`, `Cell`, `CompareRow`,
 `COMPARE_GROUPS`, `TIER_COLUMNS`, `CompareCell`. Check whether `CardSpotlight`,
