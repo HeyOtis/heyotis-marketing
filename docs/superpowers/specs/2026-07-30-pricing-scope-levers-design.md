@@ -45,23 +45,44 @@ One section, anchored `#plans` so existing nav links keep working:
 - Sub: every plan gets the whole product; what varies is how much of it, so we
   price on volume, not features.
 
-### Table: metered by scope
+### The schedule: metered by scope
 
-Three columns — **Lever**, **What it means**, **What moves it** — with six rows:
+Three zones per row — **Lever**, **What it means**, **What moves it** — with five rows:
 
 | Lever | What it means | What moves it |
 |---|---|---|
 | Tracked brands | Each brand is its own workspace, with its own campaigns and competitor set | How many brands, or distinct markets, you need watched separately |
 | Campaigns | A themed set of prompts run on a schedule | Product lines, markets or buying questions you want tracked apart |
-| Active prompts per campaign | The questions we actually put to the assistants | How broad the category is, and how many phrasings matter |
 | AI responses per month | One prompt sent to one engine, answer captured and analysed | Prompt count × engines × how often campaigns run |
 | Competitors benchmarked | Rivals scored beside you on Share of Voice, rank and citations | How crowded your category is |
 | Team seats | People with access to the workspace | Team size, and whether clients or stakeholders need views |
 
+"Active prompts per campaign" was cut after review — prompts still drive the
+AI-response count, so they appear as a *driver* in the third column rather than
+as a metered lever of their own.
+
+### Presentation
+
+Not a `<table>`. `components/ui/table.tsx` hard-codes `whitespace-nowrap` on
+`TableCell`, which suits the short cells the old comparison table held and
+breaks prose: nothing wraps, the table exceeds the viewport and the third
+column clips off-screen.
+
+Rows are a CSS grid, hairline-ruled (`divide-y divide-border`) directly on the
+cream canvas — no card chrome, matching the blueprint theme's "hairline rules
+instead of alternating bands". Column headings appear only at `lg`; below that
+each row stacks and "what moves it" gets a periwinkle left rule plus its own
+mono label, reading as a margin annotation rather than a third value.
+
+No `01 / 02` numbering: the levers are a set, not a sequence, so numbering
+would be decoration rather than structure.
+
 ### Block: in every plan
 
-Below the table, as a check/pill list — deliberately *not* table rows, so it
-reads as flat rather than as another axis to compare:
+Below the schedule, as a check list inside a solid bordered card — the visual
+inverse of the open ruled rows above. What varies is open, what's fixed is
+enclosed. Deliberately *not* another column, which would imply a second axis to
+compare:
 
 ChatGPT · Claude · Gemini · Perplexity · Google AI Overviews · Share of Voice &
 rankings · Citations analysis · Competitive benchmarking · GA4 AI referral
@@ -73,12 +94,13 @@ Managed, For Agencies, FAQ and CtaBand sections stay as they are, in order.
 
 ## Implementation notes
 
-Reuse the existing `Table` / `TableHeader` / `TableRow` primitives and the
-group-heading row pattern already in `pricing/page.tsx`. No new components.
+Plain grid markup plus the existing `Reveal` primitive for the site's standard
+scroll entrance. No new components, and no `components/ui/table.tsx` — see
+Presentation above for why that primitive is unusable here.
 
 Delete: the `Tier` type, `TIERS`, `TierCard`, `Cell`, `CompareRow`,
 `COMPARE_GROUPS`, `TIER_COLUMNS`, `CompareCell`. Check whether `CardSpotlight`,
-`Card`, `Check` and `Minus` imports are still used after the cut.
+`Card`, `Minus` and the `Table*` imports are still used after the cut.
 
 ## Copy ripple
 
