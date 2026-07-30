@@ -4,6 +4,7 @@ import * as React from "react";
 import { animate, motion, useMotionValue, useTransform } from "motion/react";
 import { useIsomorphicReducedMotion } from "@/lib/use-reduced-motion";
 import { EASE } from "@/lib/ease";
+import { smoothPath, smoothSeries } from "@/lib/smooth-path";
 import { cn } from "@/lib/utils";
 
 /**
@@ -12,14 +13,46 @@ import { cn } from "@/lib/utils";
  * per panel, mono micro-labels, dashed dividers. No window chrome, no dark
  * panels - these sit behind the fold and must not shout.
  *
- * Motion: cells rest on their finished frame. Entering a cell replays its
- * animation from zero (via a replay counter that remounts the visual);
- * leaving settles it back to the finished frame. Hovering also darkens the
- * cell's text slightly. Reduced motion never animates.
+ * Motion: a cell plays its scene once on arrival when it's mounted into view
+ * (see `VignetteAutoPlay`), and replays on each mouse-enter. Off that path it
+ * rests on its finished frame. Hovering also darkens the cell's text slightly.
+ * Reduced motion never animates.
  */
 
-/* Hover-replay wrapper: each mouse-enter bumps `runId`, remounting the
-   visual so its animation runs again. runId 0 = untouched resting state. */
+/**
+ * Marks a subtree whose vignettes are mounted *because* they just became
+ * visible - the pinned stepper mounts exactly one panel at a time, as its
+ * stage becomes active. Those cells play their scene on mount.
+ *
+ * Without this the scene only ever ran on `mouseenter`, which made it look
+ * broken: a pointer already resting over a cell when the stage swaps in fires
+ * no `mouseenter` (the pointer hasn't moved), so the panel arrived frozen on
+ * its finished frame and you had to move the mouse away and back to see it
+ * play. The stacked fallback mounts all four panels at once, off-screen, so it
+ * stays opted out - otherwise every scene would burn down before you reached
+ * it.
+ */
+const AutoPlayContext = React.createContext(false);
+
+export function VignetteAutoPlay({
+  /** Hold at `false` until the panel is actually near the viewport - the first
+      stage mounts as soon as the stepper hydrates, which can be a whole page
+      above where it's read. */
+  active = true,
+  children,
+}: {
+  active?: boolean;
+  children: React.ReactNode;
+}) {
+  return (
+    <AutoPlayContext.Provider value={active}>
+      {children}
+    </AutoPlayContext.Provider>
+  );
+}
+
+/* Replay wrapper: each mouse-enter bumps `runId`, remounting the visual so its
+   animation runs again. runId 0 = resting on the finished frame; >= 1 plays. */
 function HoverCell({
   className,
   children,
@@ -28,11 +61,18 @@ function HoverCell({
   children: (runId: number) => React.ReactNode;
 }) {
   const reduced = useIsomorphicReducedMotion();
-  const [runId, setRunId] = React.useState(0);
+  const autoPlay = React.useContext(AutoPlayContext);
+  const [hoverRuns, setHoverRuns] = React.useState(0);
+  // Derived, not stored. The arrival play is just an offset on the hover count,
+  // so arming a panel that mounted early moves runId 0 -> 1 during render and
+  // the visual remounts into its animation - no effect, no cascading render,
+  // and no beat where the finished frame is painted before it replays.
+  const play = autoPlay && !reduced;
+  const runId = play ? hoverRuns + 1 : hoverRuns;
   return (
     <div
       className={cn("group", className)}
-      onMouseEnter={reduced ? undefined : () => setRunId((n) => n + 1)}
+      onMouseEnter={reduced ? undefined : () => setHoverRuns((n) => n + 1)}
     >
       {children(runId)}
     </div>
@@ -146,8 +186,21 @@ function EditorialCell({
 
 /* ── Measure: the data-rich surface, as a quiet bento ── */
 
-const VIS_LINE =
-  "M4 72C24 70 36 66 56 62C76 58 88 52 108 48C128 44 140 40 160 32C180 24 196 20 216 14";
+/* Share climbing over the window: slow, then compounding, then easing as it
+   nears the top of the category. Written as values and smoothed into a
+   monotone curve, so no joint can kink the way a hand-authored path does.
+   The viewBox is ~the width the panel actually renders at, so
+   `preserveAspectRatio="none"` barely stretches x and the curve is drawn at
+   the proportions it was designed at. */
+const VIS_W = 480;
+const VIS_H = 90;
+const VIS_VALUES = [14, 17, 21, 27, 34, 43, 52, 60, 66, 70];
+const VIS_LINE = smoothSeries(VIS_VALUES, {
+  x0: 6,
+  x1: VIS_W - 6,
+  yTop: 15,
+  yBottom: 73,
+});
 
 function VisibilityLine({ runId }: { runId: number }) {
   // Gradient and mask ids must be instance-unique - two vignettes can share the
@@ -158,14 +211,14 @@ function VisibilityLine({ runId }: { runId: number }) {
   // The wipe is driven imperatively rather than by variants: parent variants
   // don't reach a motion child nested inside <defs>, so the mask would sit at
   // its finished frame and never animate. runId 0 is the resting state.
-  const reveal = useMotionValue(runId === 0 ? 220 : 0);
+  const reveal = useMotionValue(runId === 0 ? VIS_W : 0);
 
   React.useEffect(() => {
     if (runId === 0) return;
     // `key` sits on the <svg>, so only the DOM remounts - this component (and
-    // its motion value) survives. Rewind explicitly or a replay animates 220→220.
+    // its motion value) survives. Rewind explicitly or a replay animates W→W.
     reveal.set(0);
-    const controls = animate(reveal, 220, {
+    const controls = animate(reveal, VIS_W, {
       delay: 0.12,
       duration: 1,
       ease: EASE,
@@ -176,7 +229,7 @@ function VisibilityLine({ runId }: { runId: number }) {
   return (
     <svg
       key={runId}
-      viewBox="0 0 220 90"
+      viewBox={`0 0 ${VIS_W} ${VIS_H}`}
       preserveAspectRatio="none"
       className="h-[90px] w-full"
       aria-hidden
@@ -189,27 +242,32 @@ function VisibilityLine({ runId }: { runId: number }) {
         {/* One left-to-right wipe uncovers the line and its area together, so
             the chart arrives as a single gesture rather than draw-then-fill. */}
         <mask id={`vis-reveal-${uid}`}>
-          <motion.rect x="0" y="0" width={reveal} height="90" fill="#fff" />
+          <motion.rect x="0" y="0" width={reveal} height={VIS_H} fill="#fff" />
         </mask>
       </defs>
       {[20, 45, 70].map((y) => (
         <line
           key={y}
           x1="0"
-          x2="220"
+          x2={VIS_W}
           y1={y}
           y2={y}
           stroke="oklch(0.24 0.02 285 / 0.08)"
+          vectorEffect="non-scaling-stroke"
         />
       ))}
       <g mask={`url(#vis-reveal-${uid})`}>
-        <path d={`${VIS_LINE}L216 90L4 90Z`} fill={`url(#vis-fill-${uid})`} />
+        <path
+          d={`${VIS_LINE} L ${VIS_W - 6} ${VIS_H} L 6 ${VIS_H} Z`}
+          fill={`url(#vis-fill-${uid})`}
+        />
         <path
           d={VIS_LINE}
           fill="none"
           stroke="var(--periwinkle)"
           strokeWidth="2"
           strokeLinecap="round"
+          strokeLinejoin="round"
           vectorEffect="non-scaling-stroke"
         />
       </g>
@@ -1237,6 +1295,23 @@ export function ActVignette() {
 
 /* ── Attribute: the lift, receipts attached ── */
 
+/* Flat while nothing has shipped, then lifting away from the ship date. The
+   monotone fit matters most here: an ordinary spline would dip below the flat
+   run just before the elbow, inventing a decline that never happened. */
+const LIFT_SHIP_X = 92;
+const LIFT_POINTS = [
+  { x: 0, y: 48 },
+  { x: 46, y: 47.4 },
+  { x: LIFT_SHIP_X, y: 45.5 },
+  { x: 140, y: 37 },
+  { x: 188, y: 26 },
+  { x: 240, y: 15 },
+  { x: 297, y: 7 },
+];
+const LIFT_SHIP_Y = LIFT_POINTS[2].y;
+const LIFT_END = LIFT_POINTS[LIFT_POINTS.length - 1];
+const LIFT_LINE = smoothPath(LIFT_POINTS);
+
 function StepChart({ runId }: { runId: number }) {
   /* The share responding to the shipped move: flat, then climbing. The
      dashed marker is the ship date; the area fill grounds the line. One
@@ -1256,8 +1331,6 @@ function StepChart({ runId }: { runId: number }) {
     return () => controls.stop();
   }, [runId, reveal]);
 
-  const line =
-    "M0 48C34 48 62 47 92 44C122 41 148 30 192 21C232 13 268 8 300 6";
   return (
     <svg
       key={runId}
@@ -1287,26 +1360,30 @@ function StepChart({ runId }: { runId: number }) {
         />
       ))}
       <g mask={`url(#lift-reveal-${uid})`}>
-        <path d={`${line}L300 64L0 64Z`} fill={`url(#lift-fill-${uid})`} />
+        <path
+          d={`${LIFT_LINE} L ${LIFT_END.x} 64 L 0 64 Z`}
+          fill={`url(#lift-fill-${uid})`}
+        />
         <line
-          x1="92"
+          x1={LIFT_SHIP_X}
           y1="8"
-          x2="92"
+          x2={LIFT_SHIP_X}
           y2="60"
           stroke="oklch(0.24 0.02 285 / 0.18)"
           strokeDasharray="3 4"
           vectorEffect="non-scaling-stroke"
         />
         <path
-          d={line}
+          d={LIFT_LINE}
           fill="none"
           stroke="var(--periwinkle)"
           strokeWidth="2"
           strokeLinecap="round"
+          strokeLinejoin="round"
           vectorEffect="non-scaling-stroke"
         />
-        <circle cx="92" cy="44" r="3" fill="var(--periwinkle)" />
-        <circle cx="297" cy="6" r="3.5" fill="var(--periwinkle)" />
+        <circle cx={LIFT_SHIP_X} cy={LIFT_SHIP_Y} r="3" fill="var(--periwinkle)" />
+        <circle cx={LIFT_END.x} cy={LIFT_END.y} r="3.5" fill="var(--periwinkle)" />
       </g>
     </svg>
   );
