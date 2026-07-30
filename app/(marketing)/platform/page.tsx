@@ -209,7 +209,7 @@ export default function PlatformPage() {
             style={{ fontStretch: "80%", letterSpacing: "-0.02em" }}
           >
             Understand and control your{" "}
-            <span className="text-periwinkle">AI presence</span>
+            <span className="text-periwinkle-ink">AI presence</span>
           </h1>
         </Reveal>
         <Reveal delay={0.15}>

@@ -91,7 +91,9 @@ function AeoVignette({ live }: { live: boolean }) {
                 transition: { delay: 0.15, duration: 0.45, ease: EASE },
               },
             }}
-            className="ml-auto block w-fit rounded-full bg-secondary px-3.5 py-2 text-xs font-medium text-foreground/80"
+            // Full foreground, not /80: at 10.4px on bg-secondary the faded
+            // version measured 4.18:1, just under the 4.5:1 AA floor.
+            className="ml-auto block w-fit rounded-full bg-secondary px-3.5 py-2 text-xs font-medium text-foreground"
           >
             &ldquo;best everyday skincare nz&rdquo;
           </motion.span>

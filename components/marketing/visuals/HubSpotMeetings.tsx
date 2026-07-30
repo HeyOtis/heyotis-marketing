@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 
 const EMBED_SCRIPT =
@@ -24,6 +24,9 @@ const EMBED_SCRIPT =
  * script once without a verified re-scan API - that blanks the widget on
  * back-navigation.
  */
+/** Accessible name for the injected scheduling frame. */
+const FRAME_TITLE = "Booking calendar - choose a time for your HeyOtis walkthrough";
+
 export function HubSpotMeetings({
   src,
   className,
@@ -31,6 +34,8 @@ export function HubSpotMeetings({
   src: string;
   className?: string;
 }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const script = document.createElement("script");
     script.src = EMBED_SCRIPT;
@@ -41,8 +46,34 @@ export function HubSpotMeetings({
     };
   }, []);
 
+  /*
+   * HubSpot injects the <iframe> with no `title`, which is a WCAG 2.1 failure
+   * (axe: frame-title) - screen reader users hear only "iframe" on the page
+   * whose entire purpose is booking a call. We can't set the attribute at render
+   * time because the element doesn't exist until HubSpot's loader creates it, so
+   * watch the container and title it on arrival. Also handles re-injection: the
+   * loader can replace the frame, and the observer stays subscribed.
+   */
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    function titleFrame() {
+      const frame = container?.querySelector("iframe");
+      if (frame && frame.getAttribute("title") !== FRAME_TITLE) {
+        frame.setAttribute("title", FRAME_TITLE);
+      }
+    }
+
+    titleFrame(); // in case the frame is already present
+    const observer = new MutationObserver(titleFrame);
+    observer.observe(container, { childList: true, subtree: true });
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div
+      ref={containerRef}
       className={cn("meetings-iframe-container min-h-[640px]", className)}
       data-src={src}
     />

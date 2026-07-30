@@ -49,14 +49,14 @@ export function RollingHeadline({ className }: { className?: string }) {
     <h1 className={className}>
       {LEAD}
       {/* Only this phrase rolls: it tumbles in once on load (rolled → rest),
-          then hover re-triggers it. aria-label gives AT one clean read of the
-          phrase - the split glyphs are decorative twins. */}
-      <motion.span
-        aria-label={ROLL}
-        initial="rolled"
-        animate="rest"
-        whileHover="rolled"
-      >
+          then hover re-triggers it. A visually-hidden copy gives AT one clean
+          read of the phrase while the split glyphs stay decorative twins.
+          NOTE: don't put aria-label on this span - a generic element with no
+          naming-capable role makes it a prohibited attribute (axe
+          aria-prohibited-attr), and support is inconsistent. The sr-only text
+          node is the portable equivalent. */}
+      <motion.span initial="rolled" animate="rest" whileHover="rolled">
+        <span className="sr-only">{ROLL}</span>
         <span aria-hidden="true">
           {words.map((word, wi) => (
             <React.Fragment key={wi}>

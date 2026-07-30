@@ -299,7 +299,10 @@ function PinnedStepper() {
                   <span
                     className={cn(
                       "label-mono block text-[0.6rem] transition-colors",
-                      i === active ? "text-accent" : "text-foreground/35",
+                      // Inactive tabs are still real, readable content, so they
+                      // need 4.5:1 on cream like any small text. /35 measured
+                      // 2.13:1; /65 is the first step that clears AA (4.99:1).
+                      i === active ? "text-accent" : "text-foreground/65",
                     )}
                   >
                     0{i + 1}
@@ -309,7 +312,7 @@ function PinnedStepper() {
                       "mt-1.5 block font-display text-base font-semibold transition-colors",
                       i === active
                         ? "text-foreground"
-                        : "text-foreground/55 group-hover:text-foreground/80",
+                        : "text-foreground/65 group-hover:text-foreground/85",
                     )}
                   >
                     {tab.stage}
@@ -319,7 +322,7 @@ function PinnedStepper() {
                       "mt-0.5 block text-sm transition-colors",
                       i === active
                         ? "text-muted-foreground"
-                        : "text-foreground/40",
+                        : "text-foreground/65",
                     )}
                   >
                     {tab.rest}

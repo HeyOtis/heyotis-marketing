@@ -318,7 +318,7 @@ function CompareCell({ value }: { value: Cell }) {
   if (value === true) {
     return (
       <span className="inline-flex">
-        <Check className="size-4 text-periwinkle" role="img" aria-label="Included" />
+        <Check className="size-4 text-periwinkle-ink" role="img" aria-label="Included" />
       </span>
     );
   }
@@ -451,7 +451,7 @@ export default function PricingPage() {
                       <span className="inline-flex flex-col items-center gap-1">
                         {col}
                         {isFeatured ? (
-                          <span className="label-mono text-[0.6rem] text-periwinkle">
+                          <span className="label-mono text-[0.6rem] text-periwinkle-ink">
                             Most popular
                           </span>
                         ) : null}
