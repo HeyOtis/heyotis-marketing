@@ -153,10 +153,10 @@ export default function PricingPage() {
         <div className="mt-12 border-t border-border">
           {/* Column headings only where there are real columns to head. */}
           <div className="hidden grid-cols-12 gap-8 border-b border-border pb-3 lg:grid">
-            <div className="col-span-4 label-mono text-[0.65rem] text-muted-foreground">
+            <div className="col-span-3 label-mono text-[0.65rem] text-muted-foreground">
               What we meter
             </div>
-            <div className="col-span-5 label-mono text-[0.65rem] text-muted-foreground">
+            <div className="col-span-6 label-mono text-[0.65rem] text-muted-foreground">
               What it means
             </div>
             <div className="col-span-3 label-mono text-[0.65rem] text-muted-foreground">
@@ -169,21 +169,21 @@ export default function PricingPage() {
               <Reveal as="li" key={lever.label} delay={i * 0.05}>
                 <div className="grid grid-cols-1 gap-x-8 gap-y-3 py-7 lg:grid-cols-12">
                   <h3
-                    className="col-span-4 font-display text-lg text-foreground"
+                    className="font-display text-lg text-foreground lg:col-span-3"
                     style={{ fontStretch: "85%", letterSpacing: "-0.01em" }}
                   >
                     {lever.label}
                   </h3>
-                  <p className="col-span-5 text-sm leading-relaxed text-foreground/80">
+                  <p className="text-sm leading-relaxed text-foreground/80 lg:col-span-6">
                     {lever.means}
                   </p>
                   {/* Set as a margin annotation - own rule, mono label - so it
                       reads as a note on the row, not a third value. */}
-                  <div className="col-span-3 border-l-2 border-periwinkle/40 pl-4 lg:border-l lg:border-border">
-                    <span className="label-mono text-[0.6rem] text-periwinkle-ink lg:hidden">
+                  <div className="border-l-2 border-periwinkle/40 pl-4 lg:col-span-3 lg:border-l lg:border-border">
+                    <span className="label-mono block text-[0.6rem] text-periwinkle-ink lg:hidden">
                       What moves it
                     </span>
-                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground lg:mt-0">
+                    <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground lg:mt-0">
                       {lever.moves}
                     </p>
                   </div>
