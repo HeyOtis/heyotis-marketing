@@ -1,5 +1,4 @@
-import { Fragment } from "react";
-import { Check, Minus } from "lucide-react";
+import { Check } from "lucide-react";
 import { Container } from "@/components/marketing/Container";
 import { Section } from "@/components/marketing/primitives/Section";
 import { SectionHeading } from "@/components/marketing/primitives/SectionHeading";
@@ -11,8 +10,6 @@ import {
   faqItemsToSchema,
   type FaqItem,
 } from "@/components/marketing/sections/Faq";
-import { Card } from "@/components/ui/card";
-import { CardSpotlight } from "@/components/ui/card-spotlight";
 import {
   Table,
   TableBody,
@@ -24,322 +21,73 @@ import {
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema, faqPageSchema } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
-import { cn } from "@/lib/utils";
 
 export const metadata = buildMetadata({
   title: "Pricing",
   description:
-    "HeyOtis pricing scales across four tiers, from $150/mo - by tracked brands, campaigns, AI responses, competitors and seats. Book a demo for a scoped quote.",
+    "HeyOtis has no fixed packages - every plan is scoped to your brand. We meter by tracked brands, campaigns, prompts, monthly AI responses, competitors and seats.",
   path: "/pricing",
 });
 
-type Tier = {
-  name: string;
-  who: string;
-  priceLabel: string;
-  priceSub: string;
-  features: string[];
-  recommended?: boolean;
-  ctaVariant: "primary" | "secondary" | "lavender";
-};
-
-const TIERS: Tier[] = [
-  {
-    name: "Basic",
-    who: "For brands taking their first look at AI search visibility.",
-    priceLabel: "From $150",
-    priceSub: "per month · scoped to your brand",
-    features: [
-      "1 tracked brand",
-      "3 campaigns",
-      "Up to 3 active prompts per campaign",
-      "500 AI responses / month",
-      "Up to 3 competitors benchmarked",
-      "ChatGPT, Claude, Gemini, Perplexity & Google AI Overviews",
-      "2 team seats",
-    ],
-    ctaVariant: "secondary",
-  },
-  {
-    name: "Plus",
-    who: "For growing teams defending share of voice.",
-    priceLabel: "From $625",
-    priceSub: "per month · scoped to your volume",
-    features: [
-      "Up to 3 tracked brands",
-      "5 campaigns",
-      "Up to 10 active prompts per campaign",
-      "2,500 AI responses / month",
-      "Up to 6 competitors benchmarked",
-      "ChatGPT, Claude, Gemini, Perplexity & Google AI Overviews",
-      "5 team seats",
-      "GA4 AI referral traffic",
-    ],
-    ctaVariant: "secondary",
-  },
-  {
-    name: "Premium",
-    who: "For brands competing hard across categories.",
-    priceLabel: "From $2,200",
-    priceSub: "per month · scoped to your portfolio",
-    features: [
-      "Up to 10 tracked brands",
-      "20 campaigns",
-      "Up to 25 active prompts per campaign",
-      "10,000 AI responses / month",
-      "Up to 12 competitors benchmarked",
-      "ChatGPT, Claude, Gemini, Perplexity & Google AI Overviews",
-      "10 team seats",
-      "GA4 AI referral traffic",
-      "Strategy Engine access",
-    ],
-    recommended: true,
-    ctaVariant: "lavender",
-  },
-  {
-    name: "Enterprise",
-    who: "For agencies and multi-brand portfolios.",
-    priceLabel: "Let's talk",
-    priceSub: "Tailored to your scope & governance",
-    features: [
-      "25 tracked brands",
-      "250 campaigns",
-      "Custom active prompts per campaign",
-      "50,000 AI responses / month",
-      "Custom competitor sets",
-      "ChatGPT, Claude, Gemini, Perplexity & Google AI Overviews",
-      "100 seats with SSO",
-      "GA4 AI referral traffic",
-      "Strategy Engine access",
-      "Dedicated onboarding & support",
-    ],
-    ctaVariant: "secondary",
-  },
-];
-
-function TierCard({ tier }: { tier: Tier }) {
-  const body = (
-    <div className="flex flex-1 flex-col p-6 sm:p-7">
-      {/* Reserved badge row on every card so the four plan names stay aligned;
-          only the recommended tier fills it. */}
-      <div className="mb-3 flex min-h-[1.5rem] items-center">
-        {tier.recommended ? (
-          <span className="label-mono inline-flex items-center rounded-full bg-periwinkle px-2.5 py-1 text-[0.625rem] leading-none tracking-[0.12em] text-foreground">
-            Most popular
-          </span>
-        ) : null}
-      </div>
-      <h3
-        className="font-display text-2xl text-foreground"
-        style={{ fontStretch: "85%", letterSpacing: "-0.01em" }}
-      >
-        {tier.name}
-      </h3>
-
-      <p className="mt-3 min-h-[2.75rem] text-sm leading-relaxed text-muted-foreground">
-        {tier.who}
-      </p>
-
-      <div className="mt-5 border-t border-border pt-5">
-        <div
-          className="font-display text-2xl text-foreground"
-          style={{ fontStretch: "85%", letterSpacing: "-0.01em" }}
-        >
-          {tier.priceLabel}
-        </div>
-        <div className="mt-1 min-h-[2rem] text-xs leading-relaxed text-muted-foreground">
-          {tier.priceSub}
-        </div>
-      </div>
-
-      <ul className="mt-6 flex flex-col gap-3.5">
-        {tier.features.map((feature) => (
-          <li key={feature} className="flex items-start gap-2.5 text-sm">
-            <span className="mt-px flex size-[1.125rem] shrink-0 items-center justify-center rounded-full bg-periwinkle/20">
-              <Check className="size-3 text-foreground" strokeWidth={2.5} />
-            </span>
-            <span className="leading-snug text-foreground/80">{feature}</span>
-          </li>
-        ))}
-      </ul>
-
-      <div className="mt-auto pt-8">
-        <BookCta
-          label="Talk to us"
-          variant={tier.ctaVariant}
-          size="default"
-          withArrow
-          className="w-full justify-center"
-        />
-      </div>
-    </div>
-  );
-
-  if (tier.recommended) {
-    return (
-      <CardSpotlight className="h-full ring-2 ring-periwinkle/60 shadow-lg shadow-foreground/[0.06]">
-        {body}
-      </CardSpotlight>
-    );
-  }
-
-  return <Card className="flex h-full flex-col">{body}</Card>;
-}
-
-type Cell = boolean | string;
-
-type CompareRow = {
+/** A dimension we meter. Volume levers only - no capability is withheld. */
+type Lever = {
   label: string;
-  basic: Cell;
-  plus: Cell;
-  premium: Cell;
-  enterprise: Cell;
+  means: string;
+  moves: string;
 };
 
-const COMPARE_GROUPS: { heading: string; rows: CompareRow[] }[] = [
+const LEVERS: Lever[] = [
   {
-    heading: "Limits",
-    rows: [
-      {
-        label: "Tracked brands",
-        basic: "1",
-        plus: "3",
-        premium: "10",
-        enterprise: "25",
-      },
-      {
-        label: "Campaigns",
-        basic: "3",
-        plus: "5",
-        premium: "20",
-        enterprise: "250",
-      },
-      {
-        label: "Active prompts per campaign",
-        basic: "3",
-        plus: "10",
-        premium: "25",
-        enterprise: "Custom",
-      },
-      {
-        label: "AI responses / month",
-        basic: "500",
-        plus: "2,500",
-        premium: "10,000",
-        enterprise: "50,000",
-      },
-      {
-        label: "Competitor set size",
-        basic: "3",
-        plus: "6",
-        premium: "12",
-        enterprise: "Custom",
-      },
-      {
-        label: "Team seats",
-        basic: "2",
-        plus: "5",
-        premium: "10",
-        enterprise: "100 + SSO",
-      },
-    ],
+    label: "Tracked brands",
+    means:
+      "Each brand is its own workspace, with its own campaigns, competitor set and reporting.",
+    moves: "How many brands - or distinct markets - you need watched separately.",
   },
   {
-    heading: "Capabilities",
-    rows: [
-      {
-        label: "Monitored AI engines",
-        basic: "All 6",
-        plus: "All 6",
-        premium: "All 6",
-        enterprise: "All 6",
-      },
-      {
-        label: "Share of Voice & rankings",
-        basic: true,
-        plus: true,
-        premium: true,
-        enterprise: true,
-      },
-      {
-        label: "Citations analysis",
-        basic: true,
-        plus: true,
-        premium: true,
-        enterprise: true,
-      },
-      {
-        label: "Competitive benchmarking",
-        basic: true,
-        plus: true,
-        premium: true,
-        enterprise: true,
-      },
-      {
-        label: "GA4 AI referral traffic",
-        basic: false,
-        plus: true,
-        premium: true,
-        enterprise: true,
-      },
-      {
-        label: "Strategy Engine access",
-        basic: false,
-        plus: false,
-        premium: true,
-        enterprise: true,
-      },
-    ],
+    label: "Campaigns",
+    means:
+      "A campaign is a themed set of prompts we run on a schedule - one per product line, market or buying question.",
+    moves: "How many of those themes you want tracked apart from each other.",
   },
   {
-    heading: "Support",
-    rows: [
-      {
-        label: "Onboarding",
-        basic: "Guided",
-        plus: "Guided",
-        premium: "Hands-on",
-        enterprise: "Dedicated",
-      },
-      {
-        label: "Support",
-        basic: "Standard",
-        plus: "Standard",
-        premium: "Priority",
-        enterprise: "Priority + SLA",
-      },
-    ],
+    label: "Active prompts per campaign",
+    means:
+      "The questions we actually put to the assistants - the ones your buyers would ask.",
+    moves: "How broad your category is, and how many phrasings genuinely matter.",
+  },
+  {
+    label: "AI responses per month",
+    means:
+      "One prompt sent to one engine, with its answer captured and analyzed. Run a prompt across every engine we monitor and each engine counts once.",
+    moves: "Active prompts × engines tracked × how often campaigns run.",
+  },
+  {
+    label: "Competitors benchmarked",
+    means:
+      "The rivals we score beside you on Share of Voice, rank and citations.",
+    moves: "How crowded your category is, and how many rivals you care about.",
+  },
+  {
+    label: "Team seats",
+    means: "The people with access to your workspace.",
+    moves: "Team size, and whether clients or stakeholders need their own view.",
   },
 ];
 
-const TIER_COLUMNS = ["Basic", "Plus", "Premium", "Enterprise"] as const;
-
-function CompareCell({ value }: { value: Cell }) {
-  if (value === true) {
-    return (
-      <span className="inline-flex">
-        <Check className="size-4 text-periwinkle-ink" role="img" aria-label="Included" />
-      </span>
-    );
-  }
-  if (value === false) {
-    return (
-      <span className="inline-flex">
-        <Minus
-          className="size-4 text-muted-foreground/40"
-          role="img"
-          aria-label="Not included"
-        />
-      </span>
-    );
-  }
-  return <span className="text-sm text-foreground/80">{value}</span>;
-}
+/** Capabilities every plan gets, regardless of scope. */
+const ALWAYS_INCLUDED: string[] = [
+  "ChatGPT, Claude, Gemini, Perplexity & Google AI Overviews",
+  "Share of Voice & competitive rankings",
+  "Citations analysis",
+  "Competitive benchmarking",
+  "GA4 AI referral traffic",
+  "Strategy Engine",
+];
 
 const FAQS: FaqItem[] = [
   {
     q: "How is HeyOtis pricing structured?",
-    a: "HeyOtis has four tiers - Basic, Plus, Premium and Enterprise - starting at $150/mo. Each plan is scoped to your number of tracked brands, campaigns, active prompts, monthly AI responses and competitor set size, all monitored across ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews. Prices are starting points; book a chat and we'll size a plan to your category and goals.",
+    a: "There are no fixed packages. Every plan gets the whole product - all the engines we monitor, Share of Voice, citations, benchmarking and the Strategy Engine - and we price on volume instead: tracked brands, campaigns, active prompts, monthly AI responses, competitors benchmarked and team seats. Book a chat and we'll scope those six numbers to your category and goals.",
   },
   {
     q: "Is there a free trial or self-serve sign-up?",
@@ -347,15 +95,15 @@ const FAQS: FaqItem[] = [
   },
   {
     q: "What counts as an AI response?",
-    a: "An AI response is a single prompt sent to one AI engine with its answer captured and analyzed. So one prompt run across ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews counts as five AI responses. Your monthly volume is driven by the number of active prompts, the engines you track, and how often campaigns run.",
+    a: "An AI response is a single prompt sent to one AI engine, with its answer captured and analyzed. The same prompt run across every engine we monitor counts once per engine. So your monthly volume comes down to three things: how many active prompts you have, how many engines you track them on, and how often campaigns run.",
   },
   {
     q: "Can agencies manage multiple brands?",
-    a: "Yes. HeyOtis is multi-tenant - Organization → Brand → Campaign - so you can run several brands from one account. Plus and Premium cover small portfolios, while Enterprise scales to 25 tracked brands, 100 seats and SSO. For larger agency portfolios we have a dedicated Agencies track - talk to us.",
+    a: "Yes. HeyOtis is multi-tenant - Organization → Brand → Campaign - so you can run several brands from one account, each with its own campaigns and competitor set. Tracked brands and seats are two of the levers we scope, so a portfolio is just a larger scope rather than a different product. For agencies specifically we have a dedicated track with white-label reporting - talk to us.",
   },
   {
-    q: "Can I change plans as I grow?",
-    a: "Yes. You can move between tiers as your needs change - just talk to us and we'll adjust your tracked brands, prompt volume, AI response allowance, seats and engines to match.",
+    q: "Can I change my scope as I grow?",
+    a: "Yes. Nothing is locked to a package, so there's no upgrade step to negotiate - talk to us and we'll adjust the levers that changed, whether that's tracked brands, prompt volume, monthly AI responses, competitors or seats.",
   },
 ];
 
@@ -379,19 +127,19 @@ export default function PricingPage() {
               className="display-hero mt-5 text-balance"
               style={{ fontStretch: "80%", letterSpacing: "-0.02em" }}
             >
-              Plans that scale with your{" "}
-              <span className="text-accent">AI visibility strategy</span>
+              No packages. A plan{" "}
+              <span className="text-accent">scoped to your brand</span>
             </h1>
             <p
               className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground"
               data-speakable
             >
-              Plans start at $150/mo and scale by tracked brands, campaigns,
-              prompt volume and competitor sets across ChatGPT, Claude, Gemini,
-              Perplexity and Google AI Overviews. There&apos;s no self-serve
-              sign-up - onboarding is demo-led, so we scope each plan with you
-              on a short call. Pick the tier that fits and we&apos;ll size the
-              rest.
+              Every brand competes in a different category, against different
+              rivals, on different questions - so HeyOtis isn&apos;t sold in
+              fixed packages. Every plan gets the whole product; what varies is
+              how much of it you need. Onboarding is demo-led rather than
+              self-serve, so we size that with you on a short call. Here&apos;s
+              what we meter.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <BookCta label="Talk to us" variant="salmon" nudge withArrow />
@@ -403,99 +151,71 @@ export default function PricingPage() {
         </Container>
       </section>
 
-      {/* Tier cards */}
+      {/* What we scope by */}
       <Section surface="cream" className="pt-4 md:pt-6" id="plans">
         <SectionHeading
-          eyebrow="Tiers"
-          title="Four tiers, one tailored quote"
-          sub="Every tier monitors ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews. The difference is scale - how many brands, prompts, AI responses and competitors you track, plus the depth of strategy and support."
+          eyebrow="How pricing works"
+          title="What we scope by"
+          sub="Every plan gets the whole product. What varies is how much of it you need - so we price on volume, not features. These are the six numbers we agree on the call."
           className="max-w-2xl"
         />
-        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {TIERS.map((tier) => (
-            <TierCard key={tier.name} tier={tier} />
-          ))}
-        </div>
-        <p className="mt-8 text-sm text-muted-foreground">
-          Prices are starting points and limits scale with your scope -
-          we&apos;ll confirm the right plan and allowances for your brands on a
-          quick call.
-        </p>
-      </Section>
 
-      {/* Comparison table */}
-      <Section surface="card">
-        <SectionHeading
-          eyebrow="Compare"
-          title="What's included at each tier"
-          sub="A side-by-side look at limits, capabilities and support across Basic, Plus, Premium and Enterprise."
-          className="max-w-2xl"
-        />
         <div className="mt-10 overflow-x-auto rounded-2xl border border-border bg-card">
-          <Table className="min-w-[720px]">
+          <Table className="min-w-[760px]">
             <TableHeader>
               <TableRow className="hover:bg-transparent">
-                <TableHead className="sticky left-0 z-20 w-[34%] border-r border-border/60 bg-card py-4 pl-6 text-sm font-medium text-muted-foreground">
-                  Capability
+                <TableHead className="sticky left-0 z-20 w-[24%] border-r border-border/60 bg-card py-4 pl-6 text-sm font-medium text-muted-foreground">
+                  What we meter
                 </TableHead>
-                {TIER_COLUMNS.map((col) => {
-                  const isFeatured = col === "Premium";
-                  return (
-                    <TableHead
-                      key={col}
-                      className={cn(
-                        "py-4 text-center text-sm font-semibold text-foreground",
-                        isFeatured && "bg-periwinkle/12",
-                      )}
-                    >
-                      <span className="inline-flex flex-col items-center gap-1">
-                        {col}
-                        {isFeatured ? (
-                          <span className="label-mono text-[0.6rem] text-periwinkle-ink">
-                            Most popular
-                          </span>
-                        ) : null}
-                      </span>
-                    </TableHead>
-                  );
-                })}
+                <TableHead className="w-[42%] py-4 text-sm font-medium text-muted-foreground">
+                  What it means
+                </TableHead>
+                <TableHead className="py-4 text-sm font-medium text-muted-foreground">
+                  What moves it
+                </TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {COMPARE_GROUPS.map((group) => (
-                <Fragment key={group.heading}>
-                  <TableRow className="hover:bg-transparent">
-                    <TableCell
-                      colSpan={5}
-                      className="label-mono sticky left-0 bg-secondary/40 py-2.5 pl-6 text-[0.65rem] text-muted-foreground"
-                    >
-                      {group.heading}
-                    </TableCell>
-                  </TableRow>
-                  {group.rows.map((row) => (
-                    <TableRow key={row.label}>
-                      <TableCell className="sticky left-0 z-10 border-r border-border/60 bg-card py-3.5 pl-6 text-sm font-medium text-foreground">
-                        {row.label}
-                      </TableCell>
-                      <TableCell className="text-center">
-                        <CompareCell value={row.basic} />
-                      </TableCell>
-                      <TableCell className="text-center">
-                        <CompareCell value={row.plus} />
-                      </TableCell>
-                      <TableCell className="bg-periwinkle/12 text-center">
-                        <CompareCell value={row.premium} />
-                      </TableCell>
-                      <TableCell className="text-center">
-                        <CompareCell value={row.enterprise} />
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </Fragment>
+              {LEVERS.map((lever) => (
+                <TableRow key={lever.label} className="align-top">
+                  <TableCell className="sticky left-0 z-10 border-r border-border/60 bg-card py-4 pl-6 text-sm font-medium text-foreground">
+                    {lever.label}
+                  </TableCell>
+                  <TableCell className="py-4 text-sm leading-relaxed text-foreground/80">
+                    {lever.means}
+                  </TableCell>
+                  <TableCell className="py-4 pr-6 text-sm leading-relaxed text-muted-foreground">
+                    {lever.moves}
+                  </TableCell>
+                </TableRow>
               ))}
             </TableBody>
           </Table>
         </div>
+
+        {/* Deliberately not table rows - a flat list reads as "everyone gets
+            this", where a fourth column would imply another axis to compare. */}
+        <div className="mt-10 rounded-2xl border border-border bg-secondary/30 p-6 sm:p-7">
+          <h3 className="label-mono text-[0.65rem] text-muted-foreground">
+            In every plan, whatever the scope
+          </h3>
+          <ul className="mt-5 grid gap-3.5 sm:grid-cols-2">
+            {ALWAYS_INCLUDED.map((item) => (
+              <li key={item} className="flex items-start gap-2.5 text-sm">
+                <span className="mt-px flex size-[1.125rem] shrink-0 items-center justify-center rounded-full bg-periwinkle/20">
+                  <Check className="size-3 text-foreground" strokeWidth={2.5} />
+                </span>
+                <span className="leading-snug text-foreground/80">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <p className="mt-8 max-w-2xl text-sm text-muted-foreground">
+          Nothing here is locked behind a package - there&apos;s no feature to
+          upgrade to later. We set the six numbers to match your category, and
+          adjust them when your scope changes.
+        </p>
         <div className="mt-8">
           <BookCta label="Talk to us" variant="secondary" withArrow />
         </div>
@@ -545,7 +265,7 @@ export default function PricingPage() {
             <br className="hidden sm:block" /> for your brand.
           </>
         }
-        sub="Book a 20-minute walkthrough. We'll run your brand against ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews, show you the gaps, and recommend the tier that fits."
+        sub="Book a 20-minute walkthrough. We'll run your brand against ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews, show you the gaps, and scope a plan around what we find."
       />
     </>
   );

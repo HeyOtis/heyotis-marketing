@@ -59,7 +59,7 @@ In-house brand marketing, SEO/AEO and e-commerce teams, and agencies managing mu
 SEO optimizes for ranked links on search engines. HeyOtis focuses on Answer Engine Optimization (AEO) / Generative Engine Optimization (GEO): being the brand AI assistants name and recommend inside their generated answers - and proving you improved it.
 
 ## Pricing
-Four tiers - Basic, Plus, Premium and Enterprise - starting at $150/mo, scaling by tracked brands, campaigns, monthly AI responses, competitors and seats. Plus a Managed (strategist-led) track and an Agencies track for running multiple brands. Prices are starting points; onboarding is demo-led (no self-serve sign-up), so plans are scoped on a short call.
+There are no fixed packages. Every plan gets the whole product - all five assistants monitored, Share of Voice and rankings, citations analysis, competitive benchmarking, GA4 AI referral traffic and the Strategy Engine - and pricing is metered on volume instead: tracked brands, campaigns, active prompts per campaign, monthly AI responses, competitors benchmarked and team seats. Plus a Managed (strategist-led) track and an Agencies track for running multiple brands. Onboarding is demo-led (no self-serve sign-up), so scope is agreed on a short call.
 
 ## Getting started
 - Book a 20-minute walkthrough at ${u}/contact - we run your brand, surface the highest-impact moves, and show how the loop proves the lift.
@@ -68,7 +68,7 @@ Four tiers - Basic, Plus, Premium and Enterprise - starting at $150/mo, scaling 
 ## Navigation
 - Platform ▾ - two columns for the two product pages. Platform: AEO Insights (${u}/platform#insights-surface), AEO Analytics (${u}/platform#analytics-surface), Strategy & Attribution (${u}/platform#strategy-surface), Roadmap (${u}/platform#roadmap-surface). Strategy: The Strategy Engine (${u}/strategy), The Loop End to End (${u}/strategy#loop), The Action Plan (${u}/strategy#plan), Built on Evidence (${u}/strategy#evidence). A footer link inside the dropdown, "How the loop works", points to ${u}/platform.
 - Resources ▾ - Free AI Visibility Report (${u}/report), Case Studies (${u}/case-studies), Blog (${u}/blog), About HeyOtis (${u}/about).
-- Pricing ▾ - Plans (self-serve tiers), Managed (strategist-led), For Agencies (white-label & multi-brand).
+- Pricing ▾ - Plans (scoped to your brand), Managed (strategist-led), For Agencies (white-label & multi-brand).
 
 ## Key pages
 - Home: ${u}/ - the loop story: hero, trusted-by, the four-stage loop stepper (Measure, Strategy, Act, Attribute), the stakes (the answer is the new shortlist), proof (Daylyte), the three pillars, the report band, FAQ, final CTA.
