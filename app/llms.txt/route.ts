@@ -52,7 +52,7 @@ In-house brand, SEO/AEO and e-commerce teams, and agencies managing multiple bra
 - [Case Studies](${u}/case-studies): Real brands, measured lift in AI recommendation share.
 - [Daylyte case study](${u}/case-studies/daylyte): from 0% to 65% AI visibility in two weeks - a two-founder UK hydration brand became the #1 brand in its category with free, founder-led content, guided by what HeyOtis showed them to fix.
 - [Guides & AEO Playbook](${u}/guides): Practical guides on Answer Engine Optimization.
-- [Pricing](${u}/pricing): No fixed packages - every plan gets the whole product and is metered by tracked brands, campaigns, active prompts, monthly AI responses, competitors and seats. Plus Managed and Agencies tracks; demo-led onboarding.
+- [Pricing](${u}/pricing): No fixed packages - every plan gets the whole product and is metered by tracked brands, campaigns, monthly AI responses, competitors and seats. Plus Managed and Agencies tracks; demo-led onboarding.
 - [About](${u}/about): Mission and methodology.
 - [Blog](${u}/blog): Guides on AEO and AI search visibility.
 - [Contact](${u}/contact): Book a call.
