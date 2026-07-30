@@ -16,7 +16,12 @@ const STATIC_ROUTES: Array<{
   { path: "/blog", changeFrequency: "weekly", priority: 0.8 },
   { path: "/report", changeFrequency: "weekly", priority: 0.85 },
   { path: "/case-studies", changeFrequency: "monthly", priority: 0.6 },
-  { path: "/guides", changeFrequency: "monthly", priority: 0.6 },
+  // Legal pages: low priority but indexable on purpose - a discoverable privacy
+  // notice is expected by ad platforms, app reviewers and regulators.
+  { path: "/privacy", changeFrequency: "yearly", priority: 0.3 },
+  { path: "/terms", changeFrequency: "yearly", priority: 0.3 },
+  // /guides is deliberately absent: it currently mirrors /blog and is noindexed.
+  // Add it back when it has unique content (see app/(marketing)/guides/page.tsx).
 ];
 
 // Stable date for static routes so the sitemap doesn't churn on every deploy.

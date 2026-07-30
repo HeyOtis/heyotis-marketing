@@ -52,7 +52,11 @@ export function buildMetadata({
     title: titleAbsolute ? { absolute: titleAbsolute } : title,
     description,
     metadataBase: new URL(siteConfig.url),
-    alternates: { canonical: url },
+    // A noindex page must not declare a canonical: the canonical would ask
+    // crawlers to consolidate signals onto that URL while robots asks them to
+    // drop the page - contradictory, and on error pages (which have no real
+    // URL of their own) actively harmful.
+    ...(noindex ? {} : { alternates: { canonical: url } }),
     robots: noindex
       ? { index: false, follow: false }
       : { index: true, follow: true },

@@ -1,7 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Bricolage_Grotesque } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { Analytics } from "@/components/analytics/Analytics";
+import { CONSENT_DEFAULTS, GA_ID } from "@/lib/analytics";
 import { organizationSchema, websiteSchema } from "@/lib/schema";
 import { siteConfig } from "@/lib/site";
 
@@ -85,9 +88,22 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
+        {/* Google Consent Mode v2 defaults (all denied in the EU/UK/CH/NZ).
+            Must execute before gtag.js loads, so it uses beforeInteractive -
+            which the App Router requires to be in the root layout. Keep it
+            above <Analytics />, which loads GA4 afterInteractive. */}
+        {GA_ID ? (
+          <Script
+            id="consent-defaults"
+            strategy="beforeInteractive"
+            // Static string from lib/analytics.ts; no user input interpolated.
+            dangerouslySetInnerHTML={{ __html: CONSENT_DEFAULTS }}
+          />
+        ) : null}
         <JsonLd data={organizationSchema()} />
         <JsonLd data={websiteSchema()} />
         {children}
+        <Analytics />
       </body>
     </html>
   );

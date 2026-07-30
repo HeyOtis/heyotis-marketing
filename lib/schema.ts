@@ -70,7 +70,13 @@ export function faqPageSchema(
 type ArticleInput = {
   title: string;
   description: string;
-  slug: string;
+  /**
+   * Site-root-relative path to the article, e.g. `/blog/what-is-aeo` or
+   * `/case-studies/daylyte`. Must be the page's own canonical path - the
+   * emitted `url` and `mainEntityOfPage.@id` have to agree with the canonical
+   * tag, or crawlers discard the markup.
+   */
+  path: string;
   datePublished: string;
   dateModified?: string;
   authors?: string[];
@@ -81,7 +87,7 @@ type ArticleInput = {
 export function articleSchema(
   article: ArticleInput,
 ): WithContext<Record<string, unknown>> {
-  const url = new URL(`/blog/${article.slug}`, siteConfig.url).toString();
+  const url = new URL(article.path, siteConfig.url).toString();
   return {
     "@context": "https://schema.org",
     "@type": "Article",

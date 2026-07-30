@@ -79,7 +79,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         data={articleSchema({
           title,
           description,
-          slug: post.slug,
+          path: `/blog/${post.slug}`,
           datePublished: date,
           dateModified: updated,
           authors: author ? [author] : undefined,
