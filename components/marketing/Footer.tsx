@@ -66,6 +66,18 @@ export function Footer() {
             © {currentYear} {siteConfig.name}. All rights reserved.
           </p>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+            <Link
+              href="/privacy"
+              className="transition-colors hover:text-surface-dark-foreground"
+            >
+              Privacy
+            </Link>
+            <Link
+              href="/terms"
+              className="transition-colors hover:text-surface-dark-foreground"
+            >
+              Terms
+            </Link>
             <a
               href={siteConfig.socials.linkedin}
               target="_blank"

@@ -79,7 +79,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
           data={articleSchema({
             title,
             description,
-            slug: `case-studies/${study.slug}`,
+            path: `/case-studies/${study.slug}`,
             datePublished: date,
             dateModified: updated,
             authors: author ? [author] : undefined,

@@ -10,11 +10,18 @@ import { Reveal } from "@/components/marketing/primitives/Reveal";
 import { BookCta } from "@/components/marketing/primitives/BookCta";
 import { getAllPosts } from "@/lib/mdx";
 
+// noindex until this page has content of its own. Today it lists exactly the
+// same posts as /blog and links to the same /blog/[slug] targets, so indexing it
+// would put two near-identical pages in competition. It's also linked from
+// nowhere in NAV or the footer. Drop `noindex` (and re-add /guides to
+// app/sitemap.ts) once the playbook has its own guides rather than a mirror of
+// the blog index.
 export const metadata = buildMetadata({
   title: "Guides & AEO Playbook",
   description:
     "The start of HeyOtis' Answer Engine Optimization playbook - practical guides on how AI assistants choose which brands to recommend, and how to grow your Share of Voice.",
   path: "/guides",
+  noindex: true,
 });
 
 export default function GuidesPage() {

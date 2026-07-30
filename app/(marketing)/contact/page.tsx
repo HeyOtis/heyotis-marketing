@@ -5,6 +5,7 @@ import { Eyebrow } from "@/components/marketing/primitives/Eyebrow";
 import { BookCta } from "@/components/marketing/primitives/BookCta";
 import { AiSourceLogos } from "@/components/marketing/visuals/AiSourceLogos";
 import { HubSpotMeetings } from "@/components/marketing/visuals/HubSpotMeetings";
+import { BookingConversion } from "@/components/analytics/BookingConversion";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
@@ -29,6 +30,9 @@ export default function ContactPage() {
 
   return (
     <>
+      {/* Listens for HubSpot's cross-origin booking-success message and fires
+          GA4 `generate_lead`. GA4 cannot see into the iframe on its own. */}
+      <BookingConversion />
       <JsonLd
         data={breadcrumbSchema([
           { name: "Home", href: "/" },

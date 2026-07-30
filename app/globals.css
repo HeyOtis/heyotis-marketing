@@ -52,6 +52,14 @@
   /* Nory-grammar card system (2026-07 visual rebuild) */
   --stage: oklch(0.945 0.012 85);        /* warm beige inset panels   */
   --periwinkle: oklch(0.75 0.1 285);     /* banner tiles, dark text   */
+  /* Periwinkle taken dark enough to carry TEXT on cream. The light token above
+     is decorative only (tile fills, dots, SVG strokes) - as body/heading text it
+     measures 2.09:1 on the cream surface, below the 3:1 WCAG AA floor even for
+     large bold type. This variant keeps hue 285 so it still reads as the same
+     colour, and lands at 4.68:1, which clears AA for small text too (the
+     pricing "Most popular" chip needs that). Same convention as --ink-* below:
+     light = decorative, darkened = text. */
+  --periwinkle-ink: oklch(0.55 0.16 285);
   --lime: oklch(0.9 0.17 125);           /* positive delta/status     */
   /* Burnt sienna - the salmon hue taken dark. Chroma carries the orange:
      at 0.07 it desaturates to chocolate, so keep it up near 0.13. Lightness
@@ -123,6 +131,7 @@
 
   --color-stage: var(--stage);
   --color-periwinkle: var(--periwinkle);
+  --color-periwinkle-ink: var(--periwinkle-ink);
   --color-lime: var(--lime);
   --color-panel-warm: var(--panel-warm);
   --color-panel-violet: var(--panel-violet);

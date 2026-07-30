@@ -368,7 +368,9 @@ function FanoutPeek({ runId }: { runId: number }) {
     >
       {/* the question arrives... */}
       <motion.span
-        className="ml-auto w-fit rounded-full bg-secondary px-2.5 py-1 text-[0.65rem] text-foreground/60 transition-colors group-hover:text-foreground/80"
+        // Full foreground, not /60: this chip is visible (not aria-hidden) and
+        // at 10.4px the faded version measured 4.18:1, under the 4.5:1 AA floor.
+        className="ml-auto w-fit rounded-full bg-secondary px-2.5 py-1 text-[0.65rem] text-foreground transition-colors"
         variants={{
           hidden: { opacity: 0, x: 14 },
           show: {

@@ -1,11 +1,13 @@
 export const siteConfig = {
   name: "HeyOtis",
   shortName: "HeyOtis",
-  // Canonical marketing URL. NOTE: the platform app lives at heyotis.ai -
-  // confirm which domain is canonical for marketing. Overridable via env.
-  // Trailing slash stripped at the source so every consumer (schema @id
-  // builders, OG URLs, sitemap) concatenates against a clean origin.
-  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://heyotis.com").replace(
+  // Canonical marketing URL. heyotis.ai is the only domain we own - the apex
+  // serves marketing, the platform app sits on the app. subdomain. (heyotis.com
+  // is owned by someone else; never point canonicals or email at it.)
+  // Overridable via env. Trailing slash stripped at the source so every
+  // consumer (schema @id builders, OG URLs, sitemap) concatenates against a
+  // clean origin.
+  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://heyotis.ai").replace(
     /\/$/,
     "",
   ),
@@ -22,7 +24,25 @@ export const siteConfig = {
     "See how ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews recommend your brand - and what to do about it. HeyOtis measures your AI recommendation share, citations and competitive rank.",
   locale: "en-US",
   defaultOgImage: "/api/og",
-  contactEmail: "hello@heyotis.com",
+  contactEmail: "hello@heyotis.ai",
+  // Registered legal entity. Must stay in step with the platform's own policies
+  // at app.heyotis.ai/privacy and /terms - if the entity, address or company
+  // number changes, it changes in both places.
+  legal: {
+    entity: "HeyOtis Ltd",
+    companyNumber: "16969753",
+    address: ["124-128 City Road", "London", "England", "EC1V 2NX"],
+    // Data-protection and legal enquiries go to support@, matching the
+    // platform policies. General marketing enquiries use contactEmail above.
+    privacyEmail: "support@heyotis.ai",
+    // UK-established controller: UK GDPR applies, the ICO is the regulator.
+    regulator: "Information Commissioner's Office (ICO)",
+    regulatorUrl: "https://ico.org.uk/make-a-complaint/",
+    appPrivacyUrl: "https://app.heyotis.ai/privacy",
+    appTermsUrl: "https://app.heyotis.ai/terms",
+    privacyUpdated: "2026-07-30",
+    termsUpdated: "2026-07-30",
+  },
   founders: ["HeyOtis Team"],
   socials: {
     linkedin: "https://www.linkedin.com/company/heyotis",

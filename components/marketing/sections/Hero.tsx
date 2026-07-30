@@ -26,7 +26,7 @@ export function Hero() {
             <div className="mt-10">
               <BookCta variant="salmon" className="h-13 px-9 text-base" />
               {/* coverage microline - the five assistants, whispered */}
-              <p className="label-mono mt-6 text-[0.6rem] text-foreground/35">
+              <p className="label-mono mt-6 text-[0.6rem] text-foreground/65">
                 ChatGPT · Claude · Gemini · Perplexity · AI Overviews
               </p>
             </div>
