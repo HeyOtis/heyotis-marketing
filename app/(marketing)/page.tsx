@@ -33,11 +33,11 @@ const FAQS: FaqItem[] = [
   },
   {
     q: "How does HeyOtis prove AI actually drove the result?",
-    a: "HeyOtis ingests your traffic and AI-bot logs. When a recommended move ships, you can watch AI crawlers like GPTBot and PerplexityBot fetch the changed pages, see referral sessions arrive from assistants like ChatGPT and Perplexity, and measure the before-and-after change in your AI recommendation share - three layers of evidence, from raw log line to business metric.",
+    a: "HeyOtis reads your traffic and AI activity directly. When a recommended action goes live, you can watch AI assistants like ChatGPT and Perplexity revisit the changed pages, see the referral sessions they send, and measure the before-and-after change in your AI recommendation share - three layers of evidence, from raw log line to business metric.",
   },
   {
     q: "Which AI assistants does HeyOtis monitor?",
-    a: "HeyOtis monitors ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews - the assistants most people use to research and compare brands. We add engines as adoption grows.",
+    a: "HeyOtis monitors ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews - the AI assistants most people use to research and compare brands. We add engines as adoption grows.",
   },
   {
     q: "What is Share of Voice in AI search?",
@@ -72,7 +72,7 @@ export default function HomePage() {
           align="center"
           eyebrow="The stakes"
           title="The answer is the new shortlist."
-          sub="When someone asks an assistant what to buy, they don't get ten blue links to weigh up. They get three names. You're on that list or you're invisible - and there's no page two to climb."
+          sub="Search gave buyers a list to work through. AI gives them three names. You're on that list or you're not in the room - and the shortlisting happened somewhere you can't see."
           className="mx-auto max-w-2xl"
         />
       </Section>
@@ -93,7 +93,7 @@ export default function HomePage() {
       </Section>
 
       <CtaBand
-        sub="Book a 20-minute walkthrough. We'll run your brand against ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews and show you exactly where you're losing the answer."
+        sub="Run your brand live against every AI assistant - free, in 20 minutes. We'll show you exactly where you're losing the answer."
         secondary={null}
       />
     </>

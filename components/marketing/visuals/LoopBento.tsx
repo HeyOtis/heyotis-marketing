@@ -170,7 +170,7 @@ function VerifyScene({ live }: { live: boolean }) {
   return (
     <motion.div variants={scene} className="flex h-full flex-col justify-center gap-2.5">
       <motion.p variants={item} className="label-mono text-[0.6rem] text-muted-foreground">
-        detector · your surfaces
+        detector · your website
       </motion.p>
       <motion.div
         variants={item}

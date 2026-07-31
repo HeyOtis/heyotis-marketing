@@ -35,7 +35,7 @@ export const LOOP_STAGES: LoopStage[] = [
     verb: "Measure",
     title: "See exactly how you show up",
     blurb:
-      "Every assistant, every query in your campaign. Where you appear in the answer, how you're described, and who gets cited instead of you.",
+      "Every AI assistant, every query in your campaign. Where you appear in the answer, how you're described, and who gets cited instead of you.",
     icon: Gauge,
   },
   {
@@ -44,7 +44,7 @@ export const LOOP_STAGES: LoopStage[] = [
     verb: "Diagnose",
     title: "Find the reason, with evidence",
     blurb:
-      "Detectors read your surfaces and the answers, and every finding traces to a fact you can click: the answer, the citation, the page, the date.",
+      "The engine reads your pages and the answers side by side, and every finding traces to a fact you can click: the answer, the citation, the page, the date.",
     icon: ScanSearch,
   },
   {
@@ -93,7 +93,7 @@ export const MATURITY_LEVELS: MaturityLevel[] = [
     level: "Diagnostic",
     tagline: "Here's what's happening",
     blurb:
-      "Where you stand across every assistant, and the signals explaining why.",
+      "Where you stand across every AI assistant, and the signals explaining why.",
     icon: Activity,
   },
   {
@@ -101,7 +101,7 @@ export const MATURITY_LEVELS: MaturityLevel[] = [
     level: "Prescriptive",
     tagline: "Here's what to do about it",
     blurb:
-      "A ranked, evidence-backed action plan - the moves with the best return first.",
+      "A ranked, evidence-backed action plan - the actions with the biggest return first.",
     icon: ClipboardList,
   },
   {
@@ -117,7 +117,7 @@ export const MATURITY_LEVELS: MaturityLevel[] = [
     level: "Autonomous",
     tagline: "We've already done it for you",
     blurb:
-      "The engine ships and verifies the fix, then proves it moved your recommendation share.",
+      "The engine makes the fix, confirms it went live, then proves it moved your recommendation share.",
     icon: Bot,
   },
 ];
@@ -143,10 +143,10 @@ export const OPPORTUNITIES: Opportunity[] = [
     effort: "Medium",
     measure: "ChatGPT recommendation share",
     signals: 4,
-    why: "You're named in the answer but rarely first, and never as the cited source - assistants lean on a retailer page instead of yours.",
+    why: "You're named in the answer but rarely first, and never as the cited source - AI assistants lean on a retailer page instead of yours.",
     doThis: [
       'Publish a comparison page targeting the “best everyday” buying question.',
-      "Add Product and FAQ structured data so assistants can ground on you.",
+      "Add Product and FAQ structured data so AI assistants can ground on you.",
       "Reclaim the citation with first-party proof points and reviews.",
     ],
     expect: "Move from mentioned to first-named on the everyday-use prompts.",
@@ -172,9 +172,9 @@ export const OPPORTUNITIES: Opportunity[] = [
     effort: "Low",
     measure: "Owned citation share",
     signals: 2,
-    why: "A third-party source has overtaken your owned pages as the citation assistants trust.",
+    why: "A third-party source has overtaken your owned pages as the citation AI assistants trust.",
     doThis: [
-      "Refresh the stale page the assistant is citing instead of you.",
+      "Refresh the stale page the AI assistant is citing instead of you.",
       "Add the structured data the retailer page already has.",
     ],
     expect: "Reclaim the owned citation on your branded queries.",
@@ -233,15 +233,17 @@ export const SIGNAL_STREAMS: SignalStream[] = [
     name: "AI answer sampling",
     short: "AI answers",
     blurb:
-      "How five assistants answer, cite and rank you across the prompts that matter.",
+      "How five AI assistants answer, cite and rank you across the prompts that matter.",
     icon: MessageSquare,
   },
   {
     id: "logs",
-    name: "AI traffic & bot logs",
-    short: "Bot logs",
+    name: "AI traffic",
+    short: "AI traffic",
+    // The one place the crawler names are spelled out - everywhere else on the
+    // site says "AI assistants".
     blurb:
-      "GPTBot, ClaudeBot, PerplexityBot, ChatGPT-User - which pages they fetch, and the humans assistants send you.",
+      "Which pages AI assistants visit - GPTBot, ClaudeBot, PerplexityBot and the rest - and the visitors they send you.",
     icon: Terminal,
     differentiator: true,
   },
@@ -255,10 +257,10 @@ export const SIGNAL_STREAMS: SignalStream[] = [
   },
   {
     id: "surfaces",
-    name: "Your surfaces",
+    name: "Your website",
     short: "Your site",
     blurb:
-      "Crawls of your own site - structured data, freshness, what actually shipped.",
+      "What's on your pages - structured data, how fresh it is, and what's changed.",
     icon: Globe,
   },
   {

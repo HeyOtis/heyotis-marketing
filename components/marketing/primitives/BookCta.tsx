@@ -36,7 +36,9 @@ const variantClass = {
  */
 export function BookCta({
   variant = "primary",
-  label = "Book a chat",
+  // Names the outcome rather than the mechanic - the page CTAs all have room
+  // for it. The desktop nav pill passes a shorter label (see Nav).
+  label = "See your AI visibility",
   // On-site booking section (HubSpot widget is embedded there) - keeps visitors
   // on our site rather than sending them to hubspot.com.
   href = "/contact#book",

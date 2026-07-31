@@ -41,7 +41,7 @@ const METHOD_STEPS: { step: string; icon: LucideIcon; title: string; blurb: stri
     icon: Radar,
     title: "Capture the real answers",
     blurb:
-      "Each campaign runs against ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews on a schedule, recording exactly how every assistant responds, which brands it names, and which sources it cites.",
+      "Each campaign runs against ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews on a schedule, recording exactly how every AI assistant responds, which brands it names, and which sources it cites.",
   },
   {
     step: "03",
@@ -76,7 +76,7 @@ const VALUES: { icon: LucideIcon; title: string; blurb: string }[] = [
     icon: Compass,
     title: "Built for the answer era",
     blurb:
-      "This isn't SEO with a new label. We're focused on how generative assistants choose and recommend - and on the work it takes to earn that recommendation.",
+      "This isn't SEO with a new label. We're focused on how generative AI assistants choose and recommend - and on the work it takes to earn that recommendation.",
   },
 ];
 
@@ -128,7 +128,7 @@ export default function AboutPage() {
             data-speakable
           >
             Buyers increasingly ask AI assistants what to choose - and the
-            assistant&rsquo;s answer is the new shortlist. HeyOtis exists to measure
+            AI assistant&rsquo;s answer is the new shortlist. HeyOtis exists to measure
             how your brand shows up in those answers, and to give you the plan
             to show up better.
           </p>
@@ -163,7 +163,7 @@ export default function AboutPage() {
             <p>
               Now buyers ask ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews directly -
               &ldquo;what&rsquo;s the best option for me?&rdquo; - and act on a
-              single, synthesized answer. The assistant does the shortlisting.
+              single, synthesized answer. The AI assistant does the shortlisting.
               If your brand isn&rsquo;t in that answer, you&rsquo;re not in the
               consideration set.
             </p>
@@ -195,7 +195,7 @@ export default function AboutPage() {
         <SectionHeading
           eyebrow="How Otis works"
           title="Measured, not guessed."
-          sub="Otis runs scheduled campaigns of unbiased queries, captures how each assistant actually answers, and reads the evidence straight from those responses."
+          sub="Otis runs scheduled campaigns of unbiased queries, captures how each AI assistant actually answers, and reads the evidence straight from those responses."
           className="max-w-2xl"
         />
 
@@ -216,7 +216,7 @@ export default function AboutPage() {
             <figcaption className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
               Query phrasing is auto-generated to stay unbiased and reflect how
               real buyers ask. But every metric - Share of Voice, rankings,
-              citations, sentiment - is grounded in the assistants&rsquo; actual
+              citations, sentiment - is grounded in the AI assistants&rsquo; actual
               responses. Nothing is inferred or modeled.
             </figcaption>
           </figure>

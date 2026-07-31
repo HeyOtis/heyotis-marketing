@@ -349,7 +349,15 @@ export function Nav() {
             >
               Log in
             </a>
-            <BookCta variant="salmon" size="default" className="inline-flex" />
+            {/* The pill sits beside the logo and the hamburger at every width,
+                so it keeps the short label; the mobile drawer and the page
+                CTAs use the full outcome-led default. */}
+            <BookCta
+              label="Book a chat"
+              variant="salmon"
+              size="default"
+              className="inline-flex"
+            />
             <button
               ref={toggleRef}
               type="button"

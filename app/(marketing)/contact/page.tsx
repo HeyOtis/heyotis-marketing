@@ -21,7 +21,7 @@ export const metadata = buildMetadata({
 const EXPECT: string[] = [
   "We run a live campaign of buyer-intent prompts against ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews for your brand.",
   "You see your Share of Voice and how you rank against the competitors you name.",
-  "We show the citations and sources the assistants are leaning on to build their answers.",
+  "We show the citations and sources the AI assistants are leaning on to build their answers.",
   "You leave with a sample report and a prioritised view of where to act first.",
 ];
 

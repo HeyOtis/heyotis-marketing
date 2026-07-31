@@ -440,7 +440,7 @@ function FanoutPeek({ runId }: { runId: number }) {
       >
         &ldquo;best everyday skincare nz&rdquo;
       </motion.span>
-      {/* ...the assistant searches... */}
+      {/* ...the AI assistant searches... */}
       <motion.span
         className="flex items-center gap-1.5 text-[0.65rem] font-medium text-foreground/55 transition-colors group-hover:text-foreground/70"
         variants={{
@@ -512,7 +512,7 @@ export function MeasureVignette() {
                 <SentimentGauge runId={runId} />
                 <TileCaption
                   title="Sentiment"
-                  sub="How assistants frame you, measured across every model."
+                  sub="Whether AI recommends you or just mentions you in passing."
                 />
               </>
             )}
@@ -523,7 +523,7 @@ export function MeasureVignette() {
                 <GhostAnswer runId={runId} />
                 <TileCaption
                   title="Citations"
-                  sub="Every response, mention trend and the sources AI leans on."
+                  sub="Which of your pages earn citations - and which rivals take them."
                 />
               </>
             )}
@@ -537,17 +537,15 @@ export function MeasureVignette() {
                 <FanoutPeek runId={runId} />
                 <TileCaption
                   title="Fanouts"
-                  sub="The follow-up queries assistants run behind every answer."
+                  sub="The hidden searches AI runs before it answers you."
                 />
               </>
             )}
           </HoverCell>
           <EditorialCell title="AEO Insights" href="/platform#insights-surface">
-            Understand what&rsquo;s actually driving your visibility. Every
-            answer is scored, every citation traced, and every shift
-            explained - so you can see which pages, sources and topics move
-            your recommendation share, and where the next point of share
-            will come from.
+            Looks across all your campaigns to surface the gaps AI is exposing
+            in your brand - the patterns and risks that drive the Strategy
+            Engine&rsquo;s recommendations.
           </EditorialCell>
         </div>
       </div>
@@ -979,8 +977,8 @@ function WorkList({ runId }: { runId: number }) {
 }
 
 const LANDING_STEPS = [
-  { label: "Shipped", time: "09:12", focal: false },
-  { label: "Fetched", time: "11:47", focal: false },
+  { label: "Live", time: "09:12", focal: false },
+  { label: "Revisited", time: "11:47", focal: false },
   { label: "Re-answered", time: "Jun 21", focal: true },
 ];
 
@@ -1251,7 +1249,7 @@ export function ActVignette() {
                 <LandingSteps runId={runId} />
                 <TileCaption
                   title="Watch it land"
-                  sub="From ship, to crawl, to a changed answer - within days."
+                  sub="From live, to AI revisit, to a changed answer - within days."
                 />
               </>
             )}
@@ -1276,16 +1274,16 @@ export function ActVignette() {
                 <AnswerShift runId={runId} />
                 <TileCaption
                   title="The answer moves"
-                  sub="The work shows up in the words assistants use."
+                  sub="The work shows up in the words AI assistants use."
                 />
               </>
             )}
           </HoverCell>
           <EditorialCell title="Act on the strategy" href="/strategy#verify">
-            A plan only counts once it ships. Each move becomes tracked
-            work: HeyOtis watches the crawlers pick up the change, verifies
-            it&rsquo;s live in production, and confirms the answer actually
-            moved - so acting is measured, never assumed.
+            A plan only counts once it&rsquo;s done. Each action becomes tracked
+            work: HeyOtis watches AI pick up the change, confirms it&rsquo;s
+            live, and checks the answer actually moved - so acting is measured,
+            never assumed.
           </EditorialCell>
         </div>
       </div>
@@ -1658,7 +1656,7 @@ function CauseEffectWaterfall({ runId }: { runId: number }) {
 
 export function AttributeVignette() {
   return (
-    <Frame label="Attribute · 30-day window">
+    <Frame label="Prove · 30-day window">
       <div className="grid h-full grid-rows-[auto_1fr] gap-0">
         {/* top row: the lift → the two ledgers → the receipts */}
         <div className="grid gap-6 pb-6 sm:grid-cols-3 sm:gap-0 sm:divide-x sm:divide-dashed sm:divide-border">
@@ -1668,7 +1666,7 @@ export function AttributeVignette() {
                 <LiftStat runId={runId} />
                 <TileCaption
                   title="The lift"
-                  sub="Recommendation share, before and after the work shipped."
+                  sub="Recommendation share, before and after the work went live."
                 />
               </>
             )}
@@ -1709,12 +1707,11 @@ export function AttributeVignette() {
               </>
             )}
           </HoverCell>
-          <EditorialCell title="Deterministic attribution" href="/platform#analytics-surface">
-            No modelled guesswork. Web analytics and agent analytics are
-            joined into one deterministic record, so every lift is
-            attributed to the move that caused it - and what worked feeds
-            straight back into the next plan. That&rsquo;s the feedback
-            loop, compounding.
+          <EditorialCell title="Attribution you can trace" href="/platform#analytics-surface">
+            No modelled guesswork. Your web analytics and your AI activity are
+            joined into one record, so every lift is attributed to the action
+            that caused it - and what worked feeds straight back into the next
+            plan. That&rsquo;s the feedback loop, compounding.
           </EditorialCell>
         </div>
       </div>
