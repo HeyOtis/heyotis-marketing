@@ -34,7 +34,11 @@ export function Section({
   return (
     <section
       id={id}
-      className={cn("relative py-20 md:py-28", surfaceClass[surface], className)}
+      className={cn(
+        "relative py-20 md:py-28 2xl:py-36",
+        surfaceClass[surface],
+        className,
+      )}
     >
       {bleed ? (
         children

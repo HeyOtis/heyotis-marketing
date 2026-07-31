@@ -9,7 +9,7 @@ import { Section } from "@/components/marketing/primitives/Section";
  */
 export function ReportBand() {
   return (
-    <Section surface="card" className="py-10 md:py-12">
+    <Section surface="card" className="py-10 md:py-12 2xl:py-16">
       <div className="flex justify-center">
         <Link
           href="/report"

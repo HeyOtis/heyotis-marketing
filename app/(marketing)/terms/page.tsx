@@ -62,7 +62,7 @@ export default function TermsPage() {
         </Container>
       </section>
 
-      <section className="surface-cream border-t border-border py-16 md:py-20">
+      <section className="surface-cream border-t border-border py-20 md:py-28 2xl:py-36">
         <Container width="reading">
           <div className="prose-like">
             <h2>1. Who these terms are with</h2>
