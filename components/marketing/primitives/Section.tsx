@@ -8,6 +8,8 @@ type SectionProps = {
   id?: string;
   /** Skip the centered Container wrapper (for full-bleed content). */
   bleed?: boolean;
+  /** Forwarded to Container. `reading` keeps long-form pages narrow. */
+  width?: "default" | "reading";
   children: React.ReactNode;
 };
 
@@ -26,6 +28,7 @@ export function Section({
   containerClassName,
   id,
   bleed = false,
+  width = "default",
   children,
 }: SectionProps) {
   return (
@@ -36,7 +39,9 @@ export function Section({
       {bleed ? (
         children
       ) : (
-        <Container className={containerClassName}>{children}</Container>
+        <Container width={width} className={containerClassName}>
+          {children}
+        </Container>
       )}
     </section>
   );
