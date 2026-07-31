@@ -43,7 +43,7 @@ const WHATS_IN_IT: { icon: LucideIcon; title: string; blurb: string }[] = [
     icon: Link2,
     title: "Top citations won and lost",
     blurb:
-      "The sources each assistant is grounding its answer on, and whether they're yours or a competitor's.",
+      "The sources each AI assistant is grounding its answer on, and whether they're yours or a competitor's.",
   },
   {
     icon: ListChecks,
@@ -66,7 +66,7 @@ const HOW_IT_WORKS: { step: string; icon: LucideIcon; title: string; blurb: stri
     icon: PlayCircle,
     title: "We run the campaign",
     blurb:
-      "HeyOtis runs a live campaign of buyer-intent prompts across all five assistants and captures exactly how each one answers.",
+      "HeyOtis runs a live campaign of buyer-intent prompts across all five AI assistants and captures exactly how each one answers.",
   },
   {
     step: "03",

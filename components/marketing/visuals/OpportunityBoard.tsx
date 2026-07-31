@@ -136,7 +136,7 @@ export function OpportunityBoard({ className }: { className?: string }) {
       {/* Honesty footer (verbatim product line) */}
       <p className="mt-4 flex items-start gap-2 border-t border-border pt-3 text-[0.7rem] leading-relaxed text-muted-foreground">
         <Shield className="mt-0.5 size-3.5 shrink-0 text-accent" aria-hidden />
-        Composed by the strategy engine from deterministic signals above. The
+        Composed by the strategy engine from the measured data above. The
         wording is generated; the evidence is not.
       </p>
     </div>

@@ -215,7 +215,7 @@ export function SignalClusterCard({ className }: { className?: string }) {
     <div ref={ref} className={cn("rounded-lg bg-card p-6 sm:p-8", className)}>
       <Eyebrow>Every signal, one model</Eyebrow>
       <h3 className="mt-3 font-display text-xl font-semibold tracking-tight text-foreground">
-        Answers, bot logs, analytics and your own pages - together
+        Answers, AI traffic, analytics and your own pages - together
       </h3>
       <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
         The engine is only as good as its evidence, so all five signal

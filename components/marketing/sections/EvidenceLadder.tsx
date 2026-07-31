@@ -7,14 +7,14 @@ import { cn } from "@/lib/utils";
 const LAYERS = [
   {
     n: "01",
-    name: "The crawl",
-    lede: "AI bots fetch the fix.",
-    body: "Within days of a move shipping, GPTBot, ClaudeBot and PerplexityBot fetch the changed pages - visible straight from your traffic and bot logs, because HeyOtis ingests them.",
+    name: "The revisit",
+    lede: "AI comes back to the page.",
+    body: "Within days of a change going live, AI assistants revisit the pages you updated - visible directly in your traffic data, because HeyOtis reads it.",
   },
   {
     n: "02",
     name: "The visit",
-    lede: "Assistants send the humans.",
+    lede: "AI sends the humans.",
     body: "Referral sessions arrive from chatgpt.com and perplexity.ai onto the pages the move touched - real buyers, from real answers.",
   },
   {
@@ -102,7 +102,7 @@ function ReferralStat() {
         ))}
       </dl>
       <p className="mt-6 border-t border-border pt-3 text-[0.7rem] leading-relaxed text-muted-foreground">
-        Sessions arriving from assistant surfaces onto the pages a move touched.
+        Sessions arriving from AI assistants onto the pages a change touched.
       </p>
     </div>
   );

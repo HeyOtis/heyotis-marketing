@@ -45,7 +45,7 @@ export default function CaseStudiesPage() {
           >
             No composite logos, no invented testimonials - just the brands
             we&rsquo;ve run through the loop, and what changed in the
-            assistants&rsquo; actual answers.
+            AI assistants&rsquo; actual answers.
           </p>
         </Container>
       </section>

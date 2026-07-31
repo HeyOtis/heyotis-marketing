@@ -21,18 +21,18 @@ import { SIGNAL_STREAMS } from "@/lib/strategy-content";
 export const metadata = buildMetadata({
   title: "The Strategy Engine",
   description:
-    "The HeyOtis Strategy Engine finds the move, verifies it shipped, and proves it worked - from AI bot-log evidence to recommendation-share lift - then learns from every outcome.",
+    "The HeyOtis Strategy Engine finds the action, confirms it went live, and proves it worked - from AI activity in your own traffic to recommendation-share lift - then learns from every outcome.",
   path: "/strategy",
 });
 
 const HONESTY = [
   {
     title: "Capabilities check",
-    body: "It only recommends a move it can verify got done. If a signal source isn't connected, it surfaces the gap instead of guessing.",
+    body: "It only recommends an action it can verify got done. If a signal source isn't connected, it surfaces the gap instead of guessing.",
   },
   {
     title: "Maturity gating",
-    body: "New signals ship dark, get measured, and only become client-visible once the data says they're trustworthy.",
+    body: "New signals are tested privately first, and only shown to you once the data proves they're reliable.",
   },
   {
     title: "Validator-gated reporting",
@@ -110,10 +110,9 @@ export default function StrategyEnginePage() {
               className="mt-7 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground"
               data-speakable
             >
-              HeyOtis finds the move that grows your AI recommendation share,
-              verifies it actually shipped, and proves whether it moved the
-              metric - a campaign-led loop that compounds, not another
-              dashboard.
+              HeyOtis finds the actions that grow your AI recommendation share,
+              confirms they went live, and proves whether they worked - a
+              campaign-led loop that compounds.
             </p>
           </Reveal>
           <Reveal delay={0.23}>
@@ -153,7 +152,7 @@ export default function StrategyEnginePage() {
             <p>
               Your brand can be strong in search, strong in retail and well
               known in market, yet still be missing, misrepresented or
-              outranked when an assistant explains the category. Measuring that
+              outranked when an AI assistant explains the category. Measuring that
               is table stakes.{" "}
               <span className="font-medium text-foreground">
                 Closing the gap - and proving you did - is the hard part.
@@ -171,7 +170,7 @@ export default function StrategyEnginePage() {
               <SectionHeading
                 eyebrow="The inputs"
                 title="Five signal streams. One picture of how AI sees you."
-                sub="The engine is only as good as its evidence - so it ingests the evidence. Your answers, your traffic and bot logs, your analytics, your own pages and your competitors' wins all flow into one model of the gap."
+                sub="The engine is only as good as its evidence - so it reads the evidence directly. Your answers, your AI traffic, your analytics, your own pages and your competitors' wins all flow into one model of the gap."
               />
             </Reveal>
             {/* The streams arrive one after another - the list is the flow. */}
@@ -211,7 +210,7 @@ export default function StrategyEnginePage() {
           <SectionHeading
             eyebrow="The loop"
             title="One campaign-led loop, end to end"
-            sub="Most tools stop at Measure. The Strategy Engine closes the loop - verifying the move shipped and proving it changed how AI recommends you."
+            sub="Most tools stop at Measure. The Strategy Engine closes the loop - confirming the work went live and proving it changed how AI recommends you."
             className="max-w-2xl"
           />
         </Reveal>
@@ -244,15 +243,15 @@ export default function StrategyEnginePage() {
             <Reveal>
               <SectionHeading
                 eyebrow="The action plan"
-                title="From signals to the moves that matter"
-                sub="Findings become a focused, ranked plan - every opportunity scored by impact and effort, tied to the metric it moves, and backed by the deterministic signals beneath it."
+                title="From signals to the actions that matter"
+                sub="Findings become a focused, ranked plan - every opportunity scored by impact and effort, tied to the metric it moves, and backed by the data behind it."
               />
             </Reveal>
             <CheckList
               items={[
                 "Opportunities ranked by impact × effort",
                 "Each tied to the metric it's measured by",
-                "Every move backed by the evidence beneath it",
+                "Every action backed by the evidence beneath it",
               ]}
             />
           </div>
@@ -269,7 +268,7 @@ export default function StrategyEnginePage() {
           eyebrow="Real attribution"
           title="Three layers of proof"
           sub={
-            "“It worked” isn't a vibe. Because HeyOtis ingests your traffic and AI-bot logs, you can watch the crawlers fetch the fix, the assistants send the visitors, and the share move - with the evidence trail open."
+            "“It worked” shouldn't be a guess. HeyOtis reads your traffic and AI activity directly, so you can watch AI revisit the pages you changed, see the visitors it sends, and track your share moving - with the evidence attached."
           }
           className="max-w-2xl"
         />
@@ -292,8 +291,8 @@ export default function StrategyEnginePage() {
             </Reveal>
             <CheckList
               items={[
-                "Proven moves raise the weighting of moves like them",
-                "Disproven moves get deprioritised - honestly",
+                "Proven actions raise the weighting of similar ones",
+                "Disproven ones get deprioritised - honestly",
                 "Every cycle starts smarter than the last",
               ]}
             />
@@ -310,7 +309,7 @@ export default function StrategyEnginePage() {
           <SectionHeading
             eyebrow="Built on evidence"
             title="It won't recommend what it can't prove"
-            sub="The cheapest thing to ship is a confident-sounding recommendation. The most expensive mistake is a confident-sounding wrong one. So the engine is built to refuse it."
+            sub="The cheapest thing to write is a confident-sounding recommendation. The most expensive mistake is a confident-sounding wrong one. So the engine is built to refuse it."
             className="max-w-2xl"
           />
         </Reveal>
@@ -336,7 +335,7 @@ export default function StrategyEnginePage() {
           <Reveal>
             <SectionHeading
               eyebrow="Platform + strategists"
-              title="The engine finds the moves. Our strategists help you ship them."
+              title="The engine finds the opportunities. Our strategists help you get them done."
               sub="HeyOtis pairs the Strategy Engine with hands-on GEO strategy. The platform does the analysis, the recommendations and the proof; our team helps you turn them into work that lands."
             />
           </Reveal>
@@ -365,7 +364,7 @@ export default function StrategyEnginePage() {
           </Reveal>
           <Reveal delay={0.14}>
             <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-              The loop is the start. As assistants become how brands are
+              The loop is the start. As AI assistants become how brands are
               discovered, served and transacted with, HeyOtis is building toward
               the full stack - see, serve, test and act on how AI represents
               you.
@@ -382,7 +381,7 @@ export default function StrategyEnginePage() {
             <br className="hidden sm:block" /> on your brand.
           </>
         }
-        sub="Book a 20-minute walkthrough. We'll run your brand, surface the highest-impact moves, and show you how the loop proves the lift."
+        sub="See the exact actions the Strategy Engine would prioritise for your brand - and how the loop proves the lift. 20 minutes."
       />
     </>
   );

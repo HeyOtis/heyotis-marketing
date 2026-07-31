@@ -34,7 +34,7 @@ const TABS = [
   },
   {
     key: "strategy",
-    stage: "Strategy",
+    stage: "Strategise",
     rest: "the moves that grow it",
     Panel: StrategyVignette,
   },
@@ -46,7 +46,7 @@ const TABS = [
   },
   {
     key: "attribute",
-    stage: "Attribute",
+    stage: "Prove",
     rest: "the lift, with receipts",
     Panel: AttributeVignette,
   },

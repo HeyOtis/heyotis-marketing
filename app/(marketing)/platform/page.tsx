@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 export const metadata = buildMetadata({
   title: "The Platform - measurement, analytics, strategy and roadmap",
   description:
-    "Inside the Otis platform: AEO Insights measures how every assistant talks about your category, AEO Analytics tracks the real-world lift, Strategy turns evidence into ranked moves, and the Roadmap lines it all up on one timeline.",
+    "Inside the Otis platform: AEO Insights measures how every AI assistant talks about your category, AEO Analytics tracks the real-world lift, Strategy turns evidence into ranked actions, and the Roadmap lines it all up on one timeline.",
   path: "/platform",
 });
 
@@ -125,12 +125,12 @@ const CAMPAIGN_METRICS: Item[] = [
   {
     id: "sentiment",
     name: "Sentiment",
-    desc: "How assistants frame you — praise, hedges and objections — measured across every model.",
+    desc: "Whether you're actively recommended or just mentioned in passing — praise, hedges and objections, measured across every model.",
   },
   {
     id: "fanouts",
     name: "Fanout Queries",
-    desc: "The follow-up searches assistants run behind every answer, and whether you show up in them.",
+    desc: "Before it answers, AI runs its own searches behind the scenes. This shows whether your brand turns up in them — or loses the recommendation before it's written.",
   },
   {
     id: "citations",
@@ -145,8 +145,10 @@ const OBSERVATION_SOURCES: Item[] = [
     desc: "Traffic and conversions arriving from AI assistants, tied to the specific pages that earned them.",
   },
   {
-    name: "Bot analytics",
-    desc: "GPTBot, ClaudeBot and PerplexityBot fetches of your pages, logged over time.",
+    name: "AI crawl activity",
+    // TODO(ash): sheet flags this line for a final pass - the innovation angle
+    // (visibility you can't get from GA4 alone) could be pushed harder.
+    desc: "When AI assistants visit your pages to inform their answers, logged over time — activity your web analytics can't see.",
   },
 ];
 
@@ -174,7 +176,7 @@ const STRATEGY_PARTS: Item[] = [
 ];
 
 const ROADMAP_EVENTS: Array<{ lead: string; rest: string }> = [
-  { lead: "A campaign", rest: "runs against the assistants." },
+  { lead: "A campaign", rest: "runs against the AI assistants." },
   { lead: "An insight", rest: "surfaces from the measurement." },
   { lead: "A recommendation", rest: "is generated from that insight." },
   { lead: "A recommendation", rest: "is briefed, executed and goes live." },
@@ -242,7 +244,8 @@ export default function PlatformPage() {
         >
           Otis runs the questions your customers are actually asking across
           every AI assistant, then measures how each one answers — so you always
-          know where your brand stands, and why.
+          know where your brand stands, and why. Being mentioned isn’t the same
+          as being recommended, and only one of those drives revenue.
         </SurfaceHeading>
 
         <SubGroup
@@ -362,7 +365,7 @@ export default function PlatformPage() {
       </Section>
 
       <CtaBand
-        sub="Book a 20-minute walkthrough. We’ll run your brand through the platform and show you exactly where you’re losing the answer — and what to do about it."
+        sub="See every metric on your own brand in 20 minutes — where you’re losing the answer, and what to do about it."
         secondary={null}
       />
     </>

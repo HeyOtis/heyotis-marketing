@@ -98,7 +98,7 @@ function AeoVignette({ live }: { live: boolean }) {
             &ldquo;best everyday skincare nz&rdquo;
           </motion.span>
 
-          {/* ...the assistant works... */}
+          {/* ...the AI assistant works... */}
           <motion.p
             variants={fadeUp(0.55)}
             className="mt-3.5 text-[0.65rem] text-muted-foreground/70"
@@ -249,7 +249,7 @@ function AeoVignette({ live }: { live: boolean }) {
       </motion.div>
 
       <motion.div variants={fadeUp(2.5)}>
-        <Chip tone="lime">✓ answered weekly, every assistant</Chip>
+        <Chip tone="lime">✓ answered weekly, every AI assistant</Chip>
       </motion.div>
     </motion.div>
   );
@@ -456,7 +456,7 @@ const PILLARS = [
     chipDot: "bg-salmon",
     name: "Measure",
     heading: "See how AI answers about you",
-    body: "We run campaigns of the buyer-intent queries that decide purchases across every assistant - and score what comes back: visibility, sentiment, citations and share of voice.",
+    body: "Campaigns that mirror your customer's decision journey - from discovery to purchase intent - showing how every AI assistant answers at each stage, and scoring what comes back: visibility, sentiment, citations and share of voice.",
     href: "/platform#insights-surface",
     panel: "bg-panel-warm",
     vignette: AeoVignette,
@@ -476,7 +476,7 @@ const PILLARS = [
     chipDot: "bg-periwinkle",
     name: "Attribute",
     heading: "The lift, with receipts",
-    body: "The crawlers are the new audience. Watch GPTBot, ClaudeBot and PerplexityBot fetch your pages, and tie assistant referrals to sessions and conversions.",
+    body: "AI is the new audience. Watch AI assistants visit your pages, and tie the visitors they send you to sessions and conversions.",
     href: "/platform#analytics-surface",
     panel: "bg-surface-dark",
     vignette: AgentVignette,

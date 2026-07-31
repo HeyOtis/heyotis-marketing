@@ -106,7 +106,7 @@ export default function GuidesPage() {
             We&rsquo;re expanding these guides into a complete playbook. In
             the meantime, the fastest way to see where your own brand stands
             is the free AI Visibility Report - a direct read of how five
-            assistants answer for you today.
+            AI assistants answer for you today.
           </p>
           <BookCta
             label="Get the free report"

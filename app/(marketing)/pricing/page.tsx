@@ -208,7 +208,7 @@ export default function PricingPage() {
         <SectionHeading
           eyebrow="Pricing"
           title="Managed"
-          sub="Prefer strategist-led? We run the loop with you - campaigns, priorities and reviews handled by a HeyOtis strategist, so the platform's recommendations turn into shipped work without you having to run the process yourself."
+          sub="Prefer strategist-led? We run the loop with you - campaigns, priorities and reviews handled by a HeyOtis strategist, so the platform's recommendations turn into work that gets done without you having to run the process yourself."
           className="max-w-2xl"
         />
         <div className="mt-8">
