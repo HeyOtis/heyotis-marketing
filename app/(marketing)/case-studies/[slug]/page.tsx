@@ -88,7 +88,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
           })}
         />
 
-        <Container className="max-w-3xl">
+        <Container width="reading">
           <Link
             href="/case-studies"
             className="group inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"

@@ -41,7 +41,7 @@ export default function TermsPage() {
       />
 
       <section className="surface-cream pb-12 pt-28 sm:pt-32 md:pb-16 lg:pt-36">
-        <Container>
+        <Container width="reading">
           <Eyebrow>Legal</Eyebrow>
           <h1
             className="display-lg mt-5 max-w-3xl text-balance"
@@ -63,7 +63,7 @@ export default function TermsPage() {
       </section>
 
       <section className="surface-cream border-t border-border py-16 md:py-20">
-        <Container>
+        <Container width="reading">
           <div className="prose-like">
             <h2>1. Who these terms are with</h2>
             <p>
