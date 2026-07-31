@@ -331,9 +331,9 @@ export function Nav() {
         {/* the page's dashed outer rules, carried up through the nav */}
         <div
           aria-hidden
-          className="pointer-events-none absolute left-1/2 top-0 hidden h-full w-full max-w-7xl -translate-x-1/2 border-x border-dashed border-border/50 xl:block"
+          className="pointer-events-none absolute left-1/2 top-0 hidden h-full w-full max-w-6xl -translate-x-1/2 border-x border-dashed border-border/50 xl:block xl:max-w-7xl 2xl:max-w-shell"
         />
-        <div className="relative mx-auto flex h-16 max-w-6xl items-center justify-between gap-8 px-4 sm:px-6 lg:px-8 xl:border-x xl:border-border/70">
+        <div className="relative mx-auto flex h-16 max-w-6xl items-center justify-between gap-8 px-4 sm:px-6 lg:px-8 xl:max-w-7xl xl:border-x xl:border-border/70 xl:px-12 2xl:max-w-shell">
           {/* DOSS grouping: logo and links cluster left; actions sit right. */}
           <div className="flex items-center gap-8 lg:gap-12">
             <Logo />
