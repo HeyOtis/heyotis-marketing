@@ -28,11 +28,11 @@ export default function MarketingLayout({
             pointers and screen readers. */}
         <div
           aria-hidden
-          className="pointer-events-none fixed inset-y-0 left-1/2 hidden w-full max-w-6xl -translate-x-1/2 border-x border-border/70 xl:block"
+          className="pointer-events-none fixed inset-y-0 left-1/2 hidden w-full max-w-6xl -translate-x-1/2 border-x border-border/70 xl:block xl:max-w-7xl 2xl:max-w-shell"
         />
         <div
           aria-hidden
-          className="pointer-events-none fixed inset-y-0 left-1/2 hidden w-full max-w-7xl -translate-x-1/2 border-x border-dashed border-border/50 xl:block"
+          className="pointer-events-none fixed inset-y-0 left-1/2 hidden w-full max-w-7xl -translate-x-1/2 border-x border-dashed border-border/50 xl:block xl:max-w-rule 2xl:max-w-rule-wide"
         />
       </SmoothScroll>
     </MotionProvider>

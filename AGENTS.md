@@ -51,9 +51,23 @@ Tailwind v4 defaults; no custom pixel values. Each breakpoint has one job:
   open-ended list. A 3-item grid never becomes 4 — it orphans a row.
 - **`Container` is the sole owner of page-level `max-width`.** Never set a shell
   width on a section or page. Use `width="reading"` (768px, never widens) for
-  long-form pages. `Nav.tsx` is the one sanctioned exception — its bar is a
-  fixed-height flex row with its own borders, so it repeats the width ladder
-  literally.
+  long-form pages.
+- **The blueprint rules come in a pair, and both ladders must move together.**
+  A solid hairline sits at the content edge and a dashed pair sits 64px
+  outboard of it. Five elements carry these ladders and must stay in step:
+
+  | Element | Ladder |
+  | --- | --- |
+  | `Container` (`default`) | `max-w-6xl xl:max-w-7xl 2xl:max-w-shell` |
+  | `layout.tsx` solid rail | same |
+  | `Nav.tsx` bar (`xl:border-x`) | same |
+  | `layout.tsx` dashed rule | `max-w-7xl xl:max-w-rule 2xl:max-w-rule-wide` |
+  | `Nav.tsx` dashed rail | same |
+
+  Each rule token is its shell token plus `8rem` (64px per side). Widening the
+  shell without widening the rules makes the dashed lines cut through content.
+  `Nav.tsx` repeats the ladders literally rather than wrapping `Container` —
+  its bar is a fixed-height flex row with its own borders.
 - **A `className` override cannot stop the widening.** `twMerge` resolves
   `max-w-3xl` against base-variant `max-w-6xl`, but not against `xl:max-w-7xl` —
   different variant, no conflict detected. Use the `width` prop.
