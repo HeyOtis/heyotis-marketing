@@ -68,7 +68,7 @@ export default function BlogIndexPage() {
             <code className="font-mono">date</code>).
           </p>
         ) : (
-          <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {posts.map((post, i) => {
               const tag = post.frontmatter.tags?.[0];
               return (

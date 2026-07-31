@@ -66,7 +66,7 @@ export default function GuidesPage() {
             <code className="font-mono">content/blog/</code>.
           </p>
         ) : (
-          <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {posts.map((post, i) => (
               <li key={post.slug}>
                 <Reveal delay={i * 0.06} className="h-full">
