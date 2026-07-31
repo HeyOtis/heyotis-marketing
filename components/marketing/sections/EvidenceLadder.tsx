@@ -84,8 +84,8 @@ function ReferralStat() {
           +96%
         </span>
       </div>
-      {/* Stack below sm - three columns truncate the longer source domains. */}
-      <dl className="mt-6 grid gap-3 sm:grid-cols-3">
+      {/* Stack below md - three columns truncate the longer source domains. */}
+      <dl className="mt-6 grid gap-3 md:grid-cols-3">
         {[
           { source: "chatgpt.com", value: "+128%" },
           { source: "perplexity.ai", value: "+64%" },

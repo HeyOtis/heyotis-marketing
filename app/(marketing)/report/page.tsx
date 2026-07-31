@@ -157,7 +157,7 @@ export default function ReportPage() {
           sub="No lengthy onboarding - three steps and a call."
           className="max-w-2xl"
         />
-        <div className="mt-12 grid gap-5 sm:grid-cols-3">
+        <div className="mt-12 grid gap-5 md:grid-cols-3">
           {HOW_IT_WORKS.map(({ step, icon: Icon, title, blurb }, i) => (
             <Reveal key={step} delay={i * 0.06}>
               <div className="flex h-full flex-col rounded-2xl border border-border bg-card p-6">
