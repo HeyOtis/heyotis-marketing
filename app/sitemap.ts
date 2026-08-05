@@ -20,6 +20,10 @@ const STATIC_ROUTES: Array<{
   // notice is expected by ad platforms, app reviewers and regulators.
   { path: "/privacy", changeFrequency: "yearly", priority: 0.3 },
   { path: "/terms", changeFrequency: "yearly", priority: 0.3 },
+  // OtisBot's crawler self-identification page - the +URL in its user-agent
+  // string points here. Low priority for search, but must stay indexable and
+  // discoverable for the site owners who look it up from their logs.
+  { path: "/bot", changeFrequency: "monthly", priority: 0.3 },
   // /guides is deliberately absent: it currently mirrors /blog and is noindexed.
   // Add it back when it has unique content (see app/(marketing)/guides/page.tsx).
 ];
