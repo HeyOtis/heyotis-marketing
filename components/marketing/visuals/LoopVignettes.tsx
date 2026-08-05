@@ -164,7 +164,7 @@ function EditorialCell({
   children: React.ReactNode;
 }) {
   return (
-    <div className="group relative flex flex-col justify-center sm:col-span-2 sm:pl-6">
+    <div className="group relative flex flex-col justify-center md:col-span-2 md:pl-6">
       <Halo />
       <div className="relative">
         <p className="font-display text-base font-semibold text-foreground">
@@ -494,8 +494,8 @@ export function MeasureVignette() {
     <Frame label="Measure · Overview">
       <div className="grid h-full grid-rows-[auto_1fr] gap-0">
         {/* top row: the three measurement surfaces */}
-        <div className="grid gap-6 pb-6 sm:grid-cols-3 sm:gap-0 sm:divide-x sm:divide-dashed sm:divide-border">
-          <HoverCell className="sm:pr-6">
+        <div className="grid gap-6 pb-6 md:grid-cols-3 md:gap-0 md:divide-x md:divide-dashed md:divide-border">
+          <HoverCell className="md:pr-6">
             {(runId) => (
               <>
                 <VisibilityLine runId={runId} />
@@ -517,7 +517,7 @@ export function MeasureVignette() {
               </>
             )}
           </HoverCell>
-          <HoverCell className="sm:pl-6">
+          <HoverCell className="md:pl-6">
             {(runId) => (
               <>
                 <GhostAnswer runId={runId} />
@@ -530,8 +530,8 @@ export function MeasureVignette() {
           </HoverCell>
         </div>
         {/* bottom row: fanouts + the AEO insights editorial cell */}
-        <div className="grid gap-6 border-t border-dashed border-border pt-6 sm:grid-cols-3 sm:gap-0 sm:divide-x sm:divide-dashed sm:divide-border">
-          <HoverCell className="sm:pr-6">
+        <div className="grid gap-6 border-t border-dashed border-border pt-6 md:grid-cols-3 md:gap-0 md:divide-x md:divide-dashed md:divide-border">
+          <HoverCell className="md:pr-6">
             {(runId) => (
               <>
                 <FanoutPeek runId={runId} />
@@ -823,8 +823,8 @@ export function StrategyVignette() {
     <Frame label="Strategy · Action plan">
       <div className="grid h-full grid-rows-[auto_1fr] gap-0">
         {/* top row: the pipeline, left to right */}
-        <div className="grid gap-6 pb-6 sm:grid-cols-3 sm:gap-0 sm:divide-x sm:divide-dashed sm:divide-border">
-          <HoverCell className="sm:pr-6">
+        <div className="grid gap-6 pb-6 md:grid-cols-3 md:gap-0 md:divide-x md:divide-dashed md:divide-border">
+          <HoverCell className="md:pr-6">
             {(runId) => (
               <>
                 <InsightList runId={runId} />
@@ -846,7 +846,7 @@ export function StrategyVignette() {
               </>
             )}
           </HoverCell>
-          <HoverCell className="sm:pl-6">
+          <HoverCell className="md:pl-6">
             {(runId) => (
               <>
                 <PlanGantt runId={runId} />
@@ -859,8 +859,8 @@ export function StrategyVignette() {
           </HoverCell>
         </div>
         {/* bottom row: scoring + the engine, editorially */}
-        <div className="grid gap-6 border-t border-dashed border-border pt-6 sm:grid-cols-3 sm:gap-0 sm:divide-x sm:divide-dashed sm:divide-border">
-          <HoverCell className="sm:pr-6">
+        <div className="grid gap-6 border-t border-dashed border-border pt-6 md:grid-cols-3 md:gap-0 md:divide-x md:divide-dashed md:divide-border">
+          <HoverCell className="md:pr-6">
             {(runId) => (
               <>
                 <ImpactMatrix runId={runId} />
@@ -1231,8 +1231,8 @@ export function ActVignette() {
     <Frame label="Act · Implementation">
       <div className="grid h-full grid-rows-[auto_1fr] gap-0">
         {/* top row: work → landing → verification */}
-        <div className="grid gap-6 pb-6 sm:grid-cols-3 sm:gap-0 sm:divide-x sm:divide-dashed sm:divide-border">
-          <HoverCell className="sm:pr-6">
+        <div className="grid gap-6 pb-6 md:grid-cols-3 md:gap-0 md:divide-x md:divide-dashed md:divide-border">
+          <HoverCell className="md:pr-6">
             {(runId) => (
               <>
                 <WorkList runId={runId} />
@@ -1254,7 +1254,7 @@ export function ActVignette() {
               </>
             )}
           </HoverCell>
-          <HoverCell className="sm:pl-6">
+          <HoverCell className="md:pl-6">
             {(runId) => (
               <>
                 <VerifyList runId={runId} />
@@ -1267,8 +1267,8 @@ export function ActVignette() {
           </HoverCell>
         </div>
         {/* bottom row: the answer shift + editorial */}
-        <div className="grid gap-6 border-t border-dashed border-border pt-6 sm:grid-cols-3 sm:gap-0 sm:divide-x sm:divide-dashed sm:divide-border">
-          <HoverCell className="sm:pr-6">
+        <div className="grid gap-6 border-t border-dashed border-border pt-6 md:grid-cols-3 md:gap-0 md:divide-x md:divide-dashed md:divide-border">
+          <HoverCell className="md:pr-6">
             {(runId) => (
               <>
                 <AnswerShift runId={runId} />
@@ -1659,8 +1659,8 @@ export function AttributeVignette() {
     <Frame label="Prove · 30-day window">
       <div className="grid h-full grid-rows-[auto_1fr] gap-0">
         {/* top row: the lift → the two ledgers → the receipts */}
-        <div className="grid gap-6 pb-6 sm:grid-cols-3 sm:gap-0 sm:divide-x sm:divide-dashed sm:divide-border">
-          <HoverCell className="sm:pr-6">
+        <div className="grid gap-6 pb-6 md:grid-cols-3 md:gap-0 md:divide-x md:divide-dashed md:divide-border">
+          <HoverCell className="md:pr-6">
             {(runId) => (
               <>
                 <LiftStat runId={runId} />
@@ -1682,7 +1682,7 @@ export function AttributeVignette() {
               </>
             )}
           </HoverCell>
-          <HoverCell className="sm:pl-6">
+          <HoverCell className="md:pl-6">
             {(runId) => (
               <>
                 <ReceiptTrail runId={runId} />
@@ -1695,8 +1695,8 @@ export function AttributeVignette() {
           </HoverCell>
         </div>
         {/* bottom row: cause-and-effect + editorial */}
-        <div className="grid gap-6 border-t border-dashed border-border pt-6 sm:grid-cols-3 sm:gap-0 sm:divide-x sm:divide-dashed sm:divide-border">
-          <HoverCell className="sm:pr-6">
+        <div className="grid gap-6 border-t border-dashed border-border pt-6 md:grid-cols-3 md:gap-0 md:divide-x md:divide-dashed md:divide-border">
+          <HoverCell className="md:pr-6">
             {(runId) => (
               <>
                 <CauseEffectWaterfall runId={runId} />

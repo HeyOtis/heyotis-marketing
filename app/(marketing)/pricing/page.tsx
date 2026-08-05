@@ -204,7 +204,7 @@ export default function PricingPage() {
       </Section>
 
       {/* Managed */}
-      <Section surface="cream" id="managed" className="py-14 md:py-20">
+      <Section surface="cream" id="managed">
         <SectionHeading
           eyebrow="Pricing"
           title="Managed"
@@ -217,7 +217,7 @@ export default function PricingPage() {
       </Section>
 
       {/* For Agencies */}
-      <Section surface="card" id="agencies" className="py-14 md:py-20">
+      <Section surface="card" id="agencies">
         <SectionHeading
           eyebrow="Pricing"
           title="For Agencies"

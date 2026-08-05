@@ -9,7 +9,7 @@ import { CompoundingChart } from "@/components/marketing/visuals/CompoundingChar
  */
 export function CompoundingBand() {
   return (
-    <Section id="compounds" surface="cream" className="py-14 md:py-16">
+    <Section id="compounds" surface="cream">
       <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.05fr] lg:gap-16">
         <div>
           <Eyebrow>The compounding loop</Eyebrow>

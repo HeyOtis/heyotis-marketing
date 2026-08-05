@@ -27,7 +27,7 @@ const CLIENTS: { name: string; src: typeof hallensteins; height: number }[] = [
     prefers-reduced-motion rule in globals.css). */
 export function ClientLogos() {
   return (
-    <section className="surface-card border-y border-border py-10 md:py-12">
+    <section className="surface-card border-y border-border py-10 md:py-12 2xl:py-16">
       <Container>
         <p className="label-mono text-center text-[0.65rem] text-muted-foreground">
           Trusted by
