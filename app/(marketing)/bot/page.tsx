@@ -155,17 +155,13 @@ export default function BotPage() {
               Block us in <code>robots.txt</code> and we will stop - that is
               the whole mechanism, and we do not work around it.
             </p>
-            {/* TODO(otisbot): swap in a dedicated, monitored mailbox (e.g.
-                bot@heyotis.ai) once one exists, and link it directly here
-                instead of routing through the general contact page. An
-                unmonitored address is worse than omitting the line, so don't
-                add one until it's actually watched. */}
             <p>
-              If you&rsquo;d prefer to talk to a person, get in touch via our{" "}
-              <a href="/contact">contact page</a> and mention OtisBot -
-              we&rsquo;ll answer. We&rsquo;re setting up a dedicated,
-              monitored inbox for bot enquiries specifically; this page will
-              carry it as soon as it exists.
+              If you&rsquo;d prefer to talk to a person, email{" "}
+              <a href="mailto:hello@heyotis.ai?subject=OtisBot">
+                hello@heyotis.ai
+              </a>{" "}
+              with &ldquo;OtisBot&rdquo; in the subject, or use our{" "}
+              <a href="/contact">contact page</a>. We&rsquo;ll answer.
             </p>
 
             <h2 id="verification">Verification</h2>
