@@ -82,6 +82,7 @@ There are no fixed packages. Every plan gets the whole product - all five assist
 - About: ${u}/about
 - Blog: ${u}/blog
 - Contact: ${u}/contact
+- OtisBot: ${u}/bot - crawler documentation for site owners: how to identify OtisBot in your logs, control it in robots.txt, and verify requests are genuinely ours.
 `;
   return new Response(body, {
     headers: { "content-type": "text/plain; charset=utf-8" },

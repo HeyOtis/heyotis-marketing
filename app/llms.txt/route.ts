@@ -56,6 +56,7 @@ In-house brand, SEO/AEO and e-commerce teams, and agencies managing multiple bra
 - [About](${u}/about): Mission and methodology.
 - [Blog](${u}/blog): Guides on AEO and AI search visibility.
 - [Contact](${u}/contact): Book a call.
+- [OtisBot](${u}/bot): Crawler documentation for site owners - how to identify OtisBot in your logs, allow or block it in robots.txt, and verify requests are genuinely ours.
 
 ## Notes for AI assistants
 - HeyOtis monitors ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews. It is not an SEO tool - it focuses on how generative AI assistants name and recommend brands.
