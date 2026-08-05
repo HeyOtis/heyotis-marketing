@@ -86,24 +86,37 @@ export default function BotPage() {
             </pre>
             <p>
               We never disguise ourselves as a browser and never send another
-              crawler&rsquo;s name. If a request claims to be OtisBot but does
-              not come from one of our IP ranges, it is not us.
+              crawler&rsquo;s name. If something calling itself OtisBot
+              ignores your <code>robots.txt</code>, hammers your server, or
+              tries to reach pages behind a login, it is not us &mdash; and
+              we&rsquo;d like to know about it.
             </p>
 
-            <h3>Our IP ranges</h3>
-            {/* TODO(otisbot): publish egress IP ranges here once we have them
-                (Render dashboard, dev + prod services) and replace this
-                callout with a <pre><code> block listing the CIDR ranges. An
-                empty or wrong list is worse than none: it invites
-                impersonation and gives a site owner no way to verify us. */}
+            <h3>Why we don&rsquo;t publish IP ranges</h3>
+            <p>
+              Many crawlers publish a list of addresses they crawl from. We
+              deliberately don&rsquo;t, because ours would tell you nothing.
+              We run on shared cloud infrastructure, so our outbound addresses
+              belong to a pool used by thousands of unrelated services. Anyone
+              could send you traffic from that same pool while calling
+              themselves OtisBot.
+            </p>
+            <p>
+              Publishing it would also be an unreasonable thing to ask of you:
+              allowlisting our range would mean allowlisting several hundred
+              addresses we don&rsquo;t control. We would rather give you no
+              signal than a misleading one.
+            </p>
             <div className="not-prose my-6 rounded-xl border border-border bg-card p-5 text-sm text-muted-foreground">
-              We haven&rsquo;t published static IP ranges yet. Until we do,
-              the most reliable way to control OtisBot is by user-agent in{" "}
-              <code>robots.txt</code> below. We&rsquo;re also working toward
-              cryptographic request signing (see{" "}
-              <a href="#verification">Verification</a>), which will let you
-              verify a request came from us without relying on an IP list at
-              all.
+              <strong className="font-medium text-foreground">
+                To control OtisBot today,
+              </strong>{" "}
+              use the user-agent in <code>robots.txt</code> below &mdash; we
+              read it on every crawl. To{" "}
+              <em>verify</em> a request really came from us, see{" "}
+              <a href="#verification">Verification</a>: we are implementing
+              cryptographic request signing, which proves identity in a way an
+              IP list cannot.
             </div>
 
             <h2>How to control OtisBot</h2>
@@ -155,17 +168,13 @@ export default function BotPage() {
               Block us in <code>robots.txt</code> and we will stop - that is
               the whole mechanism, and we do not work around it.
             </p>
-            {/* TODO(otisbot): swap in a dedicated, monitored mailbox (e.g.
-                bot@heyotis.ai) once one exists, and link it directly here
-                instead of routing through the general contact page. An
-                unmonitored address is worse than omitting the line, so don't
-                add one until it's actually watched. */}
             <p>
-              If you&rsquo;d prefer to talk to a person, get in touch via our{" "}
-              <a href="/contact">contact page</a> and mention OtisBot -
-              we&rsquo;ll answer. We&rsquo;re setting up a dedicated,
-              monitored inbox for bot enquiries specifically; this page will
-              carry it as soon as it exists.
+              If you&rsquo;d prefer to talk to a person, email{" "}
+              <a href="mailto:hello@heyotis.ai?subject=OtisBot">
+                hello@heyotis.ai
+              </a>{" "}
+              with &ldquo;OtisBot&rdquo; in the subject, or use our{" "}
+              <a href="/contact">contact page</a>. We&rsquo;ll answer.
             </p>
 
             <h2 id="verification">Verification</h2>
@@ -178,9 +187,17 @@ export default function BotPage() {
               >
                 Web Bot Auth
               </a>{" "}
-              (RFC 9421 HTTP Message Signatures), so our requests can be
-              verified without relying on IP lists. This page will be updated
-              with our public key location when that ships.
+              (RFC 9421 HTTP Message Signatures) &mdash; the emerging IETF
+              standard for exactly this problem, already supported at the edge
+              by Cloudflare and used by several major AI crawlers. Our requests
+              will carry a signature you can check against a public key, which
+              proves identity cryptographically rather than by inference from
+              an address.
+            </p>
+            <p>
+              This page will carry the key location as soon as it ships. Until
+              then, <code>robots.txt</code> is the reliable control, and we
+              honour it on every crawl.
             </p>
 
             <p>
