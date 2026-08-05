@@ -44,7 +44,7 @@ export default function BotPage() {
       />
 
       <section className="surface-cream pb-12 pt-28 sm:pt-32 md:pb-16 lg:pt-36">
-        <Container width="reading">
+        <Container className="max-w-3xl">
           <Eyebrow>For site owners</Eyebrow>
           <h1
             className="display-lg mt-5 max-w-3xl text-balance"
@@ -68,7 +68,7 @@ export default function BotPage() {
       </section>
 
       <section className="surface-cream border-t border-border py-20 md:py-28 2xl:py-36">
-        <Container width="reading">
+        <Container className="max-w-3xl">
           <div className="prose-like">
             <h2>About OtisBot</h2>
             <p>
