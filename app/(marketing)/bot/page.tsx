@@ -170,11 +170,9 @@ export default function BotPage() {
             </p>
             <p>
               If you&rsquo;d prefer to talk to a person, email{" "}
-              <a href="mailto:hello@heyotis.ai?subject=OtisBot">
-                hello@heyotis.ai
-              </a>{" "}
-              with &ldquo;OtisBot&rdquo; in the subject, or use our{" "}
-              <a href="/contact">contact page</a>. We&rsquo;ll answer.
+              <a href="mailto:bot@heyotis.ai">bot@heyotis.ai</a> &mdash; a
+              dedicated, monitored inbox for crawler enquiries &mdash; or use
+              our <a href="/contact">contact page</a>. We&rsquo;ll answer.
             </p>
 
             <h2 id="verification">Verification</h2>
