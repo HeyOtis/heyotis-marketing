@@ -16,7 +16,7 @@ import { siteConfig } from "@/lib/site";
    (2026-08-04). Keep this page in step with that doc if it's revised - and
    in step with what the crawler actually does in code, not aspiration. */
 
-const BOT_PAGE_UPDATED = "2026-08-04";
+const BOT_PAGE_UPDATED = "2026-08-18";
 
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString("en-GB", {
@@ -114,9 +114,9 @@ export default function BotPage() {
               use the user-agent in <code>robots.txt</code> below &mdash; we
               read it on every crawl. To{" "}
               <em>verify</em> a request really came from us, see{" "}
-              <a href="#verification">Verification</a>: we are implementing
-              cryptographic request signing, which proves identity in a way an
-              IP list cannot.
+              <a href="#verification">Verification</a>: every request we send
+              carries a cryptographic signature, which proves identity in a
+              way an IP list cannot.
             </div>
 
             <h2>How to control OtisBot</h2>
@@ -179,7 +179,7 @@ export default function BotPage() {
 
             <h2 id="verification">Verification</h2>
             <p>
-              We are working toward cryptographic request signing under{" "}
+              OtisBot signs its requests under{" "}
               <a
                 href="https://datatracker.ietf.org/doc/draft-meunier-web-bot-auth-architecture/"
                 target="_blank"
@@ -189,14 +189,22 @@ export default function BotPage() {
               </a>{" "}
               (RFC 9421 HTTP Message Signatures) &mdash; the emerging IETF
               standard for exactly this problem, already supported at the edge
-              by Cloudflare and used by several major AI crawlers. Our requests
-              will carry a signature you can check against a public key, which
-              proves identity cryptographically rather than by inference from
-              an address.
+              by Cloudflare and used by several major AI crawlers. Every
+              request carries <code>Signature</code>,{" "}
+              <code>Signature-Input</code> and <code>Signature-Agent</code>{" "}
+              headers with the tag <code>web-bot-auth</code>, signed with an
+              Ed25519 key.
             </p>
+            <p>Our public keys are published in a signed key directory at:</p>
+            <pre>
+              <code>
+                https://api.heyotis.ai/.well-known/http-message-signatures-directory
+              </code>
+            </pre>
             <p>
-              This page will carry the key location as soon as it ships. Until
-              then, <code>robots.txt</code> is the reliable control, and we
+              A request whose signature does not verify against those keys is
+              not OtisBot, whatever its user-agent claims. Verification proves
+              identity; <code>robots.txt</code> remains the control, and we
               honour it on every crawl.
             </p>
 
