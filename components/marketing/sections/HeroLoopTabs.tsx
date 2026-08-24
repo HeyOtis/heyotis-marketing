@@ -135,6 +135,15 @@ function Backdrop() {
   );
 }
 
+/* The backdrop SVG is sized by viewport width (100vw × 770/1920 tall), but
+   the fold is sized by viewport height. On wide/short viewports - 16:9 or
+   ultrawide monitors, browser zoom below 100% - the shapes outgrow the fold
+   and climb up behind the headline. So the fold also reserves the shapes'
+   height plus this clearance above them for the copy; on a 16:10 laptop the
+   viewport-height rule already wins and nothing changes. */
+const SHAPES_CLEARANCE = "16rem";
+const FOLD_MIN_HEIGHT = `max(calc(100dvh - 4rem), calc(100vw * 770 / 1920 + ${SHAPES_CLEARANCE}))`;
+
 /**
  * The hero fold: intro copy over the lavender shapes, filling the first
  * viewport (minus the 4rem nav). The loop stages that used to live pinned
@@ -142,7 +151,10 @@ function Backdrop() {
  */
 export function HeroFold({ intro }: { intro: React.ReactNode }) {
   return (
-    <div className="relative flex min-h-[calc(100dvh-4rem)] flex-col">
+    <div
+      className="relative flex flex-col"
+      style={{ minHeight: FOLD_MIN_HEIGHT }}
+    >
       <Backdrop />
       {/* Solid rule along the shapes' bottom edge, closing the fold. */}
       <div
