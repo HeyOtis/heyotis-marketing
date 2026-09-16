@@ -17,11 +17,11 @@ import wingermotors from "@/public/clients/wingermotors.png";
    don't normalize them to one value. To add a client: drop the file in
    public/clients/ and add a row. */
 const CLIENTS: { name: string; src: typeof hallensteins; height: number }[] = [
-  { name: "Hallensteins", src: hallensteins, height: 18 },
+  { name: "Daylyte", src: daylyte, height: 20 },
   { name: "Hatch", src: hatch, height: 22 },
   { name: "Ziwi", src: ziwi, height: 30 },
   { name: "AJ Hackett Bungy", src: ajhackett, height: 42 },
-  { name: "Daylyte", src: daylyte, height: 20 },
+  { name: "Hallensteins", src: hallensteins, height: 18 },
   { name: "Motorhub", src: motorhub, height: 20 },
   { name: "Winger Motors", src: wingermotors, height: 19 },
   { name: "Lifestream", src: lifestream, height: 20 },
