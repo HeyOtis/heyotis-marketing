@@ -7,6 +7,9 @@ import ziwi from "@/public/clients/ziwi.svg";
 import ajhackett from "@/public/clients/ajhackett.svg";
 import daylyte from "@/public/clients/daylyte.png";
 import motorhub from "@/public/clients/motorhub.png";
+import d3 from "@/public/clients/d3.png";
+import lifestream from "@/public/clients/lifestream.png";
+import wingermotors from "@/public/clients/wingermotors.png";
 
 /* Client wordmarks, rendered as ink silhouettes (brightness-0 + opacity)
    so mixed source files sit quietly in the blueprint palette. Heights are
@@ -20,6 +23,9 @@ const CLIENTS: { name: string; src: typeof hallensteins; height: number }[] = [
   { name: "AJ Hackett Bungy", src: ajhackett, height: 42 },
   { name: "Daylyte", src: daylyte, height: 20 },
   { name: "Motorhub", src: motorhub, height: 20 },
+  { name: "d3", src: d3, height: 33 },
+  { name: "Lifestream", src: lifestream, height: 20 },
+  { name: "Winger Motors", src: wingermotors, height: 19 },
 ];
 
 /** A quiet "Trusted by" strip on white: mono label, ink-silhouette client
