@@ -23,9 +23,9 @@ const CLIENTS: { name: string; src: typeof hallensteins; height: number }[] = [
   { name: "AJ Hackett Bungy", src: ajhackett, height: 42 },
   { name: "Daylyte", src: daylyte, height: 20 },
   { name: "Motorhub", src: motorhub, height: 20 },
-  { name: "d3", src: d3, height: 33 },
-  { name: "Lifestream", src: lifestream, height: 20 },
   { name: "Winger Motors", src: wingermotors, height: 19 },
+  { name: "Lifestream", src: lifestream, height: 20 },
+  { name: "d3", src: d3, height: 33 },
 ];
 
 /** A quiet "Trusted by" strip on white: mono label, ink-silhouette client
