@@ -1,0 +1,5 @@
+# Security contact for HeyOtis (RFC 9116). Renew Expires before it lapses.
+Contact: mailto:security@heyotis.ai
+Expires: 2027-10-20T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://heyotis.ai/.well-known/security.txt
