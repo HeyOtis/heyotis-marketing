@@ -17,8 +17,9 @@ const nextConfig: NextConfig = {
           // Force HTTPS for two years, including subdomains. `preload` is
           // deliberately omitted - submitting to the HSTS preload list is
           // effectively irreversible and would cover every *.heyotis.ai
-          // subdomain, including the platform app. Add it only once every
-          // subdomain is known-good on HTTPS.
+          // subdomain, including the platform app and clkmail.heyotis.ai
+          // (SendGrid link branding, which may serve plain HTTP). Add it only
+          // once every subdomain is known-good on HTTPS.
           {
             key: "Strict-Transport-Security",
             value: "max-age=63072000; includeSubDomains",
@@ -51,6 +52,17 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // www -> apex inside the app, not as a Vercel domain redirect, so the
+      // redirect response carries the headers above (HSTS includeSubDomains).
+      // Vercel's domain-level redirect sends its own HSTS without it. Only
+      // takes effect once www.heyotis.ai is attached to this project as a
+      // normal domain rather than "Redirect to heyotis.ai".
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www\\.heyotis\\.ai" }],
+        destination: "https://heyotis.ai/:path*",
+        permanent: true,
+      },
       // /features was rebuilt as /platform (loop-stage IA), July 2026.
       { source: "/features", destination: "/platform", permanent: true },
       // The Strategy Engine page moved to the shorter /strategy, July 2026.
