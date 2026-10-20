@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Bricolage_Grotesque } from "next/font/google";
 import Script from "next/script";
+import { headers } from "next/headers";
 import "./globals.css";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Analytics } from "@/components/analytics/Analytics";
@@ -76,11 +77,16 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Per-request CSP nonce from proxy.ts. Next applies it to its own scripts;
+  // next/script tags need it passed explicitly. Reading request headers here
+  // renders every page dynamically - required for a nonce (see lib/csp.ts).
+  const nonce = (await headers()).get("x-nonce") ?? undefined;
+
   return (
     <html
       lang="en"
@@ -96,6 +102,7 @@ export default function RootLayout({
           <Script
             id="consent-defaults"
             strategy="beforeInteractive"
+            nonce={nonce}
             // Static string from lib/analytics.ts; no user input interpolated.
             dangerouslySetInnerHTML={{ __html: CONSENT_DEFAULTS }}
           />
@@ -103,7 +110,7 @@ export default function RootLayout({
         <JsonLd data={organizationSchema()} />
         <JsonLd data={websiteSchema()} />
         {children}
-        <Analytics />
+        <Analytics nonce={nonce} />
       </body>
     </html>
   );

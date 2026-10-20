@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { CSP_ENFORCE, FRAME_ANCESTORS } from "./lib/csp";
 
 const nextConfig: NextConfig = {
   pageExtensions: ["ts", "tsx"],
@@ -8,6 +9,12 @@ const nextConfig: NextConfig = {
   turbopack: { root: __dirname },
   // Don't advertise the framework/version to scanners.
   poweredByHeader: false,
+  // Pages render per request (the CSP nonce, see lib/csp.ts), and lib/mdx.ts
+  // reads content/ at request time. Make sure those files ship with the
+  // server functions rather than relying on trace inference.
+  outputFileTracingIncludes: {
+    "/**": ["./content/**/*"],
+  },
   async headers() {
     return [
       {
@@ -36,10 +43,13 @@ const nextConfig: NextConfig = {
           // supersedes X-Frame-Options; 'self' lets us keep the option of
           // framing our own pages. Note this restricts who may frame US - it
           // does not affect the HubSpot iframe we embed on /contact.
-          {
-            key: "Content-Security-Policy",
-            value: "frame-ancestors 'self'",
-          },
+          // While the full CSP is report-only (proxy.ts), this is the policy
+          // that enforces. Once CSP_ENFORCE is true the full policy carries
+          // frame-ancestors itself, and two Content-Security-Policy headers
+          // from two places would be ambiguous, so this one steps aside.
+          ...(CSP_ENFORCE
+            ? []
+            : [{ key: "Content-Security-Policy", value: FRAME_ANCESTORS }]),
           // Drop access to hardware/APIs the marketing site never uses.
           {
             key: "Permissions-Policy",
