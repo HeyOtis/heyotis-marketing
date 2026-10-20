@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { CSP_ENFORCE, FRAME_ANCESTORS } from "./lib/csp";
 
 const nextConfig: NextConfig = {
   pageExtensions: ["ts", "tsx"],
@@ -8,6 +9,12 @@ const nextConfig: NextConfig = {
   turbopack: { root: __dirname },
   // Don't advertise the framework/version to scanners.
   poweredByHeader: false,
+  // Pages render per request (the CSP nonce, see lib/csp.ts), and lib/mdx.ts
+  // reads content/ at request time. Make sure those files ship with the
+  // server functions rather than relying on trace inference.
+  outputFileTracingIncludes: {
+    "/**": ["./content/**/*"],
+  },
   async headers() {
     return [
       {
@@ -17,8 +24,9 @@ const nextConfig: NextConfig = {
           // Force HTTPS for two years, including subdomains. `preload` is
           // deliberately omitted - submitting to the HSTS preload list is
           // effectively irreversible and would cover every *.heyotis.ai
-          // subdomain, including the platform app. Add it only once every
-          // subdomain is known-good on HTTPS.
+          // subdomain, including the platform app and clkmail.heyotis.ai
+          // (SendGrid link branding, which may serve plain HTTP). Add it only
+          // once every subdomain is known-good on HTTPS.
           {
             key: "Strict-Transport-Security",
             value: "max-age=63072000; includeSubDomains",
@@ -35,10 +43,13 @@ const nextConfig: NextConfig = {
           // supersedes X-Frame-Options; 'self' lets us keep the option of
           // framing our own pages. Note this restricts who may frame US - it
           // does not affect the HubSpot iframe we embed on /contact.
-          {
-            key: "Content-Security-Policy",
-            value: "frame-ancestors 'self'",
-          },
+          // While the full CSP is report-only (proxy.ts), this is the policy
+          // that enforces. Once CSP_ENFORCE is true the full policy carries
+          // frame-ancestors itself, and two Content-Security-Policy headers
+          // from two places would be ambiguous, so this one steps aside.
+          ...(CSP_ENFORCE
+            ? []
+            : [{ key: "Content-Security-Policy", value: FRAME_ANCESTORS }]),
           // Drop access to hardware/APIs the marketing site never uses.
           {
             key: "Permissions-Policy",
@@ -51,6 +62,17 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // www -> apex inside the app, not as a Vercel domain redirect, so the
+      // redirect response carries the headers above (HSTS includeSubDomains).
+      // Vercel's domain-level redirect sends its own HSTS without it. Only
+      // takes effect once www.heyotis.ai is attached to this project as a
+      // normal domain rather than "Redirect to heyotis.ai".
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www\\.heyotis\\.ai" }],
+        destination: "https://heyotis.ai/:path*",
+        permanent: true,
+      },
       // /features was rebuilt as /platform (loop-stage IA), July 2026.
       { source: "/features", destination: "/platform", permanent: true },
       // The Strategy Engine page moved to the shorter /strategy, July 2026.
