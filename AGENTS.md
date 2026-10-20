@@ -1,4 +1,5 @@
 <!-- BEGIN:nextjs-agent-rules -->
+
 # This is NOT the Next.js you know
 
 This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
@@ -25,7 +26,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - **Every page** calls `buildMetadata({ title, description, path })`. This handles canonical, OG, Twitter, robots.
 - **Every page** renders a `<JsonLd data={breadcrumbSchema([...])} />` block. Blog posts also render `articleSchema(...)`. FAQ sections render `faqPageSchema(...)`.
 - Add `data-speakable` to the main lede paragraph — `Article.speakable` schema picks it up for voice/AI answer surfaces.
-- Static-first: avoid client components on marketing pages unless required.
+- Static-first: avoid client components on marketing pages unless required. HTML pages render per request (the CSP nonce needs request headers; never `force-static`/`revalidate` a page); static is fine for non-HTML routes like llms.txt, sitemap and og.
 - `params` and `searchParams` are `Promise<…>` in Next.js 16 — always `await` them.
 
 ## Commands

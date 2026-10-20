@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { buildCsp, createNonce, CSP_HEADER } from "@/lib/csp";
+import { buildCsp, createNonce, CSP_HEADER, CSP_REPORT_PATH } from "@/lib/csp";
 
 /*
  * Per-request CSP nonce, following the Next.js CSP guide. Next reads the nonce
@@ -8,16 +8,15 @@ import { buildCsp, createNonce, CSP_HEADER } from "@/lib/csp";
  * there is what makes every page dynamically rendered - see lib/csp.ts for why
  * that trade is unavoidable without 'unsafe-inline'.
  *
- * Optional: set CSP_REPORT_URI in Vercel (e.g. a Sentry project's security
- * endpoint) to collect violation reports. Unset, browsers only log them to the
- * console.
+ * Violations post to /api/csp-report (logged to Vercel logs). Optionally set
+ * CSP_REPORT_URI to send the legacy report-uri elsewhere; the Reporting API
+ * endpoint always points at the request's own origin, so previews report to
+ * themselves.
  */
 export function proxy(request: NextRequest) {
   const nonce = createNonce();
-  const reportUri = process.env.CSP_REPORT_URI || undefined;
   const csp = buildCsp(nonce, {
     isDev: process.env.NODE_ENV === "development",
-    reportUri,
   });
 
   const requestHeaders = new Headers(request.headers);
@@ -29,9 +28,10 @@ export function proxy(request: NextRequest) {
 
   const response = NextResponse.next({ request: { headers: requestHeaders } });
   response.headers.set(CSP_HEADER, csp);
-  if (reportUri) {
-    response.headers.set("Reporting-Endpoints", `csp="${reportUri}"`);
-  }
+  response.headers.set(
+    "Reporting-Endpoints",
+    `csp="${request.nextUrl.origin}${CSP_REPORT_PATH}"`,
+  );
   return response;
 }
 

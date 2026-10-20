@@ -18,12 +18,24 @@ import { siteConfig } from "./site";
  * Sources: Google's GA4 CSP guide (developers.google.com/tag-platform/security/
  * guides/csp) and HubSpot's published list (knowledge.hubspot.com, "SSL and
  * domain security in HubSpot"), cut to the tools this site actually loads.
+ *
+ * HTML PAGES MUST STAY DYNAMIC. The nonce is minted per request in proxy.ts, so
+ * a page rendered with `force-static`, `revalidate` or generateStaticParams has
+ * no nonce on its scripts and will be blocked as soon as CSP_ENFORCE is true.
+ * Static rendering is fine for non-HTML routes (llms.txt, sitemap, og image).
+ *
+ * Vercel preview toolbar: `vercel.live` is injected without our nonce, so it
+ * will be blocked on previews once the policy enforces. Accepted - production
+ * has no toolbar.
  */
+
+/** Same-origin endpoint that logs violation reports (app/api/csp-report). */
+export const CSP_REPORT_PATH = "/api/csp-report";
 
 /**
  * Report-only until the reports come back clean on production; then set to
- * true. While false, an enforcing `frame-ancestors 'self'` is still sent from
- * next.config.ts, because a report-only policy cannot carry frame-ancestors.
+ * true. Report-only does not enforce `frame-ancestors`; framing is enforced by
+ * the separate header sent from next.config.ts in both modes.
  */
 export const CSP_ENFORCE = false;
 
@@ -55,7 +67,7 @@ export function buildCsp(
   nonce: string,
   {
     isDev = false,
-    reportUri,
+    reportUri = process.env.CSP_REPORT_URI || CSP_REPORT_PATH,
   }: { isDev?: boolean; reportUri?: string } = {},
 ): string {
   const directives = [
@@ -87,6 +99,11 @@ export function buildCsp(
       "img-src 'self' data: blob:",
       "https://*.google-analytics.com",
       "https://*.googletagmanager.com",
+      // GA4 with Google Signals / Ads features (Google's CSP guide). Only the
+      // NZ regional domain is listed; other Google TLDs are omitted on purpose.
+      "https://*.google.com",
+      "https://*.google.co.nz",
+      "https://*.g.doubleclick.net",
       // HubSpot tracking pixel (track-eu1.hubspot.com).
       "https://*.hubspot.com",
     ].join(" "),
@@ -96,6 +113,10 @@ export function buildCsp(
       "https://*.google-analytics.com",
       "https://*.analytics.google.com",
       "https://*.googletagmanager.com",
+      "https://*.google.com",
+      "https://*.google.co.nz",
+      "https://*.g.doubleclick.net",
+      "https://pagead2.googlesyndication.com",
       "https://*.hubspot.com",
       "https://*.hubapi.com",
       "https://*.hs-banner.com",
@@ -105,10 +126,12 @@ export function buildCsp(
     "object-src 'none'",
     "base-uri 'self'",
     "form-action 'self'",
-    // Browsers ignore these two in a report-only policy (and warn), so they
-    // are only sent once the policy enforces.
+    // `upgrade-insecure-requests` is ignored in report-only, and so is
+    // `frame-ancestors` (the separate header enforces it), so both are only
+    // sent once the policy enforces.
     ...(CSP_ENFORCE ? [FRAME_ANCESTORS, "upgrade-insecure-requests"] : []),
-    ...(reportUri ? [`report-uri ${reportUri}`, "report-to csp"] : []),
+    `report-uri ${reportUri}`,
+    "report-to csp",
   ];
   return directives.join("; ");
 }
