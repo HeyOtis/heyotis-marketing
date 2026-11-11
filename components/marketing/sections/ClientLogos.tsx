@@ -10,6 +10,10 @@ import motorhub from "@/public/clients/motorhub.png";
 import d3 from "@/public/clients/d3.png";
 import lifestream from "@/public/clients/lifestream.png";
 import wingermotors from "@/public/clients/wingermotors.png";
+import kernel from "@/public/clients/kernel.png";
+import upEducation from "@/public/clients/up-education.png";
+import shotoverJet from "@/public/clients/shotover-jet.svg";
+import roofingOutlet from "@/public/clients/roofing-outlet.png";
 
 /* Client wordmarks, rendered as ink silhouettes (brightness-0 + opacity)
    so mixed source files sit quietly in the blueprint palette. Heights are
@@ -17,15 +21,19 @@ import wingermotors from "@/public/clients/wingermotors.png";
    don't normalize them to one value. To add a client: drop the file in
    public/clients/ and add a row. */
 const CLIENTS: { name: string; src: typeof hallensteins; height: number }[] = [
-  { name: "Daylyte", src: daylyte, height: 20 },
-  { name: "Hatch", src: hatch, height: 22 },
-  { name: "Ziwi", src: ziwi, height: 30 },
-  { name: "AJ Hackett Bungy", src: ajhackett, height: 42 },
-  { name: "Hallensteins", src: hallensteins, height: 18 },
-  { name: "Motorhub", src: motorhub, height: 20 },
-  { name: "Winger Motors", src: wingermotors, height: 19 },
-  { name: "Lifestream", src: lifestream, height: 20 },
-  { name: "d3", src: d3, height: 33 },
+  { name: "Daylyte", src: daylyte, height: 30 },
+  { name: "Hatch", src: hatch, height: 33 },
+  { name: "Shotover Jet", src: shotoverJet, height: 45 },
+  { name: "Ziwi", src: ziwi, height: 45 },
+  { name: "Kernel", src: kernel, height: 30 },
+  { name: "AJ Hackett Bungy", src: ajhackett, height: 63 },
+  { name: "Hallensteins", src: hallensteins, height: 27 },
+  { name: "UP Education", src: upEducation, height: 50 },
+  { name: "Motorhub", src: motorhub, height: 30 },
+  { name: "Winger Motors", src: wingermotors, height: 29 },
+  { name: "Roofing Outlet", src: roofingOutlet, height: 42 },
+  { name: "Lifestream", src: lifestream, height: 30 },
+  { name: "d3", src: d3, height: 50 },
 ];
 
 /** A quiet "Trusted by" strip on white: mono label, ink-silhouette client
